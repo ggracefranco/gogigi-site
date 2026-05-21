@@ -353,6 +353,27 @@ p.charity-num { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: upper
 }
 .pledge-cta:hover { background: var(--seafoam); transform: translateY(-1px); }
 
+.blog-circles {
+  display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 2rem;
+}
+.blog-circle {
+  width: 220px; height: 220px; border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 2rem; text-align: center; text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+.blog-circle:hover { transform: scale(1.05); box-shadow: 0 12px 40px rgba(0,0,0,0.15); }
+.blog-circle.coming { cursor: default; opacity: 0.8; }
+.blog-circle.coming:hover { transform: none; box-shadow: none; }
+.circle-title {
+  font-family: 'Lora', serif; font-style: italic;
+  font-size: 0.88rem; color: #ffffff; line-height: 1.4;
+}
+.circle-soon {
+  font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(255,255,255,0.6); margin-top: 0.5rem; display: block;
+}
 /* ── BLOG ── */
 .blog-section { padding: 6rem 2.5rem; background: var(--sand); }
 .blog-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; }
@@ -784,7 +805,7 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
     <p class="section-label">My Story</p>
     <h2>More than<br>just <em>miles</em></h2>
     <div class="story-body">
-      <p>Hi, I'm Giuliana! I have been obsessed with the pool and ocean since I was five years old. I grew up a club swimmer, and while other kids on family vacations were playing sharks and minnows, I was making my parents find the nearest lap pool. And then also making friends playing sharks and minnows. Big dreams have always been my thing, and honestly, they still are.</p>
+      <p>Hi, I'm Gigi! I have been obsessed with the pool and ocean since I was five years old. I grew up a club swimmer, and while other kids on family vacations were playing sharks and minnows, I was making my parents find the nearest lap pool. And then also making friends playing sharks and minnows. Big dreams have always been my thing, and honestly, they still are.</p>
       <p>Growing up in LA, I was part of the <strong>Junior Lifeguards</strong>, a summer beach program that trains kids to become ocean lifeguards. My first summer was going great. Or so I told my mom. What I didn't mention was that I wasn't actually going in the ocean. A few days in, she got a call from the program director: <em>"If your daughter doesn't swim tomorrow, she's out."</em> My mom pretty much laughed because I had sold that summer so hard.</p>
       <p>Enter <strong>Matt the Muscle Man</strong>, who took me out for a private buoy swim while the entire program watched from shore and cheered me on. Mortifying. Afterward I reported back to my mom that it went fine, but complained that it was kind of lame because they sent a paramedic to do the swim with me instead of an actual lifeguard. My mom looked at me the way only moms can and said "he IS a lifeguard, sweetie." Matt the Muscle Man was the lifeguard the whole time. I had absolutely no idea. My 9 year old self could not complain anymore about the very cute lifeguard who just took her on a private ocean swim. I conquered my very real fear of being eaten by a whale that day and have been in love with open water ever since.</p>
 
@@ -878,15 +899,13 @@ For the women who show up for each other.
     </div>
     <a href="#" class="view-all-link">See all posts →</a>
   </div>
-  <div class="blog-grid">
-<div class="blog-card featured" onclick="window.open('https://gogigiruns.substack.com/p/how-i-signed-up-for-a-triathlon-on','_blank')" style="cursor:pointer; padding:0;">
-  <img src="gigi-beach.jpg" alt="Gigi in Hawaii" style="width:100%; display:block; border-radius:4px 4px 0 0;">
-  <div style="padding:1.75rem;">
-    <span class="blog-tag">Origin Story · Hawaii</span>
-    <p class="blog-title">How I signed up for a triathlon on a beach in Hawaii (two more on the horizon)</p>
-    <p class="blog-excerpt">Ten days. Endless sun, salt water, good books, and my best friends. Somewhere between the body surfing and the third pina colada, I became a triathlete.</p>
-    <p style="font-size:0.8rem;color:var(--coral);font-weight:500;margin-top:1rem;letter-spacing:0.05em;">READ THE FULL STORY →</p>
-    <p class="blog-meta">May 1, 2026 · 5 min read</p>
+  <div class="blog-circles">
+  <a href="https://gogigiruns.substack.com/p/how-i-signed-up-for-a-triathlon-on" target="_blank" class="blog-circle" style="background: linear-gradient(135deg, #e86848, #c94e5a);">
+    <span class="circle-title">How I signed up for a triathlon on a beach in Hawaii</span>
+  </a>
+  <div class="blog-circle coming" style="background: linear-gradient(135deg, #3a8ab0, #1a4a6a);">
+    <span class="circle-title">The red light incident. Yes, that one.</span>
+    <span class="circle-soon">Coming soon</span>
   </div>
     <GALLERY -->
      <!-- TRAINING LOG -->
@@ -980,7 +999,7 @@ For the women who show up for each other.
     </div>
   </div>
   <div class="footer-bottom">
-    <p class="footer-copy">© 2026 Giuliana · Made with heart and sore legs 🧡</p>
+    <p class="footer-copy">© 2026 Gigi · Made with heart and sore legs 🧡</p>
     <p class="footer-disclaimer">All donations go directly to the charities listed. This page doesn't collect any money itself. Each donate link takes you straight to the official charity website.</p>
   </div>
 </footer>
