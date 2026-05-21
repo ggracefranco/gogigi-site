@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Giuliana Goes the Distance</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --sand:     #fdf8f0;
+  --cream:    #f5f0e8;
+  --seafoam:  #e8f5f0;
+  --peach:    #fad4b0;
+  --apricot:  #f5a87a;
+  --coral:    #e86848;
+  --sunset:   #f0804a;
+  --rose:     #d45a5a;
+  --seaweed:  #4a8c6a;
+  --kelp:     #2d6b4a;
+  --ocean:    #5aaccf;
+  --wave:     #3a8ab0;
+  --sky-blue: #a8d8ea;
+  --deep:     #1a4a6a;
+  --text:     #2a3040;
+  --muted:    #6a7a8a;
+  --light:    #b0c0cc;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--sand);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.1rem 2.5rem;
+  background: rgba(253,248,240,0.93);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(90,172,207,0.2);
+}
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem; letter-spacing: 0.12em;
+  color: var(--coral); text-decoration: none;
+}
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--coral); }
+.nav-cta {
+  background: var(--coral) !important; color: var(--sand) !important;
+  padding: 0.45rem 1.2rem; border-radius: 2px; font-weight: 500 !important;
+}
+.nav-cta:hover { background: var(--horizon) !important; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 2.5rem 5rem;
+  position: relative; overflow: hidden;
+}
+.hero-sky {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    180deg,
+    #1a4a6a 0%,
+    #2a6a8a 10%,
+    #5aaccf 24%,
+    #a8d8ea 36%,
+    #f5c878 52%,
+    #f5a87a 64%,
+    #e86848 74%,
+    #d45a5a 84%,
+    #fdf8f0 100%
+  );
+}
+.hero-glow {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 40% at 50% 60%, rgba(245,200,120,0.3) 0%, transparent 70%);
+}
+.hero-sun {
+  position: absolute; left: 50%; bottom: 38%;
+  transform: translateX(-50%);
+  width: 130px; height: 130px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff5c0 0%, #f5c878 45%, #f5a87a 100%);
+  box-shadow: 0 0 80px 30px rgba(245,200,120,0.5), 0 0 160px 60px rgba(232,104,74,0.25);
+}
+.hero-water {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 40%;
+  background: linear-gradient(180deg, rgba(90,172,207,0.2) 0%, rgba(42,106,138,0.65) 50%, rgba(26,74,106,0.88) 100%);
+}
+.hero-content { position: relative; z-index: 2; max-width: 860px; }
+.hero-eyebrow {
+  font-size: 0.72rem; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--deep); margin-bottom: 1rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.hero-eyebrow::before { content:''; display:block; width:2rem; height:1px; background:var(--deep); }
+h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4.5rem, 13vw, 11rem);
+  line-height: 0.9; letter-spacing: 0.01em;
+  color: var(--sand);
+  margin-bottom: 1.5rem;
+}
+h1 em {
+  font-style: italic; font-family: 'Lora', serif;
+  color: var(--peach); font-size: 0.85em;
+}
+.hero-sub {
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  color: rgba(253,246,237,0.82);
+  max-width: 500px; line-height: 1.75; margin-bottom: 2.5rem;
+}
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--coral); color: var(--sand);
+  padding: 0.9rem 1.9rem; font-size: 0.88rem;
+  font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase;
+  text-decoration: none; transition: all 0.2s;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+.btn-primary:hover { background: var(--horizon); transform: translateY(-2px); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: transparent; color: var(--sand);
+  padding: 0.9rem 1.9rem; font-size: 0.88rem;
+  font-weight: 300; letter-spacing: 0.07em; text-transform: uppercase;
+  text-decoration: none; border: 1px solid rgba(253,246,237,0.35); transition: all 0.2s;
+}
+.btn-secondary:hover { border-color: var(--sand); background: rgba(253,246,237,0.08); }
+
+/* ── TICKER ── */
+.race-ticker { background: var(--seaweed); padding: 0.7rem 0; overflow: hidden; }
+.ticker-track {
+  display: flex; gap: 4rem;
+  animation: ticker 32s linear infinite; white-space: nowrap;
+}
+.ticker-item {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.95rem; letter-spacing: 0.2em; color: var(--sand); flex-shrink: 0;
+}
+.ticker-dot { color: rgba(253,246,237,0.5); }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ── SECTION SHARED ── */
+.section-label {
+  font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--coral); margin-bottom: 0.75rem;
+  display: flex; align-items: center; gap: 0.65rem;
+}
+.section-label::before { content:''; display:block; width:1.5rem; height:1px; background:var(--coral); }
+
+/* ── COUNTDOWN ── */
+.countdown-section {
+  padding: 5rem 2.5rem;
+  background: var(--seafoam);
+}
+.countdown-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem; margin-top: 2rem;
+}
+.countdown-race {
+  background: var(--sand);
+  border: 1px solid rgba(74,140,106,0.2);
+  border-radius: 4px; padding: 2rem;
+  position: relative; overflow: hidden;
+}
+.countdown-race::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--seaweed), var(--ocean));
+}
+.race-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem; letter-spacing: 0.05em; color: var(--text); margin-bottom: 0.2rem;
+}
+.race-date { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.5rem; }
+.timer-display { display: flex; gap: 1.25rem; }
+.timer-unit { text-align: center; }
+.timer-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.6rem; line-height: 1; color: var(--wave);
+}
+.timer-label { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+.race-tbd {
+  font-family: 'Lora', serif; font-style: italic;
+  font-size: 0.9rem; color: var(--muted); margin-top: 0.5rem;
+}
+
+/* ── STORY ── */
+.story-section {
+  padding: 7rem 2.5rem;
+  background: var(--deep);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start;
+  position: relative; overflow: hidden;
+}
+.story-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 80% 50%, rgba(90,172,207,0.12) 0%, transparent 70%),
+              radial-gradient(ellipse 50% 40% at 10% 80%, rgba(74,140,106,0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+.story-left { position: relative; z-index: 1; }
+.story-left .section-label { color: var(--sky-blue); }
+.story-left .section-label::before { background: var(--sky-blue); }
+.story-left h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4.2rem); line-height: 0.95;
+  color: var(--sand); margin-bottom: 2rem;
+}
+.story-left h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--sky-blue); }
+.story-body { font-size: 1rem; line-height: 1.9; color: rgba(253,248,240,0.78); }
+.story-body p { margin-bottom: 1.25rem; }
+.story-body strong { color: var(--peach); font-weight: 500; }
+.story-stats {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  background: rgba(90,172,207,0.15); margin-top: 2.5rem;
+  border: 1px solid rgba(90,172,207,0.15);
+}
+.story-stat { background: rgba(26,74,106,0.8); padding: 1.5rem; }
+.stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.6rem; color: var(--apricot); line-height: 1; }
+.stat-label { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--light); margin-top: 0.25rem; }
+.story-image-wrap { position: relative; z-index: 1; }
+.story-image-placeholder {
+  aspect-ratio: 3/4;
+  background: linear-gradient(160deg, #1a4a6a 0%, #2d6b4a 60%, #4a8c6a 100%);
+  border-radius: 4px; display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.story-image-placeholder::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 30%, rgba(245,200,120,0.15) 0%, transparent 60%);
+}
+.photo-label {
+  font-family: 'Lora', serif; font-style: italic;
+  font-size: 1rem; color: rgba(253,246,237,0.25); position: relative; z-index: 1;
+}
+.photo-upload-hint {
+  position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+  font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(253,246,237,0.18); white-space: nowrap;
+}
+
+/* ── FUNDRAISING ── */
+.fundraising-section {
+  padding: 6rem 2.5rem;
+  background: var(--cream);
+}
+.fundraising-header {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+  align-items: end; margin-bottom: 2.5rem;
+}
+.fundraising-header h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 0.93;
+  color: var(--text);
+}
+.fundraising-header h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--coral); }
+.fundraising-meta { color: var(--muted); line-height: 1.75; font-size: 1rem; }
+
+.progress-bar-wrap { margin: 1.5rem 0 2.5rem; }
+.progress-labels { display: flex; justify-content: space-between; margin-bottom: 0.6rem; align-items: flex-end; }
+.progress-raised { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: var(--coral); }
+.progress-goal { font-size: 0.85rem; color: var(--muted); }
+.progress-track { height: 5px; background: rgba(201,78,90,0.15); border-radius: 99px; }
+.progress-fill {
+  height: 5px; border-radius: 99px;
+  background: linear-gradient(90deg, var(--ocean), var(--apricot), var(--coral));
+  width: 0%; transition: width 1.2s ease;
+  position: relative;
+}
+.progress-fill::after {
+  content: ''; position: absolute; right: -5px; top: -4px;
+  width: 13px; height: 13px; border-radius: 50%;
+  background: var(--coral); border: 2px solid var(--cream);
+}
+.progress-pct { font-size: 0.75rem; color: var(--muted); margin-top: 0.6rem; }
+
+/* CHARITY CARDS */
+.charity-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin: 2rem 0 2.5rem; }
+.charity-card {
+  background: var(--sand);
+  border: 1px solid rgba(232,104,74,0.15);
+  border-radius: 4px; padding: 2rem;
+  display: flex; flex-direction: column;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.charity-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(232,104,74,0.12); }
+.charity-logo-wrap {
+  height: 56px; display: flex; align-items: center; margin-bottom: 1.25rem;
+}
+.charity-logo-wrap img { max-height: 52px; max-width: 160px; object-fit: contain; }
+.charity-logo-fallback {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem; letter-spacing: 0.06em; color: var(--coral);
+}
+.charity-personal {
+  font-family: 'Lora', serif; font-style: italic;
+  font-size: 0.9rem; color: var(--coral); line-height: 1.5; margin-bottom: 0.75rem;
+}
+.charity-num { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--coral); margin-bottom: 0.5rem; }
+.charity-name-big { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.04em; color: var(--text); margin-bottom: 0.5rem; }
+.charity-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.65; margin-bottom: 1.5rem; flex: 1; }
+.charity-link {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--coral); text-decoration: none;
+  border-bottom: 1px solid rgba(232,104,74,0.3); padding-bottom: 2px;
+  transition: border-color 0.2s; width: fit-content;
+}
+.charity-link:hover { border-color: var(--coral); }
+
+/* PLEDGE BOX */
+.pledge-box {
+  background: linear-gradient(135deg, var(--wave) 0%, var(--kelp) 100%);
+  padding: 2.5rem 3rem; border-radius: 4px;
+}
+.pledge-box h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem; letter-spacing: 0.04em; color: var(--sand); margin-bottom: 0.5rem;
+}
+.pledge-box p { color: rgba(253,246,237,0.85); line-height: 1.65; margin-bottom: 1.5rem; font-size: 0.95rem; }
+.pledge-amounts { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.pledge-amt {
+  background: rgba(253,246,237,0.15); color: var(--sand);
+  border: 1px solid rgba(253,246,237,0.3);
+  padding: 0.55rem 1.1rem; font-size: 0.88rem; font-weight: 400;
+  cursor: pointer; transition: all 0.2s; border-radius: 2px;
+}
+.pledge-amt:hover, .pledge-amt.active { background: var(--sand); color: var(--coral); border-color: var(--sand); }
+.pledge-cta {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--sand); color: var(--deep);
+  padding: 0.9rem 1.9rem; font-size: 0.88rem; font-weight: 500;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  text-decoration: none; transition: all 0.2s; border-radius: 2px;
+}
+.pledge-cta:hover { background: var(--seafoam); transform: translateY(-1px); }
+
+/* ── BLOG ── */
+.blog-section { padding: 6rem 2.5rem; background: var(--sand); }
+.blog-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; }
+.blog-header h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 4vw, 3.5rem); color: var(--text); }
+.blog-header h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--coral); }
+.view-all-link {
+  font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--coral); text-decoration: none;
+  border-bottom: 1px solid rgba(232,104,74,0.35); padding-bottom: 2px;
+}
+.blog-grid {
+  display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 1.25rem;
+}
+.blog-card {
+  background: var(--cream); border: 1px solid rgba(232,104,74,0.12);
+  border-radius: 4px; padding: 1.75rem; display: flex; flex-direction: column;
+  cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+}
+.blog-card:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(201,78,90,0.1); }
+.blog-tag {
+  font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--coral); margin-bottom: 0.85rem; display: block;
+}
+.blog-title {
+  font-family: 'Lora', serif; font-size: 1.3rem; line-height: 1.35;
+  color: var(--text); margin-bottom: 0.75rem; flex: 1;
+}
+.blog-card.featured .blog-title { font-size: 1.6rem; }
+.blog-excerpt { font-size: 0.85rem; color: var(--muted); line-height: 1.65; margin-bottom: 1.25rem; }
+.blog-meta { font-size: 0.72rem; color: var(--light); letter-spacing: 0.05em; }
+.blog-img-placeholder {
+  height: 160px; background: linear-gradient(135deg, #a8d8ea 0%, #4a8c6a 100%);
+  margin: -1.75rem -1.75rem 1.5rem; border-radius: 4px 4px 0 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.6);
+}
+
+/* ── GALLERY ── */
+.gallery-section { padding: 5rem 2.5rem; background: var(--cream); }
+.gallery-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem,4vw,3.2rem); color: var(--text); margin-bottom: 1.5rem; }
+.gallery-section h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--coral); }
+.gallery-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 200px;
+  gap: 4px; margin-top: 1.5rem;
+}
+.gallery-item {
+  background: linear-gradient(135deg, var(--peach) 0%, var(--apricot) 100%);
+  border-radius: 2px; display: flex; align-items: center; justify-content: center;
+  font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(253,246,237,0.6); cursor: pointer; transition: opacity 0.2s;
+  overflow: hidden;
+}
+.gallery-item:hover { opacity: 0.9; }
+.gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+.gallery-item:nth-child(4) { grid-column: span 2; }
+
+/* ── EMAIL SIGNUP ── */
+.email-section {
+  padding: 6rem 2.5rem;
+  background: var(--deep);
+  position: relative; overflow: hidden;
+}
+.email-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 20% 50%, rgba(90,172,207,0.1) 0%, transparent 65%),
+              radial-gradient(ellipse 40% 60% at 80% 50%, rgba(74,140,106,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+.email-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+  align-items: center; position: relative; z-index: 1; max-width: 1100px;
+}
+.email-heading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 4vw, 3.5rem); line-height: 0.95;
+  color: var(--sand); margin-bottom: 1.25rem;
+}
+.email-heading em { font-family: 'Lora', serif; font-style: italic; color: var(--apricot); }
+.email-sub { font-size: 0.95rem; color: rgba(253,248,240,0.65); line-height: 1.75; }
+.email-form-wrap { margin-bottom: 2rem; }
+.email-form-label {
+  font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--sky-blue); margin-bottom: 1rem; display: block;
+}
+.email-field-row { display: flex; flex-direction: column; gap: 0.75rem; }
+.email-input {
+  background: rgba(253,248,240,0.08);
+  border: 1px solid rgba(90,172,207,0.25);
+  color: var(--sand); padding: 0.85rem 1.1rem;
+  font-size: 0.9rem; font-family: 'DM Sans', sans-serif;
+  border-radius: 3px; outline: none; transition: border-color 0.2s;
+  width: 100%;
+}
+.email-input::placeholder { color: rgba(253,248,240,0.35); }
+.email-input:focus { border-color: rgba(90,172,207,0.6); }
+.email-btn {
+  background: var(--coral); color: var(--sand);
+  border: none; padding: 0.9rem 1.75rem;
+  font-size: 0.88rem; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase;
+  cursor: pointer; border-radius: 3px; transition: all 0.2s;
+  font-family: 'DM Sans', sans-serif;
+}
+.email-btn:hover { background: var(--sunset); transform: translateY(-1px); }
+.email-fine-print { font-size: 0.7rem; color: rgba(253,248,240,0.3); margin-top: 0.75rem; line-height: 1.5; }
+.email-success {
+  display: none; margin-top: 1rem;
+  background: rgba(74,140,106,0.2); border: 1px solid rgba(74,140,106,0.35);
+  color: var(--sand); padding: 0.85rem 1.1rem;
+  border-radius: 3px; font-size: 0.9rem; line-height: 1.5;
+}
+.email-perks { display: flex; flex-direction: column; gap: 0.85rem; }
+.email-perk {
+  display: flex; align-items: center; gap: 0.85rem;
+  font-size: 0.88rem; color: rgba(253,248,240,0.6);
+}
+.perk-icon { font-size: 1.1rem; flex-shrink: 0; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--deep); padding: 4rem 2.5rem 2rem;
+  border-top: 1px solid rgba(90,172,207,0.2);
+}
+.footer-top {
+  display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 4rem;
+  padding-bottom: 3rem; border-bottom: 1px solid rgba(90,172,207,0.1); margin-bottom: 2rem;
+}
+.footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.1em; color: var(--sky-blue); display: block; margin-bottom: 1rem; }
+.footer-tagline { font-size: 0.88rem; color: rgba(253,246,237,0.45); line-height: 1.7; max-width: 280px; }
+.footer-col h4 { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(253,246,237,0.35); margin-bottom: 1.1rem; }
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 0.55rem; }
+.footer-col a { font-size: 0.88rem; color: rgba(253,246,237,0.45); text-decoration: none; transition: color 0.2s; }
+.footer-col a:hover { color: var(--sky-blue); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; }
+.footer-copy { font-size: 0.72rem; color: rgba(253,246,237,0.25); }
+.footer-disclaimer { font-size: 0.68rem; color: rgba(253,246,237,0.18); max-width: 380px; text-align: right; line-height: 1.5; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-eyebrow { animation: fadeUp 0.6s ease both; }
+h1             { animation: fadeUp 0.7s 0.1s ease both; }
+.hero-sub      { animation: fadeUp 0.7s 0.2s ease both; }
+.hero-actions  { animation: fadeUp 0.7s 0.3s ease both; }
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.25rem; }
+  .nav-links { display: none; }
+  .hero { padding: 0 1.25rem 3.5rem; }
+  .email-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .email-field-row { flex-direction: column; }
+  .fundraising-header { grid-template-columns: 1fr; gap: 1.5rem; }
+  .story-section { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 1.25rem; }
+  .gallery-grid { grid-template-columns: repeat(2,1fr); }
+  .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+  .footer-disclaimer { text-align: center; }
+  .pledge-box { padding: 1.75rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Giuliana · Goes the Distance</a>
+  <ul class="nav-links">
+    <li><a href="#story">Story</a></li>
+    <li><a href="#races">Races</a></li>
+    <li><a href="#updates">Updates</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#donate" class="nav-cta">Donate</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-sky"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-sun"></div>
+  <div class="hero-water"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Swimmer · New Triathlete · Definitely Still Learning</p>
+    <h1>Going<br>the <em>Distance</em></h1>
+    <p class="hero-sub">I fell off my bike while it was completely still, waved at the traffic that watched it happen, and then signed up for three triathlons. Come along for the ride.</p>
+    <div class="hero-actions">
+      <a href="#donate" class="btn-primary">Cheer me on (and donate) →</a>
+      <a href="#story" class="btn-secondary">Wait, who are you?</a>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="race-ticker">
+  <div class="ticker-track">
+    <span class="ticker-item">Olympic Triathlon <span class="ticker-dot">·</span> Sep 19, 2026</span>
+    <span class="ticker-item">Half Ironman 70.3 <span class="ticker-dot">·</span> Coming 2027</span>
+    <span class="ticker-item">Full Ironman 140.6 <span class="ticker-dot">·</span> Coming 2027</span>
+    <span class="ticker-item">NEDA <span class="ticker-dot">·</span> RAINN <span class="ticker-dot">·</span> Challenged Athletes Foundation</span>
+    <span class="ticker-item">Olympic Triathlon <span class="ticker-dot">·</span> Sep 19, 2026</span>
+    <span class="ticker-item">Half Ironman 70.3 <span class="ticker-dot">·</span> Coming 2027</span>
+    <span class="ticker-item">Full Ironman 140.6 <span class="ticker-dot">·</span> Coming 2027</span>
+    <span class="ticker-item">NEDA <span class="ticker-dot">·</span> RAINN <span class="ticker-dot">·</span> Challenged Athletes Foundation</span>
+  </div>
+</div>
+
+<!-- COUNTDOWN -->
+<section class="countdown-section" id="races">
+  <p class="section-label">The Journey Ahead</p>
+  <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,5vw,3.8rem);color:var(--text);margin-bottom:0.25rem;">Three races. <em style="font-family:'Lora',serif;font-style:italic;color:var(--coral);">One very tired girl.</em></h2>
+  <div class="countdown-grid">
+    <div class="countdown-race">
+      <p class="race-name">Olympic Triathlon</p>
+      <p class="race-date">September 19, 2026 · 0.9mi / 24.8mi / 6.2mi</p>
+      <div class="timer-display">
+        <div class="timer-unit"><div class="timer-num" id="d1">—</div><div class="timer-label">Days</div></div>
+        <div class="timer-unit"><div class="timer-num" id="h1">—</div><div class="timer-label">Hrs</div></div>
+        <div class="timer-unit"><div class="timer-num" id="m1">—</div><div class="timer-label">Min</div></div>
+      </div>
+    </div>
+    <div class="countdown-race">
+      <p class="race-name">Half Ironman 70.3</p>
+      <p class="race-date">June 2027 · Registration pending</p>
+      <p class="race-tbd">Haven't signed up yet but it's happening. Stay tuned!</p>
+    </div>
+    <div class="countdown-race">
+      <p class="race-name">Full Ironman 140.6</p>
+      <p class="race-date">October 2027 · Registration pending</p>
+      <p class="race-tbd">The big scary one. I will sign up. I am brave. Probably.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story-section" id="story">
+  <div class="story-left">
+    <p class="section-label">My Story</p>
+    <h2>More than<br>just <em>miles</em></h2>
+    <div class="story-body">
+      <p>Hi, I'm Giuliana! I have been obsessed with the pool and ocean since I was five years old. I grew up a club swimmer, and while other kids on family vacations were playing sharks and minnows, I was making my parents find the nearest lap pool. And then also making friends playing sharks and minnows. Big dreams have always been my thing, and honestly, they still are.</p>
+      <p>Growing up in LA, I was part of the <strong>Junior Lifeguards</strong>, a summer beach program that trains kids to become ocean lifeguards. My first summer was going great. Or so I told my mom. What I didn't mention was that I wasn't actually going in the ocean. A few days in, she got a call from the program director: <em>"If your daughter doesn't swim tomorrow, she's out."</em> My mom pretty much laughed because I had sold that summer so hard.</p>
+      <p>Enter <strong>Matt the Muscle Man</strong>, who took me out for a private buoy swim while the entire program watched from shore and cheered me on. Mortifying. Afterward I reported back to my mom that it went fine, but complained that it was kind of lame because they sent a paramedic to do the swim with me instead of an actual lifeguard. My mom looked at me the way only moms can and said "he IS a lifeguard, sweetie." Matt the Muscle Man was the lifeguard the whole time. I had absolutely no idea. My 14 year old self could not complain anymore about the very cute lifeguard who just took her on a private ocean swim. I conquered my very real fear of being eaten by a whale that day and have been in love with open water ever since.</p>
+      <p>I had the opportunity to swim in college but that chapter didn't go the way I hoped. So I built something of my own instead. <strong>For the past 14 years I've run my own swim business</strong>, teaching everyone from 9-month-olds to 90-year-olds, club swimmers, Ironman athletes, and adaptive swimmers. I also run a masters swim program that I've been coaching for the past four years. The water has been my classroom, my happy place, and my career all rolled into one.</p>
+      <p>My husband had been telling me for a while that I should train for triathlons. It never really sounded appealing if I'm being honest. Then this spring I took a trip to Hawaii with my mom and sister, did a few ocean swims (shoutout to the local Diana who jumped in with me), and somewhere between the first and second pina colada I thought... yeah, okay, I should do this.</p>
+      <p>Things moved fast. One TikTok deep dive, a lucky bike deal, and approximately one million visits to Lance at my local bike shop later, I had all the gear, a training plan, and a word I still can't spell called chamois. Lance is probably sick of seeing me. One month in and I am completely obsessed.</p>
+      <p>The three charities I'm racing for are close to my heart and I'll leave it at that. If you want to be part of something fun, a little chaotic, and genuinely meaningful, you're in the right place.</p>
+      <p>Let's do this for every woman who's had another woman's back. And to the girl whose college swimming career ended in a splash.</p>
+    </div>
+    <div class="story-stats">
+      <div class="story-stat"><div class="stat-num">20+</div><div class="stat-label">Years in the water</div></div>
+      <div class="story-stat"><div class="stat-num">14</div><div class="stat-label">Years coaching swim</div></div>
+      <div class="story-stat"><div class="stat-num">3</div><div class="stat-label">Races in 18 months</div></div>
+      <div class="story-stat"><div class="stat-num">$8.5K</div><div class="stat-label">Fundraising goal</div></div>
+    </div>
+  </div>
+  <div class="story-image-wrap">
+    <img src="gigi-hawaii.jpg" alt="Gigi in the ocean in Hawaii" style="width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:4px; display:block;">
+  </div>
+</section>
+
+<!-- FUNDRAISING -->
+<section class="fundraising-section" id="donate">
+  <div class="fundraising-header">
+    <div>
+      <p class="section-label">Fundraising</p>
+      <h2>Race for<br><em>what matters</em></h2>
+    </div>
+    <p class="fundraising-meta">Every single dollar goes straight to one of three causes that are close to my heart. You can give a flat amount or pledge per mile and watch it grow as I race. Every dollar goes straight to the cause. That's it. That's the pitch.</p>
+  </div>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-labels">
+      <span class="progress-raised">$1,240 raised</span>
+      <span class="progress-goal">Goal: $8,500</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="pFill"></div></div>
+    <p class="progress-pct">14.6% of goal · 18 donors · thank you 🧡</p>
+  </div>
+
+  <div class="charity-cards">
+
+    <!-- NEDA -->
+    <div class="charity-card">
+      <div class="charity-logo-wrap">
+        <img src="https://www.nationaleatingdisorders.org/wp-content/themes/neda/images/neda-logo.svg"
+             alt="NEDA logo"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+        <span class="charity-logo-fallback" style="display:none;">NEDA</span>
+      </div>
+      <p class="charity-num">01 · Mental Health</p>
+      <p class="charity-name-big">NEDA</p>
+      <p class="charity-personal">To the girl whose college swimming career ended in a splash.</p>
+      <p class="charity-desc">The National Eating Disorders Association supports individuals and families affected by eating disorders through education, advocacy, and access to resources and treatment.</p>
+      <a class="charity-link" href="https://www.nationaleatingdisorders.org/donate" target="_blank">Donate to NEDA →</a>
+    </div>
+
+    <!-- RAINN -->
+    <div class="charity-card">
+      <div class="charity-logo-wrap">
+        <img src="https://www.rainn.org/sites/default/files/rainn-logo.png"
+             alt="RAINN logo"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+        <span class="charity-logo-fallback" style="display:none;">RAINN</span>
+      </div>
+      <p class="charity-num">02 · Survivor Support</p>
+      <p class="charity-name-big">RAINN</p>
+      <p class="charity-personal">For every woman who's had another woman's back.</p>
+      <p class="charity-desc">The nation's largest anti-sexual violence organization. RAINN operates the National Sexual Assault Hotline and works to prevent sexual violence and support survivors nationwide.</p>
+      <a class="charity-link" href="https://www.rainn.org/donate" target="_blank">Donate to RAINN →</a>
+    </div>
+
+    <!-- CAF -->
+    <div class="charity-card">
+      <div class="charity-logo-wrap">
+        <img src="https://www.challengedathletes.org/wp-content/uploads/2023/01/CAF-Logo-Horizontal-Color.png"
+             alt="Challenged Athletes Foundation logo"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+        <span class="charity-logo-fallback" style="display:none;">CAF</span>
+      </div>
+      <p class="charity-num">03 · Adaptive Sport</p>
+      <p class="charity-name-big">CAF</p>
+      <p class="charity-desc">The Challenged Athletes Foundation funds adaptive sports equipment and opportunities for people with physical disabilities, making sport and everything it gives you accessible to everyone.</p>
+      <a class="charity-link" href="https://www.challengedathletes.org/donate" target="_blank">Donate to CAF →</a>
+    </div>
+
+  </div>
+
+  <div class="pledge-box">
+    <h3>Pledge per mile</h3>
+    <p>Pick an amount for every mile I race and you'll get a link to donate to your charity of choice after each one. A $1 per mile pledge across all three races is only $176 total. Every cent goes to the cause, not some random platform fee.</p>
+    <div class="pledge-amounts">
+      <button class="pledge-amt" onclick="selectPledge(this)">$0.25/mi</button>
+      <button class="pledge-amt active" onclick="selectPledge(this)">$0.50/mi</button>
+      <button class="pledge-amt" onclick="selectPledge(this)">$1/mi</button>
+      <button class="pledge-amt" onclick="selectPledge(this)">$2/mi</button>
+      <button class="pledge-amt" onclick="selectPledge(this)">Custom</button>
+    </div>
+    <a href="#" class="pledge-cta">Set up my pledge →</a>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="blog-section" id="updates">
+  <div class="blog-header">
+    <div>
+      <p class="section-label">Training Updates</p>
+      <h2>Dispatches from <em>training</em></h2>
+    </div>
+    <a href="#" class="view-all-link">See all posts →</a>
+  </div>
+  <div class="blog-grid">
+    <div class="blog-card featured">
+      <div class="blog-img-placeholder">Your Hawaii photo</div>
+      <span class="blog-tag">Origin Story · Hawaii</span>
+      <p class="blog-title">How I signed up for three triathlons on a beach in Hawaii (the pina coladas may have been involved)</p>
+      <p class="blog-excerpt">Ten days. Endless sun, salt water, good books, and my best friends. Somewhere between the body surfing and the third pina colada, I became a triathlete. Here's exactly how that happened.</p>
+      <p class="blog-meta">May 1, 2026 · 5 min read</p>
+    </div>
+    <div class="blog-card">
+      <span class="blog-tag">Week 7 · Bike</span>
+      <p class="blog-title">My coach said "easy spin." My legs said absolutely not.</p>
+      <p class="blog-excerpt">3,200 feet of elevation gain. On a Tuesday. We need to have a talk about what "easy" means.</p>
+      <p class="blog-meta">May 7, 2026 · 3 min read</p>
+    </div>
+    <div class="blog-card">
+      <span class="blog-tag">Week 6 · Run</span>
+      <p class="blog-title">I completely bonked on a 10 miler and it was actually great</p>
+      <p class="blog-excerpt">Ran out of fuel. Hit the wall. Sat on a curb. Ate a granola bar. Learned a lot. 10 out of 10 would not repeat but also kind of glad it happened.</p>
+      <p class="blog-meta">April 30, 2026 · 5 min read</p>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-section" id="gallery">
+  <p class="section-label">Training Gallery</p>
+  <h2>Life in <em>motion</em></h2>
+  <div class="gallery-grid">
+    <div class="gallery-item" style="background:linear-gradient(135deg,#5aaccf,#3a8ab0)">Add photo</div>
+    <div class="gallery-item" style="background:linear-gradient(135deg,#4a8c6a,#2d6b4a)">Add photo</div>
+    <div class="gallery-item" style="background:linear-gradient(135deg,#f5a87a,#e86848)">Add photo</div>
+    <div class="gallery-item" style="background:linear-gradient(135deg,#a8d8ea,#5aaccf)">Add photo</div>
+    <div class="gallery-item" style="background:linear-gradient(135deg,#f5c878,#f5a87a)">Add photo</div>
+    <div class="gallery-item" style="background:linear-gradient(135deg,#2d6b4a,#1a4a6a)">Add photo</div>
+  </div>
+</section>
+
+<!-- EMAIL SIGNUP -->
+<section class="email-section" id="signup">
+  <div class="email-inner">
+    <div class="email-left">
+      <p class="section-label" style="color:var(--sky-blue);">Stay in the loop</p>
+      <h2 class="email-heading">Want updates<br>when things get <em>interesting?</em></h2>
+      <p class="email-sub">Race recaps. Training meltdowns. The occasional bike fall. Drop your email and I'll send you updates that are actually worth reading. No spam, just the good stuff.</p>
+    </div>
+    <div class="email-right">
+      <div class="email-form-wrap">
+        <p class="email-form-label">Get race updates</p>
+        <div class="email-field-row">
+          <input type="text" class="email-input" placeholder="Your first name" id="signupName">
+          <input type="email" class="email-input" placeholder="your@email.com" id="signupEmail">
+          <button class="email-btn" onclick="handleSignup()">I'm in →</button>
+        </div>
+        <p class="email-fine-print">No spam ever. Unsubscribe anytime. I'm a swim coach not a marketer.</p>
+        <div class="email-success" id="emailSuccess">
+          🌊 You're in! I'll be in touch after I survive my next long run.
+        </div>
+      </div>
+      <div class="email-perks">
+        <div class="email-perk">
+          <span class="perk-icon">🏊</span>
+          <span>Race day recaps</span>
+        </div>
+        <div class="email-perk">
+          <span class="perk-icon">🚴</span>
+          <span>Training updates (the real ones)</span>
+        </div>
+        <div class="email-perk">
+          <span class="perk-icon">🧡</span>
+          <span>Fundraising milestones</span>
+        </div>
+        <div class="email-perk">
+          <span class="perk-icon">😅</span>
+          <span>Stories like the red light incident</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <span class="footer-logo">Giuliana · Goes the Distance</span>
+      <p class="footer-tagline">Training for three races. Racing for three causes. Come be part of it.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="#story">My story</a></li>
+        <li><a href="#races">Race countdowns</a></li>
+        <li><a href="#updates">Training updates</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#donate">Donate</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Charities</h4>
+      <ul>
+        <li><a href="https://www.nationaleatingdisorders.org" target="_blank">NEDA ↗</a></li>
+        <li><a href="https://www.rainn.org" target="_blank">RAINN ↗</a></li>
+        <li><a href="https://www.challengedathletes.org" target="_blank">Challenged Athletes Foundation ↗</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Giuliana · Made with heart and sore legs 🧡</p>
+    <p class="footer-disclaimer">All donations go directly to the charities listed. This page doesn't collect any money itself. Each donate link takes you straight to the official charity website.</p>
+  </div>
+</footer>
+
+<script>
+  // Olympic countdown (Sep 19 2026)
+  function updateTimers() {
+    const now = new Date();
+    const race1 = new Date('2026-09-19T07:00:00');
+    const diff = race1 - now;
+    if (diff > 0) {
+      document.getElementById('d1').textContent = Math.floor(diff / 86400000);
+      document.getElementById('h1').textContent = Math.floor((diff % 86400000) / 3600000);
+      document.getElementById('m1').textContent = Math.floor((diff % 3600000) / 60000);
+    } else {
+      document.getElementById('d1').textContent = 'Race day!';
+      document.getElementById('h1').textContent = '';
+      document.getElementById('m1').textContent = '';
+    }
+  }
+  updateTimers();
+  setInterval(updateTimers, 30000);
+
+  // Email signup
+  function handleSignup() {
+    const name = document.getElementById('signupName').value.trim();
+    const email = document.getElementById('signupEmail').value.trim();
+    if (!email || !email.includes('@')) {
+      document.getElementById('signupEmail').style.borderColor = 'rgba(232,104,74,0.6)';
+      return;
+    }
+    document.getElementById('emailSuccess').style.display = 'block';
+    document.getElementById('signupName').style.display = 'none';
+    document.getElementById('signupEmail').style.display = 'none';
+    document.querySelector('.email-btn').style.display = 'none';
+  }
+  function selectPledge(el) {
+    document.querySelectorAll('.pledge-amt').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  // Animate progress bar on scroll
+  const fill = document.getElementById('pFill');
+  fill.style.width = '0%';
+  const obs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) {
+      setTimeout(() => { fill.style.width = '14.6%'; }, 200);
+      obs.disconnect();
+    }
+  }, { threshold: 0.4 });
+  obs.observe(fill.parentElement);
+</script>
+</body>
+</html>

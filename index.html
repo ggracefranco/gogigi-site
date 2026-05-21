@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>G Goes the Distance</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --sand:     #fdf8f0;
+  --cream:    #f5f0e8;
+  --seafoam:  #e8f5f0;
+  --peach:    #fad4b0;
+  --apricot:  #f5a87a;
+  --coral:    #e86848;
+  --sunset:   #f0804a;
+  --rose:     #d45a5a;
+  --seaweed:  #4a8c6a;
+  --kelp:     #2d6b4a;
+  --ocean:    #5aaccf;
+  --wave:     #3a8ab0;
+  --sky-blue: #a8d8ea;
+  --deep:     #1a4a6a;
+  --text:     #2a3040;
+  --muted:    #6a7a8a;
+  --light:    #b0c0cc;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--sand);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.1rem 2.5rem;
+  background: rgba(253,248,240,0.93);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(90,172,207,0.2);
+}
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem; letter-spacing: 0.12em;
+  color: var(--coral); text-decoration: none;
+}
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--coral); }
+.nav-cta {
+  background: var(--coral) !important; color: var(--sand) !important;
+  padding: 0.45rem 1.2rem; border-radius: 2px; font-weight: 500 !important;
+}
+.nav-cta:hover { background: var(--horizon) !important; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 2.5rem 5rem;
+  position: relative; overflow: hidden;
+}
+.hero-sky {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    180deg,
+    #1a4a6a 0%,
+    #2a6a8a 10%,
+    #5aaccf 24%,
+    #a8d8ea 36%,
+    #f5c878 52%,
+    #f5a87a 64%,
+    #e86848 74%,
+    #d45a5a 84%,
+    #fdf8f0 100%
+  );
+}
+.hero-glow {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 40% at 50% 60%, rgba(245,200,120,0.3) 0%, transparent 70%);
+}
+.hero-sun {
+  position: absolute; left: 50%; bottom: 38%;
+  transform: translateX(-50%);
+  width: 130px; height: 130px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff5c0 0%, #f5c878 45%, #f5a87a 100%);
+  box-shadow: 0 0 80px 30px rgba(245,200,120,0.5), 0 0 160px 60px rgba(232,104,74,0.25);
+}
+.hero-water {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 40%;
+  background: linear-gradient(180deg, rgba(90,172,207,0.2) 0%, rgba(42,106,138,0.65) 50%, rgba(26,74,106,0.88) 100%);
+}
+.hero-content { position: relative; z-index: 2; max-width: 860px; }
+.hero-eyebrow {
+  font-size: 0.72rem; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--deep); margin-bottom: 1rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.hero-eyebrow::before { content:''; display:block; width:2rem; height:1px; background:var(--deep); }
+h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size:clamp(3.5rem, 10vw, 8rem);
+  line-height: 0.9; letter-spacing: 0.01em;
+  color: var(--sand);
+  margin-bottom: 1.5rem;
+}
+h1 em {
+  font-style: italic; font-family: 'Lora', serif;
+  color: #ffffff; font-size: 0.85em;
+}
+.hero-sub {
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  color: #ffffff;
+  max-width: 500px; line-height: 1.75; margin-bottom: 2.5rem;
+}
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--coral); color: var(--sand);
+  padding: 0.9rem 1.9rem; font-size: 0.88rem;
+  font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase;
+  text-decoration: none; transition: all 0.2s;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+.btn-primary:hover { background: var(--horizon); transform: translateY(-2px); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: transparent; color: var(--sand);
+  padding: 0.9rem 1.9rem; font-size: 0.88rem;
+  font-weight: 300; letter-spacing: 0.07em; text-transform: uppercase;
+  text-decoration: none; border: 1px solid rgba(253,246,237,0.35); transition: all 0.2s;
+}
+.btn-secondary:hover { border-color: var(--sand); background: rgba(253,246,237,0.08); }
+
+/* ── TICKER ── */
+.race-ticker { background: var(--seaweed); padding: 0.7rem 0; overflow: hidden; }
+.ticker-track {
+  display: flex; gap: 4rem;
+  animation: ticker 32s linear infinite; white-space: nowrap;
+}
+.ticker-item {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.95rem; letter-spacing: 0.2em; color: var(--sand); flex-shrink: 0;
+}
+.ticker-dot { color: rgba(253,246,237,0.5); }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ── SECTION SHARED ── */
+.section-label {
+  font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--coral); margin-bottom: 0.75rem;
+  display: flex; align-items: center; gap: 0.65rem;
+}
+.section-label::before { content:''; display:block; width:1.5rem; height:1px; background:var(--coral); }
+
+/* ── COUNTDOWN ── */
+.countdown-section {
+  padding: 5rem 3rem;
+  background: #fdf3e0;
+}
+.countdown-grid {
+display: grid; grid-template-columns: repeat(3, 1fr); padding: 0 1rem;gap: 2rem; margin-top: 2rem;
+}
+.countdown-race {
+  background: linear-gradient(135deg, var(--kelp) 0%, var(--seaweed) 100%);
+  border: 1px solid rgba(74,140,106,0.2);
+  border-radius: 4px; padding: 2.5rem;
+  position: relative; overflow: hidden;
+}
+.countdown-race::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--seaweed), var(--ocean));
+}
+.race-name {
+  font-family: 'Bebas Neue', sans-serif;
+font-size: 1.5rem; letter-spacing: 0.05em; color: var(--sand); margin-bottom: 0.2rem;}
+
+.race-date { font-size: 0.75rem; color: rgba(253,248,240,0.5);
+ letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.5rem; }
+.timer-display { display: flex; gap: 1.25rem; }
+.timer-unit { text-align: center; }
+.timer-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.6rem; line-height: 1; color: var(--apricot);
+}
+.timer-label { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(253,248,240,0.6)}
+.race-tbd {
+  font-family: 'Lora', serif; font-style: italic;
+  font-size: 0.9rem; color: rgba(253,248,240,0.5); margin-top: 0.5rem;
+}
+
+/* ── STORY ── */
+.story-section {
+  padding: 7rem 2.5rem;
+  background: var(--deep);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start;
+  position: relative; overflow: hidden;
+}
+.story-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 80% 50%, rgba(90,172,207,0.12) 0%, transparent 70%),
+              radial-gradient(ellipse 50% 40% at 10% 80%, rgba(74,140,106,0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+.story-left { position: relative; z-index: 1; }
+.story-left .section-label { color: var(--sky-blue); }
+.story-left .section-label::before { background: var(--sky-blue); }
+.story-left h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4.2rem); line-height: 0.95;
+  color: var(--sand); margin-bottom: 2rem;
+}
+.story-left h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--sky-blue); }
+.story-body { font-size: 1rem; line-height: 1.9; color: rgba(253,248,240,0.78); }
+.story-body p { margin-bottom: 1.25rem; }
+.story-body strong { color: var(--peach); font-weight: 500; }
+.story-stats {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  background: rgba(90,172,207,0.15); margin-top: 2.5rem;
+  border: 1px solid rgba(90,172,207,0.15);
+}
+.story-stat { background: rgba(26,74,106,0.8); padding: 1.5rem; }
+.stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.6rem; color: var(--apricot); line-height: 1; }
+.stat-label { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--light); margin-top: 0.25rem; }
+.story-image-wrap { position: relative; z-index: 1; }
+.story-image-placeholder {
+  aspect-ratio: 3/4;
+  background: linear-gradient(160deg, #1a4a6a 0%, #2d6b4a 60%, #4a8c6a 100%);
+  border-radius: 4px; display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.story-image-placeholder::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 30%, rgba(245,200,120,0.15) 0%, transparent 60%);
+}
+.photo-label {
+  font-family: 'Lora', serif; font-style: italic;
+  font-size: 1rem; color: rgba(253,246,237,0.25); position: relative; z-index: 1;
+}
+.photo-upload-hint {
+  position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+  font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(253,246,237,0.18); white-space: nowrap;
+}
+
+/* ── FUNDRAISING ── */
+.fundraising-section {
+  padding: 6rem 2.5rem;
+  background: var(--cream);
+}
+.fundraising-header {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+  align-items: end; margin-bottom: 2.5rem;
+}
+.fundraising-header h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 0.93;
+  color: var(--text);
+}
+.fundraising-header h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--coral); }
+.fundraising-meta { color: var(--muted); line-height: 1.75; font-size: 1rem; }
+
+.progress-bar-wrap { margin: 1.5rem 0 2.5rem; }
+.progress-labels { display: flex; justify-content: space-between; margin-bottom: 0.6rem; align-items: flex-end; }
+.progress-raised { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: var(--coral); }
+.progress-goal { font-size: 0.85rem; color: var(--muted); }
+.progress-track { height: 5px; background: rgba(201,78,90,0.15); border-radius: 99px; }
+.progress-fill {
+  height: 5px; border-radius: 99px;
+  background: linear-gradient(90deg, var(--ocean), var(--apricot), var(--coral));
+  width: 0%; transition: width 1.2s ease;
+  position: relative;
+}
+.progress-fill::after {
+  content: ''; position: absolute; right: -5px; top: -4px;
+  width: 13px; height: 13px; border-radius: 50%;
+  background: var(--coral); border: 2px solid var(--cream);
+}
+.progress-pct { font-size: 0.75rem; color: var(--muted); margin-top: 0.6rem; }
+
+/* CHARITY CARDS */
+.charity-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin: 2rem 0 2.5rem; }
+.charity-card {
+  background: var(--sand);
+  border: 1px solid rgba(232,104,74,0.15);
+    border-top: 3px solid #7a2d4a;
+  border-radius: 4px; padding: 2rem;
+  display: flex; flex-direction: column;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.charity-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(232,104,74,0.12); }
+.charity-logo-wrap {
+  height: 56px; display: flex; align-items: center; margin-bottom: 1.25rem;
+}
+.charity-logo-wrap img { max-height: 52px; max-width: 160px; object-fit: contain; }
+.charity-logo-fallback {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem; letter-spacing: 0.06em; color: var(--coral);
+}
+.charity-personal {
+  font-family: 'Lora', serif; font-style: italic;
+  font-size: 0.9rem; color: #7a2d4a; line-height: 1.5; margin-bottom: 0.75rem;
+}
+p.charity-num { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: #7a2d4a; margin-bottom: 0.5rem; }
+.charity-name-big { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.04em; color: var(--text); margin-bottom: 0.5rem; }
+.charity-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.65; margin-bottom: 1.5rem; flex: 1; }
+.charity-link {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--coral); text-decoration: none;
+  border-bottom: 1px solid rgba(232,104,74,0.3); padding-bottom: 2px;
+  transition: border-color 0.2s; width: fit-content;
+}
+.charity-link:hover { border-color: var(--coral); }
+
+/* PLEDGE BOX */
+.pledge-box {
+  background: linear-gradient(135deg, var(--wave) 0%, var(--kelp) 100%);
+  padding: 2.5rem 3rem; border-radius: 4px;
+}
+.pledge-box h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem; letter-spacing: 0.04em; color: var(--sand); margin-bottom: 0.5rem;
+}
+.pledge-box p { color: rgba(253,246,237,0.85); line-height: 1.65; margin-bottom: 1.5rem; font-size: 0.95rem; }
+.pledge-amounts { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.pledge-amt {
+  background: rgba(253,246,237,0.15); color: var(--sand);
+  border: 1px solid rgba(253,246,237,0.3);
+  padding: 0.55rem 1.1rem; font-size: 0.88rem; font-weight: 400;
+  cursor: pointer; transition: all 0.2s; border-radius: 2px;
+}
+.pledge-amt:hover, .pledge-amt.active { background: var(--sand); color: var(--coral); border-color: var(--sand); }
+.pledge-cta {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--sand); color: var(--deep);
+  padding: 0.9rem 1.9rem; font-size: 0.88rem; font-weight: 500;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  text-decoration: none; transition: all 0.2s; border-radius: 2px;
+}
+.pledge-cta:hover { background: var(--seafoam); transform: translateY(-1px); }
+
+/* ── BLOG ── */
+.blog-section { padding: 6rem 2.5rem; background: var(--sand); }
+.blog-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; }
+.blog-header h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 4vw, 3.5rem); color: var(--text); }
+.blog-header h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--coral); }
+.view-all-link {
+  font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--coral); text-decoration: none;
+  border-bottom: 1px solid rgba(232,104,74,0.35); padding-bottom: 2px;
+}
+.blog-grid {
+  display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 1.25rem;
+}
+.blog-card {
+  background: var(--cream); border: 1px solid rgba(232,104,74,0.12);
+  border-radius: 4px; padding: 1.75rem; display: flex; flex-direction: column;
+  cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+}
+.blog-card:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(201,78,90,0.1); }
+.blog-tag {
+  font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--coral); margin-bottom: 0.85rem; display: block;
+}
+.blog-title {
+  font-family: 'Lora', serif; font-size: 1.3rem; line-height: 1.35;
+  color: var(--text); margin-bottom: 0.75rem; flex: 1;
+}
+.blog-card.featured .blog-title { font-size: 1.6rem; }
+.blog-excerpt { font-size: 0.85rem; color: var(--muted); line-height: 1.65; margin-bottom: 1.25rem; }
+.blog-meta { font-size: 0.72rem; color: var(--light); letter-spacing: 0.05em; }
+.blog-img-placeholder {
+  height: 160px; background: linear-gradient(135deg, #a8d8ea 0%, #4a8c6a 100%);
+  margin: -1.75rem -1.75rem 1.5rem; border-radius: 4px 4px 0 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.6);
+}
+
+/* ── GALLERY ── */
+.gallery-section { padding: 5rem 2.5rem; background: var(--cream); }
+.gallery-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem,4vw,3.2rem); color: var(--text); margin-bottom: 1.5rem; }
+.gallery-section h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--coral); }
+.gallery-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 200px;
+  gap: 4px; margin-top: 1.5rem;
+}
+.gallery-item {
+  background: linear-gradient(135deg, var(--peach) 0%, var(--apricot) 100%);
+  border-radius: 2px; display: flex; align-items: center; justify-content: center;
+  font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(253,246,237,0.6); cursor: pointer; transition: opacity 0.2s;
+  overflow: hidden;
+}
+.gallery-item:hover { opacity: 0.9; }
+.gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+gallery-item:nth-child(5) { grid-column: span 2; }
+
+.coming-soon-banner {
+  display: flex; align-items: center; gap: 1rem;
+  background: var(--seafoam); border: 1px solid rgba(74,140,106,0.2);
+  border-radius: 4px; padding: 1.25rem 1.75rem;
+  margin: 0 0 2.5rem; flex-wrap: wrap;
+}
+.coming-soon-banner span { font-size: 1.5rem; }
+.coming-soon-banner p { font-size: 0.95rem; color: var(--text); flex: 1; }
+.coming-soon-btn {
+  font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--coral); text-decoration: none;
+  border-bottom: 1px solid rgba(232,104,74,0.3); padding-bottom: 2px;
+  white-space: nowrap;
+}
+.coming-soon-btn:hover { border-color: var(--coral); }
+/* ── MILES STRIP ── */
+.miles-strip {
+  background: #7a2d4a;
+  padding: 2rem 2.5rem;
+}
+.miles-inner {
+  display: flex; align-items: center; justify-content: center;
+  gap: 2rem; flex-wrap: wrap;
+}
+.miles-stat { text-align: center; }
+.miles-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem; line-height: 1; color: #ffffff;
+  display: block;
+}
+.miles-stat.total .miles-num { color: var(--apricot); font-size: 3.5rem; }
+.miles-label {
+  font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(255,255,255,0.6); display: block; margin-top: 0.25rem;
+}
+.miles-divider {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem; color: rgba(255,255,255,0.3);
+}
+/* ── EMAIL SIGNUP ── */
+.email-section {
+  padding: 6rem 2.5rem;
+  background: var(--deep);
+  position: relative; overflow: hidden;
+}
+.email-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 20% 50%, rgba(90,172,207,0.1) 0%, transparent 65%),
+              radial-gradient(ellipse 40% 60% at 80% 50%, rgba(74,140,106,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+.email-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+  align-items: center; position: relative; z-index: 1; max-width: 1100px;
+}
+.email-heading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 4vw, 3.5rem); line-height: 0.95;
+  color: var(--sand); margin-bottom: 1.25rem;
+}
+.email-heading em { font-family: 'Lora', serif; font-style: italic; color: var(--apricot); }
+.email-sub { font-size: 0.95rem; color: rgba(253,248,240,0.65); line-height: 1.75; }
+.email-form-wrap { margin-bottom: 2rem; }
+.email-form-label {
+  font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--sky-blue); margin-bottom: 1rem; display: block;
+}
+.email-field-row { display: flex; flex-direction: column; gap: 0.75rem; }
+.email-input {
+  background: rgba(253,248,240,0.08);
+  border: 1px solid rgba(90,172,207,0.25);
+  color: var(--sand); padding: 0.85rem 1.1rem;
+  font-size: 0.9rem; font-family: 'DM Sans', sans-serif;
+  border-radius: 3px; outline: none; transition: border-color 0.2s;
+  width: 100%;
+}
+.email-input::placeholder { color: rgba(253,248,240,0.35); }
+.email-input:focus { border-color: rgba(90,172,207,0.6); }
+.email-btn {
+  background: var(--coral); color: var(--sand);
+  border: none; padding: 0.9rem 1.75rem;
+  font-size: 0.88rem; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase;
+  cursor: pointer; border-radius: 3px; transition: all 0.2s;
+  font-family: 'DM Sans', sans-serif;
+}
+.email-btn:hover { background: var(--sunset); transform: translateY(-1px); }
+.email-fine-print { font-size: 0.7rem; color: rgba(253,248,240,0.3); margin-top: 0.75rem; line-height: 1.5; }
+.email-success {
+  display: none; margin-top: 1rem;
+  background: rgba(74,140,106,0.2); border: 1px solid rgba(74,140,106,0.35);
+  color: var(--sand); padding: 0.85rem 1.1rem;
+  border-radius: 3px; font-size: 0.9rem; line-height: 1.5;
+}
+.email-perks { display: flex; flex-direction: column; gap: 0.85rem; }
+.email-perk {
+  display: flex; align-items: center; gap: 0.85rem;
+  font-size: 0.88rem; color: rgba(253,248,240,0.6);
+}
+.perk-icon { font-size: 1.1rem; flex-shrink: 0; }
+/* ── TRAINING LOG ── */
+.training-section { padding: 5rem 2.5rem; background: var(--sand); }
+.training-table-wrap { overflow-x: auto; }
+.training-table {
+  width: 100%; border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.training-table th {
+  font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--muted); padding: 0.75rem 1rem; text-align: left;
+  border-bottom: 2px solid rgba(232,104,74,0.2);
+}
+.training-table td {white-space: nowrap;
+  padding: 1rem; border-bottom: 1px solid rgba(232,104,74,0.08);
+  color: var(--text); vertical-align: top;
+}
+.training-table tr:hover td { background: var(--cream); }
+.training-table td strong { display: block; font-weight: 500; }
+.week-date { display: block; font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+.week-time { display: block; font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+/* ── FOOTER ── */
+footer {
+  background: var(--deep); padding: 4rem 2.5rem 2rem;
+  border-top: 1px solid rgba(90,172,207,0.2);
+}
+.footer-top {
+  display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 4rem;
+  padding-bottom: 3rem; border-bottom: 1px solid rgba(90,172,207,0.1); margin-bottom: 2rem;
+}
+.footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.1em; color: var(--sky-blue); display: block; margin-bottom: 1rem; }
+.footer-tagline { font-size: 0.88rem; color: rgba(253,246,237,0.45); line-height: 1.7; max-width: 280px; }
+.footer-col h4 { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(253,246,237,0.35); margin-bottom: 1.1rem; }
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 0.55rem; }
+.footer-col a { font-size: 0.88rem; color: rgba(253,246,237,0.45); text-decoration: none; transition: color 0.2s; }
+.footer-col a:hover { color: var(--sky-blue); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; }
+.footer-copy { font-size: 0.72rem; color: rgba(253,246,237,0.25); }
+.footer-disclaimer { font-size: 0.68rem; color: rgba(253,246,237,0.18); max-width: 380px; text-align: right; line-height: 1.5; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-eyebrow { animation: fadeUp 0.6s ease both; }
+h1             { animation: fadeUp 0.7s 0.1s ease both; }
+.hero-sub      { animation: fadeUp 0.7s 0.2s ease both; }
+.hero-actions  { animation: fadeUp 0.7s 0.3s ease both; }
+
+/* ── MOBILE ── */
+.hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 4px;
+}
+.hamburger span {
+  display: block; width: 24px; height: 2px;
+  background: var(--text); border-radius: 2px; transition: all 0.3s;
+}
+.mobile-menu {
+  display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--sand); z-index: 200;
+  flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem; letter-spacing: 0.1em;
+  color: var(--text); text-decoration: none;
+}
+.mobile-menu a:hover { color: var(--coral); }
+.mobile-menu .close-btn {
+  position: absolute; top: 1.5rem; right: 1.5rem;
+  font-size: 2rem; background: none; border: none;
+  cursor: pointer; color: var(--muted);
+}
+.mobile-menu .mobile-cta {
+  background: var(--coral); color: var(--sand) !important;
+  padding: 0.75rem 2.5rem; border-radius: 2px;
+  font-size: 1.8rem !important;
+}
+
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.25rem; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+
+  .hero { padding: 0 1.25rem 3.5rem; }
+  .hero-distance { font-size: 8rem; }
+  .hero-sun { width: 80px; height: 80px; bottom: 42%; }
+
+  h1 { font-size: clamp(3.5rem, 16vw, 5rem); }
+
+  .race-ticker { padding: 0.6rem 0; }
+  .ticker-item { font-size: 0.8rem; }
+
+  .countdown-section { padding: 3.5rem 1.25rem; }
+  .countdown-grid { grid-template-columns: 1fr; gap: 1rem; }
+.countdown-race {
+  background: linear-gradient(135deg, var(--deep) 0%, var(--navy) 100%);
+  border: 1px solid rgba(90,172,207,0.2);
+  border-radius: 4px; padding: 2.5rem 2rem;
+  position: relative; overflow: hidden;
+  color: var(--sand);
+}
+.countdown-race::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--apricot), var(--coral));
+}
+.race-name { color: var(--sand); }
+.race-date { color: rgba(253,248,240,0.5); }
+.race-tbd { color: rgba(253,248,240,0.5); }}
+.race-name { color: var(--sand); }
+.race-date { color: rgba(253,248,240,0.5); }
+.race-tbd { color: rgba(253,248,240,0.5); }  .timer-num { font-size: 2rem; }
+
+  .story-section { grid-template-columns: 1fr; gap: 2.5rem; padding: 3.5rem 1.25rem; }
+  .story-image-wrap { order: -1; }
+  .story-image-wrap img { aspect-ratio: 4/3 !important; }
+  .story-stats { grid-template-columns: 1fr 1fr; }
+
+  .fundraising-section { padding: 3.5rem 1.25rem; }
+  .fundraising-header { grid-template-columns: 1fr; gap: 1.25rem; }
+  .charity-cards { grid-template-columns: 1fr; gap: 1rem; }
+  .pledge-box { padding: 1.75rem; }
+  .pledge-amounts { gap: 0.5rem; }
+  .pledge-amt { padding: 0.5rem 0.9rem; font-size: 0.82rem; }
+
+  .blog-section { padding: 3.5rem 1.25rem; }
+  .blog-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .blog-card.featured .blog-title { font-size: 1.3rem; }
+
+  .gallery-section { padding: 3rem 1.25rem; }
+  .gallery-grid { grid-template-columns: repeat(2,1fr); grid-auto-rows: 140px; }
+  .gallery-item:nth-child(1) { grid-column: span 2; min-height: 200px; }
+  .gallery-item:nth-child(4) { grid-column: span 1; }
+
+  .email-section { padding: 3.5rem 1.25rem; }
+  .email-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .email-heading { font-size: 2rem; }
+
+  footer { padding: 3rem 1.25rem 1.5rem; }
+  .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+  .footer-disclaimer { text-align: center; max-width: 100%; }
+}
+
+@media (max-width: 480px) {
+  h1 { font-size: 3.2rem; }
+  .hero-sub { font-size: 0.95rem; }
+  .btn-primary, .btn-secondary { padding: 0.8rem 1.4rem; font-size: 0.8rem; }
+  .story-stats { grid-template-columns: 1fr 1fr; }
+  .stat-num { font-size: 2rem; }
+  .timer-num { font-size: 1.8rem; }
+  .progress-raised { font-size: 1.8rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">G · Goes the Distance</a>
+  <ul class="nav-links">
+    <li><a href="#story">Story</a></li>
+    <li><a href="#races">Races</a></li>
+    <li><a href="#updates">Updates</a></li>
+<li><a href="#gallery">Gallery</a></li><li><a href="#training">Training</a></li>
+    <li><a href="#donate" class="nav-cta">Donations Soon</a></li>
+  </ul>
+  <button class="hamburger" onclick="openMenu()" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close-btn" onclick="closeMenu()" aria-label="Close menu">✕</button>
+  <a href="#story" onclick="closeMenu()">Story</a>
+  <a href="#races" onclick="closeMenu()">Races</a>
+  <a href="#updates" onclick="closeMenu()">Updates</a>
+<a href="#gallery" onclick="closeMenu()">Gallery</a><a href="#training" onclick="closeMenu()">Training</a>
+  <a href="#signup" onclick="closeMenu()">Updates</a>
+  <a href="#donate" onclick="closeMenu()" class="mobile-cta">Donate</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-sky"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-sun"></div>
+  <div class="hero-water"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Swimmer · New Triathlete · Definitely Still Learning</p>
+    <h1>Going<br>the <em>Distance</em></h1>
+    <p class="hero-sub">I fell off my bike while it was completely still, waved at the traffic that watched it happen, and then signed up for a triathlon with two more on the horizon. Come along for the ride.</p>
+    <div class="hero-actions">
+      <a href="#donate" class="btn-primary">Donations opening soon →</a>
+      <a href="#story" class="btn-secondary">Wait, who are you?</a>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="race-ticker">
+  <div class="ticker-track">
+    <span class="ticker-item">Olympic Triathlon <span class="ticker-dot">·</span> Sep 19, 2026</span>
+    <span class="ticker-item">Half Ironman 70.3 <span class="ticker-dot">·</span> Coming 2027</span>
+    <span class="ticker-item">Full Ironman 140.6 <span class="ticker-dot">·</span> Coming 2027</span>
+    <span class="ticker-item">NEDA <span class="ticker-dot">·</span> RAINN <span class="ticker-dot">·</span> Friendship Circle</span>
+    <span class="ticker-item">Olympic Triathlon <span class="ticker-dot">·</span> Sep 19, 2026</span>
+    <span class="ticker-item">Half Ironman 70.3 <span class="ticker-dot">·</span> Coming 2027</span>
+    <span class="ticker-item">Full Ironman 140.6 <span class="ticker-dot">·</span> Coming 2027</span>
+    <span class="ticker-item">NEDA <span class="ticker-dot">·</span> RAINN <span class="ticker-dot">·</span> Friendship Circle</span>
+  </div>
+</div>
+<!-- MILES COUNTER -->
+<div class="miles-strip">
+  <div class="miles-inner">
+    <div class="miles-stat">
+      <span class="miles-num" id="swimMiles">0</span>
+      <span class="miles-label">🏊 swim miles</span>
+    </div>
+    <div class="miles-divider">+</div>
+    <div class="miles-stat">
+      <span class="miles-num" id="bikeMiles">0</span>
+      <span class="miles-label">🚴 bike miles</span>
+    </div>
+    <div class="miles-divider">+</div>
+    <div class="miles-stat">
+      <span class="miles-num" id="runMiles">0</span>
+      <span class="miles-label">🏃 run miles</span>
+    </div>
+    <div class="miles-divider">=</div>
+    <div class="miles-stat total">
+      <span class="miles-num" id="totalMiles">0</span>
+      <span class="miles-label">total miles 🧡</span>
+    </div>
+  </div>
+</div>
+
+<!-- COUNTDOWN -->
+<section class="countdown-section" id="races">
+  <p class="section-label">The Journey Ahead</p>
+  <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,5vw,3.8rem);color:var(--text);margin-bottom:0.25rem;">Three races. <em style="font-family:'Lora',serif;font-style:italic;color:var(--coral);">One very tired girl.</em></h2>
+  <div class="countdown-grid">
+    <div class="countdown-race">
+      <p class="race-name">Olympic Triathlon</p>
+      <p class="race-date">September 19, 2026 · 1.0mi swim / 24.2mi bike / 6.3mi run</p>
+      <div class="timer-display">
+        <div class="timer-unit"><div class="timer-num" id="d1">—</div><div class="timer-label">Days</div></div>
+        <div class="timer-unit"><div class="timer-num" id="h1">—</div><div class="timer-label">Hrs</div></div>
+        <div class="timer-unit"><div class="timer-num" id="m1">—</div><div class="timer-label">Min</div></div>
+      </div>
+            <p id="race1phrase" style="font-family:'Lora',serif;font-style:italic;font-size:0.95rem;color:var(--peach);margin-top:1rem;"></p>
+    </div>
+    <div class="countdown-race">
+      <p class="race-name">Half Ironman 70.3</p>
+      <p class="race-date">June 2027 · Registration pending</p>
+      <p class="race-tbd">Haven't signed up yet but it's happening. Stay tuned!</p>
+    </div>
+    <div class="countdown-race">
+      <p class="race-name">Full Ironman 140.6</p>
+      <p class="race-date">October 2027 · Registration pending</p>
+      <p class="race-tbd">The big scary one. I will sign up. I am brave. Probably.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story-section" id="story">
+  <div class="story-left">
+    <p class="section-label">My Story</p>
+    <h2>More than<br>just <em>miles</em></h2>
+    <div class="story-body">
+      <p>Hi, I'm Giuliana! I have been obsessed with the pool and ocean since I was five years old. I grew up a club swimmer, and while other kids on family vacations were playing sharks and minnows, I was making my parents find the nearest lap pool. And then also making friends playing sharks and minnows. Big dreams have always been my thing, and honestly, they still are.</p>
+      <p>Growing up in LA, I was part of the <strong>Junior Lifeguards</strong>, a summer beach program that trains kids to become ocean lifeguards. My first summer was going great. Or so I told my mom. What I didn't mention was that I wasn't actually going in the ocean. A few days in, she got a call from the program director: <em>"If your daughter doesn't swim tomorrow, she's out."</em> My mom pretty much laughed because I had sold that summer so hard.</p>
+      <p>Enter <strong>Matt the Muscle Man</strong>, who took me out for a private buoy swim while the entire program watched from shore and cheered me on. Mortifying. Afterward I reported back to my mom that it went fine, but complained that it was kind of lame because they sent a paramedic to do the swim with me instead of an actual lifeguard. My mom looked at me the way only moms can and said "he IS a lifeguard, sweetie." Matt the Muscle Man was the lifeguard the whole time. I had absolutely no idea. My 9 year old self could not complain anymore about the very cute lifeguard who just took her on a private ocean swim. I conquered my very real fear of being eaten by a whale that day and have been in love with open water ever since.</p>
+
+      <p>My husband had been telling me for a while that I should train for triathlons. It never really sounded appealing if I'm being honest. Then this spring I took a trip to Hawaii with my mom and sister, did a few ocean swims (shoutout to the local Diana who jumped in with me), and somewhere between the first and second pina colada I thought... yeah, okay, I should do this.</p>
+      <p>Things moved fast. One TikTok deep dive, a lucky bike deal, and approximately one million visits to Lance at my local bike shop later, I had all the gear, a training plan, and a word I still can't spell called chamois. Lance is probably sick of seeing me. One month in and I am completely obsessed.</p>
+      <p>The three charities I'm racing for are close to my heart and I'll leave it at that. If you want to be part of something fun, a little chaotic, and genuinely meaningful, you're in the right place.</p>
+<p>Let's do this for every athlete who has ever had a complicated relationship with their body. For the women who show up for each other. And for the kids who lit up when someone pulled up a chair.</p>
+    </div>
+    <div class="story-stats">
+      <div class="story-stat"><div class="stat-num">20+</div><div class="stat-label">Years in the water</div></div>
+      <div class="story-stat"><div class="stat-num">14</div><div class="stat-label">Years coaching swim</div></div>
+      <div class="story-stat"><div class="stat-num">3</div><div class="stat-label">Races in 18 months</div></div>
+      <div class="story-stat"><div class="stat-num">$8.5K</div><div class="stat-label">Fundraising goal</div></div>
+    </div>
+  </div>
+  <div class="story-image-wrap">
+    <img src="gigi-hawaii.jpg" alt="Gigi in the ocean in Hawaii" style="width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:4px; display:block;">
+  </div>
+</section>
+
+<!-- FUNDRAISING -->
+<section class="fundraising-section" id="donate">
+  <div class="fundraising-header">
+    <div>
+      <p class="section-label">Fundraising</p>
+      <h2>Race for<br><em>what matters</em></h2>
+    </div>
+    <p class="fundraising-meta">I'm racing for three causes that are close to my heart. Donations are opening soon! In the meantime, get to know the organizations below and come back when we go live.</p>
+  </div>
+
+  <div class="coming-soon-banner">
+    <span>🧡</span>
+    <p>Donations opening soon! Sign up for updates below so you don't miss it.</p>
+    <a href="#signup" class="coming-soon-btn">Get notified →</a>
+  </div>
+
+  <div class="charity-cards">
+
+    <!-- NEDA -->
+    <div class="charity-card">
+      <div class="charity-logo-wrap">
+        <img src="https://www.nationaleatingdisorders.org/wp-content/themes/neda/images/neda-logo.svg"
+             alt="NEDA logo"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+        <span class="charity-logo-fallback" style="display:none;">NEDA</span>
+      </div>
+      <p class="charity-num">01 · Mental Health</p>
+      <p class="charity-name-big">NEDA</p>
+      <p class="charity-personal">For every athlete who has ever had a complicated relationship with their body</p>
+      <p class="charity-desc">The National Eating Disorders Association supports individuals and families affected by eating disorders through education, advocacy, and access to resources and treatment.</p>
+    </div>
+
+    <!-- RAINN -->
+    <div class="charity-card">
+      <div class="charity-logo-wrap">
+        <img src="https://www.rainn.org/sites/default/files/rainn-logo.png"
+             alt="RAINN logo"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+        <span class="charity-logo-fallback" style="display:none;">RAINN</span>
+      </div>
+      <p class="charity-num">02 · Survivor Support</p>
+      <p class="charity-name-big">RAINN</p>
+      <p class="charity-personal"></p><p class="charity-personal">For the women who show up for each other.</p>
+
+      <p class="charity-desc">The nation's largest anti-sexual violence organization. RAINN operates the National Sexual Assault Hotline and works to prevent sexual violence and support survivors nationwide.</p>
+    </div>
+
+    <!-- FRIENDSHIP CIRCLE -->
+    <div class="charity-card">
+      <div class="charity-logo-wrap">
+        <img src="https://www.friendshipcircle.org/wp-content/uploads/2019/09/FC-Logo.png"
+             alt="Friendship Circle logo"
+For the women who show up for each other.
+        <span class="charity-logo-fallback" style="display:none;">Friendship Circle</span>
+      </div>
+      <p class="charity-num">03 · Inclusion & Special Needs</p>
+      <p class="charity-name-big">Friendship Circle</p>
+      <p class="charity-personal">For the kids who lit up when someone pulled up a chair.</p>
+      <p class="charity-desc">Friendship Circle creates meaningful friendships between teen volunteers and individuals with special needs, building confidence, community, and belonging for everyone involved.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="blog-section" id="updates">
+  <div class="blog-header">
+    <div>
+      <p class="section-label">Training Updates</p>
+      <h2>Dispatches from <em>training</em></h2>
+    </div>
+    <a href="#" class="view-all-link">See all posts →</a>
+  </div>
+  <div class="blog-grid">
+<div class="blog-card featured" onclick="window.open('https://gogigiruns.substack.com/p/how-i-signed-up-for-a-triathlon-on','_blank')" style="cursor:pointer; padding:0;">
+  <img src="gigi-beach.jpg" alt="Gigi in Hawaii" style="width:100%; display:block; border-radius:4px 4px 0 0;">
+  <div style="padding:1.75rem;">
+    <span class="blog-tag">Origin Story · Hawaii</span>
+    <p class="blog-title">How I signed up for a triathlon on a beach in Hawaii (two more on the horizon)</p>
+    <p class="blog-excerpt">Ten days. Endless sun, salt water, good books, and my best friends. Somewhere between the body surfing and the third pina colada, I became a triathlete.</p>
+    <p style="font-size:0.8rem;color:var(--coral);font-weight:500;margin-top:1rem;letter-spacing:0.05em;">READ THE FULL STORY →</p>
+    <p class="blog-meta">May 1, 2026 · 5 min read</p>
+  </div>
+    <GALLERY -->
+     <!-- TRAINING LOG -->
+<section class="training-section" id="training">
+  <p class="section-label">Training Log</p>
+  <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3.5rem);color:var(--text);margin-bottom:0.5rem;">Putting in <em style="font-family:'Lora',serif;font-style:italic;color:var(--coral);">the work</em></h2>
+  <p style="color:var(--muted);margin-bottom:2rem;font-size:0.95rem;">Live from Strava. Updated automatically every time I train.</p>
+  <div id="trainingLog">
+    <p style="color:var(--muted);font-size:0.9rem;">Loading training data...</p>
+  </div>
+</section> <section class="gallery-section" id="gallery">
+  <p class="section-label">Training Gallery</p>
+  <h2>Life in <em>motion</em></h2>
+  <div class="gallery-grid">
+    <div class="gallery-item" style="background:linear-gradient(135deg,#5aaccf,#3a8ab0)">Add photo</div>
+    <div class="gallery-item" style="background:linear-gradient(135deg,#4a8c6a,#2d6b4a)">Add photo</div>
+    <div class="gallery-item" style="background:linear-gradient(135deg,#f5a87a,#e86848)">Add photo</div>
+    <div class="gallery-item" style="background:linear-gradient(135deg,#a8d8ea,#5aaccf)">Add photo</div>
+    <div class="gallery-item" style="background:linear-gradient(135deg,#f5c878,#f5a87a)">Add photo</div>
+    <div class="gallery-item" style="background:linear-gradient(135deg,#2d6b4a,#1a4a6a)">Add photo</div>
+  </div>
+</section>
+
+<!-- EMAIL SIGNUP -->
+<section class="email-section" id="signup">
+  <div class="email-inner">
+    <div class="email-left">
+      <p class="section-label" style="color:var(--sky-blue);">Stay in the loop</p>
+      <h2 class="email-heading">Want updates<br>when things get <em>interesting?</em></h2>
+      <p class="email-sub">Race recaps. Training meltdowns. The occasional bike fall. Drop your email and I'll send you updates that are actually worth reading. No spam, just the good stuff.</p>
+    </div>
+    <div class="email-right">
+      <div class="email-form-wrap">
+        <p class="email-form-label">Get race updates</p>
+        <div class="email-field-row">
+          <input type="text" class="email-input" placeholder="Your first name" id="signupName">
+          <input type="email" class="email-input" placeholder="your@email.com" id="signupEmail">
+          <a href="https://gogigiruns.substack.com" target="_blank" class="email-btn">I'm in →</a>
+        </div>
+        <p class="email-fine-print">Takes you to Substack to subscribe. No spam ever. Unsubscribe anytime. I'm a swim coach not a marketer.</p>
+        <div class="email-success" id="emailSuccess">
+          🌊 You're in! I'll be in touch after I survive my next long run.
+        </div>
+      </div>
+      <div class="email-perks">
+        <div class="email-perk">
+          <span class="perk-icon">🏊</span>
+          <span>Race day recaps</span>
+        </div>
+        <div class="email-perk">
+          <span class="perk-icon">🚴</span>
+          <span>Training updates (the real ones)</span>
+        </div>
+        <div class="email-perk">
+          <span class="perk-icon">🧡</span>
+          <span>Fundraising milestones</span>
+        </div>
+        <div class="email-perk">
+          <span class="perk-icon">😅</span>
+          <span>Stories like the red light incident</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <span class="footer-logo">G · Goes the Distance</span>
+      <p class="footer-tagline">Training for three races. Racing for three causes. Come be part of it.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="#story">My story</a></li>
+        <li><a href="#races">Race countdowns</a></li>
+        <li><a href="#updates">Training updates</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#donate">Donate</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Charities</h4>
+      <ul>
+        <li><a href="https://www.nationaleatingdisorders.org" target="_blank">NEDA ↗</a></li>
+        <li><a href="https://www.rainn.org" target="_blank">RAINN ↗</a></li>
+        <li><a href="https://www.friendshipcircle.org" target="_blank">Friendship Circle ↗</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Giuliana · Made with heart and sore legs 🧡</p>
+    <p class="footer-disclaimer">All donations go directly to the charities listed. This page doesn't collect any money itself. Each donate link takes you straight to the official charity website.</p>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu
+  function openMenu() {
+    document.getElementById('mobileMenu').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  async function loadMiles() {
+  try {
+    const res = await fetch('/api/strava');
+    const weeks = await res.json();
+    
+    let swim = 0, bike = 0, run = 0;
+    Object.keys(weeks).filter(k => k >= '2026-05-03').forEach(week => {
+      swim += weeks[week].swim.distance;
+      bike += weeks[week].bike.distance;
+      run += weeks[week].run.distance;
+    });
+    
+    const total = swim + bike + run;
+    
+    function animateCount(id, target) {
+      const el = document.getElementById(id);
+      const duration = 1500;
+      const start = performance.now();
+      function update(time) {
+        const progress = Math.min((time - start) / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        el.textContent = (target * ease).toFixed(1);
+        if (progress < 1) requestAnimationFrame(update);
+        else el.textContent = target.toFixed(1);
+      }
+      requestAnimationFrame(update);
+    }
+    
+    const observer = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        animateCount('swimMiles', swim);
+        animateCount('bikeMiles', bike);
+        animateCount('runMiles', run);
+        animateCount('totalMiles', total);
+        observer.disconnect();
+      }
+    }, { threshold: 0.5 });
+    observer.observe(document.getElementById('swimMiles'));
+  } catch(e) { console.log('miles error', e); }
+}
+  // Olympic countdown (Sep 19 2026)
+  function updateTimers() {// Training log
+async function loadTraining() {
+  try {
+    const res = await fetch('/api/strava');
+    const weeks = await res.json();
+    
+    const weekKeys = Object.keys(weeks)
+      .filter(k => k >= '2026-05-03')
+      .sort();
+    
+    if (weekKeys.length === 0) {
+      document.getElementById('trainingLog').innerHTML = '<p style="color:var(--muted)">No training data yet!</p>';
+      return;
+    }
+
+    let html = '<div class="training-table-wrap"><table class="training-table"><thead><tr><th>Week</th><th>🏊 Swim</th><th>🚴 Bike</th><th>🏃 Run</th><th>💪 Strength</th></tr></thead><tbody>';
+
+
+    weekKeys.forEach((week, i) => {
+      const w = weeks[week];
+      const swimDist = w.swim.distance.toFixed(1);
+      const swimTime = w.swim.time > 0 ? (Math.floor(w.swim.time/60) > 0 ? Math.floor(w.swim.time/60) + 'h ' : '') + w.swim.time%60 + 'm' : '—';
+      const bikeDist = w.bike.distance.toFixed(1);
+      const bikeTime = w.bike.time > 0 ? `${Math.floor(w.bike.time/60) > 0 ? Math.floor(w.bike.time/60) + 'h ' : ''}${w.bike.time%60}m` : '—';
+      const runDist = w.run.distance.toFixed(1);
+      const runTime = w.run.time > 0 ? (Math.floor(w.run.time/60) > 0 ? Math.floor(w.run.time/60) + 'h ' : '') + w.run.time%60 + 'm' : '—';
+      
+      html += `<tr>
+        <td><strong>Week ${i + 1}</strong><span class="week-date">${new Date(week).toLocaleDateString('en-US', {month:'short', day:'numeric'})}</span></td>
+        <td>${swimDist > 0 ? swimDist + ' mi' : '—'}<span class="week-time">${swimTime}</span></td>
+        <td>${bikeDist > 0 ? bikeDist + ' mi' : '—'}<span class="week-time">${bikeTime}</span></td>
+<td>${runDist > 0 ? runDist + ' mi' : '—'}<span class="week-time">${runTime}</span></td><td>${w.strength && w.strength.time > 0 ? Math.floor(w.strength.time/60) + 'h ' + w.strength.time%60 + 'm' : '—'}</td>
+      </tr>`;
+    });
+    
+    html += '</tbody></table></div>';
+    document.getElementById('trainingLog').innerHTML = html;
+  } catch(e) {
+    document.getElementById('trainingLog').innerHTML = '<p style="color:var(--muted)">Training data loading soon!</p>';
+  }
+}
+loadTraining(); loadMiles();
+    const now = new Date();
+    const race1 = new Date('2026-09-19T07:00:00');
+    const diff = race1 - now;
+    if (diff > 0) {
+      document.getElementById('d1').textContent = Math.floor(diff / 86400000);
+      document.getElementById('h1').textContent = Math.floor((diff % 86400000) / 3600000);
+      document.getElementById('m1').textContent = Math.floor((diff % 3600000) / 60000);
+    } else {
+      document.getElementById('d1').textContent = 'Race day!';
+      document.getElementById('h1').textContent = '';
+      document.getElementById('m1').textContent = '';
+    }
+  }
+  updateTimers();
+  setInterval(updateTimers, 30000);
+
+  // Email signup
+  function handleSignup() {
+    const name = document.getElementById('signupName').value.trim();
+    const email = document.getElementById('signupEmail').value.trim();
+    if (!email || !email.includes('@')) {
+      document.getElementById('signupEmail').style.borderColor = 'rgba(232,104,74,0.6)';
+      return;
+    }
+    document.getElementById('emailSuccess').style.display = 'block';
+    document.getElementById('signupName').style.display = 'none';
+    document.getElementById('signupEmail').style.display = 'none';
+    document.querySelector('.email-btn').style.display = 'none';
+  }
+  function selectPledge(el) {
+    document.querySelectorAll('.pledge-amt').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  // Animate progress bar on scroll
+
+</script>
+</body>
+</html>
