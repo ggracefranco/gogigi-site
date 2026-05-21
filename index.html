@@ -1026,9 +1026,9 @@ For the women who show up for each other.
     
     let swim = 0, bike = 0, run = 0;
     Object.keys(weeks).filter(k => k >= '2026-05-03').forEach(week => {
-      swim += weeks[week].swim.distance;
-      bike += weeks[week].bike.distance;
-      run += weeks[week].run.distance;
+   swim += (weeks[week].swim && weeks[week].swim.distance) || 0;
+      bike += (weeks[week].bike && weeks[week].bike.distance) || 0;
+      run += (weeks[week].run && weeks[week].run.distance) || 0;
     });
     
     const total = swim + bike + run;
