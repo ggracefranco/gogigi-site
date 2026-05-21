@@ -1,5 +1,14 @@
+let cache = null;
+let cacheTime = 0;
+const CACHE_DURATION = 15 * 60 * 1000; // 15 minutes
+
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
+  
+  // Return cached data if available
+  if (cache && Date.now() - cacheTime < CACHE_DURATION) {
+    return res.status(200).json(cache);
+  }
   
   try {
     const tokenRes = await fetch('https://www.strava.com/oauth/token', {
@@ -62,6 +71,8 @@ export default async function handler(req, res) {
       }
     });
 
+    cache = weeks;
+    cacheTime = Date.now();
     res.status(200).json(weeks);
   } catch (error) {
     res.status(500).json({ error: error.message });
