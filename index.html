@@ -631,25 +631,20 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
   .countdown-section { padding: 3.5rem 1.25rem; }
   .countdown-grid { grid-template-columns: 1fr; gap: 1rem; }
 .countdown-race {
-  background: linear-gradient(135deg, var(--deep) 0%, var(--navy) 100%);
-  border: 1px solid rgba(90,172,207,0.2);
-  border-radius: 4px; padding: 2.5rem 2rem;
-  position: relative; overflow: hidden;
-  color: var(--sand);
-}
-.countdown-race::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--apricot), var(--coral));
-}
-.race-name { color: var(--sand); }
-.race-date { color: rgba(253,248,240,0.5); }
-.race-tbd { color: rgba(253,248,240,0.5); }}
-.race-name { color: var(--sand); }
-.race-date { color: rgba(253,248,240,0.5); }
-.race-tbd { color: rgba(253,248,240,0.5); }  .timer-num { font-size: 2rem; }
-
-  .story-section { grid-template-columns: 1fr; gap: 2.5rem; padding: 3.5rem 1.25rem; }
-  .story-image-wrap { order: -1; }
+    background: linear-gradient(135deg, var(--kelp) 0%, var(--seaweed) 100%);
+    border: 1px solid rgba(74,140,106,0.2);
+    border-radius: 4px; padding: 1.5rem;
+    position: relative; overflow: hidden;
+    color: var(--sand);
+  }
+  .countdown-race::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--apricot), var(--coral));
+  }
+  .race-name { color: var(--sand); }
+  .race-date { color: rgba(253,248,240,0.5); }
+  .race-tbd { color: rgba(253,248,240,0.5); }
+  .timer-num { font-size: 2rem; }  .story-image-wrap { order: -1; }
   .story-image-wrap img { aspect-ratio: 4/3 !important; }
   .story-stats { grid-template-columns: 1fr 1fr; }
 
