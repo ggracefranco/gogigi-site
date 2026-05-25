@@ -41,7 +41,7 @@ export default async function handler(req, res) {
     activities.forEach(activity => {
       const date = new Date(activity.start_date);
       const weekStart = new Date(date);
-      weekStart.setDate(date.getDate() - date.getDay());
+      weekStart.setDate(date.getDate() - ((date.getDay() + 6) % 7));
       const weekKey = weekStart.toISOString().split('T')[0];
       
       if (!weeks[weekKey]) {
