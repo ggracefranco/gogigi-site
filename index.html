@@ -110,18 +110,18 @@ nav {
 .hero-eyebrow::before { content:''; display:block; width:2rem; height:1px; background:var(--deep); }
 h1 {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(4.5rem, 13vw, 11rem);
+  font-size:clamp(3.5rem, 10vw, 8rem);
   line-height: 0.9; letter-spacing: 0.01em;
   color: var(--sand);
   margin-bottom: 1.5rem;
 }
 h1 em {
   font-style: italic; font-family: 'Lora', serif;
-  color: var(--peach); font-size: 0.85em;
+  color: #ffffff; font-size: 0.85em;
 }
 .hero-sub {
   font-size: clamp(1rem, 1.8vw, 1.15rem);
-  color: rgba(253,246,237,0.82);
+  color: #ffffff;
   max-width: 500px; line-height: 1.75; margin-bottom: 2.5rem;
 }
 .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
@@ -166,17 +166,16 @@ h1 em {
 
 /* ── COUNTDOWN ── */
 .countdown-section {
-  padding: 5rem 2.5rem;
-  background: var(--seafoam);
+  padding: 5rem 3rem;
+  background: #fdf3e0;
 }
 .countdown-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem; margin-top: 2rem;
+display: grid; grid-template-columns: repeat(3, 1fr); padding: 0 1rem;gap: 2rem; margin-top: 2rem;
 }
 .countdown-race {
-  background: var(--sand);
+  background: linear-gradient(135deg, var(--kelp) 0%, var(--seaweed) 100%);
   border: 1px solid rgba(74,140,106,0.2);
-  border-radius: 4px; padding: 2rem;
+  border-radius: 4px; padding: 2.5rem;
   position: relative; overflow: hidden;
 }
 .countdown-race::before {
@@ -185,19 +184,20 @@ h1 em {
 }
 .race-name {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.5rem; letter-spacing: 0.05em; color: var(--text); margin-bottom: 0.2rem;
-}
-.race-date { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.5rem; }
+font-size: 1.5rem; letter-spacing: 0.05em; color: var(--sand); margin-bottom: 0.2rem;}
+
+.race-date { font-size: 0.75rem; color: rgba(253,248,240,0.5);
+ letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.5rem; }
 .timer-display { display: flex; gap: 1.25rem; }
 .timer-unit { text-align: center; }
 .timer-num {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 2.6rem; line-height: 1; color: var(--wave);
+  font-size: 2.6rem; line-height: 1; color: var(--apricot);
 }
-.timer-label { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+.timer-label { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(253,248,240,0.6)}
 .race-tbd {
   font-family: 'Lora', serif; font-style: italic;
-  font-size: 0.9rem; color: var(--muted); margin-top: 0.5rem;
+  font-size: 0.9rem; color: rgba(253,248,240,0.5); margin-top: 0.5rem;
 }
 
 /* ── STORY ── */
@@ -296,6 +296,7 @@ h1 em {
 .charity-card {
   background: var(--sand);
   border: 1px solid rgba(232,104,74,0.15);
+    border-top: 3px solid #7a2d4a;
   border-radius: 4px; padding: 2rem;
   display: flex; flex-direction: column;
   transition: box-shadow 0.2s, transform 0.2s;
@@ -311,9 +312,9 @@ h1 em {
 }
 .charity-personal {
   font-family: 'Lora', serif; font-style: italic;
-  font-size: 0.9rem; color: var(--coral); line-height: 1.5; margin-bottom: 0.75rem;
+  font-size: 0.9rem; color: #7a2d4a; line-height: 1.5; margin-bottom: 0.75rem;
 }
-.charity-num { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--coral); margin-bottom: 0.5rem; }
+p.charity-num { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: #7a2d4a; margin-bottom: 0.5rem; }
 .charity-name-big { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.04em; color: var(--text); margin-bottom: 0.5rem; }
 .charity-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.65; margin-bottom: 1.5rem; flex: 1; }
 .charity-link {
@@ -352,6 +353,27 @@ h1 em {
 }
 .pledge-cta:hover { background: var(--seafoam); transform: translateY(-1px); }
 
+.blog-circles {
+  display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 2rem;
+}
+.blog-circle {
+  width: 220px; height: 220px; border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 2rem; text-align: center; text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+.blog-circle:hover { transform: scale(1.05); box-shadow: 0 12px 40px rgba(0,0,0,0.15); }
+.blog-circle.coming { cursor: default; opacity: 0.8; }
+.blog-circle.coming:hover { transform: none; box-shadow: none; }
+.circle-title {
+  font-family: 'Lora', serif; font-style: italic;
+  font-size: 0.88rem; color: #ffffff; line-height: 1.4;
+}
+.circle-soon {
+  font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(255,255,255,0.6); margin-top: 0.5rem; display: block;
+}
 /* ── BLOG ── */
 .blog-section { padding: 6rem 2.5rem; background: var(--sand); }
 .blog-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; }
@@ -394,10 +416,12 @@ h1 em {
 .gallery-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem,4vw,3.2rem); color: var(--text); margin-bottom: 1.5rem; }
 .gallery-section h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--coral); }
 .gallery-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 200px;
-  gap: 4px; margin-top: 1.5rem;
-}
-.gallery-item {
+  display: grid; 
+  grid-template-columns: repeat(3, 1fr); 
+  grid-auto-rows: 280px;
+  gap: 1rem; 
+  margin-top: 1.5rem;
+}.gallery-item {
   background: linear-gradient(135deg, var(--peach) 0%, var(--apricot) 100%);
   border-radius: 2px; display: flex; align-items: center; justify-content: center;
   font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase;
@@ -406,7 +430,7 @@ h1 em {
 }
 .gallery-item:hover { opacity: 0.9; }
 .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
-.gallery-item:nth-child(4) { grid-column: span 2; }
+gallery-item:nth-child(5) { grid-column: span 2; }
 
 .coming-soon-banner {
   display: flex; align-items: center; gap: 1rem;
@@ -423,7 +447,30 @@ h1 em {
   white-space: nowrap;
 }
 .coming-soon-btn:hover { border-color: var(--coral); }
-
+/* ── MILES STRIP ── */
+.miles-strip {
+  background: #7a2d4a;
+  padding: 2rem 2.5rem;
+}
+.miles-inner {
+  display: flex; align-items: center; justify-content: center;
+  gap: 2rem; flex-wrap: wrap;
+}
+.miles-stat { text-align: center; }
+.miles-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem; line-height: 1; color: #ffffff;
+  display: block;
+}
+.miles-stat.total .miles-num { color: var(--apricot); font-size: 3.5rem; }
+.miles-label {
+  font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(255,255,255,0.6); display: block; margin-top: 0.25rem;
+}
+.miles-divider {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem; color: rgba(255,255,255,0.3);
+}
 /* ── EMAIL SIGNUP ── */
 .email-section {
   padding: 6rem 2.5rem;
@@ -485,7 +532,26 @@ h1 em {
   font-size: 0.88rem; color: rgba(253,248,240,0.6);
 }
 .perk-icon { font-size: 1.1rem; flex-shrink: 0; }
-
+/* ── TRAINING LOG ── */
+.training-section { padding: 5rem 2.5rem; background: var(--sand); }
+.training-table-wrap { overflow-x: auto; }
+.training-table {
+  width: 100%; border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.training-table th {
+  font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--muted); padding: 0.75rem 1rem; text-align: left;
+  border-bottom: 2px solid rgba(232,104,74,0.2);
+}
+.training-table td {white-space: nowrap;
+  padding: 1rem; border-bottom: 1px solid rgba(232,104,74,0.08);
+  color: var(--text); vertical-align: top;
+}
+.training-table tr:hover td { background: var(--cream); }
+.training-table td strong { display: block; font-weight: 500; }
+.week-date { display: block; font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+.week-time { display: block; font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
 /* ── FOOTER ── */
 footer {
   background: var(--deep); padding: 4rem 2.5rem 2rem;
@@ -564,12 +630,23 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
 
   .countdown-section { padding: 3.5rem 1.25rem; }
   .countdown-grid { grid-template-columns: 1fr; gap: 1rem; }
-  .countdown-race { padding: 1.5rem; }
-  .timer-num { font-size: 2rem; }
-
-  .story-section { grid-template-columns: 1fr; gap: 2.5rem; padding: 3.5rem 1.25rem; }
+.countdown-race {
+    background: linear-gradient(135deg, var(--kelp) 0%, var(--seaweed) 100%);
+    border: 1px solid rgba(74,140,106,0.2);
+    border-radius: 4px; padding: 1.5rem;
+    position: relative; overflow: hidden;
+    color: var(--sand);
+  }
+  .countdown-race::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--apricot), var(--coral));
+  }
+  .race-name { color: var(--sand); }
+  .race-date { color: rgba(253,248,240,0.5); }
+  .race-tbd { color: rgba(253,248,240,0.5); }
+  .timer-num { font-size: 2rem; }  
   .story-image-wrap { order: -1; }
-  .story-image-wrap img { aspect-ratio: 4/3 !important; }
+.story-image-wrap img { aspect-ratio: 4/3 !important; width: 100% !important; }
   .story-stats { grid-template-columns: 1fr 1fr; }
 
   .fundraising-section { padding: 3.5rem 1.25rem; }
@@ -618,7 +695,7 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
     <li><a href="#story">Story</a></li>
     <li><a href="#races">Races</a></li>
     <li><a href="#updates">Updates</a></li>
-    <li><a href="#gallery">Gallery</a></li>
+<li><a href="#gallery">Gallery</a></li><li><a href="#training">Training</a></li>
     <li><a href="#donate" class="nav-cta">Donations Soon</a></li>
   </ul>
   <button class="hamburger" onclick="openMenu()" aria-label="Open menu">
@@ -632,7 +709,7 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
   <a href="#story" onclick="closeMenu()">Story</a>
   <a href="#races" onclick="closeMenu()">Races</a>
   <a href="#updates" onclick="closeMenu()">Updates</a>
-  <a href="#gallery" onclick="closeMenu()">Gallery</a>
+<a href="#gallery" onclick="closeMenu()">Gallery</a><a href="#training" onclick="closeMenu()">Training</a>
   <a href="#signup" onclick="closeMenu()">Updates</a>
   <a href="#donate" onclick="closeMenu()" class="mobile-cta">Donate</a>
 </div>
@@ -667,6 +744,30 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
     <span class="ticker-item">NEDA <span class="ticker-dot">·</span> RAINN <span class="ticker-dot">·</span> Friendship Circle</span>
   </div>
 </div>
+<!-- MILES COUNTER -->
+<div class="miles-strip">
+  <div class="miles-inner">
+    <div class="miles-stat">
+      <span class="miles-num" id="swimMiles">0</span>
+      <span class="miles-label">🏊 swim miles</span>
+    </div>
+    <div class="miles-divider">+</div>
+    <div class="miles-stat">
+      <span class="miles-num" id="bikeMiles">0</span>
+      <span class="miles-label">🚴 bike miles</span>
+    </div>
+    <div class="miles-divider">+</div>
+    <div class="miles-stat">
+      <span class="miles-num" id="runMiles">0</span>
+      <span class="miles-label">🏃 run miles</span>
+    </div>
+    <div class="miles-divider">=</div>
+    <div class="miles-stat total">
+      <span class="miles-num" id="totalMiles">0</span>
+      <span class="miles-label">total miles 🧡</span>
+    </div>
+  </div>
+</div>
 
 <!-- COUNTDOWN -->
 <section class="countdown-section" id="races">
@@ -674,41 +775,64 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
   <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,5vw,3.8rem);color:var(--text);margin-bottom:0.25rem;">Three races. <em style="font-family:'Lora',serif;font-style:italic;color:var(--coral);">One very tired girl.</em></h2>
   <div class="countdown-grid">
     <div class="countdown-race">
+  <p class="race-name">Sprint Triathlon</p>
+  <p class="race-date">August 9, 2026 · 0.47mi swim, 12.4mi bike, 3.1mi run. My warm up. Allegedly.</p>
+  <div class="timer-display" id="timer0">
+    <div class="timer-unit"><div class="timer-num" id="d0">—</div><div class="timer-label">Days</div></div>
+    <div class="timer-unit"><div class="timer-num" id="h0">—</div><div class="timer-label">Hrs</div></div>
+    <div class="timer-unit"><div class="timer-num" id="m0">—</div><div class="timer-label">Min</div></div>
+  </div>
+  <p id="race0phrase" style="font-family:'Lora',serif;font-style:italic;font-size:0.95rem;color:var(--peach);margin-top:1rem;"></p>
+</div>
+    <div class="countdown-race">
       <p class="race-name">Olympic Triathlon</p>
-      <p class="race-date">September 19, 2026 · 1.0mi swim / 24.2mi bike / 6.3mi run</p>
+      <p class="race-date">September 19, 2026 · 0.9 mile swim, 24.8 mile bike, 6.2 mile run. In a row. On purpose.
+</p>
       <div class="timer-display">
         <div class="timer-unit"><div class="timer-num" id="d1">—</div><div class="timer-label">Days</div></div>
         <div class="timer-unit"><div class="timer-num" id="h1">—</div><div class="timer-label">Hrs</div></div>
         <div class="timer-unit"><div class="timer-num" id="m1">—</div><div class="timer-label">Min</div></div>
       </div>
+            <p id="race1phrase" style="font-family:'Lora',serif;font-style:italic;font-size:0.95rem;color:var(--peach);margin-top:1rem;"></p>
     </div>
     <div class="countdown-race">
       <p class="race-name">Half Ironman 70.3</p>
-      <p class="race-date">June 2027 · Registration pending</p>
+      <p class="race-date">June 2027 · Swim, bike, run a half marathon. After the swim and bike. Cool cool cool.
+</p>
       <p class="race-tbd">Haven't signed up yet but it's happening. Stay tuned!</p>
     </div>
     <div class="countdown-race">
       <p class="race-name">Full Ironman 140.6</p>
-      <p class="race-date">October 2027 · Registration pending</p>
+      <p class="race-date">October 2027 · 2.4 mile swim, 112 mile bike, 26.2 mile run. I have 17 months to figure this out.
+</p>
       <p class="race-tbd">The big scary one. I will sign up. I am brave. Probably.</p>
     </div>
   </div>
 </section>
 
+<!-- TRAINING LOG -->
+<section class="training-section" id="training">
+  <p class="section-label">Training Log</p>
+  <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3.5rem);color:var(--text);margin-bottom:0.5rem;">Putting in <em style="font-family:'Lora',serif;font-style:italic;color:var(--coral);">the work</em></h2>
+  <p style="color:var(--muted);margin-bottom:2rem;font-size:0.95rem;">Live from Strava. Updated automatically every time I train.</p>
+  <div id="trainingLog">
+    <p style="color:var(--muted);font-size:0.9rem;">Loading training data...</p>
+  </div>
+</section>
 <!-- STORY -->
 <section class="story-section" id="story">
   <div class="story-left">
     <p class="section-label">My Story</p>
     <h2>More than<br>just <em>miles</em></h2>
     <div class="story-body">
-      <p>Hi, I'm Giuliana! I have been obsessed with the pool and ocean since I was five years old. I grew up a club swimmer, and while other kids on family vacations were playing sharks and minnows, I was making my parents find the nearest lap pool. And then also making friends playing sharks and minnows. Big dreams have always been my thing, and honestly, they still are.</p>
+      <p>Hi, I'm Gigi! I have been obsessed with the pool and ocean since I was five years old. I grew up a club swimmer, and while other kids on family vacations were playing sharks and minnows, I was making my parents find the nearest lap pool. And then also making friends playing sharks and minnows. Big dreams have always been my thing, and honestly, they still are.</p>
       <p>Growing up in LA, I was part of the <strong>Junior Lifeguards</strong>, a summer beach program that trains kids to become ocean lifeguards. My first summer was going great. Or so I told my mom. What I didn't mention was that I wasn't actually going in the ocean. A few days in, she got a call from the program director: <em>"If your daughter doesn't swim tomorrow, she's out."</em> My mom pretty much laughed because I had sold that summer so hard.</p>
-      <p>Enter <strong>Matt the Muscle Man</strong>, who took me out for a private buoy swim while the entire program watched from shore and cheered me on. Mortifying. Afterward I reported back to my mom that it went fine, but complained that it was kind of lame because they sent a paramedic to do the swim with me instead of an actual lifeguard. My mom looked at me the way only moms can and said "he IS a lifeguard, sweetie." Matt the Muscle Man was the lifeguard the whole time. I had absolutely no idea. My 14 year old self could not complain anymore about the very cute lifeguard who just took her on a private ocean swim. I conquered my very real fear of being eaten by a whale that day and have been in love with open water ever since.</p>
-      <p>I had the opportunity to swim in college but that chapter didn't go the way I hoped. So I built something of my own instead. <strong>For the past 14 years I've run my own swim business</strong>, teaching everyone from 9-month-olds to 90-year-olds, club swimmers, Ironman athletes, and adaptive swimmers. I also run a masters swim program that I've been coaching for the past four years. The water has been my classroom, my happy place, and my career all rolled into one.</p>
+      <p>Enter <strong>Matt the Muscle Man</strong>, who took me out for a private buoy swim while the entire program watched from shore and cheered me on. Mortifying. Afterward I reported back to my mom that it went fine, but complained that it was kind of lame because they sent a paramedic to do the swim with me instead of an actual lifeguard. My mom looked at me the way only moms can and said "he IS a lifeguard, sweetie." Matt the Muscle Man was the lifeguard the whole time. I had absolutely no idea. My 9 year old self could not complain anymore about the very cute lifeguard who just took her on a private ocean swim. I conquered my very real fear of being eaten by a whale that day and have been in love with open water ever since.</p>
+
       <p>My husband had been telling me for a while that I should train for triathlons. It never really sounded appealing if I'm being honest. Then this spring I took a trip to Hawaii with my mom and sister, did a few ocean swims (shoutout to the local Diana who jumped in with me), and somewhere between the first and second pina colada I thought... yeah, okay, I should do this.</p>
       <p>Things moved fast. One TikTok deep dive, a lucky bike deal, and approximately one million visits to Lance at my local bike shop later, I had all the gear, a training plan, and a word I still can't spell called chamois. Lance is probably sick of seeing me. One month in and I am completely obsessed.</p>
       <p>The three charities I'm racing for are close to my heart and I'll leave it at that. If you want to be part of something fun, a little chaotic, and genuinely meaningful, you're in the right place.</p>
-      <p>Let's do this for every woman who's had another woman's back. And to the girl whose college swimming career ended in a splash.</p>
+<p>Let's do this for every athlete who has ever had a complicated relationship with their body. For the women who show up for each other. And for the kids who lit up when someone pulled up a chair.</p>
     </div>
     <div class="story-stats">
       <div class="story-stat"><div class="stat-num">20+</div><div class="stat-label">Years in the water</div></div>
@@ -718,7 +842,7 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
     </div>
   </div>
   <div class="story-image-wrap">
-    <img src="gigi-hawaii.jpg" alt="Gigi in the ocean in Hawaii" style="width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:4px; display:block;">
+<img src="gigi-hawaii.jpg" alt="Gigi in the ocean in Hawaii" style="width:min(65%, 100%); aspect-ratio:3/4; max-height:50vh; object-fit:cover; border-radius:8px; display:block; margin:0 auto; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
   </div>
 </section>
 
@@ -750,7 +874,7 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
       </div>
       <p class="charity-num">01 · Mental Health</p>
       <p class="charity-name-big">NEDA</p>
-      <p class="charity-personal">To the girl whose college swimming career ended in a splash.</p>
+      <p class="charity-personal">For every athlete who has ever had a complicated relationship with their body</p>
       <p class="charity-desc">The National Eating Disorders Association supports individuals and families affected by eating disorders through education, advocacy, and access to resources and treatment.</p>
     </div>
 
@@ -764,7 +888,8 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
       </div>
       <p class="charity-num">02 · Survivor Support</p>
       <p class="charity-name-big">RAINN</p>
-      <p class="charity-personal">For every woman who's had another woman's back.</p>
+      <p class="charity-personal"></p><p class="charity-personal">For the women who show up for each other.</p>
+
       <p class="charity-desc">The nation's largest anti-sexual violence organization. RAINN operates the National Sexual Assault Hotline and works to prevent sexual violence and support survivors nationwide.</p>
     </div>
 
@@ -773,7 +898,7 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
       <div class="charity-logo-wrap">
         <img src="https://www.friendshipcircle.org/wp-content/uploads/2019/09/FC-Logo.png"
              alt="Friendship Circle logo"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+For the women who show up for each other.
         <span class="charity-logo-fallback" style="display:none;">Friendship Circle</span>
       </div>
       <p class="charity-num">03 · Inclusion & Special Needs</p>
@@ -794,31 +919,14 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
     </div>
     <a href="#" class="view-all-link">See all posts →</a>
   </div>
-  <div class="blog-grid">
-    <div class="blog-card featured">
-      <div class="blog-img-placeholder">Your Hawaii photo</div>
-      <span class="blog-tag">Origin Story · Hawaii</span>
-      <p class="blog-title">How I signed up for three triathlons on a beach in Hawaii (the pina coladas may have been involved)</p>
-      <p class="blog-excerpt">Ten days. Endless sun, salt water, good books, and my best friends. Somewhere between the body surfing and the third pina colada, I became a triathlete. Here's exactly how that happened.</p>
-      <p class="blog-meta">May 1, 2026 · 5 min read</p>
-    </div>
-    <div class="blog-card">
-      <span class="blog-tag">Coming Soon</span>
-      <p class="blog-title">The red light incident. Yes, that one.</p>
-      <p class="blog-excerpt">Week one on the bike. A red light. A crowd of witnesses. A wave. Coming soon.</p>
-      <p class="blog-meta">Up next</p>
-    </div>
-    <div class="blog-card">
-      <span class="blog-tag">Coming Soon</span>
-      <p class="blog-title">More from the road. Check back soon!</p>
-      <p class="blog-excerpt">Training updates, race prep, and the occasional meltdown. Stay tuned.</p>
-      <p class="blog-meta">Up next</p>
-    </div>
-  </div>
-</section>
-
+  <div class="blog-circles">
+  <a href="https://gogigiruns.substack.com/p/how-i-signed-up-for-a-triathlon-on" target="_blank" class="blog-circle" style="background: linear-gradient(135deg, #e86848, #c94e5a);">
+    <span class="circle-title">How I signed up for a triathlon on a beach in Hawaii</span>
+<a href="https://gogigiruns.substack.com/p/the-red-light-incident" target="_blank" class="blog-circle" style="background: linear-gradient(135deg, #2d6b4a, #4a8c6a);">
+    <span class="circle-title">The red light incident. Yes, that one.</span>
+  </a>  </section>
 <!-- GALLERY -->
-<section class="gallery-section" id="gallery">
+ <section class="gallery-section" id="gallery">
   <p class="section-label">Training Gallery</p>
   <h2>Life in <em>motion</em></h2>
   <div class="gallery-grid">
@@ -901,7 +1009,7 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
     </div>
   </div>
   <div class="footer-bottom">
-    <p class="footer-copy">© 2026 Giuliana · Made with heart and sore legs 🧡</p>
+    <p class="footer-copy">© 2026 Gigi · Made with heart and sore legs 🧡</p>
     <p class="footer-disclaimer">All donations go directly to the charities listed. This page doesn't collect any money itself. Each donate link takes you straight to the official charity website.</p>
   </div>
 </footer>
@@ -917,46 +1025,148 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
     document.body.style.overflow = '';
   }
 
-  // Timers
-  function updateTimers() {
-    const now = new Date();
-    const races = [
-      { date: new Date('2026-08-09T07:00:00'), d: 'd0', h: 'h0', m: 'm0', phrase: 'race0phrase' },
-      { date: new Date('2026-09-19T07:00:00'), d: 'd1', h: 'h1', m: 'm1', phrase: 'race1phrase' }
-    ];
-    const phrases = (days, done) => {
-      if (done) return "IT'S RACE DAY! GO ME!! 🧡";
-      if (days <= 13) return "Okay this is getting real";
-      if (days <= 29) return "Lance please answer your phone";
-      if (days <= 59) return "Carb loading is a sport right?";
-      if (days <= 99) return "TikTok triathlon deep dives are getting more specific";
-      return "Still time to pretend I didn't sign up for this";
-    };
-    races.forEach(r => {
-      const diff = r.date - now;
-      const days = Math.floor(diff / 86400000);
-      if (diff > 0) {
-        document.getElementById(r.d).textContent = days;
-        document.getElementById(r.h).textContent = Math.floor((diff % 86400000) / 3600000);
-        document.getElementById(r.m).textContent = Math.floor((diff % 3600000) / 60000);
-      } else {
-        document.getElementById(r.d).textContent = '🎉';
-        document.getElementById(r.h).textContent = '';
-        document.getElementById(r.m).textContent = '';
-      }
-      const el = document.getElementById(r.phrase);
-      if (el) el.textContent = phrases(days, diff <= 0);
+  async function loadMiles() {
+  try {
+    const res = await fetch('/api/strava');
+    const weeks = await res.json();
+    
+    let swim = 0, bike = 0, run = 0;
+    Object.keys(weeks).filter(k => k >= '2026-05-03').forEach(week => {
+   swim += (weeks[week].swim && weeks[week].swim.distance) || 0;
+      bike += (weeks[week].bike && weeks[week].bike.distance) || 0;
+      run += (weeks[week].run && weeks[week].run.distance) || 0;
     });
+    
+    const total = swim + bike + run;
+    
+    function animateCount(id, target) {
+      const el = document.getElementById(id);
+      const duration = 1500;
+      const start = performance.now();
+      function update(time) {
+        const progress = Math.min((time - start) / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        el.textContent = (target * ease).toFixed(1);
+        if (progress < 1) requestAnimationFrame(update);
+        else el.textContent = target.toFixed(1);
+      }
+      requestAnimationFrame(update);
+    }
+    
+    const observer = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        animateCount('swimMiles', swim);
+        animateCount('bikeMiles', bike);
+        animateCount('runMiles', run);
+        animateCount('totalMiles', total);
+        observer.disconnect();
+      }
+    }, { threshold: 0.5 });
+    observer.observe(document.getElementById('swimMiles'));
+  } catch(e) { console.log('miles error', e); }
+}
+  // Olympic countdown (Sep 19 2026)
+  function updateTimers() {// Training log
+async function loadTraining() {
+  try {
+   function updateTimers() {
+    const now = new Date();
+    const race0 = new Date('2026-08-09T07:00:00');
+    const race1 = new Date('2026-09-19T07:00:00');
+    const diff0 = race0 - now;
+    const diff1 = race1 - now;
+    const days0 = Math.floor(diff0 / 86400000);
+    const days1 = Math.floor(diff1 / 86400000);
+
+    if (diff0 > 0) {
+      document.getElementById('d0').textContent = Math.floor(diff0 / 86400000);
+      document.getElementById('h0').textContent = Math.floor((diff0 % 86400000) / 3600000);
+      document.getElementById('m0').textContent = Math.floor((diff0 % 3600000) / 60000);
+    } else {
+      document.getElementById('d0').textContent = '🎉';
+      document.getElementById('h0').textContent = '';
+      document.getElementById('m0').textContent = '';
+    }
+
+    if (diff1 > 0) {
+      document.getElementById('d1').textContent = Math.floor(diff1 / 86400000);
+      document.getElementById('h1').textContent = Math.floor((diff1 % 86400000) / 3600000);
+      document.getElementById('m1').textContent = Math.floor((diff1 % 3600000) / 60000);
+    } else {
+      document.getElementById('d1').textContent = '🎉';
+      document.getElementById('h1').textContent = '';
+      document.getElementById('m1').textContent = '';
+    }
+
+    let phrase0 = '';
+    if (diff0 <= 0) phrase0 = "IT'S RACE DAY! GO ME!! 🧡";
+    else if (days0 <= 13) phrase0 = "Okay this is getting real";
+    else if (days0 <= 29) phrase0 = "Lance please answer your phone";
+    else if (days0 <= 59) phrase0 = "Carb loading is a sport right?";
+    else if (days0 <= 99) phrase0 = "TikTok triathlon deep dives are getting more specific";
+    else phrase0 = "Still time to pretend I didn't sign up for this";
+    const phraseEl0 = document.getElementById('race0phrase');
+    if (phraseEl0) phraseEl0.textContent = phrase0;
+
+    let phrase1 = '';
+    if (diff1 <= 0) phrase1 = "IT'S RACE DAY! GO ME!! 🧡";
+    else if (days1 <= 13) phrase1 = "Okay this is getting real";
+    else if (days1 <= 29) phrase1 = "Lance please answer your phone";
+    else if (days1 <= 59) phrase1 = "Carb loading is a sport right?";
+    else if (days1 <= 99) phrase1 = "TikTok triathlon deep dives are getting more specific";
+    else phrase1 = "Still time to pretend I didn't sign up for this";
+    const phraseEl1 = document.getElementById('race1phrase');
+    if (phraseEl1) phraseEl1.textContent = phrase1;
   }
   updateTimers();
   setInterval(updateTimers, 30000);
 
-  function selectPledge(el) {
-    document.querySelectorAll('.pledge-amt').forEach(b => b.classList.remove('active'));
-    el.classList.add('active');
+  // Training log
+  async function loadTraining() {
+    try {
+      const res = await fetch('/api/strava');
+      const weeks = await res.json();
+      
+      const weekKeys = Object.keys(weeks)
+        .filter(k => k >= '2026-05-03')
+        .sort();
+      
+      if (weekKeys.length === 0) {
+        document.getElementById('trainingLog').innerHTML = '<p style="color:var(--muted)">No training data yet!</p>';
+        return;
+      }
+
+      let html = '<div class="training-table-wrap"><table class="training-table"><thead><tr><th>Week</th><th>🏊 Swim</th><th>🚴 Bike</th><th>🏃 Run</th><th>💪 Strength</th></tr></thead><tbody>';
+      
+      weekKeys.forEach((week, i) => {
+        const w = weeks[week];
+        const swimDist = w.swim.distance.toFixed(1);
+        const swimTime = w.swim.time > 0 ? (Math.floor(w.swim.time/60) > 0 ? Math.floor(w.swim.time/60) + 'h ' : '') + w.swim.time%60 + 'm' : '—';
+        const bikeDist = w.bike.distance.toFixed(1);
+        const bikeTime = w.bike.time > 0 ? `${Math.floor(w.bike.time/60) > 0 ? Math.floor(w.bike.time/60) + 'h ' : ''}${w.bike.time%60}m` : '—';
+        const runDist = w.run.distance.toFixed(1);
+        const runTime = w.run.time > 0 ? (Math.floor(w.run.time/60) > 0 ? Math.floor(w.run.time/60) + 'h ' : '') + w.run.time%60 + 'm' : '—';
+        
+        html += `<tr>
+          <td><strong>Week ${i + 1}</strong><span class="week-date">${new Date(week).toLocaleDateString('en-US', {month:'short', day:'numeric'})}</span></td>
+          <td>${swimDist > 0 ? swimDist + ' mi' : '—'}<span class="week-time">${swimTime}</span></td>
+          <td>${bikeDist > 0 ? bikeDist + ' mi' : '—'}<span class="week-time">${bikeTime}</span></td>
+          <td>${runDist > 0 ? runDist + ' mi' : '—'}<span class="week-time">${runTime}</span></td>
+          <td>${w.strength && w.strength.time > 0 ? Math.floor(w.strength.time/60) + 'h ' + w.strength.time%60 + 'm' : '—'}</td>
+          </tr>`;
+      });
+      
+      html += '</tbody></table></div>';
+      document.getElementById('trainingLog').innerHTML = html;
+    } catch(e) {
+      document.getElementById('trainingLog').innerHTML = '<p style="color:var(--muted)">Training data loading soon!</p>';
+    }
   }
+  loadTraining();
+  loadMiles();
 
   function handleSignup() {
+    const name = document.getElementById('signupName').value.trim();
     const email = document.getElementById('signupEmail').value.trim();
     if (!email || !email.includes('@')) {
       document.getElementById('signupEmail').style.borderColor = 'rgba(232,104,74,0.6)';
@@ -968,79 +1178,12 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
     document.querySelector('.email-btn').style.display = 'none';
   }
 
-  async function loadMiles() {
-    try {
-      const res = await fetch('/api/strava');
-      const weeks = await res.json();
-      let swim = 0, bike = 0, run = 0;
-      Object.keys(weeks).filter(k => k >= '2026-05-03').forEach(week => {
-        swim += (weeks[week].swim && weeks[week].swim.distance) || 0;
-        bike += (weeks[week].bike && weeks[week].bike.distance) || 0;
-        run += (weeks[week].run && weeks[week].run.distance) || 0;
-      });
-      const total = swim + bike + run;
-      function animateCount(id, target) {
-        const el = document.getElementById(id);
-        if (!el) return;
-        const duration = 1500;
-        const start = performance.now();
-        function update(time) {
-          const progress = Math.min((time - start) / duration, 1);
-          const ease = 1 - Math.pow(1 - progress, 3);
-          el.textContent = (target * ease).toFixed(1);
-          if (progress < 1) requestAnimationFrame(update);
-          else el.textContent = target.toFixed(1);
-        }
-        requestAnimationFrame(update);
-      }
-      const observer = new IntersectionObserver(entries => {
-        if (entries[0].isIntersecting) {
-          animateCount('swimMiles', swim);
-          animateCount('bikeMiles', bike);
-          animateCount('runMiles', run);
-          animateCount('totalMiles', total);
-          observer.disconnect();
-        }
-      }, { threshold: 0.5 });
-      const el = document.getElementById('swimMiles');
-      if (el) observer.observe(el);
-    } catch(e) { console.log('miles error', e); }
+  function selectPledge(el) {
+    document.querySelectorAll('.pledge-amt').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
   }
 
-  async function loadTraining() {
-    try {
-      const res = await fetch('/api/strava');
-      const weeks = await res.json();
-      const weekKeys = Object.keys(weeks).filter(k => k >= '2026-05-03').sort();
-      if (weekKeys.length === 0) {
-        document.getElementById('trainingLog').innerHTML = '<p style="color:var(--muted)">No training data yet!</p>';
-        return;
-      }
-      let html = '<div class="training-table-wrap"><table class="training-table"><thead><tr><th>Week</th><th>🏊 Swim</th><th>🚴 Bike</th><th>🏃 Run</th><th>💪 Strength</th></tr></thead><tbody>';
-      weekKeys.forEach((week, i) => {
-        const w = weeks[week];
-        const fmt = (mins) => mins > 0 ? (Math.floor(mins/60) > 0 ? Math.floor(mins/60) + 'h ' : '') + mins%60 + 'm' : '—';
-        const swimDist = parseFloat(w.swim.distance.toFixed(1));
-        const bikeDist = parseFloat(w.bike.distance.toFixed(1));
-        const runDist = parseFloat(w.run.distance.toFixed(1));
-        const strengthTime = w.strength && w.strength.time > 0 ? fmt(w.strength.time) : '—';
-        html += `<tr>
-          <td><strong>Week ${i+1}</strong><span class="week-date">${new Date(week).toLocaleDateString('en-US',{month:'short',day:'numeric'})}</span></td>
-          <td>${swimDist > 0 ? swimDist+' mi' : '—'}<span class="week-time">${fmt(w.swim.time)}</span></td>
-          <td>${bikeDist > 0 ? bikeDist+' mi' : '—'}<span class="week-time">${fmt(w.bike.time)}</span></td>
-          <td>${runDist > 0 ? runDist+' mi' : '—'}<span class="week-time">${fmt(w.run.time)}</span></td>
-          <td>${strengthTime}</td>
-        </tr>`;
-      });
-      html += '</tbody></table></div>';
-      document.getElementById('trainingLog').innerHTML = html;
-    } catch(e) {
-      document.getElementById('trainingLog').innerHTML = '<p style="color:var(--muted)">Training data loading soon!</p>';
-    }
-  }
-
-  loadMiles();
-  loadTraining();
 </script>
 </body>
+</html>
 </html>
