@@ -775,6 +775,16 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
   <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,5vw,3.8rem);color:var(--text);margin-bottom:0.25rem;">Three races. <em style="font-family:'Lora',serif;font-style:italic;color:var(--coral);">One very tired girl.</em></h2>
   <div class="countdown-grid">
     <div class="countdown-race">
+  <p class="race-name">Sprint Triathlon</p>
+  <p class="race-date">August 9, 2026 · 0.47mi swim, 12.4mi bike, 3.1mi run. My warm up. Allegedly.</p>
+  <div class="timer-display" id="timer0">
+    <div class="timer-unit"><div class="timer-num" id="d0">—</div><div class="timer-label">Days</div></div>
+    <div class="timer-unit"><div class="timer-num" id="h0">—</div><div class="timer-label">Hrs</div></div>
+    <div class="timer-unit"><div class="timer-num" id="m0">—</div><div class="timer-label">Min</div></div>
+  </div>
+  <p id="race0phrase" style="font-family:'Lora',serif;font-style:italic;font-size:0.95rem;color:var(--peach);margin-top:1rem;"></p>
+</div>
+    <div class="countdown-race">
       <p class="race-name">Olympic Triathlon</p>
       <p class="race-date">September 19, 2026 · 0.9 mile swim, 24.8 mile bike, 6.2 mile run. In a row. On purpose.
 </p>
@@ -1059,60 +1069,72 @@ For the women who show up for each other.
   function updateTimers() {// Training log
 async function loadTraining() {
   try {
-    const res = await fetch('/api/strava');
-    const weeks = await res.json();
-    
-    const weekKeys = Object.keys(weeks)
-      .filter(k => k >= '2026-05-03')
-      .sort();
-    
-    if (weekKeys.length === 0) {
-      document.getElementById('trainingLog').innerHTML = '<p style="color:var(--muted)">No training data yet!</p>';
-      return;
+   function updateTimers() {
+    const now = new Date();
+    const race0 = new Date('2026-08-09T07:00:00');
+    const race1 = new Date('2026-09-19T07:00:00');
+    const diff0 = race0 - now;
+    const diff1 = race1 - now;
+    const days0 = Math.floor(diff0 / 86400000);
+    const days1 = Math.floor(diff1 / 86400000);
+
+    if (diff0 > 0) {
+      document.getElementById('d0').textContent = Math.floor(diff0 / 86400000);
+      document.getElementById('h0').textContent = Math.floor((diff0 % 86400000) / 3600000);
+      document.getElementById('m0').textContent = Math.floor((diff0 % 3600000) / 60000);
+    } else {
+      document.getElementById('d0').textContent = '🎉';
+      document.getElementById('h0').textContent = '';
+      document.getElementById('m0').textContent = '';
     }
 
-    let html = '<div class="training-table-wrap"><table class="training-table"><thead><tr><th>Week</th><th>🏊 Swim</th><th>🚴 Bike</th><th>🏃 Run</th><th>💪 Strength</th></tr></thead><tbody>';
-
-
-    weekKeys.forEach((week, i) => {
-      const w = weeks[week];
-      const swimDist = w.swim.distance.toFixed(1);
-      const swimTime = w.swim.time > 0 ? (Math.floor(w.swim.time/60) > 0 ? Math.floor(w.swim.time/60) + 'h ' : '') + w.swim.time%60 + 'm' : '—';
-      const bikeDist = w.bike.distance.toFixed(1);
-      const bikeTime = w.bike.time > 0 ? `${Math.floor(w.bike.time/60) > 0 ? Math.floor(w.bike.time/60) + 'h ' : ''}${w.bike.time%60}m` : '—';
-      const runDist = w.run.distance.toFixed(1);
-      const runTime = w.run.time > 0 ? (Math.floor(w.run.time/60) > 0 ? Math.floor(w.run.time/60) + 'h ' : '') + w.run.time%60 + 'm' : '—';
-      
-      html += `<tr>
-        <td><strong>Week ${i + 1}</strong><span class="week-date">${new Date(week).toLocaleDateString('en-US', {month:'short', day:'numeric'})}</span></td>
-        <td>${swimDist > 0 ? swimDist + ' mi' : '—'}<span class="week-time">${swimTime}</span></td>
-        <td>${bikeDist > 0 ? bikeDist + ' mi' : '—'}<span class="week-time">${bikeTime}</span></td>
-<td>${runDist > 0 ? runDist + ' mi' : '—'}<span class="week-time">${runTime}</span></td><td>${w.strength && w.strength.time > 0 ? Math.floor(w.strength.time/60) + 'h ' + w.strength.time%60 + 'm' : '—'}</td>
-      </tr>`;
-    });
-    
-    html += '</tbody></table></div>';
-    document.getElementById('trainingLog').innerHTML = html;
-  } catch(e) {
-    document.getElementById('trainingLog').innerHTML = '<p style="color:var(--muted)">Training data loading soon!</p>';
-  }
-}
-loadTraining(); loadMiles();
-    const now = new Date();
-    const race1 = new Date('2026-09-19T07:00:00');
-    const diff = race1 - now;
-    if (diff > 0) {
-      document.getElementById('d1').textContent = Math.floor(diff / 86400000);
-      document.getElementById('h1').textContent = Math.floor((diff % 86400000) / 3600000);
-      document.getElementById('m1').textContent = Math.floor((diff % 3600000) / 60000);
+    if (diff1 > 0) {
+      document.getElementById('d1').textContent = Math.floor(diff1 / 86400000);
+      document.getElementById('h1').textContent = Math.floor((diff1 % 86400000) / 3600000);
+      document.getElementById('m1').textContent = Math.floor((diff1 % 3600000) / 60000);
     } else {
-      document.getElementById('d1').textContent = 'Race day!';
+      document.getElementById('d1').textContent = '🎉';
       document.getElementById('h1').textContent = '';
       document.getElementById('m1').textContent = '';
     }
+
+    let phrase0 = '';
+    if (diff0 <= 0) phrase0 = "IT'S RACE DAY! GO ME!! 🧡";
+    else if (days0 <= 13) phrase0 = "Okay this is getting real";
+    else if (days0 <= 29) phrase0 = "Lance please answer your phone";
+    else if (days0 <= 59) phrase0 = "Carb loading is a sport right?";
+    else if (days0 <= 99) phrase0 = "TikTok triathlon deep dives are getting more specific";
+    else phrase0 = "Still time to pretend I didn't sign up for this";
+    const phraseEl0 = document.getElementById('race0phrase');
+    if (phraseEl0) phraseEl0.textContent = phrase0;
+
+    let phrase1 = '';
+    if (diff1 <= 0) phrase1 = "IT'S RACE DAY! GO ME!! 🧡";
+    else if (days1 <= 13) phrase1 = "Okay this is getting real";
+    else if (days1 <= 29) phrase1 = "Lance please answer your phone";
+    else if (days1 <= 59) phrase1 = "Carb loading is a sport right?";
+    else if (days1 <= 99) phrase1 = "TikTok triathlon deep dives are getting more specific";
+    else phrase1 = "Still time to pretend I didn't sign up for this";
+    const phraseEl1 = document.getElementById('race1phrase');
+    if (phraseEl1) phraseEl1.textContent = phrase1;
   }
   updateTimers();
   setInterval(updateTimers, 30000);
+
+  // Training log
+  async function loadTraining() {
+    try {
+      const res = await fetch('/api/strava');
+      const weeks = await res.json();
+      
+      const weekKeys = Object.keys(weeks)
+        .filter(k => k >= '2026-05-03')
+        .sort();
+      
+      if (weekKeys.length === 0) {
+        document.getElementById('trainingLog').innerHTML = '<p style="color:var(--muted)">No training data yet!</p>';
+        return;
+      }
 
   // Email signup
   function handleSignup() {
@@ -1137,3 +1159,5 @@ loadTraining(); loadMiles();
 </script>
 </body>
 </html>
+September 19, 2026 · 0.9 mile swim
+
