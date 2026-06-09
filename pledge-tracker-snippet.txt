@@ -1,0 +1,113 @@
+=== ADD THIS HTML just before <div class="pledge-board"> ===
+
+<div class="pledge-rotator" id="pledgeRotator">
+  <div class="rotator-inner">
+    <div class="rotator-slide" id="rotatorSlide">
+      <p class="rotator-empty">Be the first to pledge!</p>
+    </div>
+    <div class="rotator-dots" id="rotatorDots"></div>
+  </div>
+</div>
+
+=== ADD THIS CSS just before .pledge-board { ===
+
+.pledge-rotator {
+  background: linear-gradient(135deg, #1a2a4a 0%, #2d6b4a 100%);
+  border-radius: 8px; padding: 2.5rem 2rem;
+  margin-bottom: 1.5rem; min-height: 160px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.pledge-rotator::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(245,168,122,0.08) 0%, transparent 70%);
+}
+.rotator-inner { text-align: center; position: relative; z-index: 1; width: 100%; }
+.rotator-slide { transition: opacity 0.4s; }
+.rotator-name {
+  font-family: 'Bebas Neue', sans-serif; font-size: 2rem;
+  color: var(--apricot); letter-spacing: 0.08em; display: block; margin-bottom: 0.25rem;
+}
+.rotator-details {
+  font-size: 0.78rem; color: rgba(253,248,240,0.55);
+  letter-spacing: 0.12em; text-transform: uppercase; display: block; margin-bottom: 0.75rem;
+}
+.rotator-projected {
+  font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem;
+  color: var(--sand); display: block; margin-bottom: 0.5rem;
+}
+.rotator-message {
+  font-family: 'Lora', serif; font-style: italic;
+  font-size: 0.95rem; color: rgba(253,248,240,0.75); display: block;
+}
+.rotator-empty {
+  font-family: 'Lora', serif; font-style: italic;
+  font-size: 1rem; color: rgba(253,248,240,0.4);
+}
+.rotator-dots { display: flex; justify-content: center; gap: 6px; margin-top: 1.25rem; }
+.rotator-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(253,248,240,0.25); transition: all 0.3s; cursor: pointer;
+}
+.rotator-dot.active { background: var(--apricot); transform: scale(1.3); }
+
+=== ADD THIS JS just before loadMiles(); ===
+
+  let rotatorInterval = null;
+  let rotatorIndex = 0;
+  let rotatorPledges = [];
+
+  function showRotatorSlide(i) {
+    const slide = document.getElementById('rotatorSlide');
+    const dots = document.getElementById('rotatorDots');
+    if (!slide || !rotatorPledges.length) return;
+    const f = rotatorPledges[i].fields;
+    slide.style.opacity = '0';
+    setTimeout(() => {
+      const msg = f.Message ? '<span class="rotator-message">"' + f.Message + '"</span>' : '';
+      slide.innerHTML =
+        '<span class="rotator-name">' + f.Name + '</span>' +
+        '<span class="rotator-details">$' + parseFloat(f['Per Mile Amount']).toFixed(2) + '/mile &middot; ' + f.Race + ' &middot; ' + f.Charity + '</span>' +
+        '<span class="rotator-projected">$' + parseFloat(f['Projected Total']).toFixed(2) + ' projected</span>' +
+        msg;
+      slide.style.opacity = '1';
+      if (dots) dots.querySelectorAll('.rotator-dot').forEach((d, j) => d.classList.toggle('active', j === i));
+    }, 200);
+  }
+
+  async function loadPledges() {
+    try {
+      const res = await fetch('/api/pledges');
+      const data = await res.json();
+      const records = (data.records || []).filter(r => r.fields && r.fields.Name);
+      rotatorPledges = records;
+      const dots = document.getElementById('rotatorDots');
+      if (rotatorPledges.length > 0) {
+        if (dots) dots.innerHTML = rotatorPledges.map((_, i) => '<div class="rotator-dot' + (i === 0 ? ' active' : '') + '" onclick="showRotatorSlide(' + i + ')"></div>').join('');
+        showRotatorSlide(0);
+        if (rotatorInterval) clearInterval(rotatorInterval);
+        if (rotatorPledges.length > 1) {
+          rotatorInterval = setInterval(() => {
+            rotatorIndex = (rotatorIndex + 1) % rotatorPledges.length;
+            showRotatorSlide(rotatorIndex);
+          }, 5000);
+        }
+      }
+      if (!rotatorPledges.length) {
+        document.getElementById('pledgeList').innerHTML = '<p style="color:var(--muted);font-size:0.85rem;">Be the first to pledge!</p>';
+        if (document.getElementById('pledgeBoardTotal')) document.getElementById('pledgeBoardTotal').innerHTML = '';
+        return;
+      }
+      let total = 0; let html = '';
+      rotatorPledges.forEach(r => {
+        const f = r.fields;
+        const proj = parseFloat(f['Projected Total'] || 0);
+        total += proj;
+        html += '<div class="pledge-board-item"><div><span class="pledge-board-name">' + f.Name + '</span><br><span class="pledge-board-details">$' + parseFloat(f['Per Mile Amount']).toFixed(2) + '/mi &middot; ' + f.Race + ' &middot; ' + f.Charity + '</span></div><span class="pledge-board-amount">$' + proj.toFixed(2) + '</span></div>';
+      });
+      document.getElementById('pledgeList').innerHTML = html;
+      if (document.getElementById('pledgeBoardTotal')) document.getElementById('pledgeBoardTotal').innerHTML = 'Total pledged: $' + total.toFixed(2) + ' across ' + rotatorPledges.length + ' pledger' + (rotatorPledges.length !== 1 ? 's' : '');
+    } catch(e) { console.log('pledge error', e); }
+  }
+  loadPledges();
+
