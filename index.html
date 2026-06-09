@@ -255,7 +255,45 @@ font-size: 1.5rem; letter-spacing: 0.05em; color: var(--sand); margin-bottom: 0.
   font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
   color: rgba(253,246,237,0.18); white-space: nowrap;
 }
-
+/* ── PLEDGE SECTION ── */
+.pledge-section { padding: 5rem 2.5rem; background: var(--cream); }
+.pledge-form-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 2rem; }
+.pledge-field { margin-bottom: 1.25rem; }
+.pledge-field label { display: block; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
+.pledge-field select, .pledge-field input[type="text"], .pledge-field input[type="email"], .pledge-field input[type="number"] {
+  width: 100%; padding: 0.75rem 1rem; border: 1px solid rgba(232,104,74,0.25);
+  background: var(--sand); color: var(--text); font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem; border-radius: 3px; outline: none; transition: border-color 0.2s;
+}
+.pledge-field select:focus, .pledge-field input:focus { border-color: var(--coral); }
+.pledge-quick-amounts { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
+.pledge-quick-btn {
+  background: var(--sand); border: 1px solid rgba(232,104,74,0.3); color: var(--text);
+  padding: 0.4rem 0.85rem; font-size: 0.82rem; cursor: pointer; border-radius: 2px;
+  font-family: 'DM Sans', sans-serif; transition: all 0.2s;
+}
+.pledge-quick-btn:hover, .pledge-quick-btn.active { background: var(--coral); color: var(--sand); border-color: var(--coral); }
+.pledge-submit-btn {
+  width: 100%; background: var(--coral); color: var(--sand); border: none;
+  padding: 1rem; font-size: 0.9rem; font-weight: 500; letter-spacing: 0.07em;
+  text-transform: uppercase; cursor: pointer; border-radius: 3px;
+  font-family: 'DM Sans', sans-serif; transition: all 0.2s; margin-top: 0.5rem;
+}
+.pledge-submit-btn:hover { background: var(--sunset); transform: translateY(-1px); }
+.pledge-success { background: rgba(74,140,106,0.15); border: 1px solid rgba(74,140,106,0.3); color: var(--kelp); padding: 0.85rem 1rem; border-radius: 3px; font-size: 0.9rem; margin-top: 1rem; }
+.pledge-error { background: rgba(232,104,74,0.1); border: 1px solid rgba(232,104,74,0.3); color: var(--coral); padding: 0.85rem 1rem; border-radius: 3px; font-size: 0.9rem; margin-top: 1rem; }
+.pledge-total-display { background: var(--deep); padding: 2rem; border-radius: 4px; text-align: center; margin-bottom: 1.5rem; }
+.pledge-total-label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(253,248,240,0.5); margin-bottom: 0.5rem; }
+.pledge-total-amount { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: var(--apricot); line-height: 1; margin-bottom: 0.5rem; }
+.pledge-total-breakdown { font-size: 0.82rem; color: rgba(253,248,240,0.5); line-height: 1.5; }
+.pledge-board { background: var(--sand); border: 1px solid rgba(232,104,74,0.15); border-radius: 4px; padding: 1.5rem; }
+.pledge-board-title { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+.pledge-board-item { display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 0; border-bottom: 1px solid rgba(232,104,74,0.08); font-size: 0.88rem; }
+.pledge-board-item:last-child { border-bottom: none; }
+.pledge-board-name { color: var(--text); font-weight: 500; }
+.pledge-board-details { color: var(--muted); font-size: 0.78rem; }
+.pledge-board-amount { color: var(--coral); font-weight: 500; }
+.pledge-board-total { margin-top: 1rem; padding-top: 1rem; border-top: 2px solid rgba(232,104,74,0.2); font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--text); }
 /* ── FUNDRAISING ── */
 .fundraising-section {
   padding: 6rem 2.5rem;
