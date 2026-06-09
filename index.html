@@ -845,7 +845,79 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
 <img src="gigi-hawaii.jpg" alt="Gigi in the ocean in Hawaii" style="width:min(65%, 100%); aspect-ratio:3/4; max-height:50vh; object-fit:cover; border-radius:8px; display:block; margin:0 auto; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
   </div>
 </section>
+<!-- PLEDGE SECTION -->
+<section class="pledge-section" id="pledge">
+  <p class="section-label">Pledge Per Mile</p>
+  <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3.5rem);color:var(--text);margin-bottom:0.5rem;">Pledge <em style="font-family:'Lora',serif;font-style:italic;color:var(--coral);">per mile</em></h2>
+  <p style="color:var(--muted);margin-bottom:2.5rem;font-size:0.95rem;max-width:600px;">Pick a race, pick an amount per mile, and I'll email you after each race with your total and a direct link to donate to your chosen charity. No payment now — just your commitment.</p>
 
+  <div class="pledge-form-wrap">
+    <div class="pledge-form-left">
+      <div class="pledge-field">
+        <label>Which race?</label>
+        <select id="pledgeRace" onchange="updatePledgeTotal()">
+          <option value="">Select a race...</option>
+          <option value="Sprint" data-miles="16">Sprint Triathlon — Aug 9 (16 mi)</option>
+          <option value="Olympic" data-miles="31.4">Olympic Triathlon — Sep 19 (31.4 mi)</option>
+          <option value="Half Ironman" data-miles="70.3">Half Ironman 70.3 — 2027 (70.3 mi)</option>
+          <option value="Full Ironman" data-miles="140.6">Full Ironman 140.6 — 2027 (140.6 mi)</option>
+          <option value="All Four Races" data-miles="258.3">All Four Races (258.3 mi total)</option>
+        </select>
+      </div>
+
+      <div class="pledge-field">
+        <label>Per mile amount</label>
+        <div class="pledge-quick-amounts">
+          <button onclick="setPledgeAmount(0.10)" class="pledge-quick-btn">$0.10</button>
+          <button onclick="setPledgeAmount(0.25)" class="pledge-quick-btn">$0.25</button>
+          <button onclick="setPledgeAmount(0.50)" class="pledge-quick-btn">$0.50</button>
+          <button onclick="setPledgeAmount(1.00)" class="pledge-quick-btn">$1.00</button>
+        </div>
+        <input type="number" id="pledgeAmount" placeholder="or enter your own" step="0.01" min="0.01" oninput="updatePledgeTotal()">
+      </div>
+
+      <div class="pledge-field">
+        <label>Which charity?</label>
+        <select id="pledgeCharity">
+          <option value="">Select a charity...</option>
+          <option value="NEDA">NEDA — National Eating Disorders Association</option>
+          <option value="RAINN">RAINN — Anti-Sexual Violence</option>
+          <option value="Friendship Circle">Friendship Circle — Special Needs Inclusion</option>
+        </select>
+      </div>
+
+      <div class="pledge-field">
+        <label>Your name</label>
+        <input type="text" id="pledgeName" placeholder="First name is fine!">
+      </div>
+
+      <div class="pledge-field">
+        <label>Your email</label>
+        <input type="email" id="pledgeEmail" placeholder="For your post-race receipt">
+      </div>
+
+      <button class="pledge-submit-btn" onclick="submitPledge()">Count me in →</button>
+      <div id="pledgeSuccess" style="display:none;" class="pledge-success">🧡 You're in! I'll email you after each race with your total.</div>
+      <div id="pledgeError" style="display:none;" class="pledge-error">Something went wrong — please try again!</div>
+    </div>
+
+    <div class="pledge-form-right">
+      <div class="pledge-total-display">
+        <p class="pledge-total-label">Your projected donation</p>
+        <p class="pledge-total-amount" id="pledgeTotalDisplay">$0.00</p>
+        <p class="pledge-total-breakdown" id="pledgeBreakdown">Select a race and amount to see your total</p>
+      </div>
+
+      <div class="pledge-board">
+        <p class="pledge-board-title">Who's in</p>
+        <div id="pledgeList">
+          <p style="color:var(--muted);font-size:0.85rem;">Be the first to pledge!</p>
+        </div>
+        <div class="pledge-board-total" id="pledgeBoardTotal"></div>
+      </div>
+    </div>
+  </div>
+</section>
 <!-- FUNDRAISING -->
 <section class="fundraising-section" id="donate">
   <div class="fundraising-header">
@@ -1145,7 +1217,95 @@ For the women who show up for each other.
       document.getElementById('trainingLog').innerHTML = html;
     } catch(e) { document.getElementById('trainingLog').innerHTML = '<p style="color:var(--muted)">Training data loading soon!</p>'; }
   }
+// Pledge form
+  const raceMiles = { 'Sprint': 16, 'Olympic': 31.4, 'Half Ironman': 70.3, 'Full Ironman': 140.6, 'All Four Races': 258.3 };
 
+  function setPledgeAmount(amount) {
+    document.getElementById('pledgeAmount').value = amount;
+    document.querySelectorAll('.pledge-quick-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+    updatePledgeTotal();
+  }
+
+  function updatePledgeTotal() {
+    const raceEl = document.getElementById('pledgeRace');
+    const amountEl = document.getElementById('pledgeAmount');
+    const race = raceEl.value;
+    const amount = parseFloat(amountEl.value) || 0;
+    const miles = raceMiles[race] || 0;
+    const total = (miles * amount).toFixed(2);
+    document.getElementById('pledgeTotalDisplay').textContent = '$' + total;
+    if (race && amount > 0) {
+      document.getElementById('pledgeBreakdown').textContent = miles + ' miles x $' + amount.toFixed(2) + '/mile = $' + total;
+    } else {
+      document.getElementById('pledgeBreakdown').textContent = 'Select a race and amount to see your total';
+    }
+  }
+
+  async function submitPledge() {
+    const name = document.getElementById('pledgeName').value.trim();
+    const email = document.getElementById('pledgeEmail').value.trim();
+    const race = document.getElementById('pledgeRace').value;
+    const charity = document.getElementById('pledgeCharity').value;
+    const perMileAmount = parseFloat(document.getElementById('pledgeAmount').value);
+    const miles = raceMiles[race] || 0;
+    const projectedTotal = (miles * perMileAmount).toFixed(2);
+
+    if (!name || !email || !race || !charity || !perMileAmount) {
+      alert('Please fill in all fields!');
+      return;
+    }
+
+    try {
+      const res = await fetch('/api/pledges', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, race, charity, perMileAmount, projectedTotal })
+      });
+      const data = await res.json();
+      if (data.success) {
+        document.getElementById('pledgeSuccess').style.display = 'block';
+        document.getElementById('pledgeError').style.display = 'none';
+        loadPledges();
+      } else {
+        document.getElementById('pledgeError').style.display = 'block';
+      }
+    } catch(e) {
+      document.getElementById('pledgeError').style.display = 'block';
+    }
+  }
+
+  async function loadPledges() {
+    try {
+      const res = await fetch('/api/pledges');
+      const data = await res.json();
+      const records = data.records || [];
+      const validRecords = records.filter(r => r.fields && r.fields.Name);
+      
+      if (validRecords.length === 0) {
+        document.getElementById('pledgeList').innerHTML = '<p style="color:var(--muted);font-size:0.85rem;">Be the first to pledge!</p>';
+        return;
+      }
+
+      let totalPledged = 0;
+      let html = '';
+      validRecords.forEach(r => {
+        const f = r.fields;
+        const projected = parseFloat(f['Projected Total'] || 0);
+        totalPledged += projected;
+        html += '<div class="pledge-board-item">';
+        html += '<div><span class="pledge-board-name">' + f.Name + '</span><br><span class="pledge-board-details">$' + parseFloat(f['Per Mile Amount']).toFixed(2) + '/mi · ' + f.Race + ' · ' + f.Charity + '</span></div>';
+        html += '<span class="pledge-board-amount">$' + projected.toFixed(2) + '</span>';
+        html += '</div>';
+      });
+
+      document.getElementById('pledgeList').innerHTML = html;
+      document.getElementById('pledgeBoardTotal').innerHTML = 'Total pledged: $' + totalPledged.toFixed(2) + ' across ' + validRecords.length + ' pledger' + (validRecords.length !== 1 ? 's' : '');
+    } catch(e) {
+      console.log('pledge load error', e);
+    }
+  }
+  loadPledges();
   loadMiles();
   loadTraining();
 </script>
