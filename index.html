@@ -77,24 +77,24 @@ nav {
 .hero-content { position: relative; z-index: 2; max-width: 860px; }
 .hero-eyebrow {
   font-size: 0.72rem; letter-spacing: 0.28em; text-transform: uppercase;
-  color: #F472B6; margin-bottom: 1rem;
+  color: #7a2d4a; margin-bottom: 1rem;
   display: flex; align-items: center; gap: 0.75rem;
 }
-.hero-eyebrow::before { content:''; display:block; width:2rem; height:1px; background:#F472B6; }
+.hero-eyebrow::before { content:''; display:block; width:2rem; height:1px; background:#7a2d4a; }
 h1 {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(3.5rem, 10vw, 8rem);
   line-height: 0.9; letter-spacing: 0.01em;
-  color: #F472B6;
+  color: #7a2d4a;
   margin-bottom: 1.5rem;
 }
 h1 em {
   font-style: italic; font-family: 'Lora', serif;
-  color: #F472B6; font-size: 0.85em;
+  color: #7a2d4a; font-size: 0.85em;
 }
 .hero-sub {
   font-size: clamp(1rem, 1.8vw, 1.15rem);
-  color: #F472B6;
+  color: #7a2d4a;
   max-width: 500px; line-height: 1.75; margin-bottom: 2.5rem;
 }
 .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
@@ -109,12 +109,12 @@ h1 em {
 .btn-primary:hover { background: var(--horizon); transform: translateY(-2px); }
 .btn-secondary {
   display: inline-flex; align-items: center; gap: 0.5rem;
-  background: transparent; color: #F472B6;
+  background: transparent; color: #7a2d4a;
   padding: 0.9rem 1.9rem; font-size: 0.88rem;
   font-weight: 300; letter-spacing: 0.07em; text-transform: uppercase;
-  text-decoration: none; border: 1px solid rgba(244,114,182,0.35); transition: all 0.2s;
+  text-decoration: none; border: 1px solid rgba(122,45,74,0.35); transition: all 0.2s;
 }
-.btn-secondary:hover { border-color: #F472B6; background: rgba(244,114,182,0.08); }
+.btn-secondary:hover { border-color: #7a2d4a; background: rgba(122,45,74,0.08); }
 /* ── TICKER ── */
 .race-ticker { background: var(--seaweed); padding: 0.7rem 0; overflow: hidden; }
 .ticker-track {
@@ -123,7 +123,7 @@ h1 em {
 }
 .ticker-item {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 0.95rem; letter-spacing: 0.2em; color:#F472B6; flex-shrink: 0;
+  font-size: 0.95rem; letter-spacing: 0.2em; color: #7a2d4a; flex-shrink: 0;
 }
 .ticker-dot { color: rgba(253,246,237,0.5); }
 @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -761,11 +761,9 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
 <!-- HERO -->
 <section class="hero">
   <div class="hero-sky"></div>
-  <div class="hero-sun"></div>
-  <div class="hero-water"></div>
   <div class="hero-content">
     <p class="hero-eyebrow">Swimmer · New Triathlete · Definitely Still Learning</p>
-    <h1>What, like<br>it's <em>hard?</em>></h1>
+    <h1>What? Like it's<br><em>hard?</em> Boys do it.</h1>
     <p class="hero-sub">I fell off my bike while it was completely still, waved at the traffic that watched it happen, and then thought, why not sign up for four triathlons? Come along for the ride.</p>
     <div class="hero-actions">
       <a href="#donate" class="btn-primary">DONATIONS OPEN→</a>
