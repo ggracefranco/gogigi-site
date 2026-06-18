@@ -439,6 +439,13 @@ p.charity-num { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: upper
   font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
   color: rgba(255,255,255,0.6); margin-top: 0.5rem; display: block;
 }
+/* ── FAQ ── */
+.faq-section { padding: 5rem 2.5rem; background: var(--sand); }
+.faq-list { max-width: 720px; }
+.faq-item { padding: 1.75rem 0; border-bottom: 1px solid rgba(232,104,74,0.12); }
+.faq-item:last-child { border-bottom: none; }
+.faq-q { font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 500; color: var(--text); margin-bottom: 0.6rem; }
+.faq-a { font-size: 0.92rem; color: var(--muted); line-height: 1.75; }
 /* ── BLOG ── */
 .blog-section { padding: 6rem 2.5rem; background: var(--sand); }
 .blog-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; }
@@ -1057,6 +1064,33 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
   </div>
 </section>
 
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <p class="section-label">FAQ</p>
+  <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3.5rem);color:var(--text);margin-bottom:2rem;">Good <em style="font-family:'Lora',serif;font-style:italic;color:var(--coral);">questions.</em></h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <p class="faq-q">How does this work?</p>
+      <p class="faq-a">Pick a race, pick an amount per mile. I do the suffering. After I cross the finish line I'll email you your total and a direct link to donate to your chosen charity. No payment now, just your word that you're in.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Where does the money go?</p>
+      <p class="faq-a">Straight to whichever charity you choose: NEDA, RAINN, or Friendship Circle. I never see a cent of it. You donate directly to them.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Can I just donate without pledging per mile?</p>
+      <p class="faq-a">Absolutely. Click any charity card above and it takes you straight to their donation page. No pledging required.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">What if you don't finish a race?</p>
+      <p class="faq-a">Then you don't owe anything. Simple as that.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Can I pledge for all four races?</p>
+      <p class="faq-a">Yes! Select "All Four Races" in the pledge form and I'll reach out after each one with your running total.</p>
+    </div>
+  </div>
+</section>
 <!-- BLOG -->
  <div class="section-divider"></div>
 <section class="blog-section" id="updates">
