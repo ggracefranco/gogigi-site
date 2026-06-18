@@ -182,7 +182,7 @@ font-size: 1.5rem; letter-spacing: 0.05em; color: var(--sand); margin-bottom: 0.
 .story-section {
   padding: 5rem 2.5rem;
   background: var(--deep);
-  display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: start;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
   position: relative; overflow: hidden;
 }
 .story-section::before {
@@ -200,7 +200,7 @@ font-size: 1.5rem; letter-spacing: 0.05em; color: var(--sand); margin-bottom: 0.
   font-size: clamp(2.5rem, 5vw, 4.2rem); line-height: 0.95;
   color: var(--sand); margin-bottom: 2rem;
 }
-.story-left h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--sky-blue); }
+.story-left h2 em { font-family: 'Lora', serif; font-style: italic; color: #7a2d4a; }
 .story-body { font-size: 1rem; line-height: 1.9; color: rgba(253,248,240,0.78); }
 .story-body p { margin-bottom: 1.25rem; }
 .story-body strong { color: var(--peach); font-weight: 500; }
@@ -814,9 +814,10 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
 <!-- STORY -->
 <div class="section-divider"></div>
 <section class="story-section" id="story">
-  <div style="grid-column: 1 / -1; text-align: center;">
-<img src="gigi-hawaii.jpg" alt="Gigi in Hawaii" style="width:320px; height:320px; object-fit:cover; object-position:center top; border-radius:12px; display:block; margin:0 auto 2rem; box-shadow:0 12px 40px rgba(0,0,0,0.3);">  </div>
-  <div class="story-left" style="grid-column: 1 / -1;">
+  <div style="text-align: center;">
+    <img src="gigi-hawaii.jpg" alt="Gigi in Hawaii" style="width:100%; max-width:420px; aspect-ratio:4/5; object-fit:cover; object-position:center top; border-radius:12px; display:block; margin:0 auto; box-shadow:0 12px 40px rgba(0,0,0,0.3);">
+  </div>
+  <div class="story-left">
     <p class="section-label">My Story</p>
     <h2>More than<br>just <em>miles</em></h2>
     <div class="story-body">
