@@ -74,43 +74,27 @@ nav {
   position: absolute; inset: 0;
   background: url('IMG_3952.JPG') center center / cover no-repeat;
 }
-.hero-glow {
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse 80% 40% at 50% 60%, rgba(245,200,120,0.3) 0%, transparent 70%);
-}
-.hero-sun {
-  position: absolute; left: 50%; bottom: 38%;
-  transform: translateX(-50%);
-  width: 130px; height: 130px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #fff5c0 0%, #f5c878 45%, #f5a87a 100%);
-  box-shadow: 0 0 80px 30px rgba(245,200,120,0.5), 0 0 160px 60px rgba(232,104,74,0.25);
-}
-.hero-water {
-  position: absolute; bottom: 0; left: 0; right: 0; height: 40%;
-  background: linear-gradient(180deg, rgba(90,172,207,0.2) 0%, rgba(42,106,138,0.65) 50%, rgba(26,74,106,0.88) 100%);
-}
 .hero-content { position: relative; z-index: 2; max-width: 860px; }
 .hero-eyebrow {
   font-size: 0.72rem; letter-spacing: 0.28em; text-transform: uppercase;
-  color: var(--deep); margin-bottom: 1rem;
+  color: #F472B6; margin-bottom: 1rem;
   display: flex; align-items: center; gap: 0.75rem;
 }
-.hero-eyebrow::before { content:''; display:block; width:2rem; height:1px; background:var(--deep); }
+.hero-eyebrow::before { content:''; display:block; width:2rem; height:1px; background:#F472B6; }
 h1 {
   font-family: 'Bebas Neue', sans-serif;
-  font-size:clamp(3.5rem, 10vw, 8rem);
+  font-size: clamp(3.5rem, 10vw, 8rem);
   line-height: 0.9; letter-spacing: 0.01em;
-  color: var(--sand);
+  color: #F472B6;
   margin-bottom: 1.5rem;
 }
 h1 em {
   font-style: italic; font-family: 'Lora', serif;
-  color: #ffffff; font-size: 0.85em;
+  color: #F472B6; font-size: 0.85em;
 }
 .hero-sub {
   font-size: clamp(1rem, 1.8vw, 1.15rem);
-  color: #ffffff;
+  color: #F472B6;
   max-width: 500px; line-height: 1.75; margin-bottom: 2.5rem;
 }
 .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
@@ -125,13 +109,12 @@ h1 em {
 .btn-primary:hover { background: var(--horizon); transform: translateY(-2px); }
 .btn-secondary {
   display: inline-flex; align-items: center; gap: 0.5rem;
-  background: transparent; color: var(--sand);
+  background: transparent; color: #F472B6;
   padding: 0.9rem 1.9rem; font-size: 0.88rem;
   font-weight: 300; letter-spacing: 0.07em; text-transform: uppercase;
-  text-decoration: none; border: 1px solid rgba(253,246,237,0.35); transition: all 0.2s;
+  text-decoration: none; border: 1px solid rgba(244,114,182,0.35); transition: all 0.2s;
 }
-.btn-secondary:hover { border-color: var(--sand); background: rgba(253,246,237,0.08); }
-
+.btn-secondary:hover { border-color: #F472B6; background: rgba(244,114,182,0.08); }
 /* ── TICKER ── */
 .race-ticker { background: var(--seaweed); padding: 0.7rem 0; overflow: hidden; }
 .ticker-track {
@@ -140,7 +123,7 @@ h1 em {
 }
 .ticker-item {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 0.95rem; letter-spacing: 0.2em; color: var(--sand); flex-shrink: 0;
+  font-size: 0.95rem; letter-spacing: 0.2em; color:#F472B6; flex-shrink: 0;
 }
 .ticker-dot { color: rgba(253,246,237,0.5); }
 @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -778,7 +761,6 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
 <!-- HERO -->
 <section class="hero">
   <div class="hero-sky"></div>
-  <div class="hero-glow"></div>
   <div class="hero-sun"></div>
   <div class="hero-water"></div>
   <div class="hero-content">
