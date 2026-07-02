@@ -579,6 +579,11 @@ gallery-item:nth-child(5) { grid-column: span 2; }
   font-size: 0.88rem; color: rgba(253,248,240,0.6);
 }
 .perk-icon { font-size: 1.1rem; flex-shrink: 0; }
+/* ── TOTAL HOURS ── */
+.total-hours-strip { display: flex; gap: 3rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+.total-hours-stat { text-align: left; }
+.total-hours-num { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; line-height: 1; color: var(--coral); display: block; }
+.total-hours-label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); display: block; margin-top: 0.25rem; }
 /* ── TRAINING LOG ── */
 .training-section { padding: 5rem 2.5rem; background: var(--sand); }
 .training-table-wrap { overflow-x: auto; }
@@ -886,6 +891,20 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
   <p class="section-label">Training Log</p>
   <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3.5rem);color:var(--text);margin-bottom:0.5rem;">Putting in <em style="font-family:'Lora',serif;font-style:italic;color:#7a2d4a;">the work</em></h2>
   <p style="color:var(--muted);margin-bottom:2rem;font-size:0.95rem;">Updated every time I train.</p>
+  <div class="total-hours-strip">
+  <div class="total-hours-stat">
+    <span class="total-hours-num" id="totalHours">0</span>
+    <span class="total-hours-label">total hours in training</span>
+  </div>
+  <div class="total-hours-stat">
+    <span class="total-hours-num" id="totalSessions">0</span>
+    <span class="total-hours-label">total sessions</span>
+  </div>
+  <div class="total-hours-stat">
+    <span class="total-hours-num" id="totalWeeks">0</span>
+    <span class="total-hours-label">weeks of training</span>
+  </div>
+</div>
   <div id="trainingLog">
     <p style="color:var(--muted);font-size:0.9rem;">Loading training data...</p>
   </div>
@@ -1448,6 +1467,28 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
   }
   loadPledges();
   loadMiles();
+  async function loadTotalHours() {
+    try {
+      const res = await fetch('/api/strava');
+      const weeks = await res.json();
+      const weekKeys = Object.keys(weeks).filter(k => k >= '2026-05-03');
+      let totalMins = 0;
+      let totalSessions = 0;
+      weekKeys.forEach(week => {
+        const w = weeks[week];
+        totalMins += (w.swim.time || 0) + (w.bike.time || 0) + (w.run.time || 0) + (w.strength.time || 0);
+        if (w.swim.time > 0) totalSessions++;
+        if (w.bike.time > 0) totalSessions++;
+        if (w.run.time > 0) totalSessions++;
+        if (w.strength.time > 0) totalSessions++;
+      });
+      const totalHours = (totalMins / 60).toFixed(1);
+      document.getElementById('totalHours').textContent = totalHours;
+      document.getElementById('totalSessions').textContent = totalSessions;
+      document.getElementById('totalWeeks').textContent = weekKeys.length;
+    } catch(e) { console.log('hours error', e); }
+  }
+  loadTotalHours();
   loadTraining();
 </script>
 </body>
