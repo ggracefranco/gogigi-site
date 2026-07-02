@@ -37,11 +37,6 @@ export default async function handler(req, res) {
       return res.status(200).json({ error: 'not an array', activities });
     }
 
-    const earlyActivities = activities.filter(a => a.start_date >= '2026-05-04' && a.start_date <= '2026-05-07');
-    if (earlyActivities.length > 0) {
-      return res.status(200).json({ debug: earlyActivities.map(a => ({ type: a.type, name: a.name, distance: a.distance, time: a.moving_time, date: a.start_date })) });
-    }
-
     const weeks = {};
     activities.forEach(activity => {
       const date = new Date(activity.start_date);
