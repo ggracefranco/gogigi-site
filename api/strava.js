@@ -25,7 +25,7 @@ export default async function handler(req, res) {
     const tokenData = await tokenRes.json();
     const accessToken = tokenData.access_token;
 
-    const after = Math.floor((Date.now() - 56 * 24 * 60 * 60 * 1000) / 1000);
+  const after = Math.floor(new Date('2026-05-03').getTime() / 1000);
     const activitiesRes = await fetch(
       `https://www.strava.com/api/v3/athlete/activities?after=${after}&per_page=100`,
       { headers: { Authorization: `Bearer ${accessToken}` } }
@@ -33,8 +33,13 @@ export default async function handler(req, res) {
 
     const activities = await activitiesRes.json();
 
-    if (!Array.isArray(activities)) {
+   if (!Array.isArray(activities)) {
       return res.status(200).json({ error: 'not an array', activities });
+    }
+
+    const earlyActivities = activities.filter(a => a.start_date >= '2026-05-04' && a.start_date <= '2026-05-07');
+    if (earlyActivities.length > 0) {
+      return res.status(200).json({ debug: earlyActivities.map(a => ({ type: a.type, name: a.name, distance: a.distance, time: a.moving_time, date: a.start_date })) });
     }
 
     const weeks = {};
