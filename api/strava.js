@@ -21,12 +21,20 @@ export default async function handler(req, res) {
     const accessToken = tokenData.access_token;
 
     const after = Math.floor(new Date('2026-05-03').getTime() / 1000);
-    const activitiesRes = await fetch(
-      `https://www.strava.com/api/v3/athlete/activities?after=${after}&per_page=400`,
-      { headers: { Authorization: `Bearer ${accessToken}` } }
-    );
-
-    const activities = await activitiesRes.json();
+    let allActivities = [];
+    let page = 1;
+    while (true) {
+      const activitiesRes = await fetch(
+        `https://www.strava.com/api/v3/athlete/activities?after=${after}&per_page=100&page=${page}`,
+        { headers: { Authorization: `Bearer ${accessToken}` } }
+      );
+      const batch = await activitiesRes.json();
+      if (!Array.isArray(batch) || batch.length === 0) break;
+      allActivities = allActivities.concat(batch);
+      if (batch.length < 100) break;
+      page++;
+    }
+    const activities = allActivities;
 
     if (!Array.isArray(activities)) {
       return res.status(200).json({ error: 'not an array', activities });
