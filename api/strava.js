@@ -1,15 +1,10 @@
 let cache = null;
 let cacheTime = 0;
-const CACHE_DURATION = 15 * 60 * 1000; // 15 minutes
+const CACHE_DURATION = 15 * 60 * 1000;
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  
-  // if (cache && Date.now() - cacheTime < CACHE_DURATION) {
-//   return res.status(200).json(cache);
-// }
-  }
-  
+
   try {
     const tokenRes = await fetch('https://www.strava.com/oauth/token', {
       method: 'POST',
@@ -21,11 +16,11 @@ export default async function handler(req, res) {
         grant_type: 'refresh_token'
       })
     });
-    
+
     const tokenData = await tokenRes.json();
     const accessToken = tokenData.access_token;
 
-  const after = Math.floor(new Date('2026-05-03').getTime() / 1000);
+    const after = Math.floor(new Date('2026-05-03').getTime() / 1000);
     const activitiesRes = await fetch(
       `https://www.strava.com/api/v3/athlete/activities?after=${after}&per_page=100`,
       { headers: { Authorization: `Bearer ${accessToken}` } }
@@ -33,7 +28,7 @@ export default async function handler(req, res) {
 
     const activities = await activitiesRes.json();
 
-   if (!Array.isArray(activities)) {
+    if (!Array.isArray(activities)) {
       return res.status(200).json({ error: 'not an array', activities });
     }
 
@@ -43,16 +38,16 @@ export default async function handler(req, res) {
       const weekStart = new Date(date);
       weekStart.setDate(date.getDate() - ((date.getDay() + 6) % 7));
       const weekKey = weekStart.toISOString().split('T')[0];
-      
+
       if (!weeks[weekKey]) {
-        weeks[weekKey] = { 
-          swim: { distance: 0, time: 0 }, 
-          bike: { distance: 0, time: 0 }, 
+        weeks[weekKey] = {
+          swim: { distance: 0, time: 0 },
+          bike: { distance: 0, time: 0 },
           run: { distance: 0, time: 0 },
           strength: { time: 0 }
         };
       }
-      
+
       const miles = parseFloat((activity.distance / 1609.34).toFixed(2));
       const mins = Math.round(activity.moving_time / 60);
       const type = activity.type;
