@@ -5,9 +5,9 @@ const CACHE_DURATION = 15 * 60 * 1000; // 15 minutes
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   
-  // Return cached data if available
-  if (cache && Date.now() - cacheTime < CACHE_DURATION) {
-    return res.status(200).json(cache);
+  // if (cache && Date.now() - cacheTime < CACHE_DURATION) {
+//   return res.status(200).json(cache);
+// }
   }
   
   try {
