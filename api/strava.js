@@ -22,7 +22,7 @@ export default async function handler(req, res) {
 
     const after = Math.floor(new Date('2026-05-03').getTime() / 1000);
     const activitiesRes = await fetch(
-      `https://www.strava.com/api/v3/athlete/activities?after=${after}&per_page=100`,
+      `https://www.strava.com/api/v3/athlete/activities?after=${after}&per_page=400`,
       { headers: { Authorization: `Bearer ${accessToken}` } }
     );
 
