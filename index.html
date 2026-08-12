@@ -1103,7 +1103,7 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
   <h2>Life in <em>motion</em></h2>
   <div class="gallery-grid">
     <div class="gallery-item" style="background:none;">
-      <img src="sprinttri.jpg" style="width:100%; height:100%; object-fit:cover;">
+      <img src="sprinttri.JPEG" style="width:100%; height:100%; object-fit:cover;">
     </div>
     <div class="gallery-item" style="background:linear-gradient(135deg,#4a8c6a,#2d6b4a)">Add photo</div>
     <div class="gallery-item" style="background:linear-gradient(135deg,#f5a87a,#e86848)">Add photo</div>
@@ -1241,7 +1241,7 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
   } catch(e) { console.log('miles error', e); }
 }
   // Olympic countdown (Sep 19 2026)
-  function updateTimers() {
+function updateTimers() {
     const now = new Date();
     const race0 = new Date('2026-08-09T07:00:00');
     const race1 = new Date('2026-09-19T07:00:00');
@@ -1249,16 +1249,26 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
     const diff1 = race1 - now;
     const days0 = Math.floor(diff0 / 86400000);
     const days1 = Math.floor(diff1 / 86400000);
-    if (diff0 > 0) {
-      document.getElementById('d0').textContent = days0;
-      document.getElementById('h0').textContent = Math.floor((diff0 % 86400000) / 3600000);
-      document.getElementById('m0').textContent = Math.floor((diff0 % 3600000) / 60000);
-    } else { document.getElementById('d0').textContent = 'Done!'; document.getElementById('h0').textContent = ''; document.getElementById('m0').textContent = ''; }
+    if (document.getElementById('d0')) {
+      if (diff0 > 0) {
+        document.getElementById('d0').textContent = days0;
+        document.getElementById('h0').textContent = Math.floor((diff0 % 86400000) / 3600000);
+        document.getElementById('m0').textContent = Math.floor((diff0 % 3600000) / 60000);
+      } else {
+        document.getElementById('d0').textContent = 'Done!';
+        document.getElementById('h0').textContent = '';
+        document.getElementById('m0').textContent = '';
+      }
+    }
     if (diff1 > 0) {
       document.getElementById('d1').textContent = days1;
       document.getElementById('h1').textContent = Math.floor((diff1 % 86400000) / 3600000);
       document.getElementById('m1').textContent = Math.floor((diff1 % 3600000) / 60000);
-    } else { document.getElementById('d1').textContent = 'Done!'; document.getElementById('h1').textContent = ''; document.getElementById('m1').textContent = ''; }
+    } else {
+      document.getElementById('d1').textContent = 'Done!';
+      document.getElementById('h1').textContent = '';
+      document.getElementById('m1').textContent = '';
+    }
     const getPh = (days, done) => { if (done) return "IT'S RACE DAY! GO ME!!"; if (days <= 13) return "Okay this is getting real"; if (days <= 29) return "Lance please answer your phone"; if (days <= 59) return "Carb loading is a sport right?"; if (days <= 99) return "TikTok triathlon deep dives are getting more specific"; return "Still time to pretend I didn't sign up for this"; };
     const p0 = document.getElementById('race0phrase'); if (p0) p0.textContent = getPh(days0, diff0 <= 0);
     const p1 = document.getElementById('race1phrase'); if (p1) p1.textContent = getPh(days1, diff1 <= 0);
