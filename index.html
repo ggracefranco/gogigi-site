@@ -161,14 +161,14 @@ h1 {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(3.5rem, 10vw, 8rem);
   line-height: 0.88; letter-spacing: 0.01em;
-  color: #e8c8cc; margin-bottom: 1.5rem;
-  text-shadow: 0 2px 40px rgba(0,0,0,0.18);
+  color: #e8359a; margin-bottom: 1.5rem;
+  text-shadow: 0 2px 40px rgba(0,0,0,0.25);
 }
-h1 em { font-style: italic; font-family: 'Lora', serif; color: #f0d8dc; font-size: 0.85em; }
+h1 em { font-style: italic; font-family: 'Lora', serif; color: #e8c8cc; font-size: 0.85em; }
 .hero-sub {
   font-size: clamp(1rem, 1.8vw, 1.1rem);
-  color: rgba(232,200,204,0.9);
-  max-width: 520px; line-height: 1.8; margin-bottom: 2.5rem; font-weight: 300;
+  color: #1a2a4a;
+  max-width: 520px; line-height: 1.8; margin-bottom: 2.5rem; font-weight: 400;
 }
 .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
 .btn-primary {
@@ -284,54 +284,208 @@ h1 em { font-style: italic; font-family: 'Lora', serif; color: #f0d8dc; font-siz
 }
 .photo-bleed .photo-overlay { position: absolute; inset: 0; z-index: 2; }
 
-/* ─── COUNTDOWN ─── */
-.countdown-section { padding: 6rem 2.5rem; background: var(--cream); }
-.countdown-section > h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 5vw, 3.8rem); color: var(--text); margin-bottom: 0.25rem; }
-.countdown-section > h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--maroon); }
-.countdown-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 2.5rem; }
-.countdown-race {
-  background: var(--sand); border: 1px solid rgba(168,216,232,0.3);
-  border-top: 3px solid var(--aqua); border-radius: 3px; padding: 2.25rem 2rem;
-  position: relative; overflow: hidden; transition: box-shadow 0.2s;
+/* ─── RACE TIMELINE ─── */
+.race-timeline-section {
+  background: #0d1520;
+  padding: 7rem 0 0;
+  position: relative; overflow: hidden;
 }
-.countdown-race:first-child { border-top-color: var(--maroon); background: linear-gradient(160deg, rgba(122,45,74,0.04) 0%, var(--sand) 100%); }
-.countdown-race:hover { box-shadow: 0 6px 24px rgba(168,216,232,0.25); }
-.race-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.04em; color: var(--text); margin-bottom: 0.3rem; }
-.race-date { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.06em; line-height: 1.55; margin-bottom: 1.5rem; }
-.timer-display { display: flex; gap: 1.1rem; }
-.timer-unit { text-align: center; }
-.timer-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.4rem; line-height: 1; color: var(--teal); }
-.timer-label { font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--light); }
-.race-tbd { font-family: 'Lora', serif; font-style: italic; font-size: 0.88rem; color: var(--muted); margin-top: 0.5rem; line-height: 1.5; }
-
-/* ─── OPEN WATER ─── */
-.open-water-section { padding: 6rem 2.5rem; background: var(--deep-sea); position: relative; overflow: hidden; }
-.open-water-section::before {
+.race-timeline-section::before {
   content: '';
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 50% 110%, rgba(197,232,242,0.12) 0%, transparent 60%),
-              radial-gradient(ellipse 40% 50% at 90% 10%, rgba(122,45,74,0.2) 0%, transparent 55%);
+  background:
+    radial-gradient(ellipse 70% 40% at 15% 20%, rgba(90,172,207,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 85% 70%, rgba(122,45,74,0.12) 0%, transparent 55%);
   pointer-events: none;
 }
-.open-water-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3rem; position: relative; z-index: 1; flex-wrap: wrap; gap: 1rem; }
-.open-water-header h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 6vw, 5rem); line-height: 0.9; color: var(--sand); }
-.open-water-header h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--sky); }
-.open-water-sub { font-size: 0.82rem; color: rgba(197,232,242,0.5); letter-spacing: 0.05em; max-width: 240px; line-height: 1.65; text-align: right; }
-.open-water-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; position: relative; z-index: 1; }
-.ow-card {
-  border: 1px solid rgba(197,232,242,0.18); padding: 3rem 2.5rem;
-  position: relative; overflow: hidden; background: rgba(197,232,242,0.04);
-  transition: border-color 0.3s, background 0.3s;
+.rt-header {
+  padding: 0 2.5rem 5rem;
+  position: relative; z-index: 1;
+  display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 2rem;
 }
-.ow-card:hover { border-color: rgba(197,232,242,0.4); background: rgba(197,232,242,0.07); }
-.ow-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--aqua), var(--sky)); }
-.ow-distance { font-family: 'Bebas Neue', sans-serif; font-size: clamp(4rem, 8vw, 6rem); line-height: 0.9; color: var(--sand); display: block; margin-bottom: 0.2rem; letter-spacing: 0.02em; }
-.ow-unit { font-family: 'Lora', serif; font-style: italic; font-size: 1.2rem; color: var(--sky); margin-left: 0.2rem; }
-.ow-label { font-size: 0.66rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(197,232,242,0.35); display: block; margin-bottom: 2rem; }
-.ow-when { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: var(--aqua); letter-spacing: 0.04em; display: block; margin-bottom: 0.35rem; }
-.ow-location { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(197,232,242,0.3); }
-.ow-location-icon { width: 12px; height: 12px; border-radius: 50%; background: rgba(197,232,242,0.2); border: 1px solid rgba(197,232,242,0.3); display: inline-block; flex-shrink: 0; }
-.ow-redacted { display: inline-block; background: rgba(197,232,242,0.1); border-radius: 2px; padding: 0 0.5rem; letter-spacing: 0.3em; color: transparent; user-select: none; border: 1px solid rgba(197,232,242,0.15); font-size: 0.7rem; }
+.rt-header-left {}
+.rt-eyebrow {
+  font-size: 0.66rem; letter-spacing: 0.32em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 1rem;
+  display: flex; align-items: center; gap: 0.65rem;
+}
+.rt-eyebrow::before { content:''; display:block; width:1.5rem; height:1px; background:var(--teal); }
+.rt-heading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem, 8vw, 7rem);
+  line-height: 0.88; color: var(--sand); letter-spacing: 0.01em;
+}
+.rt-heading em { font-family: 'Lora', serif; font-style: italic; color: var(--sky); }
+.rt-subhead {
+  font-size: 0.88rem; color: rgba(197,232,242,0.4);
+  max-width: 320px; line-height: 1.7; text-align: right;
+}
+
+/* the spine */
+.rt-spine {
+  position: relative; z-index: 1;
+  border-top: 1px solid rgba(197,232,242,0.08);
+}
+
+/* year dividers */
+.rt-year {
+  display: flex; align-items: center; gap: 0;
+  padding: 0 2.5rem;
+  border-bottom: 1px solid rgba(197,232,242,0.06);
+}
+.rt-year-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.75rem; letter-spacing: 0.35em;
+  color: rgba(197,232,242,0.18); text-transform: uppercase;
+  padding: 1.1rem 0; min-width: 80px;
+  border-right: 1px solid rgba(197,232,242,0.08); margin-right: 0;
+}
+
+/* each race row */
+.rt-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  border-bottom: 1px solid rgba(197,232,242,0.07);
+  transition: background 0.25s;
+  cursor: default;
+}
+.rt-row:hover { background: rgba(197,232,242,0.03); }
+.rt-row.done { opacity: 0.7; }
+.rt-row.done:hover { opacity: 0.85; }
+
+/* left date column */
+.rt-date-col {
+  padding: 2.5rem 1.75rem 2.5rem 2.5rem;
+  border-right: 1px solid rgba(197,232,242,0.08);
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative;
+}
+.rt-month {
+  font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: rgba(197,232,242,0.3); display: block; margin-bottom: 0.2rem;
+}
+.rt-day {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.8rem; line-height: 1; color: rgba(197,232,242,0.15);
+  display: block; letter-spacing: 0.02em;
+}
+/* done marker */
+.rt-row.done .rt-date-col::after {
+  content: '✓';
+  position: absolute; top: 50%; right: -10px; transform: translateY(-50%);
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--maroon); color: #fff;
+  font-size: 0.6rem; display: flex; align-items: center; justify-content: center;
+  z-index: 2; font-family: sans-serif;
+}
+
+/* right content column */
+.rt-content-col {
+  padding: 2.5rem 2.5rem 2.5rem 3rem;
+  display: flex; flex-direction: column; justify-content: center;
+  gap: 0.6rem;
+}
+.rt-type-badge {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase;
+  margin-bottom: 0.25rem; width: fit-content;
+}
+.rt-type-badge .badge-dot {
+  width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+}
+/* badge colors by type */
+.rt-type-badge.triathlon { color: var(--teal); }
+.rt-type-badge.triathlon .badge-dot { background: var(--teal); }
+.rt-type-badge.ocean { color: var(--sky); }
+.rt-type-badge.ocean .badge-dot { background: var(--sky); }
+.rt-type-badge.ironman { color: var(--coral); }
+.rt-type-badge.ironman .badge-dot { background: var(--coral); }
+
+.rt-race-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.8rem, 3.5vw, 3rem);
+  line-height: 0.92; color: var(--sand); letter-spacing: 0.02em;
+}
+.rt-row.done .rt-race-name { color: rgba(253,248,240,0.55); }
+
+.rt-distance-row {
+  display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap;
+  margin-top: 0.15rem;
+}
+.rt-dist-seg {
+  display: flex; align-items: baseline; gap: 0.35rem;
+}
+.rt-dist-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem; line-height: 1;
+  color: rgba(197,232,242,0.5);
+}
+.rt-dist-label {
+  font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(197,232,242,0.25);
+}
+.rt-dist-divider { color: rgba(197,232,242,0.12); font-size: 0.9rem; }
+
+.rt-note {
+  font-family: 'Lora', serif; font-style: italic;
+  font-size: 0.85rem; color: rgba(197,232,242,0.3);
+  line-height: 1.55; margin-top: 0.35rem;
+  max-width: 520px;
+}
+.rt-result {
+  display: inline-flex; align-items: center; gap: 0.55rem;
+  background: rgba(122,45,74,0.25); border: 1px solid rgba(122,45,74,0.4);
+  color: var(--rose); padding: 0.35rem 0.85rem;
+  font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
+  border-radius: 2px; margin-top: 0.35rem; width: fit-content;
+}
+.rt-result-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--maroon); flex-shrink: 0; }
+
+/* redacted location */
+.rt-location {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(197,232,242,0.2); margin-top: 0.2rem;
+}
+.rt-location-icon {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: rgba(197,232,242,0.1); border: 1px solid rgba(197,232,242,0.2);
+  flex-shrink: 0;
+}
+.ow-redacted {
+  display: inline-block; background: rgba(197,232,242,0.08); border-radius: 2px;
+  padding: 0 0.5rem; letter-spacing: 0.3em; color: transparent;
+  user-select: none; border: 1px solid rgba(197,232,242,0.1); font-size: 0.65rem;
+}
+
+/* the big number watermark per year */
+.rt-year-group { position: relative; }
+.rt-year-watermark {
+  position: absolute; right: 2rem; top: 50%; transform: translateY(-50%);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(8rem, 18vw, 16rem);
+  color: rgba(197,232,242,0.022);
+  line-height: 1; letter-spacing: 0.04em;
+  pointer-events: none; user-select: none; z-index: 0;
+}
+
+/* future races get a subtle glow on the left border */
+.rt-row.upcoming { border-left: 2px solid rgba(90,172,207,0.15); }
+.rt-row.big-race { border-left: 2px solid rgba(232,104,72,0.25); }
+
+@media (max-width: 768px) {
+  .rt-header { padding: 0 1.25rem 3rem; }
+  .rt-subhead { text-align: left; max-width: 100%; }
+  .rt-row { grid-template-columns: 60px 1fr; }
+  .rt-date-col { padding: 1.75rem 1rem 1.75rem 1.25rem; }
+  .rt-month { font-size: 0.55rem; }
+  .rt-day { font-size: 2rem; }
+  .rt-content-col { padding: 1.75rem 1.25rem; }
+  .rt-race-name { font-size: clamp(1.4rem, 5vw, 2rem); }
+  .rt-year-label { min-width: 60px; font-size: 0.65rem; }
+  .rt-distance-row { gap: 1rem; }
+  .rt-dist-num { font-size: 1.1rem; }
+}
 
 /* ─── TRAINING ─── */
 .training-section { padding: 6rem 2.5rem; background: var(--sand); }
@@ -705,12 +859,6 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
     </div>
   </section>
 
-  <!-- PHOTO FULL BLEED -->
-  <div class="photo-bleed">
-    <img src="IMG_5088.JPG" alt="Race day celebration">
-    <div class="photo-overlay" style="background:linear-gradient(to right, rgba(42,106,138,0.45) 0%, transparent 55%);"></div>
-  </div>
-
   <!-- QUOTE STRIP -->
   <div class="quote-strip">
     <p>IT IS A PRIVILEGE<br>TO BE HEALTHY.</p>
@@ -723,75 +871,155 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
      TAB: RACES
 ═══════════════════════════════════════════ -->
 <div class="tab-panel" id="tab-races">
+<section class="race-timeline-section">
 
-  <!-- COUNTDOWN -->
-  <section class="countdown-section">
-    <p class="section-label">The Journey Ahead</p>
-    <h2>Five races. <em>One very tired girl.</em></h2>
-    <div class="countdown-grid" style="grid-template-columns: repeat(3,1fr);">
-      <!-- Race 1: Done -->
-      <div class="countdown-race">
-        <p class="race-name">Sprint Triathlon &#x1F948;</p>
-        <p class="race-date">August 9, 2026 &middot; 1/4 mile swim, 10 mile bike, 3 mile run.</p>
-        <p style="font-family:'Bebas Neue',sans-serif; font-size:1.9rem; color:var(--maroon); margin-top:1rem; letter-spacing:0.04em;">FINISHED &middot; 2ND IN AGE GROUP</p>
-        <p class="race-tbd">Finish time: 1:10:14 &#x1F9E1;</p>
-      </div>
-      <!-- Race 2: Done -->
-      <div class="countdown-race">
-        <p class="race-name">Olympic Triathlon &#x1F948;</p>
-        <p class="race-date">September 2026 &middot; 0.9 mile swim, 24.8 mile bike, 6.2 mile run. In a row. On purpose.</p>
-        <p style="font-family:'Bebas Neue',sans-serif; font-size:1.9rem; color:var(--maroon); margin-top:1rem; letter-spacing:0.04em;">DONE &middot; DID IT</p>
-        <p class="race-tbd">We'll add the finish time here soon &#x1F9E1;</p>
-      </div>
-      <!-- Race 3 -->
-      <div class="countdown-race">
-        <p class="race-name">Ironman 70.3</p>
-        <p class="race-date">June 2027 &middot; Swim, bike, run a half marathon. After the swim and bike. Cool cool cool.</p>
-        <p class="race-tbd">Officially signed up. June 2027. No turning back now.</p>
-      </div>
-      <!-- Race 4 -->
-      <div class="countdown-race">
-        <p class="race-name">Ironman 140.6</p>
-        <p class="race-date">November 2027 &middot; 2.4 mile swim, 112 mile bike, 26.2 mile run. I have time. Sort of.</p>
-        <p class="race-tbd">The big scary one. I will sign up. I am brave. Probably.</p>
-      </div>
-      <!-- Race 5 -->
-      <div class="countdown-race">
-        <p class="race-name">More TBD</p>
-        <p class="race-date">2026&ndash;2027 &middot; Because apparently five races wasn't enough of an idea.</p>
-        <p class="race-tbd" style="font-family:'Lora',serif;font-style:italic;color:var(--muted);">Watch this space. I can't stop signing up for things.</p>
-      </div>
+  <!-- HEADER -->
+  <div class="rt-header">
+    <div class="rt-header-left">
+      <p class="rt-eyebrow">The race calendar</p>
+      <h2 class="rt-heading">Six races.<br><em>One very tired girl.</em></h2>
     </div>
-  </section>
+    <p class="rt-subhead">2026 to 2027. Sprint to Ironman. Triathlon to open ocean. In order of increasing insanity.</p>
+  </div>
 
-  <!-- OPEN WATER -->
-  <section class="open-water-section">
-    <div class="open-water-header">
-      <h2>Open<br><em>water.</em></h2>
-      <p class="open-water-sub">Two solo ocean swims happening quietly on the side. Location undisclosed.</p>
-    </div>
-    <div class="open-water-cards">
-      <div class="ow-card">
-        <span class="ow-distance">2.0<span class="ow-unit">mi</span></span>
-        <span class="ow-label">Ocean swim</span>
-        <span class="ow-when">August 2026</span>
-        <span class="ow-location">
-          <span class="ow-location-icon"></span>
-          <span class="ow-redacted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        </span>
-      </div>
-      <div class="ow-card">
-        <span class="ow-distance">2.4<span class="ow-unit">mi</span></span>
-        <span class="ow-label">Ocean swim</span>
-        <span class="ow-when">April 2027</span>
-        <span class="ow-location">
-          <span class="ow-location-icon"></span>
-          <span class="ow-redacted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        </span>
-      </div>
-    </div>
-  </section>
+  <!-- SPINE -->
+  <div class="rt-spine">
 
+    <!-- 2026 -->
+    <div class="rt-year-group">
+      <div class="rt-year-watermark">2026</div>
+      <div class="rt-year"><span class="rt-year-label">2026</span></div>
+
+      <!-- 1: Sprint -->
+      <div class="rt-row done">
+        <div class="rt-date-col">
+          <span class="rt-month">Aug</span>
+          <span class="rt-day">09</span>
+        </div>
+        <div class="rt-content-col">
+          <span class="rt-type-badge triathlon"><span class="badge-dot"></span>Triathlon</span>
+          <p class="rt-race-name">Sprint Triathlon</p>
+          <div class="rt-distance-row">
+            <div class="rt-dist-seg"><span class="rt-dist-num">0.25</span><span class="rt-dist-label">mi swim</span></div>
+            <span class="rt-dist-divider">+</span>
+            <div class="rt-dist-seg"><span class="rt-dist-num">10</span><span class="rt-dist-label">mi bike</span></div>
+            <span class="rt-dist-divider">+</span>
+            <div class="rt-dist-seg"><span class="rt-dist-num">3.1</span><span class="rt-dist-label">mi run</span></div>
+          </div>
+          <div class="rt-result"><span class="rt-result-dot"></span>Finished &middot; 2nd in age group &middot; 1:10:14</div>
+        </div>
+      </div>
+
+      <!-- 2: Olympic -->
+      <div class="rt-row done">
+        <div class="rt-date-col">
+          <span class="rt-month">Sep</span>
+          <span class="rt-day">26</span>
+        </div>
+        <div class="rt-content-col">
+          <span class="rt-type-badge triathlon"><span class="badge-dot"></span>Triathlon</span>
+          <p class="rt-race-name">Olympic Triathlon</p>
+          <div class="rt-distance-row">
+            <div class="rt-dist-seg"><span class="rt-dist-num">0.9</span><span class="rt-dist-label">mi swim</span></div>
+            <span class="rt-dist-divider">+</span>
+            <div class="rt-dist-seg"><span class="rt-dist-num">24.8</span><span class="rt-dist-label">mi bike</span></div>
+            <span class="rt-dist-divider">+</span>
+            <div class="rt-dist-seg"><span class="rt-dist-num">6.2</span><span class="rt-dist-label">mi run</span></div>
+          </div>
+          <div class="rt-result"><span class="rt-result-dot"></span>Done. Did it.</div>
+        </div>
+      </div>
+    </div><!-- /2026 group -->
+
+    <!-- 2027 -->
+    <div class="rt-year-group">
+      <div class="rt-year-watermark">2027</div>
+      <div class="rt-year"><span class="rt-year-label">2027</span></div>
+
+      <!-- 3: April OW -->
+      <div class="rt-row upcoming ocean-row">
+        <div class="rt-date-col">
+          <span class="rt-month">Apr</span>
+          <span class="rt-day">--</span>
+        </div>
+        <div class="rt-content-col">
+          <span class="rt-type-badge ocean"><span class="badge-dot"></span>Open Water</span>
+          <p class="rt-race-name">Ocean Swim &middot; 2.4 mi</p>
+          <div class="rt-distance-row">
+            <div class="rt-dist-seg"><span class="rt-dist-num">2.4</span><span class="rt-dist-label">mi ocean</span></div>
+          </div>
+          <p class="rt-note">A solo ocean swim. No wetsuit. No crowd. Just water.</p>
+          <span class="rt-location">
+            <span class="rt-location-icon"></span>
+            <span class="ow-redacted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- 4: June 70.3 -->
+      <div class="rt-row upcoming">
+        <div class="rt-date-col">
+          <span class="rt-month">Jun</span>
+          <span class="rt-day">--</span>
+        </div>
+        <div class="rt-content-col">
+          <span class="rt-type-badge triathlon"><span class="badge-dot"></span>Triathlon</span>
+          <p class="rt-race-name">Ironman 70.3</p>
+          <div class="rt-distance-row">
+            <div class="rt-dist-seg"><span class="rt-dist-num">1.2</span><span class="rt-dist-label">mi swim</span></div>
+            <span class="rt-dist-divider">+</span>
+            <div class="rt-dist-seg"><span class="rt-dist-num">56</span><span class="rt-dist-label">mi bike</span></div>
+            <span class="rt-dist-divider">+</span>
+            <div class="rt-dist-seg"><span class="rt-dist-num">13.1</span><span class="rt-dist-label">mi run</span></div>
+          </div>
+          <p class="rt-note">Swim, bike, then run a half marathon. After the swim and the bike. Cool cool cool.</p>
+        </div>
+      </div>
+
+      <!-- 5: August OW -->
+      <div class="rt-row upcoming ocean-row">
+        <div class="rt-date-col">
+          <span class="rt-month">Aug</span>
+          <span class="rt-day">--</span>
+        </div>
+        <div class="rt-content-col">
+          <span class="rt-type-badge ocean"><span class="badge-dot"></span>Open Water</span>
+          <p class="rt-race-name">Ocean Swim &middot; 2.0 mi</p>
+          <div class="rt-distance-row">
+            <div class="rt-dist-seg"><span class="rt-dist-num">2.0</span><span class="rt-dist-label">mi ocean</span></div>
+          </div>
+          <p class="rt-note">Back in open water. Solo. Quiet. Just me and whatever is under me.</p>
+          <span class="rt-location">
+            <span class="rt-location-icon"></span>
+            <span class="ow-redacted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- 6: Nov 140.6 -->
+      <div class="rt-row upcoming big-race">
+        <div class="rt-date-col">
+          <span class="rt-month">Nov</span>
+          <span class="rt-day">--</span>
+        </div>
+        <div class="rt-content-col">
+          <span class="rt-type-badge ironman"><span class="badge-dot"></span>Ironman</span>
+          <p class="rt-race-name">Ironman 140.6</p>
+          <div class="rt-distance-row">
+            <div class="rt-dist-seg"><span class="rt-dist-num">2.4</span><span class="rt-dist-label">mi swim</span></div>
+            <span class="rt-dist-divider">+</span>
+            <div class="rt-dist-seg"><span class="rt-dist-num">112</span><span class="rt-dist-label">mi bike</span></div>
+            <span class="rt-dist-divider">+</span>
+            <div class="rt-dist-seg"><span class="rt-dist-num">26.2</span><span class="rt-dist-label">mi run</span></div>
+          </div>
+          <p class="rt-note">The big scary one. 140.6 miles in a single day. I will sign up. I am brave. Probably.</p>
+        </div>
+      </div>
+
+    </div><!-- /2027 group -->
+
+  </div><!-- /rt-spine -->
+</section>
 </div><!-- /tab-races -->
 
 
