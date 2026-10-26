@@ -17,15 +17,15 @@
   --coral:    #e86848;
   --sunset:   #f0804a;
   --rose:     #d45a5a;
-  --seaweed:  #4a8c6a;
-  --kelp:     #2d6b4a;
-  --ocean:    #5aaccf;
-  --wave:     #3a8ab0;
+  --seaweed:  #c9a0b4;
+  --kelp:     #7a2d4a;
+  --ocean:    #a8d8e8;
+  --wave:     #c5e8f2;
   --sky-blue: #a8d8ea;
-  --deep:     #1a4a6a;
-  --text:     #2a3040;
-  --muted:    #6a7a8a;
-  --light:    #b0c0cc;
+  --deep:     #5a1a32;
+  --text:     #3a2030;
+  --muted:    #9a7a88;
+  --light:    #e8c8d8;
 }
 
 html { scroll-behavior: smooth; }
@@ -125,7 +125,7 @@ h1 em {
 }
 .btn-secondary:hover { border-color: #7a2d4a; background: rgba(122,45,74,0.08); }
 /* ── TICKER ── */
-.race-ticker { background: var(--seaweed); padding: 0.7rem 0; overflow: hidden; }
+.race-ticker { background: #7a2d4a; padding: 0.7rem 0; overflow: hidden; }
 .ticker-track {
   display: flex; gap: 4rem;
   animation: ticker 32s linear infinite; white-space: nowrap;
@@ -160,14 +160,14 @@ h1 em {
   display: grid; grid-template-columns: repeat(4, 1fr); padding: 0 1rem; gap: 2rem; margin-top: 2rem;
 }
 .countdown-race {
-  background: linear-gradient(135deg, var(--kelp) 0%, var(--seaweed) 100%);
+  background: linear-gradient(135deg, #7a2d4a 0%, #b05070 100%);
   border: 1px solid rgba(74,140,106,0.2);
   border-radius: 4px; padding: 2.5rem;
   position: relative; overflow: hidden;
 }
 .countdown-race::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--seaweed), var(--ocean));
+  background: linear-gradient(90deg, #7a2d4a, #c96080);
 }
 .race-name {
   font-family: 'Bebas Neue', sans-serif;
@@ -190,7 +190,7 @@ font-size: 1.5rem; letter-spacing: 0.05em; color: var(--sand); margin-bottom: 0.
 /* ── STORY ── */
 .story-section {
   padding: 5rem 2.5rem;
-  background: var(--deep);
+  background: #2e0e1a;
   display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
   position: relative; overflow: hidden;
 }
@@ -215,17 +215,17 @@ font-size: 1.5rem; letter-spacing: 0.05em; color: var(--sand); margin-bottom: 0.
 .story-body strong { color: var(--peach); font-weight: 500; }
 .story-stats {
   display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px;
-  background: rgba(90,172,207,0.15);
+  background: rgba(200,140,172,207,0.15);
   margin-top: 2.5rem;
   border: 1px solid rgba(90,172,207,0.15);
 }
-.story-stat { background: rgba(90,172,207,0.1); padding: 1.5rem; }
+.story-stat { background: rgba(200,140,170,0.1); padding: 1.5rem; }
 .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.6rem; color: var(--apricot); line-height: 1; }
 .stat-label { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--light); margin-top: 0.25rem; }
 .story-image-wrap { position: relative; z-index: 1; }
 .story-image-placeholder {
   aspect-ratio: 3/4;
-  background: linear-gradient(160deg, #1a4a6a 0%, #2d6b4a 60%, #4a8c6a 100%);
+  background: linear-gradient(160deg, #e8b0c0 0%, #c96080 60%, #7a2d4a 100%);
   border-radius: 4px; display: flex; align-items: center; justify-content: center;
   position: relative; overflow: hidden;
 }
@@ -268,11 +268,11 @@ font-size: 1.5rem; letter-spacing: 0.05em; color: var(--sand); margin-bottom: 0.
   font-family: 'DM Sans', sans-serif; transition: all 0.2s; margin-top: 0.5rem;
 }
 .pledge-submit-btn:hover { background: var(--sunset); transform: translateY(-1px); }
-.pledge-success { background: rgba(74,140,106,0.15); border: 1px solid rgba(74,140,106,0.3); color: var(--kelp); padding: 0.85rem 1rem; border-radius: 3px; font-size: 0.9rem; margin-top: 1rem; }
+.pledge-success { background: rgba(168,216,232,0.2); border: 1px solid rgba(168,216,232,0.4); color: #4a90c4; padding: 0.85rem 1rem; border-radius: 3px; font-size: 0.9rem; margin-top: 1rem; }
 .pledge-error { background: rgba(232,104,74,0.1); border: 1px solid rgba(232,104,74,0.3); color: var(--coral); padding: 0.85rem 1rem; border-radius: 3px; font-size: 0.9rem; margin-top: 1rem; }
 .pledge-total-display { background: linear-gradient(135deg, #f5c878 0%, #f5a87a 50%, #e86848 100%); padding: 2rem; border-radius: 4px; text-align: center; margin-bottom: 1.5rem; }
 .pledge-total-label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(26,74,106,0.7); margin-bottom: 0.5rem; }
-.pledge-total-amount { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: var(--deep);); line-height: 1; margin-bottom: 0.5rem; }
+.pledge-total-amount { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: #7a2d4a; line-height: 1; margin-bottom: 0.5rem; }
 .pledge-total-breakdown { font-size: 0.82rem; color: rgba(26,74,106,0.6); line-height: 1.5; }
 .pledge-rotator {
 background: linear-gradient(135deg, #e86848 0%, #7a2d4a 100%);
@@ -375,7 +375,7 @@ p.charity-num { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: upper
 
 /* PLEDGE BOX */
 .pledge-box {
-  background: linear-gradient(135deg, var(--wave) 0%, var(--kelp) 100%);
+  background: linear-gradient(135deg, var(--peach) 0%, var(--rose) 100%);
   padding: 2.5rem 3rem; border-radius: 4px;
 }
 .pledge-box h3 {
@@ -393,7 +393,7 @@ p.charity-num { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: upper
 .pledge-amt:hover, .pledge-amt.active { background: var(--sand); color: var(--coral); border-color: var(--sand); }
 .pledge-cta {
   display: inline-flex; align-items: center; gap: 0.5rem;
-  background: var(--sand); color: var(--deep);
+  background: var(--sand); color: #7a2d4a;
   padding: 0.9rem 1.9rem; font-size: 0.88rem; font-weight: 500;
   letter-spacing: 0.07em; text-transform: uppercase;
   text-decoration: none; transition: all 0.2s; border-radius: 2px;
@@ -410,7 +410,7 @@ p.charity-num { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: upper
   transition: transform 0.2s, box-shadow 0.2s;
   cursor: pointer;
 }
-.blog-circle:hover { transform: scale(1.05); box-shadow: 0 12px 40px rgba(0,0,0,0.15); }
+.blog-circle:hover { transform: scale(1.05); box-shadow: 0 12px 40px rgba(122,45,74,0.18); }
 .blog-circle.coming { cursor: default; opacity: 0.8; }
 .blog-circle.coming:hover { transform: none; box-shadow: none; }
 .circle-title {
@@ -459,7 +459,7 @@ p.charity-num { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: upper
 .blog-excerpt { font-size: 0.85rem; color: var(--muted); line-height: 1.65; margin-bottom: 1.25rem; }
 .blog-meta { font-size: 0.72rem; color: var(--light); letter-spacing: 0.05em; }
 .blog-img-placeholder {
-  height: 160px; background: linear-gradient(135deg, #a8d8ea 0%, #4a8c6a 100%);
+  height: 160px; background: linear-gradient(135deg, #e8b0c0 0%, #c96080 100%);
   margin: -1.75rem -1.75rem 1.5rem; border-radius: 4px 4px 0 0;
   display: flex; align-items: center; justify-content: center;
   font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.6);
@@ -528,13 +528,17 @@ p.charity-num { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: upper
 /* ── EMAIL SIGNUP ── */
 .email-section {
   padding: 6rem 2.5rem;
-  background: var(--deep);
+  background: #f7edf2;
   position: relative; overflow: hidden;
 }
+.email-section h2 { color: #7a2d4a; }
+.email-section p { color: var(--muted); }
+.email-section .section-label { color: var(--muted); }
+
 .email-section::before {
   content: '';
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse 60% 50% at 20% 50%, rgba(90,172,207,0.1) 0%, transparent 65%),
+  background: radial-gradient(ellipse 60% 50% at 20% 50%, rgba(200,140,170,0.1) 0%, transparent 65%),
               radial-gradient(ellipse 40% 60% at 80% 50%, rgba(74,140,106,0.08) 0%, transparent 60%);
   pointer-events: none;
 }
@@ -556,15 +560,15 @@ p.charity-num { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: upper
 }
 .email-field-row { display: flex; flex-direction: column; gap: 0.75rem; }
 .email-input {
-  background: rgba(253,248,240,0.08);
-  border: 1px solid rgba(90,172,207,0.25);
-  color: var(--sand); padding: 0.85rem 1.1rem;
+  background: rgba(255,255,255,0.7);
+  border: 1px solid rgba(122,45,74,0.25);
+  color: var(--text); padding: 0.85rem 1.1rem;
   font-size: 0.9rem; font-family: 'DM Sans', sans-serif;
   border-radius: 3px; outline: none; transition: border-color 0.2s;
   width: 100%;
 }
-.email-input::placeholder { color: rgba(253,248,240,0.35); }
-.email-input:focus { border-color: rgba(90,172,207,0.6); }
+.email-input::placeholder { color: rgba(154,122,136,0.7); }
+.email-input:focus { border-color: rgba(122,45,74,0.5); }
 .email-btn {
   background: var(--coral); color: var(--sand);
   border: none; padding: 0.9rem 1.75rem;
@@ -631,7 +635,7 @@ p.charity-num { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: upper
 .week-time { display: block; font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
 /* ── FOOTER ── */
 footer {
-  background: var(--deep); padding: 4rem 2.5rem 2rem;
+  background: #2e0e1a; padding: 4rem 2.5rem 2rem;
   border-top: 1px solid rgba(90,172,207,0.2);
 }
 .footer-top {
@@ -652,7 +656,7 @@ footer {
 
 /* ── PULL QUOTES ── */
 .pullquote-section {
-  background: var(--deep);
+  background: #2e0e1a;
   padding: 5rem 2.5rem;
   overflow: hidden;
   position: relative;
@@ -709,7 +713,7 @@ footer {
 
 /* ── OPEN WATER SWIMS ── */
 .open-water-section {
-  background: var(--deep);
+  background: #2e0e1a;
   padding: 5rem 2.5rem;
   position: relative; overflow: hidden;
 }
@@ -717,8 +721,8 @@ footer {
   content: '';
   position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse 80% 50% at 50% 100%, rgba(90,172,207,0.18) 0%, transparent 65%),
-    radial-gradient(ellipse 40% 60% at 10% 20%, rgba(122,45,74,0.12) 0%, transparent 55%);
+    radial-gradient(ellipse 80% 50% at 50% 100%, rgba(200,160,180,0.15) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 60% at 10% 20%, rgba(255,200,210,0.08) 0%, transparent 55%);
   pointer-events: none;
 }
 .open-water-header {
@@ -743,17 +747,17 @@ footer {
   gap: 1.5rem; position: relative; z-index: 1;
 }
 .ow-card {
-  border: 1px solid rgba(90,172,207,0.2);
+  border: 1px solid rgba(200,160,180,0.25);
   padding: 2.75rem 2.5rem;
   position: relative; overflow: hidden;
-  background: rgba(90,172,207,0.04);
+  background: rgba(255,220,230,0.05);
   transition: border-color 0.3s;
 }
-.ow-card:hover { border-color: rgba(90,172,207,0.45); }
+.ow-card:hover { border-color: rgba(200,160,180,0.55); }
 .ow-card::before {
   content: '';
   position: absolute; top: 0; left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, var(--sky-blue), var(--ocean));
+  background: linear-gradient(90deg, var(--apricot), var(--peach));
 }
 .ow-distance {
   font-family: 'Bebas Neue', sans-serif;
@@ -782,15 +786,15 @@ footer {
 }
 .ow-location-icon {
   width: 14px; height: 14px; border-radius: 50%;
-  background: rgba(90,172,207,0.25); border: 1px solid rgba(90,172,207,0.3);
+  background: rgba(200,160,180,0.25); border: 1px solid rgba(200,160,180,0.3);
   display: inline-block; flex-shrink: 0;
 }
 .ow-redacted {
   display: inline-block;
-  background: rgba(90,172,207,0.15); border-radius: 2px;
+  background: rgba(200,160,180,0.15); border-radius: 2px;
   padding: 0 0.5rem; letter-spacing: 0.3em;
   color: transparent; user-select: none;
-  border: 1px solid rgba(90,172,207,0.2);
+  border: 1px solid rgba(200,160,180,0.2);
   font-size: 0.72rem;
 }
 .ow-redacted::after { content: '██████'; color: transparent; }
@@ -860,7 +864,7 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
   .countdown-section { padding: 3.5rem 1.25rem; }
   .countdown-grid { grid-template-columns: 1fr; gap: 1rem; }
 .countdown-race {
-    background: linear-gradient(135deg, var(--kelp) 0%, var(--seaweed) 100%);
+    background: linear-gradient(135deg, #7a2d4a 0%, #b05070 100%);
     border: 1px solid rgba(74,140,106,0.2);
     border-radius: 4px; padding: 1.5rem;
     position: relative; overflow: hidden;
@@ -999,7 +1003,7 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
 <div class="section-divider"></div>
 <section class="story-section" id="story">
   <div style="text-align: center;">
-    <img src="gigi-hawaii.jpg" alt="Gigi in Hawaii" style="width:100%; max-width:420px; aspect-ratio:4/5; object-fit:cover; object-position:center top; border-radius:12px; display:block; margin:0 auto; box-shadow:0 12px 40px rgba(0,0,0,0.3);">
+    <img src="gigi-hawaii.jpg" alt="Gigi in Hawaii" style="width:100%; max-width:420px; aspect-ratio:4/5; object-fit:cover; object-position:center top; border-radius:12px; display:block; margin:0 auto; box-shadow:0 12px 40px rgba(122,45,74,0.25);">
   </div>
   <div class="story-left">
     <p class="section-label">My Story</p>
@@ -1348,13 +1352,13 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
     <a href="https://gogigiruns.substack.com/p/how-i-signed-up-for-a-triathlon-on" target="_blank" class="blog-circle" style="background: linear-gradient(135deg, #e86848, #c94e5a);">
       <span class="circle-title">How I signed up for a triathlon on a beach in Hawaii</span>
     </a>
-    <a href="https://gogigiruns.substack.com/p/the-red-light-incident" target="_blank" class="blog-circle" style="background: linear-gradient(135deg, #2d6b4a, #4a8c6a);">
+    <a href="https://gogigiruns.substack.com/p/the-red-light-incident" target="_blank" class="blog-circle" style="background: linear-gradient(135deg, #c97090, #e8a0b8);">
       <span class="circle-title">The red light incident. Yes, that one.</span>
     </a>
     <a href="https://gogigiruns.substack.com/p/the-swim-is-in-the-ocean-its-great" target="_blank" class="blog-circle" style="background: linear-gradient(135deg, #f7c5d0, #e8a0b0);">
       <span class="circle-title">The swim is in the ocean. It's great.</span>
     </a>
-    <a href="https://gogigiruns.substack.com/p/theres-a-rhythm-and-im-finding-mine" target="_blank" class="blog-circle" style="background: linear-gradient(135deg, #1a4a6a, #5aaccf);">
+    <a href="https://gogigiruns.substack.com/p/theres-a-rhythm-and-im-finding-mine" target="_blank" class="blog-circle" style="background: linear-gradient(135deg, #4a90c4, #7ac0e0);">
       <span class="circle-title">There's a rhythm, and I'm finding mine.</span>
     </a>
   </div>
@@ -1372,7 +1376,7 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
       <img src="FullSizeRender 2.JPEG" style="width:100%; height:100%; object-fit:cover;" alt="Cycling action">
     </div>
     <div class="gallery-item" style="background:linear-gradient(135deg,#f5c878,#f5a87a)"></div>
-    <div class="gallery-item" style="background:linear-gradient(135deg,#2d6b4a,#1a4a6a)"></div>
+    <div class="gallery-item" style="background:linear-gradient(135deg,#c96080,#7a2d4a)"></div>
     <div class="gallery-item" style="background:linear-gradient(135deg,#a8d8ea,#5aaccf)"></div>
     <div class="gallery-item" style="background:linear-gradient(135deg,#7a2d4a,#e86848)"></div>
   </div>
