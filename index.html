@@ -153,21 +153,21 @@ nav {
 .hero-content { position: relative; z-index: 2; max-width: 860px; }
 .hero-eyebrow {
   font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
-  color: rgba(253,248,240,0.85); margin-bottom: 1rem;
+  color: rgba(232,200,204,0.85); margin-bottom: 1rem;
   display: flex; align-items: center; gap: 0.75rem; font-weight: 400;
 }
-.hero-eyebrow::before { content:''; display:block; width:2rem; height:1px; background:rgba(253,248,240,0.6); }
+.hero-eyebrow::before { content:''; display:block; width:2rem; height:1px; background:rgba(232,200,204,0.6); }
 h1 {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(3.5rem, 10vw, 8rem);
   line-height: 0.88; letter-spacing: 0.01em;
-  color: #ffffff; margin-bottom: 1.5rem;
-  text-shadow: 0 2px 40px rgba(0,0,0,0.15);
+  color: #e8c8cc; margin-bottom: 1.5rem;
+  text-shadow: 0 2px 40px rgba(0,0,0,0.18);
 }
-h1 em { font-style: italic; font-family: 'Lora', serif; color: var(--sky); font-size: 0.85em; }
+h1 em { font-style: italic; font-family: 'Lora', serif; color: #f0d8dc; font-size: 0.85em; }
 .hero-sub {
   font-size: clamp(1rem, 1.8vw, 1.1rem);
-  color: rgba(253,248,240,0.88);
+  color: rgba(232,200,204,0.9);
   max-width: 520px; line-height: 1.8; margin-bottom: 2.5rem; font-weight: 300;
 }
 .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
@@ -188,13 +188,13 @@ h1 em { font-style: italic; font-family: 'Lora', serif; color: var(--sky); font-
 }
 .btn-secondary {
   display: inline-flex; align-items: center;
-  background: rgba(253,248,240,0.15); color: var(--sand);
+  background: rgba(232,200,204,0.12); color: #e8c8cc;
   padding: 0.9rem 1.9rem; font-size: 0.85rem; font-weight: 300;
   letter-spacing: 0.08em; text-transform: uppercase;
-  text-decoration: none; border: 1px solid rgba(253,248,240,0.4);
+  text-decoration: none; border: 1px solid rgba(232,200,204,0.4);
   transition: all 0.2s; backdrop-filter: blur(4px);
 }
-.btn-secondary:hover { background: rgba(253,248,240,0.25); border-color: rgba(253,248,240,0.7); }
+.btn-secondary:hover { background: rgba(232,200,204,0.22); border-color: rgba(232,200,204,0.7); }
 
 /* ─── TICKER ─── */
 .race-ticker { background: var(--maroon); padding: 0.65rem 0; overflow: hidden; }
@@ -242,9 +242,9 @@ h1 em { font-style: italic; font-family: 'Lora', serif; color: var(--sky); font-
 .story-left h2 {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(2.5rem, 5vw, 4.2rem); line-height: 0.93;
-  color: var(--text); margin-bottom: 2rem;
+  color: #1a2a4a; margin-bottom: 2rem;
 }
-.story-left h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--maroon); }
+.story-left h2 em { font-family: 'Lora', serif; font-style: italic; color: #1a2a4a; }
 .story-body { font-size: 1rem; line-height: 1.9; color: var(--muted); }
 .story-body p { margin-bottom: 1.25rem; }
 .story-body strong { color: var(--text); font-weight: 500; }
@@ -736,16 +736,12 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
         <p style="font-family:'Bebas Neue',sans-serif; font-size:1.9rem; color:var(--maroon); margin-top:1rem; letter-spacing:0.04em;">FINISHED &middot; 2ND IN AGE GROUP</p>
         <p class="race-tbd">Finish time: 1:10:14 &#x1F9E1;</p>
       </div>
-      <!-- Race 2: Countdown -->
+      <!-- Race 2: Done -->
       <div class="countdown-race">
-        <p class="race-name">Olympic Triathlon</p>
+        <p class="race-name">Olympic Triathlon &#x1F948;</p>
         <p class="race-date">September 2026 &middot; 0.9 mile swim, 24.8 mile bike, 6.2 mile run. In a row. On purpose.</p>
-        <div class="timer-display">
-          <div class="timer-unit"><div class="timer-num" id="d1">&#x2014;</div><div class="timer-label">Days</div></div>
-          <div class="timer-unit"><div class="timer-num" id="h1">&#x2014;</div><div class="timer-label">Hrs</div></div>
-          <div class="timer-unit"><div class="timer-num" id="m1">&#x2014;</div><div class="timer-label">Min</div></div>
-        </div>
-        <p id="race1phrase" style="font-family:'Lora',serif;font-style:italic;font-size:0.9rem;color:var(--muted);margin-top:1rem;"></p>
+        <p style="font-family:'Bebas Neue',sans-serif; font-size:1.9rem; color:var(--maroon); margin-top:1rem; letter-spacing:0.04em;">DONE &middot; DID IT</p>
+        <p class="race-tbd">We'll add the finish time here soon &#x1F9E1;</p>
       </div>
       <!-- Race 3 -->
       <div class="countdown-race">
@@ -923,12 +919,12 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
     <p class="section-label">Training Gallery</p>
     <h2>Life in <em>motion</em></h2>
     <div class="gallery-grid">
+      <div class="gallery-item" style="grid-column:span 2; grid-row:span 2;"><img src="IMG_5088.JPG" alt="Gigi with finisher medal and bike" style="object-position: center 15%;"></div>
       <div class="gallery-item"><img src="sprinttri.JPEG" alt="Sprint Triathlon finish"></div>
       <div class="gallery-item"><img src="FullSizeRender 2.JPEG" alt="Cycling action"></div>
-      <div class="gallery-item"><div class="gallery-color" style="background:linear-gradient(135deg,#fad4b0,#f5a87a);"></div></div>
       <div class="gallery-item"><div class="gallery-color" style="background:linear-gradient(135deg,#a8d8e8,#5aaccf);"></div></div>
-      <div class="gallery-item"><div class="gallery-color" style="background:linear-gradient(135deg,#e8b0c4,#7a2d4a);"></div></div>
-      <div class="gallery-item"><div class="gallery-color" style="background:linear-gradient(135deg,#c5e8f2,#a8d8e8);"></div></div>
+      <div class="gallery-item"><div class="gallery-color" style="background:linear-gradient(135deg,#e8c8cc,#d47090);"></div></div>
+      <div class="gallery-item" style="grid-column:span 2;"><div class="gallery-color" style="background:linear-gradient(135deg,#1a2a4a,#2a6a8a);"></div></div>
     </div>
   </section>
 
@@ -1211,33 +1207,7 @@ function showTab(name) {
 function openMenu() { document.getElementById('mobileMenu').classList.add('open'); document.body.style.overflow = 'hidden'; }
 function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); document.body.style.overflow = ''; }
 
-// ─── TIMERS ───
-function updateTimers() {
-  const now = new Date();
-  const race1 = new Date('2026-09-19T07:00:00');
-  const diff1 = race1 - now;
-  if (diff1 > 0) {
-    document.getElementById('d1').textContent = Math.floor(diff1 / 86400000);
-    document.getElementById('h1').textContent = Math.floor((diff1 % 86400000) / 3600000);
-    document.getElementById('m1').textContent = Math.floor((diff1 % 3600000) / 60000);
-  } else {
-    document.getElementById('d1').textContent = 'Done!';
-    document.getElementById('h1').textContent = '';
-    document.getElementById('m1').textContent = '';
-  }
-  const days1 = Math.floor(diff1 / 86400000);
-  const getPh = (days, done) => {
-    if (done) return "IT'S RACE DAY! GO ME!!";
-    if (days <= 13) return "Okay this is getting real";
-    if (days <= 29) return "Lance please answer your phone";
-    if (days <= 59) return "Carb loading is a sport right?";
-    if (days <= 99) return "TikTok triathlon deep dives are getting more specific";
-    return "Still time to pretend I didn't sign up for this";
-  };
-  const p1 = document.getElementById('race1phrase'); if (p1) p1.textContent = getPh(days1, diff1 <= 0);
-}
-updateTimers();
-setInterval(updateTimers, 30000);
+// Timers: both races now done, nothing to count down
 
 // ─── PLEDGE ───
 const raceMiles = { 'Sprint': 16, 'Olympic': 31.4, 'Half Ironman': 70.3, 'Full Ironman': 140.6, 'All Four Races': 258.3 };
