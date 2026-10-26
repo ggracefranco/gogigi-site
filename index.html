@@ -706,6 +706,101 @@ footer {
   .pullquote-text { font-size: 1.2rem; }
 }
 
+
+/* ── OPEN WATER SWIMS ── */
+.open-water-section {
+  background: var(--deep);
+  padding: 5rem 2.5rem;
+  position: relative; overflow: hidden;
+}
+.open-water-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 100%, rgba(90,172,207,0.18) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 60% at 10% 20%, rgba(122,45,74,0.12) 0%, transparent 55%);
+  pointer-events: none;
+}
+.open-water-header {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 2.5rem; position: relative; z-index: 1;
+  flex-wrap: wrap; gap: 1rem;
+}
+.open-water-header h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  line-height: 0.95; color: var(--sand);
+}
+.open-water-header h2 em {
+  font-family: 'Lora', serif; font-style: italic; color: var(--sky-blue);
+}
+.open-water-sub {
+  font-size: 0.82rem; color: rgba(253,248,240,0.45);
+  letter-spacing: 0.06em; max-width: 280px; line-height: 1.6; text-align: right;
+}
+.open-water-cards {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1.5rem; position: relative; z-index: 1;
+}
+.ow-card {
+  border: 1px solid rgba(90,172,207,0.2);
+  padding: 2.75rem 2.5rem;
+  position: relative; overflow: hidden;
+  background: rgba(90,172,207,0.04);
+  transition: border-color 0.3s;
+}
+.ow-card:hover { border-color: rgba(90,172,207,0.45); }
+.ow-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--sky-blue), var(--ocean));
+}
+.ow-distance {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3.5rem, 7vw, 5.5rem);
+  line-height: 0.9; color: var(--sand);
+  display: block; margin-bottom: 0.25rem;
+  letter-spacing: 0.02em;
+}
+.ow-unit {
+  font-family: 'Lora', serif; font-style: italic;
+  font-size: 1.1rem; color: var(--sky-blue); margin-left: 0.2rem;
+}
+.ow-label {
+  font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase;
+  color: rgba(253,248,240,0.35); display: block; margin-bottom: 2rem;
+}
+.ow-when {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem; color: var(--apricot); letter-spacing: 0.04em;
+  display: block; margin-bottom: 0.35rem;
+}
+.ow-location {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(253,248,240,0.3);
+}
+.ow-location-icon {
+  width: 14px; height: 14px; border-radius: 50%;
+  background: rgba(90,172,207,0.25); border: 1px solid rgba(90,172,207,0.3);
+  display: inline-block; flex-shrink: 0;
+}
+.ow-redacted {
+  display: inline-block;
+  background: rgba(90,172,207,0.15); border-radius: 2px;
+  padding: 0 0.5rem; letter-spacing: 0.3em;
+  color: transparent; user-select: none;
+  border: 1px solid rgba(90,172,207,0.2);
+  font-size: 0.72rem;
+}
+.ow-redacted::after { content: '██████'; color: transparent; }
+@media (max-width: 768px) {
+  .open-water-section { padding: 3.5rem 1.25rem; }
+  .open-water-cards { grid-template-columns: 1fr; gap: 1rem; }
+  .open-water-sub { text-align: left; max-width: 100%; }
+  .ow-distance { font-size: 3.5rem; }
+}
+
 /* ── ANIMATIONS ── */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(28px); }
@@ -999,6 +1094,35 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
       <p class="race-name"> Ironman 140.6</p>
       <p class="race-date">October 2027 · 2.4 mile swim, 112 mile bike, 26.2 mile run. I have 17 months to figure this out.</p>
       <p class="race-tbd">The big scary one. I will sign up. I am brave. Probably.</p>
+    </div>
+  </div>
+</section>
+
+<!-- OPEN WATER SWIMS -->
+<div class="section-divider"></div>
+<section class="open-water-section">
+  <div class="open-water-header">
+    <h2>Open<br><em>water.</em></h2>
+    <p class="open-water-sub">Two solo ocean swims happening quietly on the side. Location undisclosed.</p>
+  </div>
+  <div class="open-water-cards">
+    <div class="ow-card">
+      <span class="ow-distance">2.4<span class="ow-unit">mi</span></span>
+      <span class="ow-label">Ocean swim</span>
+      <span class="ow-when">August 2026</span>
+      <span class="ow-location">
+        <span class="ow-location-icon"></span>
+        <span class="ow-redacted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      </span>
+    </div>
+    <div class="ow-card">
+      <span class="ow-distance">2.4<span class="ow-unit">mi</span></span>
+      <span class="ow-label">Ocean swim</span>
+      <span class="ow-when">April 2027</span>
+      <span class="ow-location">
+        <span class="ow-location-icon"></span>
+        <span class="ow-redacted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      </span>
     </div>
   </div>
 </section>
