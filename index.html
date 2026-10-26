@@ -337,7 +337,7 @@ h1 em { font-style: italic; font-family: 'Lora', serif; color: var(--navy); font
 }
 .rt-heading em { font-family: 'Lora', serif; font-style: italic; color: var(--sky); }
 .rt-subhead {
-  font-size: 0.88rem; color: rgba(197,232,242,0.4);
+  font-size: 0.88rem; color: rgba(197,232,242,0.65);
   max-width: 320px; line-height: 1.7; text-align: right;
 }
 
@@ -382,11 +382,11 @@ h1 em { font-style: italic; font-family: 'Lora', serif; color: var(--navy); font
 }
 .rt-month {
   font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
-  color: rgba(197,232,242,0.3); display: block; margin-bottom: 0.2rem;
+  color: rgba(197,232,242,0.55); display: block; margin-bottom: 0.2rem;
 }
 .rt-day {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 2.8rem; line-height: 1; color: rgba(197,232,242,0.15);
+  font-size: 2.8rem; line-height: 1; color: rgba(197,232,242,0.3);
   display: block; letter-spacing: 0.02em;
 }
 /* done marker */
@@ -438,17 +438,17 @@ h1 em { font-style: italic; font-family: 'Lora', serif; color: var(--navy); font
 .rt-dist-num {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 1.4rem; line-height: 1;
-  color: rgba(197,232,242,0.5);
+  color: rgba(197,232,242,0.8);
 }
 .rt-dist-label {
   font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase;
-  color: rgba(197,232,242,0.25);
+  color: rgba(197,232,242,0.5);
 }
-.rt-dist-divider { color: rgba(197,232,242,0.12); font-size: 0.9rem; }
+.rt-dist-divider { color: rgba(197,232,242,0.25); font-size: 0.9rem; }
 
 .rt-note {
   font-family: 'Lora', serif; font-style: italic;
-  font-size: 0.85rem; color: rgba(197,232,242,0.3);
+  font-size: 0.85rem; color: rgba(197,232,242,0.6);
   line-height: 1.55; margin-top: 0.35rem;
   max-width: 520px;
 }
@@ -816,12 +816,12 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
   <!-- TICKER -->
   <div class="race-ticker">
     <div class="ticker-track">
-      <span class="ticker-item">Sprint Triathlon &#x1F948; <span class="ticker-dot">&middot;</span> Done!</span>
+      <span class="ticker-item">Sprint Triathlon <span class="ticker-dot">&middot;</span> Done!</span>
       <span class="ticker-item">Olympic Triathlon <span class="ticker-dot">&middot;</span> Sep 2026</span>
       <span class="ticker-item">Half Ironman 70.3 <span class="ticker-dot">&middot;</span> Coming 2027</span>
       <span class="ticker-item">Full Ironman 140.6 <span class="ticker-dot">&middot;</span> Nov 2027</span>
       <span class="ticker-item">NEDA <span class="ticker-dot">&middot;</span> RAINN <span class="ticker-dot">&middot;</span> Friendship Circle</span>
-      <span class="ticker-item">Sprint Triathlon &#x1F948; <span class="ticker-dot">&middot;</span> Done!</span>
+      <span class="ticker-item">Sprint Triathlon <span class="ticker-dot">&middot;</span> Done!</span>
       <span class="ticker-item">Olympic Triathlon <span class="ticker-dot">&middot;</span> Sep 2026</span>
       <span class="ticker-item">Half Ironman 70.3 <span class="ticker-dot">&middot;</span> Coming 2027</span>
       <span class="ticker-item">Full Ironman 140.6 <span class="ticker-dot">&middot;</span> Nov 2027</span>
@@ -834,22 +834,22 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
     <div class="miles-inner">
       <div class="miles-stat">
         <span class="miles-num" id="swimMiles">0</span>
-        <span class="miles-label">&#x1F3CA; swim miles</span>
+        <span class="miles-label">swim miles</span>
       </div>
       <div class="miles-divider">+</div>
       <div class="miles-stat">
         <span class="miles-num" id="bikeMiles">0</span>
-        <span class="miles-label">&#x1F6B4; bike miles</span>
+        <span class="miles-label">bike miles</span>
       </div>
       <div class="miles-divider">+</div>
       <div class="miles-stat">
         <span class="miles-num" id="runMiles">0</span>
-        <span class="miles-label">&#x1F3C3; run miles</span>
+        <span class="miles-label">run miles</span>
       </div>
       <div class="miles-divider">=</div>
       <div class="miles-stat total">
         <span class="miles-num" id="totalMiles">0</span>
-        <span class="miles-label">total miles &#x1F9E1;</span>
+        <span class="miles-label">total miles</span>
       </div>
     </div>
   </div>
@@ -968,7 +968,7 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
           <div class="rt-distance-row">
             <div class="rt-dist-seg"><span class="rt-dist-num">2.4</span><span class="rt-dist-label">mi ocean</span></div>
           </div>
-          <p class="rt-note">A solo ocean swim. No wetsuit. No crowd. Just water.</p>
+          <p class="rt-note">An ocean swim. No wetsuit. No crowd. Just water.</p>
           <span class="rt-location">
             <span class="rt-location-icon"></span>
             <span class="ow-redacted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -1008,7 +1008,7 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
           <div class="rt-distance-row">
             <div class="rt-dist-seg"><span class="rt-dist-num">2.0</span><span class="rt-dist-label">mi ocean</span></div>
           </div>
-          <p class="rt-note">Back in open water. Solo. Quiet. Just me and whatever is under me.</p>
+          <p class="rt-note">Back in open water. Quiet. Just us and whatever is under us.</p>
           <span class="rt-location">
             <span class="rt-location-icon"></span>
             <span class="ow-redacted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -1195,7 +1195,6 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
     </div>
 
     <div class="coming-soon-banner">
-      <span>&#x1F9E1;</span>
       <p>Pledge per mile below. Pick your race, pick your amount, and I'll do the rest. After I cross the finish line I'll email you with your total and a direct link to donate straight to your chosen charity. You give directly to them. I never touch the money.</p>
       <a href="#" class="coming-soon-btn">Pledge now &darr;</a>
     </div>
@@ -1285,7 +1284,7 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
           <input type="email" id="pledgeEmail" placeholder="For your post-race receipt">
         </div>
         <button class="pledge-submit-btn" onclick="submitPledge()">Count me in &rarr;</button>
-        <div id="pledgeSuccess" style="display:none;" class="pledge-success">&#x1F9E1; You're in! I'll email you after each race with your total.</div>
+        <div id="pledgeSuccess" style="display:none;" class="pledge-success">You're in! I'll email you after each race with your total.</div>
         <div id="pledgeError" style="display:none;" class="pledge-error">Something went wrong &mdash; please try again!</div>
       </div>
       <div class="pledge-form-right">
@@ -1332,10 +1331,10 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
           <p class="email-fine-print">Takes you to Substack to subscribe. No spam ever. Unsubscribe anytime.</p>
         </div>
         <div class="email-perks">
-          <div class="email-perk"><span class="perk-icon">&#x1F3CA;</span><span>Race day recaps</span></div>
-          <div class="email-perk"><span class="perk-icon">&#x1F6B4;</span><span>Training updates (the real ones)</span></div>
-          <div class="email-perk"><span class="perk-icon">&#x1F9E1;</span><span>Fundraising milestones</span></div>
-          <div class="email-perk"><span class="perk-icon">&#x1F605;</span><span>Stories like the red light incident</span></div>
+          <div class="email-perk"><span class="perk-icon">—</span><span>Race day recaps</span></div>
+          <div class="email-perk"><span class="perk-icon">—</span><span>Training updates (the real ones)</span></div>
+          <div class="email-perk"><span class="perk-icon">—</span><span>Fundraising milestones</span></div>
+          <div class="email-perk"><span class="perk-icon">—</span><span>Stories like the red light incident</span></div>
         </div>
       </div>
     </div>
@@ -1430,7 +1429,7 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
     </div>
   </div>
   <div class="footer-bottom">
-    <p class="footer-copy">&copy; 2026 Gigi &middot; Made with heart and sore legs &#x1F9E1;</p>
+    <p class="footer-copy">&copy; 2026 Gigi &middot; Made with heart and sore legs</p>
     <p class="footer-disclaimer">All donations go directly to the charities listed. This page doesn't collect any money itself. Each donate link takes you straight to the official charity website.</p>
   </div>
 </footer>
