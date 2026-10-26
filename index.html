@@ -9,22 +9,42 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
+  /* Warm neutrals */
   --sand:       #fdf8f0;
   --cream:      #f5f0e8;
   --warm-white: #fefcf8;
-  --blush:      #f5e0e8;
-  --rose:       #e8b0c4;
-  --pink:       #d47090;
+
+  /* Navy — the anchor */
+  --navy:       #1a2a4a;
+  --navy-mid:   #243660;
+  --navy-light: #2e4480;
+
+  /* Raspberry — the hero punch */
+  --raspberry:  #c94080;
+  --raspberry-deep: #a0305e;
+
+  /* Coral — the accent strip */
+  --coral:      #e86848;
+
+  /* Maroon — buttons, pills, warm accents */
   --maroon:     #7a2d4a;
   --deep-maroon:#5a1a32;
-  --peach:      #fad4b0;
-  --apricot:    #f5a87a;
-  --coral:      #e86848;
+  --rose:       #e8b0c4;
+
+  /* Water / swim tones — kept for races timeline, email, stats */
   --mist:       #e8f4f8;
   --sky:        #c5e8f2;
   --aqua:       #a8d8e8;
   --teal:       #5aaccf;
   --deep-sea:   #2a6a8a;
+
+  /* Soft pinks — kept for subtle details */
+  --blush:      #f5e0e8;
+  --pink:       #d47090;
+  --peach:      #fad4b0;
+  --apricot:    #f5a87a;
+
+  /* Text */
   --text:       #2e1820;
   --muted:      #8a6878;
   --light:      #b89aaa;
@@ -87,7 +107,7 @@ nav {
   white-space: nowrap;
 }
 .tab-btn:hover { color: var(--teal); }
-.tab-btn.active { color: var(--maroon); border-bottom-color: var(--maroon); font-weight: 500; }
+.tab-btn.active { color: var(--navy); border-bottom-color: var(--raspberry); font-weight: 500; }
 .tab-btn.give-tab { color: var(--coral); }
 .tab-btn.give-tab.active { color: var(--coral); border-bottom-color: var(--coral); }
 .tab-btn.give-tab:hover { color: var(--maroon); }
@@ -161,10 +181,10 @@ h1 {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(3.5rem, 10vw, 8rem);
   line-height: 0.88; letter-spacing: 0.01em;
-  color: #e8359a; margin-bottom: 1.5rem;
+  color: var(--raspberry); margin-bottom: 1.5rem;
   text-shadow: 0 2px 40px rgba(0,0,0,0.25);
 }
-h1 em { font-style: italic; font-family: 'Lora', serif; color: #1a2a4a; font-size: 0.85em; }
+h1 em { font-style: italic; font-family: 'Lora', serif; color: var(--navy); font-size: 0.85em; }
 .hero-sub {
   font-size: clamp(1rem, 1.8vw, 1.1rem);
   color: #1a2a4a;
@@ -188,16 +208,16 @@ h1 em { font-style: italic; font-family: 'Lora', serif; color: #1a2a4a; font-siz
 }
 .btn-secondary {
   display: inline-flex; align-items: center;
-  background: rgba(232,200,204,0.12); color: #e8c8cc;
-  padding: 0.9rem 1.9rem; font-size: 0.85rem; font-weight: 300;
+  background: rgba(26,42,74,0.25); color: #fff;
+  padding: 0.9rem 1.9rem; font-size: 0.85rem; font-weight: 400;
   letter-spacing: 0.08em; text-transform: uppercase;
-  text-decoration: none; border: 1px solid rgba(232,200,204,0.4);
-  transition: all 0.2s; backdrop-filter: blur(4px);
+  text-decoration: none; border: 1.5px solid rgba(255,255,255,0.75);
+  transition: all 0.2s; backdrop-filter: blur(6px);
 }
-.btn-secondary:hover { background: rgba(232,200,204,0.22); border-color: rgba(232,200,204,0.7); }
+.btn-secondary:hover { background: rgba(26,42,74,0.45); border-color: #fff; }
 
 /* ─── TICKER ─── */
-.race-ticker { background: var(--maroon); padding: 0.65rem 0; overflow: hidden; }
+.race-ticker { background: var(--navy); padding: 0.65rem 0; overflow: hidden; }
 .ticker-track { display: flex; gap: 4rem; animation: ticker 32s linear infinite; white-space: nowrap; }
 .ticker-item { font-family: 'Bebas Neue', sans-serif; font-size: 0.9rem; letter-spacing: 0.2em; color: rgba(253,248,240,0.85); flex-shrink: 0; }
 .ticker-dot { color: rgba(253,248,240,0.35); }
@@ -286,7 +306,7 @@ h1 em { font-style: italic; font-family: 'Lora', serif; color: #1a2a4a; font-siz
 
 /* ─── RACE TIMELINE ─── */
 .race-timeline-section {
-  background: #0d1520;
+  background: var(--navy);
   padding: 7rem 0 0;
   position: relative; overflow: hidden;
 }
@@ -294,8 +314,8 @@ h1 em { font-style: italic; font-family: 'Lora', serif; color: #1a2a4a; font-siz
   content: '';
   position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse 70% 40% at 15% 20%, rgba(90,172,207,0.07) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 50% at 85% 70%, rgba(122,45,74,0.12) 0%, transparent 55%);
+    radial-gradient(ellipse 70% 40% at 15% 20%, rgba(201,64,128,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 85% 70%, rgba(232,104,72,0.06) 0%, transparent 55%);
   pointer-events: none;
 }
 .rt-header {
@@ -652,9 +672,9 @@ p.charity-num { font-size: 0.63rem; letter-spacing: 0.22em; text-transform: uppe
 .perk-icon { font-size: 1.1rem; flex-shrink: 0; }
 
 /* ─── FOOTER ─── */
-footer { background: #1a0a12; padding: 4rem 2.5rem 2rem; border-top: 1px solid rgba(197,232,242,0.1); }
+footer { background: var(--navy); padding: 4rem 2.5rem 2rem; border-top: 1px solid rgba(201,64,128,0.15); }
 .footer-top { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 4rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(197,232,242,0.08); margin-bottom: 2rem; }
-.footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.1em; color: var(--aqua); display: block; margin-bottom: 1rem; }
+.footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.1em; color: var(--raspberry); display: block; margin-bottom: 1rem; }
 .footer-tagline { font-size: 0.85rem; color: rgba(253,248,240,0.35); line-height: 1.72; max-width: 280px; }
 .footer-col h4 { font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(197,232,242,0.25); margin-bottom: 1.1rem; }
 .footer-col ul { list-style: none; }
