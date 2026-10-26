@@ -9,34 +9,25 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  /* Base */
-  --sand:     #fdf8f0;
-  --cream:    #f5f0e8;
+  --sand:       #fdf8f0;
+  --cream:      #f5f0e8;
   --warm-white: #fefcf8;
-
-  /* Pinks */
-  --blush:    #f5e0e8;
-  --rose:     #e8b0c4;
-  --pink:     #d47090;
-  --maroon:   #7a2d4a;
-  --deep-maroon: #5a1a32;
-
-  /* Corals */
-  --peach:    #fad4b0;
-  --apricot:  #f5a87a;
-  --coral:    #e86848;
-
-  /* Ocean */
-  --mist:     #e8f4f8;
-  --sky:      #c5e8f2;
-  --aqua:     #a8d8e8;
-  --teal:     #5aaccf;
-  --deep-sea: #2a6a8a;
-
-  /* Text */
-  --text:     #2e1820;
-  --muted:    #8a6878;
-  --light:    #b89aaa;
+  --blush:      #f5e0e8;
+  --rose:       #e8b0c4;
+  --pink:       #d47090;
+  --maroon:     #7a2d4a;
+  --deep-maroon:#5a1a32;
+  --peach:      #fad4b0;
+  --apricot:    #f5a87a;
+  --coral:      #e86848;
+  --mist:       #e8f4f8;
+  --sky:        #c5e8f2;
+  --aqua:       #a8d8e8;
+  --teal:       #5aaccf;
+  --deep-sea:   #2a6a8a;
+  --text:       #2e1820;
+  --muted:      #8a6878;
+  --light:      #b89aaa;
 }
 
 html { scroll-behavior: smooth; }
@@ -49,13 +40,9 @@ body {
 }
 
 /* ─── FILM GRAIN ─── */
-.grain {
-  position: relative;
-}
 .grain::after {
   content: '';
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
   background-size: 200px 200px;
   opacity: 0.35;
@@ -67,32 +54,89 @@ body {
 /* ─── NAV ─── */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 1.1rem 2.5rem;
-  background: rgba(253,248,240,0.94);
+  background: rgba(253,248,240,0.96);
   backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(168,216,232,0.3);
+  border-bottom: 1px solid rgba(168,216,232,0.25);
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2.5rem; height: 60px;
 }
 .nav-logo {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.3rem; letter-spacing: 0.12em;
-  color: var(--maroon); text-decoration: none;
+  font-size: 1.25rem; letter-spacing: 0.12em;
+  color: var(--maroon); text-decoration: none; flex-shrink: 0;
 }
-.nav-links { display: flex; gap: 2rem; list-style: none; }
-.nav-links a {
-  font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--muted); text-decoration: none; transition: color 0.2s;
+
+/* Tab bar sits below logo row */
+.tab-bar {
+  display: flex; align-items: center; justify-content: center;
+  gap: 0; border-top: 1px solid rgba(168,216,232,0.18);
+  overflow-x: auto; scrollbar-width: none;
 }
-.nav-links a:hover { color: var(--teal); }
-.nav-cta {
-  background: var(--maroon) !important; color: var(--sand) !important;
-  padding: 0.5rem 1.4rem; border-radius: 2px; font-weight: 600 !important;
+.tab-bar::-webkit-scrollbar { display: none; }
+.tab-btn {
+  background: none; border: none; cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem; font-weight: 400;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted);
+  padding: 0.7rem 1.6rem;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
 }
-.nav-cta:hover { background: var(--coral) !important; color: var(--sand) !important; }
+.tab-btn:hover { color: var(--teal); }
+.tab-btn.active { color: var(--maroon); border-bottom-color: var(--maroon); font-weight: 500; }
+.tab-btn.give-tab { color: var(--coral); }
+.tab-btn.give-tab.active { color: var(--coral); border-bottom-color: var(--coral); }
+.tab-btn.give-tab:hover { color: var(--maroon); }
+
+.nav-cta-btn {
+  background: var(--maroon); color: var(--sand);
+  border: none; cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.5rem 1.25rem; border-radius: 2px;
+  transition: background 0.2s; flex-shrink: 0;
+}
+.nav-cta-btn:hover { background: var(--coral); }
+
+/* Mobile hamburger */
+.hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 4px;
+}
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
+.mobile-menu {
+  display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--sand); z-index: 200;
+  flex-direction: column; align-items: center; justify-content: center; gap: 1.5rem;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu button { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; letter-spacing: 0.1em; color: var(--text); background: none; border: none; cursor: pointer; }
+.mobile-menu button:hover { color: var(--teal); }
+.mobile-menu .close-btn { position: absolute; top: 1.5rem; right: 1.5rem; font-size: 1.8rem; color: var(--muted); }
+.mobile-menu .m-give { color: var(--coral) !important; }
+
+/* ─── TAB PANELS ─── */
+.tab-panel { display: none; padding-top: 100px; }
+.tab-panel.active { display: block; }
+
+/* ─── SHARED ─── */
+.section-label {
+  font-size: 0.66rem; letter-spacing: 0.32em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 0.75rem;
+  display: flex; align-items: center; gap: 0.65rem;
+}
+.section-label::before { content:''; display:block; width:1.5rem; height:1px; background:var(--teal); }
+.section-label.pink { color: var(--maroon); }
+.section-label.pink::before { background: var(--maroon); }
 
 /* ─── HERO ─── */
 .hero {
-  min-height: 100vh;
+  min-height: calc(100vh - 100px);
   display: flex; flex-direction: column; justify-content: flex-end;
   padding: 0 2.5rem 6rem;
   position: relative; overflow: hidden;
@@ -104,12 +148,7 @@ nav {
 .hero-sky::after {
   content: '';
   position: absolute; inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(253,248,240,0.05) 0%,
-    rgba(253,248,240,0.08) 40%,
-    rgba(253,248,240,0.35) 100%
-  );
+  background: linear-gradient(to bottom, rgba(253,248,240,0.03) 0%, rgba(253,248,240,0.08) 40%, rgba(253,248,240,0.38) 100%);
 }
 .hero-content { position: relative; z-index: 2; max-width: 860px; }
 .hero-eyebrow {
@@ -122,14 +161,10 @@ h1 {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(3.5rem, 10vw, 8rem);
   line-height: 0.88; letter-spacing: 0.01em;
-  color: #ffffff;
-  margin-bottom: 1.5rem;
+  color: #ffffff; margin-bottom: 1.5rem;
   text-shadow: 0 2px 40px rgba(0,0,0,0.15);
 }
-h1 em {
-  font-style: italic; font-family: 'Lora', serif;
-  color: var(--sky); font-size: 0.85em;
-}
+h1 em { font-style: italic; font-family: 'Lora', serif; color: var(--sky); font-size: 0.85em; }
 .hero-sub {
   font-size: clamp(1rem, 1.8vw, 1.1rem);
   color: rgba(253,248,240,0.88);
@@ -162,59 +197,45 @@ h1 em {
 .btn-secondary:hover { background: rgba(253,248,240,0.25); border-color: rgba(253,248,240,0.7); }
 
 /* ─── TICKER ─── */
-.race-ticker { background: var(--maroon); padding: 0.7rem 0; overflow: hidden; }
-.ticker-track {
-  display: flex; gap: 4rem;
-  animation: ticker 32s linear infinite; white-space: nowrap;
-}
-.ticker-item {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 0.9rem; letter-spacing: 0.2em; color: rgba(253,248,240,0.85); flex-shrink: 0;
-}
+.race-ticker { background: var(--maroon); padding: 0.65rem 0; overflow: hidden; }
+.ticker-track { display: flex; gap: 4rem; animation: ticker 32s linear infinite; white-space: nowrap; }
+.ticker-item { font-family: 'Bebas Neue', sans-serif; font-size: 0.9rem; letter-spacing: 0.2em; color: rgba(253,248,240,0.85); flex-shrink: 0; }
 .ticker-dot { color: rgba(253,248,240,0.35); }
 @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-/* ─── SHARED ─── */
-.section-label {
-  font-size: 0.66rem; letter-spacing: 0.32em; text-transform: uppercase;
-  color: var(--teal); margin-bottom: 0.75rem;
-  display: flex; align-items: center; gap: 0.65rem;
-}
-.section-label::before { content:''; display:block; width:1.5rem; height:1px; background:var(--teal); }
-.section-label.pink { color: var(--maroon); }
-.section-label.pink::before { background: var(--maroon); }
 
 /* ─── MILES STRIP ─── */
 .miles-strip {
   background: linear-gradient(135deg, var(--mist) 0%, var(--sky) 50%, var(--aqua) 100%);
-  padding: 2.5rem 2.5rem;
+  padding: 2.5rem;
   border-bottom: 1px solid rgba(90,172,207,0.2);
 }
-.miles-inner {
-  display: flex; align-items: center; justify-content: center;
-  gap: 2.5rem; flex-wrap: wrap;
-}
+.miles-inner { display: flex; align-items: center; justify-content: center; gap: 2.5rem; flex-wrap: wrap; }
 .miles-stat { text-align: center; }
-.miles-num {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 3rem; line-height: 1; color: var(--deep-sea);
-  display: block;
-}
+.miles-num { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; line-height: 1; color: var(--deep-sea); display: block; }
 .miles-stat.total .miles-num { color: var(--maroon); font-size: 3.5rem; }
-.miles-label {
-  font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
-  color: rgba(42,106,138,0.65); display: block; margin-top: 0.25rem;
+.miles-label { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(42,106,138,0.65); display: block; margin-top: 0.25rem; }
+.miles-divider { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: rgba(42,106,138,0.3); }
+
+/* ─── QUOTE STRIP ─── */
+.quote-strip {
+  background: var(--coral);
+  padding: 5rem 2.5rem;
+  text-align: center;
 }
-.miles-divider {
+.quote-strip p {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 2rem; color: rgba(42,106,138,0.3);
+  font-size: clamp(2.2rem, 5vw, 4.5rem);
+  letter-spacing: 0.04em;
+  color: #fff;
+  line-height: 1.1;
+  max-width: 900px; margin: 0 auto;
 }
 
 /* ─── STORY ─── */
 .story-section {
   padding: 7rem 2.5rem;
   background: var(--sand);
-  display: grid; grid-template-columns: 1fr 1.1fr; gap: 6rem; align-items: center;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
 }
 .story-left .section-label { color: var(--teal); }
 .story-left .section-label::before { background: var(--teal); }
@@ -230,8 +251,7 @@ h1 em {
 .story-body em { font-family: 'Lora', serif; font-style: italic; color: var(--maroon); }
 .story-stats {
   display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0;
-  margin-top: 2.5rem;
-  border-top: 1px solid rgba(168,216,232,0.4);
+  margin-top: 2.5rem; border-top: 1px solid rgba(168,216,232,0.4);
 }
 .story-stat { padding: 1.5rem 1rem 1rem 0; }
 .story-stat:not(:last-child) { border-right: 1px solid rgba(168,216,232,0.3); padding-right: 1.5rem; }
@@ -243,218 +263,75 @@ h1 em {
 .story-image-wrap { position: relative; }
 .story-image-wrap img {
   width: 100%; aspect-ratio: 4/5; object-fit: cover;
-  object-position: center top;
-  display: block;
+  object-position: center top; display: block;
   filter: contrast(1.03) brightness(1.01);
 }
 .story-image-wrap::before {
   content: '';
   position: absolute; inset: 0; z-index: 1;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
-  background-size: 256px 256px;
-  mix-blend-mode: overlay;
-  pointer-events: none;
-  opacity: 0.4;
-}
-.story-image-wrap::after {
-  content: '';
-  position: absolute; inset: 0; z-index: 1;
-  box-shadow: inset 0 0 0 1px rgba(122,45,74,0.08);
-  pointer-events: none;
+  background-size: 256px 256px; mix-blend-mode: overlay; pointer-events: none; opacity: 0.4;
 }
 
 /* ─── PHOTO FULL BLEED ─── */
-.photo-bleed {
-  height: 460px; overflow: hidden; position: relative;
-}
-.photo-bleed img {
-  width: 100%; height: 100%; object-fit: cover;
-  filter: contrast(1.04) brightness(0.98);
-}
+.photo-bleed { height: 460px; overflow: hidden; position: relative; }
+.photo-bleed img { width: 100%; height: 100%; object-fit: cover; filter: contrast(1.04) brightness(0.98); }
 .photo-bleed::before {
   content: '';
   position: absolute; inset: 0; z-index: 1;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
-  background-size: 256px 256px;
-  mix-blend-mode: overlay;
-  pointer-events: none;
-  opacity: 0.45;
+  background-size: 256px 256px; mix-blend-mode: overlay; pointer-events: none; opacity: 0.45;
 }
-.photo-bleed .photo-overlay {
-  position: absolute; inset: 0; z-index: 2;
-}
-
-/* ─── PULL QUOTES ─── */
-.pullquote-section {
-  background: var(--sand);
-  padding: 6rem 2.5rem;
-  border-top: 1px solid rgba(168,216,232,0.25);
-  border-bottom: 1px solid rgba(168,216,232,0.25);
-}
-.pullquote-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 0; max-width: 1100px; margin: 0 auto;
-}
-.pullquote-item {
-  padding: 3rem 3.5rem;
-  border-left: 2px solid rgba(168,216,232,0.3);
-  position: relative;
-}
-.pullquote-item:nth-child(odd) { border-left-color: var(--aqua); }
-.pullquote-item:nth-child(even) { border-left-color: rgba(212,112,144,0.4); }
-.pullquote-text {
-  font-family: 'Lora', serif;
-  font-size: clamp(1.1rem, 2vw, 1.5rem);
-  font-style: italic; line-height: 1.55;
-  color: var(--text); margin-bottom: 1.25rem;
-}
-.pullquote-source {
-  font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--light);
-}
-.pullquote-mark {
-  font-family: 'Lora', serif; font-size: 5rem; line-height: 0.5;
-  color: rgba(168,216,232,0.4); display: block; margin-bottom: 1rem;
-}
-
-/* ─── MOTIVATIONAL STRIP ─── */
-.quote-strip {
-  background: linear-gradient(135deg, var(--mist) 0%, var(--sky) 100%);
-  padding: 4rem 2.5rem; text-align: center;
-  border-top: 1px solid rgba(90,172,207,0.2);
-  border-bottom: 1px solid rgba(90,172,207,0.2);
-}
-.quote-strip p {
-  font-family: 'Lora', serif; font-style: italic;
-  font-size: clamp(1.3rem, 2.5vw, 2rem); color: var(--deep-sea);
-  line-height: 1.5; max-width: 760px; margin: 0 auto;
-}
+.photo-bleed .photo-overlay { position: absolute; inset: 0; z-index: 2; }
 
 /* ─── COUNTDOWN ─── */
-.countdown-section {
-  padding: 6rem 2.5rem;
-  background: var(--cream);
-}
-.countdown-section > p.section-label { color: var(--teal); }
-.countdown-section > p.section-label::before { background: var(--teal); }
-.countdown-section > h2 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2rem, 5vw, 3.8rem); color: var(--text); margin-bottom: 0.25rem;
-}
+.countdown-section { padding: 6rem 2.5rem; background: var(--cream); }
+.countdown-section > h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 5vw, 3.8rem); color: var(--text); margin-bottom: 0.25rem; }
 .countdown-section > h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--maroon); }
-.countdown-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 1.25rem; margin-top: 2.5rem;
-}
+.countdown-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 2.5rem; }
 .countdown-race {
-  background: var(--sand);
-  border: 1px solid rgba(168,216,232,0.3);
-  border-top: 3px solid var(--aqua);
-  border-radius: 3px; padding: 2.25rem 2rem;
-  position: relative; overflow: hidden;
-  transition: box-shadow 0.2s;
+  background: var(--sand); border: 1px solid rgba(168,216,232,0.3);
+  border-top: 3px solid var(--aqua); border-radius: 3px; padding: 2.25rem 2rem;
+  position: relative; overflow: hidden; transition: box-shadow 0.2s;
 }
-.countdown-race:first-child {
-  border-top-color: var(--maroon);
-  background: linear-gradient(160deg, rgba(122,45,74,0.04) 0%, var(--sand) 100%);
-}
+.countdown-race:first-child { border-top-color: var(--maroon); background: linear-gradient(160deg, rgba(122,45,74,0.04) 0%, var(--sand) 100%); }
 .countdown-race:hover { box-shadow: 0 6px 24px rgba(168,216,232,0.25); }
-.race-name {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.4rem; letter-spacing: 0.04em; color: var(--text); margin-bottom: 0.3rem;
-}
+.race-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.04em; color: var(--text); margin-bottom: 0.3rem; }
 .race-date { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.06em; line-height: 1.55; margin-bottom: 1.5rem; }
 .timer-display { display: flex; gap: 1.1rem; }
 .timer-unit { text-align: center; }
-.timer-num {
-  font-family: 'Bebas Neue', sans-serif; font-size: 2.4rem; line-height: 1; color: var(--teal);
-}
+.timer-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.4rem; line-height: 1; color: var(--teal); }
 .timer-label { font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--light); }
-.race-tbd {
-  font-family: 'Lora', serif; font-style: italic;
-  font-size: 0.88rem; color: var(--muted); margin-top: 0.5rem; line-height: 1.5;
-}
+.race-tbd { font-family: 'Lora', serif; font-style: italic; font-size: 0.88rem; color: var(--muted); margin-top: 0.5rem; line-height: 1.5; }
 
 /* ─── OPEN WATER ─── */
-.open-water-section {
-  padding: 6rem 2.5rem;
-  background: var(--deep-sea);
-  position: relative; overflow: hidden;
-}
+.open-water-section { padding: 6rem 2.5rem; background: var(--deep-sea); position: relative; overflow: hidden; }
 .open-water-section::before {
   content: '';
   position: absolute; inset: 0;
-  background:
-    radial-gradient(ellipse 80% 60% at 50% 110%, rgba(197,232,242,0.12) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 50% at 90% 10%, rgba(122,45,74,0.2) 0%, transparent 55%);
+  background: radial-gradient(ellipse 80% 60% at 50% 110%, rgba(197,232,242,0.12) 0%, transparent 60%),
+              radial-gradient(ellipse 40% 50% at 90% 10%, rgba(122,45,74,0.2) 0%, transparent 55%);
   pointer-events: none;
 }
-.open-water-header {
-  display: flex; align-items: flex-end; justify-content: space-between;
-  margin-bottom: 3rem; position: relative; z-index: 1; flex-wrap: wrap; gap: 1rem;
-}
-.open-water-header h2 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2.5rem, 6vw, 5rem); line-height: 0.9; color: var(--sand);
-}
-.open-water-header h2 em {
-  font-family: 'Lora', serif; font-style: italic; color: var(--sky);
-}
-.open-water-sub {
-  font-size: 0.82rem; color: rgba(197,232,242,0.5);
-  letter-spacing: 0.05em; max-width: 240px; line-height: 1.65; text-align: right;
-}
-.open-water-cards {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 1.5rem; position: relative; z-index: 1;
-}
+.open-water-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3rem; position: relative; z-index: 1; flex-wrap: wrap; gap: 1rem; }
+.open-water-header h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 6vw, 5rem); line-height: 0.9; color: var(--sand); }
+.open-water-header h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--sky); }
+.open-water-sub { font-size: 0.82rem; color: rgba(197,232,242,0.5); letter-spacing: 0.05em; max-width: 240px; line-height: 1.65; text-align: right; }
+.open-water-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; position: relative; z-index: 1; }
 .ow-card {
-  border: 1px solid rgba(197,232,242,0.18);
-  padding: 3rem 2.5rem; position: relative; overflow: hidden;
-  background: rgba(197,232,242,0.04);
+  border: 1px solid rgba(197,232,242,0.18); padding: 3rem 2.5rem;
+  position: relative; overflow: hidden; background: rgba(197,232,242,0.04);
   transition: border-color 0.3s, background 0.3s;
 }
 .ow-card:hover { border-color: rgba(197,232,242,0.4); background: rgba(197,232,242,0.07); }
-.ow-card::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, var(--aqua), var(--sky));
-}
-.ow-distance {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(4rem, 8vw, 6rem); line-height: 0.9; color: var(--sand);
-  display: block; margin-bottom: 0.2rem; letter-spacing: 0.02em;
-}
-.ow-unit {
-  font-family: 'Lora', serif; font-style: italic;
-  font-size: 1.2rem; color: var(--sky); margin-left: 0.2rem;
-}
-.ow-label {
-  font-size: 0.66rem; letter-spacing: 0.28em; text-transform: uppercase;
-  color: rgba(197,232,242,0.35); display: block; margin-bottom: 2rem;
-}
-.ow-when {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.8rem; color: var(--aqua); letter-spacing: 0.04em;
-  display: block; margin-bottom: 0.35rem;
-}
-.ow-location {
-  display: inline-flex; align-items: center; gap: 0.45rem;
-  font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
-  color: rgba(197,232,242,0.3);
-}
-.ow-location-icon {
-  width: 12px; height: 12px; border-radius: 50%;
-  background: rgba(197,232,242,0.2); border: 1px solid rgba(197,232,242,0.3);
-  display: inline-block; flex-shrink: 0;
-}
-.ow-redacted {
-  display: inline-block;
-  background: rgba(197,232,242,0.1); border-radius: 2px;
-  padding: 0 0.5rem; letter-spacing: 0.3em;
-  color: transparent; user-select: none;
-  border: 1px solid rgba(197,232,242,0.15);
-  font-size: 0.7rem;
-}
+.ow-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--aqua), var(--sky)); }
+.ow-distance { font-family: 'Bebas Neue', sans-serif; font-size: clamp(4rem, 8vw, 6rem); line-height: 0.9; color: var(--sand); display: block; margin-bottom: 0.2rem; letter-spacing: 0.02em; }
+.ow-unit { font-family: 'Lora', serif; font-style: italic; font-size: 1.2rem; color: var(--sky); margin-left: 0.2rem; }
+.ow-label { font-size: 0.66rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(197,232,242,0.35); display: block; margin-bottom: 2rem; }
+.ow-when { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: var(--aqua); letter-spacing: 0.04em; display: block; margin-bottom: 0.35rem; }
+.ow-location { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(197,232,242,0.3); }
+.ow-location-icon { width: 12px; height: 12px; border-radius: 50%; background: rgba(197,232,242,0.2); border: 1px solid rgba(197,232,242,0.3); display: inline-block; flex-shrink: 0; }
+.ow-redacted { display: inline-block; background: rgba(197,232,242,0.1); border-radius: 2px; padding: 0 0.5rem; letter-spacing: 0.3em; color: transparent; user-select: none; border: 1px solid rgba(197,232,242,0.15); font-size: 0.7rem; }
 
 /* ─── TRAINING ─── */
 .training-section { padding: 6rem 2.5rem; background: var(--sand); }
@@ -464,9 +341,8 @@ h1 em {
 .total-hours-label { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); display: block; margin-top: 0.3rem; }
 .training-toggle-btn {
   display: inline-flex; align-items: center; gap: 0.6rem;
-  background: none; border: 1px solid rgba(90,172,207,0.35);
-  color: var(--teal); padding: 0.65rem 1.35rem;
-  font-size: 0.75rem; font-family: 'DM Sans', sans-serif;
+  background: none; border: 1px solid rgba(90,172,207,0.35); color: var(--teal);
+  padding: 0.65rem 1.35rem; font-size: 0.75rem; font-family: 'DM Sans', sans-serif;
   letter-spacing: 0.12em; text-transform: uppercase;
   cursor: pointer; border-radius: 2px; transition: all 0.2s; margin-bottom: 1.5rem;
 }
@@ -477,54 +353,61 @@ h1 em {
 .training-log-collapsible.open { max-height: 4000px; }
 .training-table-wrap { overflow-x: auto; }
 .training-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-.training-table th {
-  font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
-  color: var(--muted); padding: 0.75rem 1rem; text-align: left;
-  border-bottom: 2px solid rgba(168,216,232,0.3);
-}
-.training-table td {
-  white-space: nowrap; padding: 1rem; border-bottom: 1px solid rgba(168,216,232,0.15);
-  color: var(--text); vertical-align: top;
-}
+.training-table th { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); padding: 0.75rem 1rem; text-align: left; border-bottom: 2px solid rgba(168,216,232,0.3); }
+.training-table td { white-space: nowrap; padding: 1rem; border-bottom: 1px solid rgba(168,216,232,0.15); color: var(--text); vertical-align: top; }
 .training-table tr:hover td { background: var(--mist); }
 .training-table td strong { display: block; font-weight: 500; }
 .week-date { display: block; font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
 .week-time { display: block; font-size: 0.75rem; color: var(--light); margin-top: 2px; }
 
-/* ─── FUNDRAISING ─── */
+/* ─── BLOG ─── */
+.blog-section { padding: 7rem 2.5rem; background: var(--sand); }
+.blog-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
+.blog-header h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 4vw, 3.5rem); color: var(--text); }
+.blog-header h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--coral); }
+.view-all-link { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); text-decoration: none; border-bottom: 1px solid rgba(90,172,207,0.35); padding-bottom: 2px; transition: border-color 0.2s; }
+.view-all-link:hover { border-color: var(--teal); }
+.blog-grid-editorial { display: grid; grid-template-columns: 1.4fr 1fr; grid-template-rows: auto auto; gap: 1.5rem; }
+.blog-card-editorial { display: flex; flex-direction: column; background: var(--cream); border-radius: 3px; overflow: hidden; text-decoration: none; color: inherit; transition: transform 0.25s, box-shadow 0.25s; border: 1px solid rgba(168,216,232,0.2); }
+.blog-card-editorial:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(90,172,207,0.12); }
+.blog-card-editorial.featured { grid-row: span 2; }
+.blog-img-block { width: 100%; position: relative; }
+.blog-card-editorial.featured .blog-img-block { height: 340px; }
+.blog-card-editorial:not(.featured) .blog-img-block { height: 160px; }
+.blog-img-block-inner { width: 100%; height: 100%; display: flex; align-items: flex-end; padding: 1.5rem; }
+.blog-body { padding: 1.75rem 2rem 2rem; flex: 1; display: flex; flex-direction: column; }
+.blog-tag { font-size: 0.62rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.75rem; display: block; }
+.blog-title { font-family: 'Lora', serif; font-size: 1.25rem; line-height: 1.38; color: var(--text); margin-bottom: 0.75rem; flex: 1; }
+.blog-card-editorial.featured .blog-title { font-size: 1.6rem; line-height: 1.28; }
+.blog-excerpt { font-size: 0.85rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.25rem; }
+.blog-read-more { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--coral); display: inline-flex; align-items: center; gap: 0.3rem; }
+.blog-col-right { display: flex; flex-direction: column; gap: 1.5rem; }
+
+/* ─── GALLERY ─── */
+.gallery-section { padding: 6rem 2.5rem; background: var(--cream); }
+.gallery-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem,4vw,3.2rem); color: var(--text); margin-bottom: 1.5rem; }
+.gallery-section h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--coral); }
+.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 280px; gap: 0.75rem; margin-top: 1.5rem; }
+.gallery-item { border-radius: 2px; overflow: hidden; cursor: pointer; transition: opacity 0.2s; }
+.gallery-item:hover { opacity: 0.92; }
+.gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+.gallery-item:nth-child(5) { grid-column: span 2; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; filter: contrast(1.02); }
+.gallery-color { width: 100%; height: 100%; }
+
+/* ─── GIVE / FUNDRAISING ─── */
 .fundraising-section { padding: 6rem 2.5rem; background: var(--cream); }
-.fundraising-header {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
-  align-items: end; margin-bottom: 3rem;
-}
-.fundraising-header h2 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 0.93; color: var(--text);
-}
+.fundraising-header { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; margin-bottom: 3rem; }
+.fundraising-header h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 0.93; color: var(--text); }
 .fundraising-header h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--coral); }
 .fundraising-meta { color: var(--muted); line-height: 1.8; font-size: 0.97rem; }
-.coming-soon-banner {
-  display: flex; align-items: center; gap: 1rem;
-  background: var(--mist); border: 1px solid rgba(168,216,232,0.4);
-  border-radius: 3px; padding: 1.25rem 1.75rem;
-  margin: 0 0 2.5rem; flex-wrap: wrap;
-}
+.coming-soon-banner { display: flex; align-items: center; gap: 1rem; background: var(--mist); border: 1px solid rgba(168,216,232,0.4); border-radius: 3px; padding: 1.25rem 1.75rem; margin: 0 0 2.5rem; flex-wrap: wrap; }
 .coming-soon-banner span { font-size: 1.5rem; }
 .coming-soon-banner p { font-size: 0.92rem; color: var(--text); flex: 1; line-height: 1.65; }
-.coming-soon-btn {
-  font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--teal); text-decoration: none;
-  border-bottom: 1px solid rgba(90,172,207,0.35); padding-bottom: 2px; white-space: nowrap;
-}
+.coming-soon-btn { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); text-decoration: none; border-bottom: 1px solid rgba(90,172,207,0.35); padding-bottom: 2px; white-space: nowrap; }
 .coming-soon-btn:hover { border-color: var(--teal); }
 .charity-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin: 2rem 0 2.5rem; }
-.charity-card {
-  background: var(--sand); border: 1px solid rgba(168,216,232,0.25);
-  border-top: 3px solid var(--aqua);
-  border-radius: 3px; padding: 2rem;
-  display: flex; flex-direction: column;
-  transition: box-shadow 0.2s, transform 0.2s;
-}
+.charity-card { background: var(--sand); border: 1px solid rgba(168,216,232,0.25); border-top: 3px solid var(--aqua); border-radius: 3px; padding: 2rem; display: flex; flex-direction: column; transition: box-shadow 0.2s, transform 0.2s; }
 .charity-card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(168,216,232,0.2); }
 .charity-logo-wrap { height: 52px; display: flex; align-items: center; margin-bottom: 1.25rem; }
 .charity-logo-wrap img { max-height: 48px; max-width: 150px; object-fit: contain; }
@@ -536,55 +419,27 @@ p.charity-num { font-size: 0.63rem; letter-spacing: 0.22em; text-transform: uppe
 
 /* ─── PLEDGE ─── */
 .pledge-section { padding: 6rem 2.5rem; background: var(--sand); }
-.pledge-section > h2 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2rem, 4vw, 3.5rem); color: var(--text); margin-bottom: 0.5rem;
-}
+.pledge-section > h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 4vw, 3.5rem); color: var(--text); margin-bottom: 0.5rem; }
 .pledge-section > h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--maroon); }
 .pledge-section > p { color: var(--muted); margin-bottom: 2.5rem; font-size: 0.95rem; max-width: 600px; line-height: 1.75; }
 .pledge-form-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
 .pledge-field { margin-bottom: 1.25rem; }
 .pledge-field label { display: block; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
-.pledge-field select, .pledge-field input[type="text"], .pledge-field input[type="email"], .pledge-field input[type="number"] {
-  width: 100%; padding: 0.8rem 1rem; border: 1px solid rgba(168,216,232,0.4);
-  background: var(--warm-white); color: var(--text); font-family: 'DM Sans', sans-serif;
-  font-size: 0.9rem; border-radius: 3px; outline: none; transition: border-color 0.2s;
-}
+.pledge-field select, .pledge-field input[type="text"], .pledge-field input[type="email"], .pledge-field input[type="number"] { width: 100%; padding: 0.8rem 1rem; border: 1px solid rgba(168,216,232,0.4); background: var(--warm-white); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; border-radius: 3px; outline: none; transition: border-color 0.2s; }
 .pledge-field select:focus, .pledge-field input:focus { border-color: var(--teal); }
 .pledge-quick-amounts { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
-.pledge-quick-btn {
-  background: var(--warm-white); border: 1px solid rgba(168,216,232,0.4); color: var(--text);
-  padding: 0.4rem 0.9rem; font-size: 0.8rem; cursor: pointer; border-radius: 2px;
-  font-family: 'DM Sans', sans-serif; transition: all 0.2s;
-}
+.pledge-quick-btn { background: var(--warm-white); border: 1px solid rgba(168,216,232,0.4); color: var(--text); padding: 0.4rem 0.9rem; font-size: 0.8rem; cursor: pointer; border-radius: 2px; font-family: 'DM Sans', sans-serif; transition: all 0.2s; }
 .pledge-quick-btn:hover, .pledge-quick-btn.active { background: var(--teal); color: white; border-color: var(--teal); }
-.pledge-submit-btn {
-  width: 100%; background: var(--maroon); color: var(--sand); border: none;
-  padding: 1rem; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.08em;
-  text-transform: uppercase; cursor: pointer; border-radius: 3px;
-  font-family: 'DM Sans', sans-serif; transition: all 0.2s; margin-top: 0.5rem;
-}
+.pledge-submit-btn { width: 100%; background: var(--maroon); color: var(--sand); border: none; padding: 1rem; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; border-radius: 3px; font-family: 'DM Sans', sans-serif; transition: all 0.2s; margin-top: 0.5rem; }
 .pledge-submit-btn:hover { background: var(--coral); transform: translateY(-1px); }
 .pledge-success { background: rgba(168,216,232,0.15); border: 1px solid rgba(168,216,232,0.4); color: var(--teal); padding: 0.85rem 1rem; border-radius: 3px; font-size: 0.9rem; margin-top: 1rem; }
 .pledge-error { background: rgba(232,104,74,0.08); border: 1px solid rgba(232,104,74,0.3); color: var(--coral); padding: 0.85rem 1rem; border-radius: 3px; font-size: 0.9rem; margin-top: 1rem; }
-.pledge-total-display {
-  background: linear-gradient(135deg, var(--mist) 0%, var(--sky) 100%);
-  padding: 2rem; border-radius: 4px; text-align: center; margin-bottom: 1.5rem;
-  border: 1px solid rgba(168,216,232,0.3);
-}
+.pledge-total-display { background: linear-gradient(135deg, var(--mist) 0%, var(--sky) 100%); padding: 2rem; border-radius: 4px; text-align: center; margin-bottom: 1.5rem; border: 1px solid rgba(168,216,232,0.3); }
 .pledge-total-label { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--deep-sea); opacity: 0.65; margin-bottom: 0.5rem; }
 .pledge-total-amount { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: var(--maroon); line-height: 1; margin-bottom: 0.5rem; }
 .pledge-total-breakdown { font-size: 0.8rem; color: rgba(42,106,138,0.65); line-height: 1.5; }
-.pledge-rotator {
-  background: linear-gradient(135deg, var(--deep-sea) 0%, #1a4a6a 100%);
-  border-radius: 4px; padding: 2.5rem 2rem; margin-bottom: 1.5rem;
-  min-height: 150px; display: flex; align-items: center; justify-content: center;
-  position: relative; overflow: hidden;
-}
-.pledge-rotator::before {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(197,232,242,0.06) 0%, transparent 70%);
-}
+.pledge-rotator { background: linear-gradient(135deg, var(--deep-sea) 0%, #1a4a6a 100%); border-radius: 4px; padding: 2.5rem 2rem; margin-bottom: 1.5rem; min-height: 150px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+.pledge-rotator::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(197,232,242,0.06) 0%, transparent 70%); }
 .rotator-inner { text-align: center; position: relative; z-index: 1; width: 100%; }
 .rotator-slide { transition: opacity 0.4s; }
 .rotator-name { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--sky); letter-spacing: 0.08em; display: block; margin-bottom: 0.25rem; }
@@ -605,182 +460,46 @@ p.charity-num { font-size: 0.63rem; letter-spacing: 0.22em; text-transform: uppe
 .pledge-board-total { margin-top: 1rem; padding-top: 1rem; border-top: 2px solid rgba(168,216,232,0.25); font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--text); }
 
 /* ─── FAQ ─── */
-.faq-section { padding: 6rem 2.5rem; background: var(--cream); }
-.faq-list { max-width: 720px; }
+.faq-section { padding: 6rem 2.5rem; background: var(--sand); }
+.faq-section > h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem,4vw,3.5rem); color: var(--text); margin-bottom: 2rem; }
+.faq-section > h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--maroon); }
+.faq-intro { color: var(--muted); font-size: 0.97rem; line-height: 1.8; max-width: 640px; margin-bottom: 3rem; }
+.faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 4rem; max-width: 1100px; }
 .faq-item { padding: 1.75rem 0; border-bottom: 1px solid rgba(168,216,232,0.2); }
 .faq-item:last-child { border-bottom: none; }
 .faq-q { font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 500; color: var(--text); margin-bottom: 0.6rem; }
 .faq-a { font-size: 0.92rem; color: var(--muted); line-height: 1.78; }
-
-/* ─── BLOG — Editorial Cards ─── */
-.blog-section { padding: 7rem 2.5rem; background: var(--sand); }
-.blog-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
-.blog-header h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 4vw, 3.5rem); color: var(--text); }
-.blog-header h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--coral); }
-.view-all-link {
-  font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--teal); text-decoration: none;
-  border-bottom: 1px solid rgba(90,172,207,0.35); padding-bottom: 2px;
-  transition: border-color 0.2s;
-}
-.view-all-link:hover { border-color: var(--teal); }
-
-/* Editorial 2-col + 2 smaller */
-.blog-grid-editorial {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  grid-template-rows: auto auto;
-  gap: 1.5rem;
-}
-.blog-card-editorial {
-  display: flex; flex-direction: column;
-  background: var(--cream);
-  border-radius: 3px;
-  overflow: hidden;
-  text-decoration: none;
-  color: inherit;
-  transition: transform 0.25s, box-shadow 0.25s;
-  border: 1px solid rgba(168,216,232,0.2);
-}
-.blog-card-editorial:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(90,172,207,0.12); }
-.blog-card-editorial.featured { grid-row: span 2; }
-.blog-img {
-  width: 100%; overflow: hidden; position: relative;
-}
-.blog-img img {
-  width: 100%; height: 100%; object-fit: cover; display: block;
-  transition: transform 0.4s ease;
-  filter: contrast(1.03) brightness(0.99);
-}
-.blog-img::after {
-  content: '';
-  position: absolute; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
-  background-size: 256px 256px;
-  mix-blend-mode: overlay;
-  pointer-events: none;
-  opacity: 0.4;
-}
-.blog-card-editorial:hover .blog-img img { transform: scale(1.02); }
-.blog-card-editorial.featured .blog-img { height: 340px; }
-.blog-card-editorial:not(.featured) .blog-img { height: 160px; }
-
-/* Color blocks when no image */
-.blog-img-block {
-  width: 100%; position: relative;
-}
-.blog-card-editorial.featured .blog-img-block { height: 340px; }
-.blog-card-editorial:not(.featured) .blog-img-block { height: 160px; }
-.blog-img-block-inner {
-  width: 100%; height: 100%;
-  display: flex; align-items: flex-end; padding: 1.5rem;
-}
-
-.blog-body { padding: 1.75rem 2rem 2rem; flex: 1; display: flex; flex-direction: column; }
-.blog-tag {
-  font-size: 0.62rem; letter-spacing: 0.24em; text-transform: uppercase;
-  color: var(--teal); margin-bottom: 0.75rem; display: block;
-}
-.blog-title {
-  font-family: 'Lora', serif; font-size: 1.25rem; line-height: 1.38;
-  color: var(--text); margin-bottom: 0.75rem; flex: 1;
-}
-.blog-card-editorial.featured .blog-title { font-size: 1.6rem; line-height: 1.28; }
-.blog-excerpt { font-size: 0.85rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.25rem; }
-.blog-read-more {
-  font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--coral); display: inline-flex; align-items: center; gap: 0.3rem;
-}
-
-/* Small blog pair on the right */
-.blog-col-right { display: flex; flex-direction: column; gap: 1.5rem; }
-
-/* ─── GALLERY ─── */
-.gallery-section { padding: 6rem 2.5rem; background: var(--cream); }
-.gallery-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem,4vw,3.2rem); color: var(--text); margin-bottom: 1.5rem; }
-.gallery-section h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--coral); }
-.gallery-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 280px; gap: 0.75rem; margin-top: 1.5rem;
-}
-.gallery-item {
-  border-radius: 2px; overflow: hidden;
-  cursor: pointer; transition: opacity 0.2s;
-}
-.gallery-item:hover { opacity: 0.92; }
-.gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
-.gallery-item:nth-child(5) { grid-column: span 2; }
-.gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; filter: contrast(1.02); }
-.gallery-color {
-  width: 100%; height: 100%;
-}
+.faq-cta-strip { background: var(--coral); padding: 4rem 2.5rem; text-align: center; margin-top: 0; }
+.faq-cta-strip p { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.8rem, 4vw, 3.2rem); color: #fff; margin-bottom: 1.5rem; letter-spacing: 0.04em; }
+.faq-cta-strip a { background: #fff; color: var(--coral); padding: 0.9rem 2.2rem; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border-radius: 2px; transition: all 0.2s; display: inline-block; }
+.faq-cta-strip a:hover { background: var(--sand); }
 
 /* ─── EMAIL ─── */
-.email-section {
-  padding: 7rem 2.5rem;
-  background: var(--deep-sea);
-  position: relative; overflow: hidden;
-}
-.email-section::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse 60% 50% at 20% 50%, rgba(197,232,242,0.07) 0%, transparent 60%);
-  pointer-events: none;
-}
-.email-inner {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
-  align-items: center; position: relative; z-index: 1; max-width: 1100px;
-}
+.email-section { padding: 7rem 2.5rem; background: var(--deep-sea); position: relative; overflow: hidden; }
+.email-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 20% 50%, rgba(197,232,242,0.07) 0%, transparent 60%); pointer-events: none; }
+.email-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; position: relative; z-index: 1; max-width: 1100px; }
 .email-section .section-label { color: var(--sky); }
 .email-section .section-label::before { background: var(--sky); }
-.email-heading {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2rem, 4vw, 3.5rem); line-height: 0.95;
-  color: var(--sand); margin-bottom: 1.25rem;
-}
+.email-heading { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 4vw, 3.5rem); line-height: 0.95; color: var(--sand); margin-bottom: 1.25rem; }
 .email-heading em { font-family: 'Lora', serif; font-style: italic; color: var(--sky); }
 .email-sub { font-size: 0.95rem; color: rgba(197,232,242,0.55); line-height: 1.8; }
 .email-form-wrap { margin-bottom: 2rem; }
-.email-form-label {
-  font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase;
-  color: rgba(197,232,242,0.5); margin-bottom: 1rem; display: block;
-}
+.email-form-label { font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(197,232,242,0.5); margin-bottom: 1rem; display: block; }
 .email-field-row { display: flex; flex-direction: column; gap: 0.75rem; }
-.email-input {
-  background: rgba(255,255,255,0.08); border: 1px solid rgba(197,232,242,0.2);
-  color: var(--sand); padding: 0.85rem 1.1rem;
-  font-size: 0.9rem; font-family: 'DM Sans', sans-serif;
-  border-radius: 3px; outline: none; transition: border-color 0.2s; width: 100%;
-}
+.email-input { background: rgba(255,255,255,0.08); border: 1px solid rgba(197,232,242,0.2); color: var(--sand); padding: 0.85rem 1.1rem; font-size: 0.9rem; font-family: 'DM Sans', sans-serif; border-radius: 3px; outline: none; transition: border-color 0.2s; width: 100%; }
 .email-input::placeholder { color: rgba(197,232,242,0.3); }
 .email-input:focus { border-color: rgba(197,232,242,0.5); }
-.email-btn {
-  background: var(--aqua); color: var(--deep-sea);
-  border: none; padding: 0.9rem 1.75rem;
-  font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
-  cursor: pointer; border-radius: 3px; transition: all 0.2s;
-  font-family: 'DM Sans', sans-serif;
-}
+.email-btn { background: var(--aqua); color: var(--deep-sea); border: none; padding: 0.9rem 1.75rem; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; border-radius: 3px; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
 .email-btn:hover { background: var(--sky); transform: translateY(-1px); }
 .email-fine-print { font-size: 0.68rem; color: rgba(197,232,242,0.25); margin-top: 0.75rem; line-height: 1.5; }
-.email-success {
-  display: none; margin-top: 1rem;
-  background: rgba(197,232,242,0.1); border: 1px solid rgba(197,232,242,0.25);
-  color: var(--sky); padding: 0.85rem 1.1rem; border-radius: 3px; font-size: 0.9rem; line-height: 1.5;
-}
+.email-success { display: none; margin-top: 1rem; background: rgba(197,232,242,0.1); border: 1px solid rgba(197,232,242,0.25); color: var(--sky); padding: 0.85rem 1.1rem; border-radius: 3px; font-size: 0.9rem; line-height: 1.5; }
 .email-perks { display: flex; flex-direction: column; gap: 0.85rem; }
 .email-perk { display: flex; align-items: center; gap: 0.85rem; font-size: 0.88rem; color: rgba(197,232,242,0.55); }
 .perk-icon { font-size: 1.1rem; flex-shrink: 0; }
 
 /* ─── FOOTER ─── */
-footer {
-  background: #1a0a12; padding: 4rem 2.5rem 2rem;
-  border-top: 1px solid rgba(197,232,242,0.1);
-}
-.footer-top {
-  display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 4rem;
-  padding-bottom: 3rem; border-bottom: 1px solid rgba(197,232,242,0.08); margin-bottom: 2rem;
-}
+footer { background: #1a0a12; padding: 4rem 2.5rem 2rem; border-top: 1px solid rgba(197,232,242,0.1); }
+.footer-top { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 4rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(197,232,242,0.08); margin-bottom: 2rem; }
 .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.1em; color: var(--aqua); display: block; margin-bottom: 1rem; }
 .footer-tagline { font-size: 0.85rem; color: rgba(253,248,240,0.35); line-height: 1.72; max-width: 280px; }
 .footer-col h4 { font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(197,232,242,0.25); margin-bottom: 1.1rem; }
@@ -791,23 +510,6 @@ footer {
 .footer-bottom { display: flex; justify-content: space-between; align-items: center; }
 .footer-copy { font-size: 0.7rem; color: rgba(253,248,240,0.2); }
 .footer-disclaimer { font-size: 0.66rem; color: rgba(253,248,240,0.15); max-width: 380px; text-align: right; line-height: 1.5; }
-
-/* ─── MOBILE MENU ─── */
-.hamburger {
-  display: none; flex-direction: column; gap: 5px;
-  background: none; border: none; cursor: pointer; padding: 4px;
-}
-.hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
-.mobile-menu {
-  display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-  background: var(--sand); z-index: 200;
-  flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
-}
-.mobile-menu.open { display: flex; }
-.mobile-menu a { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; letter-spacing: 0.1em; color: var(--text); text-decoration: none; }
-.mobile-menu a:hover { color: var(--teal); }
-.mobile-menu .close-btn { position: absolute; top: 1.5rem; right: 1.5rem; font-size: 2rem; background: none; border: none; cursor: pointer; color: var(--muted); }
-.mobile-menu .mobile-cta { background: var(--maroon); color: var(--sand) !important; padding: 0.75rem 2.5rem; border-radius: 2px; font-size: 1.8rem !important; }
 
 /* ─── ANIMATIONS ─── */
 @keyframes fadeUp {
@@ -821,9 +523,10 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
 
 /* ─── MOBILE ─── */
 @media (max-width: 768px) {
-  nav { padding: 1rem 1.25rem; }
-  .nav-links { display: none; }
+  .nav-inner { padding: 0 1.25rem; }
+  .tab-bar { display: none; }
   .hamburger { display: flex; }
+  .tab-panel { padding-top: 65px; }
 
   .hero { padding: 0 1.25rem 4rem; }
   h1 { font-size: clamp(3.2rem, 14vw, 5rem); }
@@ -831,9 +534,6 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
   .story-section { padding: 4rem 1.25rem; grid-template-columns: 1fr; gap: 2.5rem; }
   .story-image-wrap { order: -1; }
   .story-stats { grid-template-columns: 1fr 1fr; }
-
-  .pullquote-grid { grid-template-columns: 1fr; }
-  .pullquote-section { padding: 4rem 1.25rem; }
 
   .countdown-section { padding: 4rem 1.25rem; }
   .countdown-grid { grid-template-columns: 1fr; gap: 1rem; }
@@ -857,7 +557,9 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
   .gallery-section { padding: 4rem 1.25rem; }
   .gallery-grid { grid-template-columns: repeat(2,1fr); grid-auto-rows: 140px; }
   .gallery-item:nth-child(1) { grid-column: span 2; min-height: 200px; }
-  .gallery-item:nth-child(4) { grid-column: span 1; }
+
+  .faq-section { padding: 4rem 1.25rem; }
+  .faq-grid { grid-template-columns: 1fr; }
 
   .email-section { padding: 4rem 1.25rem; }
   .email-inner { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -869,13 +571,10 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
 
   .miles-strip { padding: 2rem 1.25rem; }
   .miles-inner { gap: 1.25rem; }
-
   .training-section { padding: 4rem 1.25rem; }
   .total-hours-strip { gap: 2rem; }
-
-  .faq-section { padding: 4rem 1.25rem; }
-
   .photo-bleed { height: 280px; }
+  .quote-strip { padding: 3rem 1.25rem; }
 }
 
 @media (max-width: 480px) {
@@ -891,761 +590,828 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#">Going the Distance</a>
-  <ul class="nav-links">
-    <li><a href="#story">Story</a></li>
-    <li><a href="#races">Races</a></li>
-    <li><a href="#updates">Updates</a></li>
-    <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#training">Training</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="#pledge" class="nav-cta">PLEDGE NOW · 100% TO CHARITY</a></li>
-  </ul>
-  <button class="hamburger" onclick="openMenu()" aria-label="Open menu">
-    <span></span><span></span><span></span>
-  </button>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#" onclick="showTab('home')">Going the Distance</a>
+    <button class="nav-cta-btn" onclick="showTab('give')">Pledge Now &rarr;</button>
+    <button class="hamburger" onclick="openMenu()" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="tab-bar">
+    <button class="tab-btn active" data-tab="home" onclick="showTab('home')">Home</button>
+    <button class="tab-btn" data-tab="races" onclick="showTab('races')">Races</button>
+    <button class="tab-btn" data-tab="training" onclick="showTab('training')">Training</button>
+    <button class="tab-btn" data-tab="blog" onclick="showTab('blog')">Blog</button>
+    <button class="tab-btn" data-tab="gallery" onclick="showTab('gallery')">Gallery</button>
+    <button class="tab-btn give-tab" data-tab="give" onclick="showTab('give')">Give</button>
+    <button class="tab-btn" data-tab="faq" onclick="showTab('faq')">FAQ</button>
+  </div>
 </nav>
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
-  <button class="close-btn" onclick="closeMenu()" aria-label="Close menu">✕</button>
-  <a href="#story" onclick="closeMenu()">Story</a>
-  <a href="#races" onclick="closeMenu()">Races</a>
-  <a href="#updates" onclick="closeMenu()">Updates</a>
-  <a href="#gallery" onclick="closeMenu()">Gallery</a>
-  <a href="#training" onclick="closeMenu()">Training</a>
-  <a href="#faq" onclick="closeMenu()">FAQ</a>
-  <a href="#pledge" onclick="closeMenu()" class="mobile-cta">PLEDGE NOW · 100% TO CHARITY</a>
+  <button class="close-btn" onclick="closeMenu()">&#x2715;</button>
+  <button onclick="showTab('home');closeMenu()">Home</button>
+  <button onclick="showTab('races');closeMenu()">Races</button>
+  <button onclick="showTab('training');closeMenu()">Training</button>
+  <button onclick="showTab('blog');closeMenu()">Blog</button>
+  <button onclick="showTab('gallery');closeMenu()">Gallery</button>
+  <button onclick="showTab('give');closeMenu()" class="m-give">Give</button>
+  <button onclick="showTab('faq');closeMenu()">FAQ</button>
 </div>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-sky"></div>
-  <div class="hero-content">
-    <p class="hero-eyebrow">Swimmer. Triathlete. Racing for a Cause.</p>
-    <h1>What? Like it's<br><em>hard?</em> Boys do it.</h1>
-    <p class="hero-sub">I fell off my bike while it was completely still, waved at the traffic that watched it happen, and then thought, why not sign up for four triathlons? Come along for the ride.</p>
-    <div class="hero-actions">
-      <a href="#pledge" class="btn-primary">PLEDGE NOW · 100% TO CHARITY →</a>
-      <a href="#story" class="btn-secondary">Wait, who are you?</a>
-    </div>
-  </div>
-</section>
+<!-- ═══════════════════════════════════════════
+     TAB: HOME
+═══════════════════════════════════════════ -->
+<div class="tab-panel active" id="tab-home">
 
-<!-- TICKER -->
-<div class="race-ticker">
-  <div class="ticker-track">
-    <span class="ticker-item">Sprint Triathlon 🥈 <span class="ticker-dot">·</span> Done!</span>
-    <span class="ticker-item">Olympic Triathlon <span class="ticker-dot">·</span> Sep 2026</span>
-    <span class="ticker-item">Half Ironman 70.3 <span class="ticker-dot">·</span> Coming 2027</span>
-    <span class="ticker-item">Full Ironman 140.6 <span class="ticker-dot">·</span> Coming 2027</span>
-    <span class="ticker-item">NEDA <span class="ticker-dot">·</span> RAINN <span class="ticker-dot">·</span> Friendship Circle</span>
-    <span class="ticker-item">Sprint Triathlon 🥈 <span class="ticker-dot">·</span> Done!</span>
-    <span class="ticker-item">Olympic Triathlon <span class="ticker-dot">·</span> Sep 2026</span>
-    <span class="ticker-item">Half Ironman 70.3 <span class="ticker-dot">·</span> Coming 2027</span>
-    <span class="ticker-item">Full Ironman 140.6 <span class="ticker-dot">·</span> Coming 2027</span>
-    <span class="ticker-item">NEDA <span class="ticker-dot">·</span> RAINN <span class="ticker-dot">·</span> Friendship Circle</span>
-  </div>
-</div>
-
-<!-- MILES COUNTER -->
-<div class="miles-strip">
-  <div class="miles-inner">
-    <div class="miles-stat">
-      <span class="miles-num" id="swimMiles">0</span>
-      <span class="miles-label">🏊 swim miles</span>
-    </div>
-    <div class="miles-divider">+</div>
-    <div class="miles-stat">
-      <span class="miles-num" id="bikeMiles">0</span>
-      <span class="miles-label">🚴 bike miles</span>
-    </div>
-    <div class="miles-divider">+</div>
-    <div class="miles-stat">
-      <span class="miles-num" id="runMiles">0</span>
-      <span class="miles-label">🏃 run miles</span>
-    </div>
-    <div class="miles-divider">=</div>
-    <div class="miles-stat total">
-      <span class="miles-num" id="totalMiles">0</span>
-      <span class="miles-label">total miles 🧡</span>
-    </div>
-  </div>
-</div>
-
-<!-- STORY -->
-<section class="story-section" id="story">
-  <div class="story-left">
-    <p class="section-label">My Story</p>
-    <h2>More than<br>just <em>miles</em></h2>
-    <div class="story-body">
-      <p>Hi, I'm Gigi! I have been obsessed with the pool and ocean since I was five years old. I grew up a club swimmer, and while other kids on family vacations were playing sharks and minnows, I was making my parents find the nearest lap pool. And then also making friends playing sharks and minnows. Big dreams have always been my thing, and honestly, they still are.</p>
-      <p>Growing up in LA, I was part of <strong>Junior Lifeguards</strong>, a summer beach program that trains kids to become ocean lifeguards. My first summer was going great. Or so I told my mom. What I didn't mention was that I wasn't actually going in the ocean. A few days in, she got a call from the program director: <em>"If your daughter doesn't swim tomorrow, she's out."</em> My mom pretty much laughed because I had sold that summer so hard.</p>
-      <p>Enter <strong>Matt the Muscle Man</strong>, who took me out for a private buoy swim while the entire program watched from shore and cheered me on. Mortifying. Afterward I reported back to my mom that it went fine, but complained that it was kind of lame because they sent a paramedic to do the swim with me instead of an actual lifeguard. My mom looked at me the way only moms can and said "he IS a lifeguard, sweetie." Matt the Muscle Man was the lifeguard the whole time. I had absolutely no idea. My 9 year old self could not complain anymore about the very cute lifeguard who just took her on a private ocean swim. I conquered my very real fear of being eaten by a whale that day and have been in love with open water ever since.</p>
-      <p>My husband had been telling me for a while that I should train for triathlons. It never really sounded appealing if I'm being honest. Then this spring I took a trip to Hawaii with my mom and sister, did a few ocean swims (shoutout to the local Diana who jumped in with me), and somewhere between the first and second pina colada I thought... yeah, okay, I should do this.</p>
-      <p>Things moved fast. One TikTok deep dive, a lucky bike deal, and approximately one million visits to Lance at my local bike shop later, I had all the gear, a training plan, and a word I still can't spell called chamois. Lance is probably sick of seeing me. One month in and I am completely obsessed.</p>
-      <p>The three charities I'm racing for are close to my heart and I'll leave it at that. If you want to be part of something fun, a little chaotic, and genuinely meaningful, you're in the right place.</p>
-      <p>Let's do this for every athlete who has ever had a complicated relationship with their body. For the women who show up for each other. And for the kids who lit up when someone pulled up a chair.</p>
-    </div>
-    <div class="story-stats">
-      <div class="story-stat"><div class="stat-num">20+</div><div class="stat-label">Years in the water</div></div>
-      <div class="story-stat"><div class="stat-num">14</div><div class="stat-label">Years coaching swim</div></div>
-      <div class="story-stat"><div class="stat-num">3</div><div class="stat-label">Races in 18 months</div></div>
-    </div>
-  </div>
-  <div class="story-image-wrap">
-    <img src="gigi-hawaii.jpg" alt="Gigi in Hawaii">
-  </div>
-</section>
-
-<!-- PHOTO FULL BLEED -->
-<div class="photo-bleed">
-  <img src="IMG_5088.JPG" alt="Race day celebration">
-  <div class="photo-overlay" style="background:linear-gradient(to right, rgba(42,106,138,0.45) 0%, transparent 55%);"></div>
-</div>
-
-<!-- PULL QUOTES -->
-<section class="pullquote-section">
-  <div class="pullquote-grid">
-    <div class="pullquote-item">
-      <span class="pullquote-mark">"</span>
-      <p class="pullquote-text">I fell off my bike while it was completely still, waved at the traffic that watched it happen, and then thought — why not sign up for four triathlons?</p>
-      <p class="pullquote-source">Gigi · On how this whole thing started</p>
-    </div>
-    <div class="pullquote-item">
-      <span class="pullquote-mark">"</span>
-      <p class="pullquote-text">There's a rhythm, and I'm finding mine. Some weeks it clicks. Some weeks you forget your gels in the fridge. Both count.</p>
-      <p class="pullquote-source">Gigi · Training blog, Oct 2026</p>
-    </div>
-    <div class="pullquote-item">
-      <span class="pullquote-mark">"</span>
-      <p class="pullquote-text">For every athlete who has ever had a complicated relationship with their body. For the women who show up for each other. For the kids who lit up when someone pulled up a chair.</p>
-      <p class="pullquote-source">Gigi · Why I'm racing</p>
-    </div>
-    <div class="pullquote-item">
-      <span class="pullquote-mark">"</span>
-      <p class="pullquote-text">I conquered my very real fear of being eaten by a whale that day and have been in love with open water ever since.</p>
-      <p class="pullquote-source">Gigi · On Matt the Muscle Man</p>
-    </div>
-  </div>
-</section>
-
-<!-- OCEAN QUOTE STRIP -->
-<div class="quote-strip">
-  <p>"You'll never feel ready. Ready isn't a feeling&mdash;it's a decision."</p>
-</div>
-
-<!-- COUNTDOWN -->
-<section class="countdown-section" id="races">
-  <p class="section-label">The Journey Ahead</p>
-  <h2>Four races. <em>One very tired girl.</em></h2>
-  <div class="countdown-grid">
-    <div class="countdown-race">
-      <p class="race-name">Sprint Triathlon 🥈</p>
-      <p class="race-date">August 9, 2026 · 1/4 mile swim, 10 mile bike, 3 mile run. My warm up. Allegedly.</p>
-      <p style="font-family:'Bebas Neue',sans-serif; font-size:1.9rem; color:var(--maroon); margin-top:1rem; letter-spacing:0.04em;">FINISHED · 2ND IN AGE GROUP</p>
-      <p class="race-tbd">Finish time: 1:10:14 🧡</p>
-    </div>
-    <div class="countdown-race">
-      <p class="race-name">Olympic Triathlon</p>
-      <p class="race-date">September 2026 · 0.9 mile swim, 24.8 mile bike, 6.2 mile run. In a row. On purpose.</p>
-      <div class="timer-display">
-        <div class="timer-unit"><div class="timer-num" id="d1">—</div><div class="timer-label">Days</div></div>
-        <div class="timer-unit"><div class="timer-num" id="h1">—</div><div class="timer-label">Hrs</div></div>
-        <div class="timer-unit"><div class="timer-num" id="m1">—</div><div class="timer-label">Min</div></div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-sky"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Swimmer. Triathlete. Racing for a Cause.</p>
+      <h1>What? Like it's<br><em>hard?</em> Boys do it.</h1>
+      <p class="hero-sub">I fell off my bike while it was completely still, waved at the traffic that watched it happen, and then thought, why not sign up for four triathlons? Come along for the ride.</p>
+      <div class="hero-actions">
+        <a href="#" onclick="showTab('give'); return false;" class="btn-primary">PLEDGE NOW &middot; 100% TO CHARITY &rarr;</a>
+        <a href="#" onclick="showTab('faq'); return false;" class="btn-secondary">Wait, how does this work?</a>
       </div>
-      <p id="race1phrase" style="font-family:'Lora',serif;font-style:italic;font-size:0.9rem;color:var(--muted);margin-top:1rem;"></p>
     </div>
-    <div class="countdown-race">
-      <p class="race-name">Ironman 70.3</p>
-      <p class="race-date">June 2027 · Swim, bike, run a half marathon. After the swim and bike. Cool cool cool.</p>
-      <p class="race-tbd">Officially signed up. June 2027. No turning back now.</p>
-    </div>
-    <div class="countdown-race">
-      <p class="race-name">Ironman 140.6</p>
-      <p class="race-date">October 2027 · 2.4 mile swim, 112 mile bike, 26.2 mile run. I have 17 months to figure this out.</p>
-      <p class="race-tbd">The big scary one. I will sign up. I am brave. Probably.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- OPEN WATER SWIMS -->
-<section class="open-water-section">
-  <div class="open-water-header">
-    <h2>Open<br><em>water.</em></h2>
-    <p class="open-water-sub">Two solo ocean swims happening quietly on the side. Location undisclosed.</p>
-  </div>
-  <div class="open-water-cards">
-    <div class="ow-card">
-      <span class="ow-distance">2.4<span class="ow-unit">mi</span></span>
-      <span class="ow-label">Ocean swim</span>
-      <span class="ow-when">August 2026</span>
-      <span class="ow-location">
-        <span class="ow-location-icon"></span>
-        <span class="ow-redacted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-      </span>
+  <!-- TICKER -->
+  <div class="race-ticker">
+    <div class="ticker-track">
+      <span class="ticker-item">Sprint Triathlon &#x1F948; <span class="ticker-dot">&middot;</span> Done!</span>
+      <span class="ticker-item">Olympic Triathlon <span class="ticker-dot">&middot;</span> Sep 2026</span>
+      <span class="ticker-item">Half Ironman 70.3 <span class="ticker-dot">&middot;</span> Coming 2027</span>
+      <span class="ticker-item">Full Ironman 140.6 <span class="ticker-dot">&middot;</span> Nov 2027</span>
+      <span class="ticker-item">NEDA <span class="ticker-dot">&middot;</span> RAINN <span class="ticker-dot">&middot;</span> Friendship Circle</span>
+      <span class="ticker-item">Sprint Triathlon &#x1F948; <span class="ticker-dot">&middot;</span> Done!</span>
+      <span class="ticker-item">Olympic Triathlon <span class="ticker-dot">&middot;</span> Sep 2026</span>
+      <span class="ticker-item">Half Ironman 70.3 <span class="ticker-dot">&middot;</span> Coming 2027</span>
+      <span class="ticker-item">Full Ironman 140.6 <span class="ticker-dot">&middot;</span> Nov 2027</span>
+      <span class="ticker-item">NEDA <span class="ticker-dot">&middot;</span> RAINN <span class="ticker-dot">&middot;</span> Friendship Circle</span>
     </div>
-    <div class="ow-card">
-      <span class="ow-distance">2.4<span class="ow-unit">mi</span></span>
-      <span class="ow-label">Ocean swim</span>
-      <span class="ow-when">April 2027</span>
-      <span class="ow-location">
-        <span class="ow-location-icon"></span>
-        <span class="ow-redacted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-      </span>
-    </div>
-  </div>
-</section>
-
-<!-- TRAINING LOG -->
-<section class="training-section" id="training">
-  <p class="section-label">Training Log</p>
-  <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3.5rem);color:var(--text);margin-bottom:0.5rem;">Putting in <em style="font-family:'Lora',serif;font-style:italic;color:var(--maroon);">the work</em></h2>
-  <p style="color:var(--muted);margin-bottom:2rem;font-size:0.92rem;">Updated every time I train.</p>
-  <div class="total-hours-strip">
-    <div class="total-hours-stat">
-      <span class="total-hours-num" id="totalHours">0</span>
-      <span class="total-hours-label">total hours in training</span>
-    </div>
-    <div class="total-hours-stat">
-      <span class="total-hours-num" id="totalSessions">0</span>
-      <span class="total-hours-label">total sessions</span>
-    </div>
-    <div class="total-hours-stat">
-      <span class="total-hours-num" id="totalWeeks">0</span>
-      <span class="total-hours-label">weeks of training</span>
-    </div>
-  </div>
-  <button class="training-toggle-btn" id="trainingToggleBtn" onclick="toggleTrainingLog()">
-    View weekly breakdown <span class="training-toggle-arrow">▼</span>
-  </button>
-  <div class="training-log-collapsible" id="trainingLogWrap">
-    <div id="trainingLog">
-      <p style="color:var(--muted);font-size:0.9rem;">Loading training data...</p>
-    </div>
-  </div>
-</section>
-
-<!-- PHOTO FULL BLEED 2 -->
-<div class="photo-bleed">
-  <img src="IMG_5103 2.JPG" alt="Post-race with medal" style="object-position:center 35%;">
-  <div class="photo-overlay" style="background:linear-gradient(to left, rgba(42,106,138,0.4) 0%, transparent 55%);"></div>
-</div>
-
-<!-- FUNDRAISING -->
-<section class="fundraising-section" id="donate">
-  <div class="fundraising-header">
-    <div>
-      <p class="section-label">Fundraising</p>
-      <h2>Race for<br><em>what matters</em></h2>
-    </div>
-    <p class="fundraising-meta">I'm racing for three causes that are close to my heart. Take a dive and get to know the organizations below.</p>
   </div>
 
-  <div class="coming-soon-banner">
-    <span>🧡</span>
-    <p>Pledge per mile below. Pick your race, pick your amount, and I'll do the rest. After I cross the finish line I'll email you with your total and a direct link to donate straight to your chosen charity. You give directly to them. I never touch the money.</p>
-    <a href="#signup" class="coming-soon-btn">Get notified →</a>
-  </div>
-
-  <div class="charity-cards">
-    <div class="charity-card" onclick="window.open('https://www.nationaleatingdisorders.org/donate','_blank')" style="cursor:pointer;">
-      <div class="charity-logo-wrap">
-        <img src="https://www.nationaleatingdisorders.org/wp-content/themes/neda/images/neda-logo.svg" alt="NEDA logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
-        <span class="charity-logo-fallback" style="display:none;">NEDA</span>
+  <!-- MILES COUNTER -->
+  <div class="miles-strip">
+    <div class="miles-inner">
+      <div class="miles-stat">
+        <span class="miles-num" id="swimMiles">0</span>
+        <span class="miles-label">&#x1F3CA; swim miles</span>
       </div>
-      <p class="charity-num">01 · Mental Health</p>
-      <p class="charity-name-big">NEDA</p>
-      <p class="charity-personal">For every athlete who has ever had a complicated relationship with their body</p>
-      <p class="charity-desc">The National Eating Disorders Association supports individuals and families affected by eating disorders through education, advocacy, and access to resources and treatment.</p>
-    </div>
-    <div class="charity-card" onclick="window.open('https://www.rainn.org/donate','_blank')" style="cursor:pointer;">
-      <div class="charity-logo-wrap">
-        <img src="https://www.rainn.org/sites/default/files/rainn-logo.png" alt="RAINN logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
-        <span class="charity-logo-fallback" style="display:none;">RAINN</span>
+      <div class="miles-divider">+</div>
+      <div class="miles-stat">
+        <span class="miles-num" id="bikeMiles">0</span>
+        <span class="miles-label">&#x1F6B4; bike miles</span>
       </div>
-      <p class="charity-num">02 · Survivor Support</p>
-      <p class="charity-name-big">RAINN</p>
-      <p class="charity-personal">For the women who show up for each other.</p>
-      <p class="charity-desc">The nation's largest anti-sexual violence organization. RAINN operates the National Sexual Assault Hotline and works to prevent sexual violence and support survivors nationwide.</p>
-    </div>
-    <div class="charity-card" onclick="window.open('https://www.friendshipcircle.org/donate','_blank')" style="cursor:pointer;">
-      <div class="charity-logo-wrap">
-        <img src="https://www.friendshipcircle.org/wp-content/uploads/2019/09/FC-Logo.png" alt="Friendship Circle logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
-        <span class="charity-logo-fallback" style="display:none; color:var(--coral);">Friendship Circle</span>
+      <div class="miles-divider">+</div>
+      <div class="miles-stat">
+        <span class="miles-num" id="runMiles">0</span>
+        <span class="miles-label">&#x1F3C3; run miles</span>
       </div>
-      <p class="charity-num">03 · Inclusion &amp; Special Needs</p>
-      <p class="charity-name-big">Friendship Circle</p>
-      <p class="charity-personal">For the kids who lit up when someone pulled up a chair.</p>
-      <p class="charity-desc">Friendship Circle creates meaningful friendships between teen volunteers and individuals with special needs, building confidence, community, and belonging for everyone involved.</p>
+      <div class="miles-divider">=</div>
+      <div class="miles-stat total">
+        <span class="miles-num" id="totalMiles">0</span>
+        <span class="miles-label">total miles &#x1F9E1;</span>
+      </div>
     </div>
   </div>
-</section>
 
-<!-- PLEDGE SECTION -->
-<section class="pledge-section" id="pledge">
-  <p class="section-label pink">Pledge Per Mile</p>
-  <h2>Pledge <em>per mile</em></h2>
-  <p>Pick a race. Pick an amount per mile. I'll do the suffering, you do the donating. After each race I'll email you your total and a direct link to give to whichever of my three charities you choose. No payment now, no pressure ever. Just your word that you're in.</p>
-
-  <div class="pledge-form-wrap">
-    <div class="pledge-form-left">
-      <div class="pledge-field">
-        <label>Which race?</label>
-        <select id="pledgeRace" onchange="updatePledgeTotal()">
-          <option value="">Select a race...</option>
-          <option value="Sprint" data-miles="16">Sprint Triathlon — Aug 9 (16 mi)</option>
-          <option value="Olympic" data-miles="31.4">Olympic Triathlon — Sep 19 (31.4 mi)</option>
-          <option value="Half Ironman" data-miles="70.3">Half Ironman 70.3 — 2027 (70.3 mi)</option>
-          <option value="Full Ironman" data-miles="140.6">Full Ironman 140.6 — 2027 (140.6 mi)</option>
-          <option value="All Four Races" data-miles="258.3">All Four Races (258.3 mi total)</option>
-        </select>
+  <!-- STORY -->
+  <section class="story-section" id="story">
+    <div class="story-left">
+      <p class="section-label">My Story</p>
+      <h2>More than<br>just <em>miles</em></h2>
+      <div class="story-body">
+        <p>Hi, I'm Gigi! I have been obsessed with the pool and ocean since I was five years old. I grew up a club swimmer, and while other kids on family vacations were playing sharks and minnows, I was making my parents find the nearest lap pool. And then also making friends playing sharks and minnows. Big dreams have always been my thing, and honestly, they still are.</p>
+        <p>Growing up in LA, I was part of <strong>Junior Lifeguards</strong>, a summer beach program that trains kids to become ocean lifeguards. My first summer was going great. Or so I told my mom. What I didn't mention was that I wasn't actually going in the ocean. A few days in, she got a call from the program director: <em>"If your daughter doesn't swim tomorrow, she's out."</em> My mom pretty much laughed because I had sold that summer so hard.</p>
+        <p>Enter <strong>Matt the Muscle Man</strong>, who took me out for a private buoy swim while the entire program watched from shore and cheered me on. Mortifying. Afterward I reported back to my mom that it went fine, but complained that it was kind of lame because they sent a paramedic to do the swim with me instead of an actual lifeguard. My mom looked at me the way only moms can and said "he IS a lifeguard, sweetie." Matt the Muscle Man was the lifeguard the whole time. I had absolutely no idea. My 9 year old self could not complain anymore about the very cute lifeguard who just took her on a private ocean swim. I conquered my very real fear of being eaten by a whale that day and have been in love with open water ever since.</p>
+        <p>My husband had been telling me for a while that I should train for triathlons. It never really sounded appealing if I'm being honest. Then this spring I took a trip to Hawaii with my mom and sister, did a few ocean swims (shoutout to the local Diana who jumped in with me), and somewhere between the first and second pina colada I thought... yeah, okay, I should do this.</p>
+        <p>Things moved fast. One TikTok deep dive, a lucky bike deal, and approximately one million visits to Lance at my local bike shop later, I had all the gear, a training plan, and a word I still can't spell called chamois. Lance is probably sick of seeing me. One month in and I am completely obsessed.</p>
+        <p>The three charities I'm racing for are close to my heart and I'll leave it at that. If you want to be part of something fun, a little chaotic, and genuinely meaningful, you're in the right place.</p>
+        <p>Let's do this for every athlete who has ever had a complicated relationship with their body. For the women who show up for each other. And for the kids who lit up when someone pulled up a chair.</p>
       </div>
-      <div class="pledge-field">
-        <label>Per mile amount</label>
-        <div class="pledge-quick-amounts">
-          <button onclick="setPledgeAmount(0.10)" class="pledge-quick-btn">$0.10</button>
-          <button onclick="setPledgeAmount(0.25)" class="pledge-quick-btn">$0.25</button>
-          <button onclick="setPledgeAmount(0.50)" class="pledge-quick-btn">$0.50</button>
-          <button onclick="setPledgeAmount(1.00)" class="pledge-quick-btn">$1.00</button>
+      <div class="story-stats">
+        <div class="story-stat"><div class="stat-num">20+</div><div class="stat-label">Years in the water</div></div>
+        <div class="story-stat"><div class="stat-num">14</div><div class="stat-label">Years coaching swim</div></div>
+        <div class="story-stat"><div class="stat-num">5+</div><div class="stat-label">Races in 18 months</div></div>
+      </div>
+    </div>
+    <div class="story-image-wrap">
+      <img src="gigi-hawaii.jpg" alt="Gigi in Hawaii">
+    </div>
+  </section>
+
+  <!-- PHOTO FULL BLEED -->
+  <div class="photo-bleed">
+    <img src="IMG_5088.JPG" alt="Race day celebration">
+    <div class="photo-overlay" style="background:linear-gradient(to right, rgba(42,106,138,0.45) 0%, transparent 55%);"></div>
+  </div>
+
+  <!-- QUOTE STRIP -->
+  <div class="quote-strip">
+    <p>IT IS A PRIVILEGE<br>TO BE HEALTHY.</p>
+  </div>
+
+</div><!-- /tab-home -->
+
+
+<!-- ═══════════════════════════════════════════
+     TAB: RACES
+═══════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-races">
+
+  <!-- COUNTDOWN -->
+  <section class="countdown-section">
+    <p class="section-label">The Journey Ahead</p>
+    <h2>Five races. <em>One very tired girl.</em></h2>
+    <div class="countdown-grid" style="grid-template-columns: repeat(3,1fr);">
+      <!-- Race 1: Done -->
+      <div class="countdown-race">
+        <p class="race-name">Sprint Triathlon &#x1F948;</p>
+        <p class="race-date">August 9, 2026 &middot; 1/4 mile swim, 10 mile bike, 3 mile run.</p>
+        <p style="font-family:'Bebas Neue',sans-serif; font-size:1.9rem; color:var(--maroon); margin-top:1rem; letter-spacing:0.04em;">FINISHED &middot; 2ND IN AGE GROUP</p>
+        <p class="race-tbd">Finish time: 1:10:14 &#x1F9E1;</p>
+      </div>
+      <!-- Race 2: Countdown -->
+      <div class="countdown-race">
+        <p class="race-name">Olympic Triathlon</p>
+        <p class="race-date">September 2026 &middot; 0.9 mile swim, 24.8 mile bike, 6.2 mile run. In a row. On purpose.</p>
+        <div class="timer-display">
+          <div class="timer-unit"><div class="timer-num" id="d1">&#x2014;</div><div class="timer-label">Days</div></div>
+          <div class="timer-unit"><div class="timer-num" id="h1">&#x2014;</div><div class="timer-label">Hrs</div></div>
+          <div class="timer-unit"><div class="timer-num" id="m1">&#x2014;</div><div class="timer-label">Min</div></div>
         </div>
-        <input type="number" id="pledgeAmount" placeholder="or enter your own" step="0.01" min="0.01" oninput="updatePledgeTotal()">
+        <p id="race1phrase" style="font-family:'Lora',serif;font-style:italic;font-size:0.9rem;color:var(--muted);margin-top:1rem;"></p>
       </div>
-      <div class="pledge-field">
-        <label>Which charity?</label>
-        <select id="pledgeCharity">
-          <option value="">Select a charity...</option>
-          <option value="NEDA">NEDA — National Eating Disorders Association</option>
-          <option value="RAINN">RAINN — Anti-Sexual Violence</option>
-          <option value="Friendship Circle">Friendship Circle — Special Needs Inclusion</option>
-          <option value="All Three Charities">Split evenly across all three charities</option>
-        </select>
+      <!-- Race 3 -->
+      <div class="countdown-race">
+        <p class="race-name">Ironman 70.3</p>
+        <p class="race-date">June 2027 &middot; Swim, bike, run a half marathon. After the swim and bike. Cool cool cool.</p>
+        <p class="race-tbd">Officially signed up. June 2027. No turning back now.</p>
       </div>
-      <div class="pledge-field">
-        <label>Your name</label>
-        <input type="text" id="pledgeName" placeholder="First name is fine!">
+      <!-- Race 4 -->
+      <div class="countdown-race">
+        <p class="race-name">Ironman 140.6</p>
+        <p class="race-date">November 2027 &middot; 2.4 mile swim, 112 mile bike, 26.2 mile run. I have time. Sort of.</p>
+        <p class="race-tbd">The big scary one. I will sign up. I am brave. Probably.</p>
       </div>
-      <div class="pledge-field">
-        <label>Leave a message (optional)</label>
-        <input type="text" id="pledgeMessage" placeholder="Say something nice...">
+      <!-- Race 5 -->
+      <div class="countdown-race">
+        <p class="race-name">More TBD</p>
+        <p class="race-date">2026&ndash;2027 &middot; Because apparently five races wasn't enough of an idea.</p>
+        <p class="race-tbd" style="font-family:'Lora',serif;font-style:italic;color:var(--muted);">Watch this space. I can't stop signing up for things.</p>
       </div>
-      <div class="pledge-field">
-        <label>Your email</label>
-        <input type="email" id="pledgeEmail" placeholder="For your post-race receipt">
+    </div>
+  </section>
+
+  <!-- OPEN WATER -->
+  <section class="open-water-section">
+    <div class="open-water-header">
+      <h2>Open<br><em>water.</em></h2>
+      <p class="open-water-sub">Two solo ocean swims happening quietly on the side. Location undisclosed.</p>
+    </div>
+    <div class="open-water-cards">
+      <div class="ow-card">
+        <span class="ow-distance">2.0<span class="ow-unit">mi</span></span>
+        <span class="ow-label">Ocean swim</span>
+        <span class="ow-when">August 2026</span>
+        <span class="ow-location">
+          <span class="ow-location-icon"></span>
+          <span class="ow-redacted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        </span>
       </div>
-      <button class="pledge-submit-btn" onclick="submitPledge()">Count me in →</button>
-      <div id="pledgeSuccess" style="display:none;" class="pledge-success">🧡 You're in! I'll email you after each race with your total.</div>
-      <div id="pledgeError" style="display:none;" class="pledge-error">Something went wrong — please try again!</div>
+      <div class="ow-card">
+        <span class="ow-distance">2.4<span class="ow-unit">mi</span></span>
+        <span class="ow-label">Ocean swim</span>
+        <span class="ow-when">April 2027</span>
+        <span class="ow-location">
+          <span class="ow-location-icon"></span>
+          <span class="ow-redacted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /tab-races -->
+
+
+<!-- ═══════════════════════════════════════════
+     TAB: TRAINING
+═══════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-training">
+
+  <section class="training-section">
+    <p class="section-label">Training Log</p>
+    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3.5rem);color:var(--text);margin-bottom:0.5rem;">Putting in <em style="font-family:'Lora',serif;font-style:italic;color:var(--maroon);">the work</em></h2>
+    <p style="color:var(--muted);margin-bottom:2rem;font-size:0.92rem;">Updated every time I train.</p>
+    <div class="total-hours-strip">
+      <div class="total-hours-stat">
+        <span class="total-hours-num" id="totalHours">0</span>
+        <span class="total-hours-label">total hours in training</span>
+      </div>
+      <div class="total-hours-stat">
+        <span class="total-hours-num" id="totalSessions">0</span>
+        <span class="total-hours-label">total sessions</span>
+      </div>
+      <div class="total-hours-stat">
+        <span class="total-hours-num" id="totalWeeks">0</span>
+        <span class="total-hours-label">weeks of training</span>
+      </div>
+    </div>
+    <button class="training-toggle-btn" id="trainingToggleBtn" onclick="toggleTrainingLog()">
+      View weekly breakdown <span class="training-toggle-arrow">&#x25BC;</span>
+    </button>
+    <div class="training-log-collapsible" id="trainingLogWrap">
+      <div id="trainingLog">
+        <p style="color:var(--muted);font-size:0.9rem;">Loading training data...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTO FULL BLEED -->
+  <div class="photo-bleed">
+    <img src="IMG_5103 2.JPG" alt="Post-race with medal" style="object-position:center 35%;">
+    <div class="photo-overlay" style="background:linear-gradient(to left, rgba(42,106,138,0.4) 0%, transparent 55%);"></div>
+  </div>
+
+</div><!-- /tab-training -->
+
+
+<!-- ═══════════════════════════════════════════
+     TAB: BLOG
+═══════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-blog">
+
+  <section class="blog-section">
+    <div class="blog-header">
+      <div>
+        <p class="section-label">Training Updates</p>
+        <h2>Dispatches from <em>training</em></h2>
+      </div>
+      <a href="https://gogigiruns.substack.com" target="_blank" class="view-all-link">See all posts &rarr;</a>
     </div>
 
-    <div class="pledge-form-right">
-      <div class="pledge-total-display">
-        <p class="pledge-total-label">Your projected donation</p>
-        <p class="pledge-total-amount" id="pledgeTotalDisplay">$0.00</p>
-        <p class="pledge-total-breakdown" id="pledgeBreakdown">Select a race and amount to see your total</p>
-      </div>
-      <div class="pledge-rotator" id="pledgeRotator">
-        <div class="rotator-inner">
-          <div class="rotator-slide" id="rotatorSlide">
-            <p class="rotator-empty">Be the first to pledge!</p>
+    <div class="blog-grid-editorial">
+      <!-- Featured -->
+      <a href="https://gogigiruns.substack.com/p/how-i-signed-up-for-a-triathlon-on" target="_blank" class="blog-card-editorial featured">
+        <div class="blog-img-block" style="background:linear-gradient(160deg, #e86848 0%, #c9604a 50%, #7a2d4a 100%);">
+          <div class="blog-img-block-inner">
+            <span style="font-family:'Lora',serif;font-style:italic;font-size:0.78rem;color:rgba(253,248,240,0.5);letter-spacing:0.08em;">Hawaii &middot; Summer 2026</span>
           </div>
-          <div class="rotator-dots" id="rotatorDots"></div>
         </div>
-      </div>
-      <div class="pledge-board">
-        <p class="pledge-board-title">Who's in</p>
-        <div id="pledgeList">
-          <p style="color:var(--muted);font-size:0.85rem;">Be the first to pledge!</p>
+        <div class="blog-body">
+          <span class="blog-tag">Origin Story</span>
+          <p class="blog-title">How I signed up for a triathlon on a beach in Hawaii</p>
+          <p class="blog-excerpt">Somewhere between the first and second pina colada, the idea stopped sounding crazy. Then I got home and bought a bike.</p>
+          <span class="blog-read-more">Read on Substack &rarr;</span>
         </div>
-        <div class="pledge-board-total" id="pledgeBoardTotal"></div>
+      </a>
+
+      <!-- Right column -->
+      <div class="blog-col-right">
+        <a href="https://gogigiruns.substack.com/p/the-red-light-incident" target="_blank" class="blog-card-editorial">
+          <div class="blog-img-block" style="background:linear-gradient(135deg, #f5a87a 0%, #e8b0c4 100%);">
+            <div class="blog-img-block-inner">
+              <span style="font-family:'Lora',serif;font-style:italic;font-size:0.72rem;color:rgba(253,248,240,0.55);">Training tales</span>
+            </div>
+          </div>
+          <div class="blog-body">
+            <span class="blog-tag">Training</span>
+            <p class="blog-title">The red light incident. Yes, that one.</p>
+            <span class="blog-read-more">Read &rarr;</span>
+          </div>
+        </a>
+        <a href="https://gogigiruns.substack.com/p/the-swim-is-in-the-ocean-its-great" target="_blank" class="blog-card-editorial">
+          <div class="blog-img-block" style="background:linear-gradient(135deg, #a8d8e8 0%, #5aaccf 60%, #2a6a8a 100%);">
+            <div class="blog-img-block-inner">
+              <span style="font-family:'Lora',serif;font-style:italic;font-size:0.72rem;color:rgba(253,248,240,0.55);">Open water</span>
+            </div>
+          </div>
+          <div class="blog-body">
+            <span class="blog-tag">Open Water</span>
+            <p class="blog-title">The swim is in the ocean. It's great.</p>
+            <span class="blog-read-more">Read &rarr;</span>
+          </div>
+        </a>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- FAQ -->
-<section class="faq-section" id="faq">
-  <p class="section-label">FAQ</p>
-  <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3.5rem);color:var(--text);margin-bottom:2rem;">Good <em style="font-family:'Lora',serif;font-style:italic;color:var(--maroon);">questions.</em></h2>
-  <div class="faq-list">
-    <div class="faq-item">
-      <p class="faq-q">How does this work?</p>
-      <p class="faq-a">Pick a race, pick an amount per mile. I do the suffering. After I cross the finish line I'll email you your total and a direct link to donate to your chosen charity. No payment now, just your word that you're in.</p>
-    </div>
-    <div class="faq-item">
-      <p class="faq-q">Where does the money go?</p>
-      <p class="faq-a">Straight to whichever charity you choose: NEDA, RAINN, or Friendship Circle. I never see a cent of it. You donate directly to them.</p>
-    </div>
-    <div class="faq-item">
-      <p class="faq-q">Can I just donate without pledging per mile?</p>
-      <p class="faq-a">Absolutely. Click any charity card above and it takes you straight to their donation page. No pledging required.</p>
-    </div>
-    <div class="faq-item">
-      <p class="faq-q">What if you don't finish a race?</p>
-      <p class="faq-a">Then you don't owe anything. Simple as that.</p>
-    </div>
-    <div class="faq-item">
-      <p class="faq-q">Can I pledge for all four races?</p>
-      <p class="faq-a">Yes! Select "All Four Races" in the pledge form and I'll reach out after each one with your running total.</p>
-    </div>
-  </div>
-</section>
-
-<!-- BLOG — Editorial -->
-<section class="blog-section" id="updates">
-  <div class="blog-header">
-    <div>
-      <p class="section-label">Training Updates</p>
-      <h2>Dispatches from <em>training</em></h2>
-    </div>
-    <a href="https://gogigiruns.substack.com" target="_blank" class="view-all-link">See all posts →</a>
-  </div>
-
-  <div class="blog-grid-editorial">
-    <!-- Featured post -->
-    <a href="https://gogigiruns.substack.com/p/how-i-signed-up-for-a-triathlon-on" target="_blank" class="blog-card-editorial featured">
-      <div class="blog-img-block" style="background:linear-gradient(160deg, #e86848 0%, #c9604a 50%, #7a2d4a 100%);">
-        <div class="blog-img-block-inner">
-          <span style="font-family:'Lora',serif;font-style:italic;font-size:0.78rem;color:rgba(253,248,240,0.5);letter-spacing:0.08em;">Hawaii · Summer 2026</span>
-        </div>
-      </div>
-      <div class="blog-body">
-        <span class="blog-tag">Origin Story</span>
-        <p class="blog-title">How I signed up for a triathlon on a beach in Hawaii</p>
-        <p class="blog-excerpt">Somewhere between the first and second pina colada, the idea stopped sounding crazy. Then I got home and bought a bike.</p>
-        <span class="blog-read-more">Read on Substack →</span>
+    <!-- 4th post -->
+    <a href="https://gogigiruns.substack.com/p/theres-a-rhythm-and-im-finding-mine" target="_blank" style="display:flex;gap:2rem;align-items:center;text-decoration:none;color:inherit;margin-top:1.25rem;padding:2rem;background:var(--cream);border:1px solid rgba(168,216,232,0.2);border-radius:3px;transition:box-shadow 0.2s;" onmouseover="this.style.boxShadow='0 6px 24px rgba(90,172,207,0.1)'" onmouseout="this.style.boxShadow=''">
+      <div style="width:80px;height:80px;flex-shrink:0;background:linear-gradient(135deg,#c9a0b4,#7a2d4a);border-radius:2px;"></div>
+      <div>
+        <span style="font-size:0.62rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--teal);display:block;margin-bottom:0.4rem;">Finding the rhythm</span>
+        <p style="font-family:'Lora',serif;font-size:1.1rem;color:var(--text);line-height:1.4;margin-bottom:0.4rem;">There's a rhythm, and I'm finding mine.</p>
+        <span style="font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--coral);">Read on Substack &rarr;</span>
       </div>
     </a>
+  </section>
 
-    <!-- Right column: 2 smaller cards -->
-    <div class="blog-col-right">
-      <a href="https://gogigiruns.substack.com/p/the-red-light-incident" target="_blank" class="blog-card-editorial">
-        <div class="blog-img-block" style="background:linear-gradient(135deg, #f5a87a 0%, #e8b0c4 100%);">
-          <div class="blog-img-block-inner">
-            <span style="font-family:'Lora',serif;font-style:italic;font-size:0.72rem;color:rgba(253,248,240,0.55);">Training tales</span>
-          </div>
-        </div>
-        <div class="blog-body">
-          <span class="blog-tag">Training</span>
-          <p class="blog-title">The red light incident. Yes, that one.</p>
-          <span class="blog-read-more">Read →</span>
-        </div>
-      </a>
-      <a href="https://gogigiruns.substack.com/p/the-swim-is-in-the-ocean-its-great" target="_blank" class="blog-card-editorial">
-        <div class="blog-img-block" style="background:linear-gradient(135deg, #a8d8e8 0%, #5aaccf 60%, #2a6a8a 100%);">
-          <div class="blog-img-block-inner">
-            <span style="font-family:'Lora',serif;font-style:italic;font-size:0.72rem;color:rgba(253,248,240,0.55);">Open water</span>
-          </div>
-        </div>
-        <div class="blog-body">
-          <span class="blog-tag">Open Water</span>
-          <p class="blog-title">The swim is in the ocean. It's great.</p>
-          <span class="blog-read-more">Read →</span>
-        </div>
-      </a>
-    </div>
-  </div>
+</div><!-- /tab-blog -->
 
-  <!-- 4th post below, full width slim -->
-  <a href="https://gogigiruns.substack.com/p/theres-a-rhythm-and-im-finding-mine" target="_blank" style="display:flex;gap:2rem;align-items:center;text-decoration:none;color:inherit;margin-top:1.25rem;padding:2rem;background:var(--cream);border:1px solid rgba(168,216,232,0.2);border-radius:3px;transition:box-shadow 0.2s;" onmouseover="this.style.boxShadow='0 6px 24px rgba(90,172,207,0.1)'" onmouseout="this.style.boxShadow=''">
-    <div style="width:80px;height:80px;flex-shrink:0;background:linear-gradient(135deg,#c9a0b4,#7a2d4a);border-radius:2px;"></div>
-    <div>
-      <span style="font-size:0.62rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--teal);display:block;margin-bottom:0.4rem;">Finding the rhythm</span>
-      <p style="font-family:'Lora',serif;font-size:1.1rem;color:var(--text);line-height:1.4;margin-bottom:0.4rem;">There's a rhythm, and I'm finding mine.</p>
-      <span style="font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--coral);">Read on Substack →</span>
-    </div>
-  </a>
-</section>
 
-<!-- GALLERY -->
-<section class="gallery-section" id="gallery">
-  <p class="section-label">Training Gallery</p>
-  <h2>Life in <em>motion</em></h2>
-  <div class="gallery-grid">
-    <div class="gallery-item">
-      <img src="sprinttri.JPEG" alt="Sprint Triathlon finish">
-    </div>
-    <div class="gallery-item">
-      <img src="FullSizeRender 2.JPEG" alt="Cycling action">
-    </div>
-    <div class="gallery-item">
-      <div class="gallery-color" style="background:linear-gradient(135deg,#fad4b0,#f5a87a);"></div>
-    </div>
-    <div class="gallery-item">
-      <div class="gallery-color" style="background:linear-gradient(135deg,#a8d8e8,#5aaccf);"></div>
-    </div>
-    <div class="gallery-item">
-      <div class="gallery-color" style="background:linear-gradient(135deg,#e8b0c4,#7a2d4a);"></div>
-    </div>
-    <div class="gallery-item">
-      <div class="gallery-color" style="background:linear-gradient(135deg,#c5e8f2,#a8d8e8);"></div>
-    </div>
-  </div>
-</section>
+<!-- ═══════════════════════════════════════════
+     TAB: GALLERY
+═══════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-gallery">
 
-<!-- EMAIL SIGNUP -->
-<section class="email-section" id="signup">
-  <div class="email-inner">
-    <div class="email-left">
-      <p class="section-label">Stay in the loop</p>
-      <h2 class="email-heading">Want updates<br>when things get <em>interesting?</em></h2>
-      <p class="email-sub">Race recaps. Training meltdowns. The occasional bike fall. Drop your email and I'll send you updates that are actually worth reading. No spam, just the good stuff.</p>
+  <section class="gallery-section">
+    <p class="section-label">Training Gallery</p>
+    <h2>Life in <em>motion</em></h2>
+    <div class="gallery-grid">
+      <div class="gallery-item"><img src="sprinttri.JPEG" alt="Sprint Triathlon finish"></div>
+      <div class="gallery-item"><img src="FullSizeRender 2.JPEG" alt="Cycling action"></div>
+      <div class="gallery-item"><div class="gallery-color" style="background:linear-gradient(135deg,#fad4b0,#f5a87a);"></div></div>
+      <div class="gallery-item"><div class="gallery-color" style="background:linear-gradient(135deg,#a8d8e8,#5aaccf);"></div></div>
+      <div class="gallery-item"><div class="gallery-color" style="background:linear-gradient(135deg,#e8b0c4,#7a2d4a);"></div></div>
+      <div class="gallery-item"><div class="gallery-color" style="background:linear-gradient(135deg,#c5e8f2,#a8d8e8);"></div></div>
     </div>
-    <div class="email-right">
-      <div class="email-form-wrap">
-        <p class="email-form-label">Get race updates</p>
-        <div class="email-field-row">
-          <input type="text" class="email-input" placeholder="Your first name" id="signupName">
-          <input type="email" class="email-input" placeholder="your@email.com" id="signupEmail">
-          <a href="https://gogigiruns.substack.com" target="_blank" class="email-btn">I'm in →</a>
-        </div>
-        <p class="email-fine-print">Takes you to Substack to subscribe. No spam ever. Unsubscribe anytime. I'm a swim coach not a marketer.</p>
-        <div class="email-success" id="emailSuccess">
-          🌊 You're in! I'll be in touch after I survive my next long run.
-        </div>
+  </section>
+
+</div><!-- /tab-gallery -->
+
+
+<!-- ═══════════════════════════════════════════
+     TAB: GIVE
+═══════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-give">
+
+  <!-- Charities -->
+  <section class="fundraising-section">
+    <div class="fundraising-header">
+      <div>
+        <p class="section-label">Fundraising</p>
+        <h2>Race for<br><em>what matters</em></h2>
       </div>
-      <div class="email-perks">
-        <div class="email-perk"><span class="perk-icon">🏊</span><span>Race day recaps</span></div>
-        <div class="email-perk"><span class="perk-icon">🚴</span><span>Training updates (the real ones)</span></div>
-        <div class="email-perk"><span class="perk-icon">🧡</span><span>Fundraising milestones</span></div>
-        <div class="email-perk"><span class="perk-icon">😅</span><span>Stories like the red light incident</span></div>
+      <p class="fundraising-meta">I'm racing for three causes that are close to my heart. Take a dive and get to know the organizations below.</p>
+    </div>
+
+    <div class="coming-soon-banner">
+      <span>&#x1F9E1;</span>
+      <p>Pledge per mile below. Pick your race, pick your amount, and I'll do the rest. After I cross the finish line I'll email you with your total and a direct link to donate straight to your chosen charity. You give directly to them. I never touch the money.</p>
+      <a href="#" class="coming-soon-btn">Pledge now &darr;</a>
+    </div>
+
+    <div class="charity-cards">
+      <div class="charity-card" onclick="window.open('https://www.nationaleatingdisorders.org/donate','_blank')" style="cursor:pointer;">
+        <div class="charity-logo-wrap">
+          <img src="https://www.nationaleatingdisorders.org/wp-content/themes/neda/images/neda-logo.svg" alt="NEDA logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+          <span class="charity-logo-fallback" style="display:none;">NEDA</span>
+        </div>
+        <p class="charity-num">01 &middot; Mental Health</p>
+        <p class="charity-name-big">NEDA</p>
+        <p class="charity-personal">For every athlete who has ever had a complicated relationship with their body</p>
+        <p class="charity-desc">The National Eating Disorders Association supports individuals and families affected by eating disorders through education, advocacy, and access to resources and treatment.</p>
+      </div>
+      <div class="charity-card" onclick="window.open('https://www.rainn.org/donate','_blank')" style="cursor:pointer;">
+        <div class="charity-logo-wrap">
+          <img src="https://www.rainn.org/sites/default/files/rainn-logo.png" alt="RAINN logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+          <span class="charity-logo-fallback" style="display:none;">RAINN</span>
+        </div>
+        <p class="charity-num">02 &middot; Survivor Support</p>
+        <p class="charity-name-big">RAINN</p>
+        <p class="charity-personal">For the women who show up for each other.</p>
+        <p class="charity-desc">The nation's largest anti-sexual violence organization. RAINN operates the National Sexual Assault Hotline and works to prevent sexual violence and support survivors nationwide.</p>
+      </div>
+      <div class="charity-card" onclick="window.open('https://www.friendshipcircle.org/donate','_blank')" style="cursor:pointer;">
+        <div class="charity-logo-wrap">
+          <img src="https://www.friendshipcircle.org/wp-content/uploads/2019/09/FC-Logo.png" alt="Friendship Circle logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+          <span class="charity-logo-fallback" style="display:none; color:var(--coral);">Friendship Circle</span>
+        </div>
+        <p class="charity-num">03 &middot; Inclusion &amp; Special Needs</p>
+        <p class="charity-name-big">Friendship Circle</p>
+        <p class="charity-personal">For the kids who lit up when someone pulled up a chair.</p>
+        <p class="charity-desc">Friendship Circle creates meaningful friendships between teen volunteers and individuals with special needs, building confidence, community, and belonging for everyone involved.</p>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- FOOTER -->
+  <!-- Pledge Form -->
+  <section class="pledge-section" id="pledge">
+    <p class="section-label pink">Pledge Per Mile</p>
+    <h2>Pledge <em>per mile</em></h2>
+    <p>Pick a race. Pick an amount per mile. I'll do the suffering, you do the donating. After each race I'll email you your total and a direct link to give to whichever of my three charities you choose. No payment now, no pressure ever. Just your word that you're in.</p>
+    <div class="pledge-form-wrap">
+      <div class="pledge-form-left">
+        <div class="pledge-field">
+          <label>Which race?</label>
+          <select id="pledgeRace" onchange="updatePledgeTotal()">
+            <option value="">Select a race...</option>
+            <option value="Sprint" data-miles="16">Sprint Triathlon &mdash; Aug 9 (16 mi)</option>
+            <option value="Olympic" data-miles="31.4">Olympic Triathlon &mdash; Sep 2026 (31.4 mi)</option>
+            <option value="Half Ironman" data-miles="70.3">Half Ironman 70.3 &mdash; 2027 (70.3 mi)</option>
+            <option value="Full Ironman" data-miles="140.6">Full Ironman 140.6 &mdash; Nov 2027 (140.6 mi)</option>
+            <option value="All Four Races" data-miles="258.3">All Four Races (258.3 mi total)</option>
+          </select>
+        </div>
+        <div class="pledge-field">
+          <label>Per mile amount</label>
+          <div class="pledge-quick-amounts">
+            <button onclick="setPledgeAmount(0.10)" class="pledge-quick-btn">$0.10</button>
+            <button onclick="setPledgeAmount(0.25)" class="pledge-quick-btn">$0.25</button>
+            <button onclick="setPledgeAmount(0.50)" class="pledge-quick-btn">$0.50</button>
+            <button onclick="setPledgeAmount(1.00)" class="pledge-quick-btn">$1.00</button>
+          </div>
+          <input type="number" id="pledgeAmount" placeholder="or enter your own" step="0.01" min="0.01" oninput="updatePledgeTotal()">
+        </div>
+        <div class="pledge-field">
+          <label>Which charity?</label>
+          <select id="pledgeCharity">
+            <option value="">Select a charity...</option>
+            <option value="NEDA">NEDA &mdash; National Eating Disorders Association</option>
+            <option value="RAINN">RAINN &mdash; Anti-Sexual Violence</option>
+            <option value="Friendship Circle">Friendship Circle &mdash; Special Needs Inclusion</option>
+            <option value="All Three Charities">Split evenly across all three charities</option>
+          </select>
+        </div>
+        <div class="pledge-field">
+          <label>Your name</label>
+          <input type="text" id="pledgeName" placeholder="First name is fine!">
+        </div>
+        <div class="pledge-field">
+          <label>Leave a message (optional)</label>
+          <input type="text" id="pledgeMessage" placeholder="Say something nice...">
+        </div>
+        <div class="pledge-field">
+          <label>Your email</label>
+          <input type="email" id="pledgeEmail" placeholder="For your post-race receipt">
+        </div>
+        <button class="pledge-submit-btn" onclick="submitPledge()">Count me in &rarr;</button>
+        <div id="pledgeSuccess" style="display:none;" class="pledge-success">&#x1F9E1; You're in! I'll email you after each race with your total.</div>
+        <div id="pledgeError" style="display:none;" class="pledge-error">Something went wrong &mdash; please try again!</div>
+      </div>
+      <div class="pledge-form-right">
+        <div class="pledge-total-display">
+          <p class="pledge-total-label">Your projected donation</p>
+          <p class="pledge-total-amount" id="pledgeTotalDisplay">$0.00</p>
+          <p class="pledge-total-breakdown" id="pledgeBreakdown">Select a race and amount to see your total</p>
+        </div>
+        <div class="pledge-rotator" id="pledgeRotator">
+          <div class="rotator-inner">
+            <div class="rotator-slide" id="rotatorSlide">
+              <p class="rotator-empty">Be the first to pledge!</p>
+            </div>
+            <div class="rotator-dots" id="rotatorDots"></div>
+          </div>
+        </div>
+        <div class="pledge-board">
+          <p class="pledge-board-title">Who's in</p>
+          <div id="pledgeList">
+            <p style="color:var(--muted);font-size:0.85rem;">Be the first to pledge!</p>
+          </div>
+          <div class="pledge-board-total" id="pledgeBoardTotal"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Email Signup -->
+  <section class="email-section" id="signup">
+    <div class="email-inner">
+      <div class="email-left">
+        <p class="section-label">Stay in the loop</p>
+        <h2 class="email-heading">Want updates<br>when things get <em>interesting?</em></h2>
+        <p class="email-sub">Race recaps. Training meltdowns. The occasional bike fall. Drop your email and I'll send you updates that are actually worth reading.</p>
+      </div>
+      <div class="email-right">
+        <div class="email-form-wrap">
+          <p class="email-form-label">Get race updates</p>
+          <div class="email-field-row">
+            <input type="text" class="email-input" placeholder="Your first name" id="signupName">
+            <input type="email" class="email-input" placeholder="your@email.com" id="signupEmail">
+            <a href="https://gogigiruns.substack.com" target="_blank" class="email-btn" style="display:block;text-align:center;text-decoration:none;">I'm in &rarr;</a>
+          </div>
+          <p class="email-fine-print">Takes you to Substack to subscribe. No spam ever. Unsubscribe anytime.</p>
+        </div>
+        <div class="email-perks">
+          <div class="email-perk"><span class="perk-icon">&#x1F3CA;</span><span>Race day recaps</span></div>
+          <div class="email-perk"><span class="perk-icon">&#x1F6B4;</span><span>Training updates (the real ones)</span></div>
+          <div class="email-perk"><span class="perk-icon">&#x1F9E1;</span><span>Fundraising milestones</span></div>
+          <div class="email-perk"><span class="perk-icon">&#x1F605;</span><span>Stories like the red light incident</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /tab-give -->
+
+
+<!-- ═══════════════════════════════════════════
+     TAB: FAQ
+═══════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-faq">
+
+  <section class="faq-section">
+    <p class="section-label">FAQ</p>
+    <h2>Good <em>questions.</em></h2>
+    <p class="faq-intro">Everything you'd want to know before pledging, donating, or just being nosy. Which is allowed.</p>
+    <div class="faq-grid">
+      <div>
+        <div class="faq-item">
+          <p class="faq-q">How does the pledge thing work?</p>
+          <p class="faq-a">Pick a race, pick an amount per mile. I do the suffering. After I cross the finish line, I'll email you your total and a direct link to donate to your chosen charity. No payment now, just your word that you're in.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">Where does the money actually go?</p>
+          <p class="faq-a">Straight to whichever charity you choose: NEDA, RAINN, or Friendship Circle. I never see a cent of it. You donate directly to their official pages.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">Can I just donate without pledging per mile?</p>
+          <p class="faq-a">Absolutely. Click any charity card on the Give page and it takes you straight to their donation page. No pledging required.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">What if you don't finish a race?</p>
+          <p class="faq-a">Then you don't owe anything. Simple as that. (I plan on finishing.)</p>
+        </div>
+      </div>
+      <div>
+        <div class="faq-item">
+          <p class="faq-q">Can I pledge for all of your races?</p>
+          <p class="faq-a">Yes! Select "All Four Races" in the pledge form and I'll reach out after each one with your running total.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">Do I have to make an account or sign up somewhere?</p>
+          <p class="faq-a">Nope. Just your name, email, and your pledge. That's it. No account, no app, no login. I keep it simple.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">Why these three charities?</p>
+          <p class="faq-a">They're close to my heart and I'll leave it at that. NEDA, RAINN, and Friendship Circle each do work I believe in. You can read more about each on the Give page.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">How do I follow along?</p>
+          <p class="faq-a">Best way is Substack. I post race recaps, training updates, and the occasional story that's too long for Instagram. Link is in the Blog tab. You can also follow me <a href="https://www.instagram.com/gogigiruns" target="_blank" style="color:var(--teal);text-decoration:none;border-bottom:1px solid rgba(90,172,207,0.4);">@gogigiruns</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="faq-cta-strip">
+    <p>Ready to be part of it?</p>
+    <a href="#" onclick="showTab('give'); return false;">Make a pledge &rarr;</a>
+  </div>
+
+</div><!-- /tab-faq -->
+
+
+<!-- FOOTER (always visible) -->
 <footer>
   <div class="footer-top">
     <div>
       <span class="footer-logo">What, like it's hard?</span>
-      <p class="footer-tagline">Training for four races. Racing for three causes. Come be part of it.</p>
+      <p class="footer-tagline">Training for five races. Racing for three causes. Come be part of it.</p>
     </div>
     <div class="footer-col">
       <h4>Navigate</h4>
       <ul>
-        <li><a href="#story">My story</a></li>
-        <li><a href="#races">Race countdowns</a></li>
-        <li><a href="#updates">Training updates</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#pledge">Pledge per mile</a></li>
+        <li><a href="#" onclick="showTab('home')">Home</a></li>
+        <li><a href="#" onclick="showTab('races')">Race countdowns</a></li>
+        <li><a href="#" onclick="showTab('blog')">Training updates</a></li>
+        <li><a href="#" onclick="showTab('gallery')">Gallery</a></li>
+        <li><a href="#" onclick="showTab('give')">Pledge per mile</a></li>
+        <li><a href="#" onclick="showTab('faq')">FAQ</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Charities</h4>
       <ul>
-        <li><a href="https://www.nationaleatingdisorders.org" target="_blank">NEDA ↗</a></li>
-        <li><a href="https://www.rainn.org" target="_blank">RAINN ↗</a></li>
-        <li><a href="https://www.friendshipcircle.org" target="_blank">Friendship Circle ↗</a></li>
+        <li><a href="https://www.nationaleatingdisorders.org" target="_blank">NEDA &#x2197;</a></li>
+        <li><a href="https://www.rainn.org" target="_blank">RAINN &#x2197;</a></li>
+        <li><a href="https://www.friendshipcircle.org" target="_blank">Friendship Circle &#x2197;</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <p class="footer-copy">© 2026 Gigi · Made with heart and sore legs 🧡</p>
+    <p class="footer-copy">&copy; 2026 Gigi &middot; Made with heart and sore legs &#x1F9E1;</p>
     <p class="footer-disclaimer">All donations go directly to the charities listed. This page doesn't collect any money itself. Each donate link takes you straight to the official charity website.</p>
   </div>
 </footer>
 
 <script>
-  function openMenu() { document.getElementById('mobileMenu').classList.add('open'); document.body.style.overflow = 'hidden'; }
-  function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); document.body.style.overflow = ''; }
+// ─── TAB SYSTEM ───
+function showTab(name) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  const panel = document.getElementById('tab-' + name);
+  if (panel) panel.classList.add('active');
+  const btn = document.querySelector('[data-tab="' + name + '"]');
+  if (btn) btn.classList.add('active');
+  window.scrollTo(0, 0);
+  // Load miles when home tab shown
+  if (name === 'home' && !window._milesLoaded) { loadMiles(); window._milesLoaded = true; }
+  if (name === 'training' && !window._trainingLoaded) { loadTotalHours(); loadTraining(); window._trainingLoaded = true; }
+  if (name === 'give' && !window._pledgesLoaded) { loadPledges(); window._pledgesLoaded = true; }
+}
 
-  function updateTimers() {
-    const now = new Date();
-    const race1 = new Date('2026-09-19T07:00:00');
-    const diff1 = race1 - now;
-    if (diff1 > 0) {
-      document.getElementById('d1').textContent = Math.floor(diff1 / 86400000);
-      document.getElementById('h1').textContent = Math.floor((diff1 % 86400000) / 3600000);
-      document.getElementById('m1').textContent = Math.floor((diff1 % 3600000) / 60000);
-    } else {
-      document.getElementById('d1').textContent = 'Done!';
-      document.getElementById('h1').textContent = '';
-      document.getElementById('m1').textContent = '';
-    }
-    const days1 = Math.floor(diff1 / 86400000);
-    const getPh = (days, done) => {
-      if (done) return "IT'S RACE DAY! GO ME!!";
-      if (days <= 13) return "Okay this is getting real";
-      if (days <= 29) return "Lance please answer your phone";
-      if (days <= 59) return "Carb loading is a sport right?";
-      if (days <= 99) return "TikTok triathlon deep dives are getting more specific";
-      return "Still time to pretend I didn't sign up for this";
-    };
-    const p1 = document.getElementById('race1phrase'); if (p1) p1.textContent = getPh(days1, diff1 <= 0);
+// ─── MOBILE MENU ───
+function openMenu() { document.getElementById('mobileMenu').classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); document.body.style.overflow = ''; }
+
+// ─── TIMERS ───
+function updateTimers() {
+  const now = new Date();
+  const race1 = new Date('2026-09-19T07:00:00');
+  const diff1 = race1 - now;
+  if (diff1 > 0) {
+    document.getElementById('d1').textContent = Math.floor(diff1 / 86400000);
+    document.getElementById('h1').textContent = Math.floor((diff1 % 86400000) / 3600000);
+    document.getElementById('m1').textContent = Math.floor((diff1 % 3600000) / 60000);
+  } else {
+    document.getElementById('d1').textContent = 'Done!';
+    document.getElementById('h1').textContent = '';
+    document.getElementById('m1').textContent = '';
   }
-  updateTimers();
-  setInterval(updateTimers, 30000);
+  const days1 = Math.floor(diff1 / 86400000);
+  const getPh = (days, done) => {
+    if (done) return "IT'S RACE DAY! GO ME!!";
+    if (days <= 13) return "Okay this is getting real";
+    if (days <= 29) return "Lance please answer your phone";
+    if (days <= 59) return "Carb loading is a sport right?";
+    if (days <= 99) return "TikTok triathlon deep dives are getting more specific";
+    return "Still time to pretend I didn't sign up for this";
+  };
+  const p1 = document.getElementById('race1phrase'); if (p1) p1.textContent = getPh(days1, diff1 <= 0);
+}
+updateTimers();
+setInterval(updateTimers, 30000);
 
-  const raceMiles = { 'Sprint': 16, 'Olympic': 31.4, 'Half Ironman': 70.3, 'Full Ironman': 140.6, 'All Four Races': 258.3 };
+// ─── PLEDGE ───
+const raceMiles = { 'Sprint': 16, 'Olympic': 31.4, 'Half Ironman': 70.3, 'Full Ironman': 140.6, 'All Four Races': 258.3 };
 
-  function setPledgeAmount(amount) {
-    document.getElementById('pledgeAmount').value = amount;
-    document.querySelectorAll('.pledge-quick-btn').forEach(b => b.classList.remove('active'));
-    event.target.classList.add('active');
-    updatePledgeTotal();
+function setPledgeAmount(amount) {
+  document.getElementById('pledgeAmount').value = amount;
+  document.querySelectorAll('.pledge-quick-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  updatePledgeTotal();
+}
+
+function updatePledgeTotal() {
+  const race = document.getElementById('pledgeRace').value;
+  const amount = parseFloat(document.getElementById('pledgeAmount').value) || 0;
+  const miles = raceMiles[race] || 0;
+  const total = (miles * amount).toFixed(2);
+  document.getElementById('pledgeTotalDisplay').textContent = '$' + total;
+  if (race && amount > 0) {
+    document.getElementById('pledgeBreakdown').textContent = miles + ' miles × $' + amount.toFixed(2) + '/mile = $' + total;
+  } else {
+    document.getElementById('pledgeBreakdown').textContent = 'Select a race and amount to see your total';
   }
+}
 
-  function updatePledgeTotal() {
-    const race = document.getElementById('pledgeRace').value;
-    const amount = parseFloat(document.getElementById('pledgeAmount').value) || 0;
-    const miles = raceMiles[race] || 0;
-    const total = (miles * amount).toFixed(2);
-    document.getElementById('pledgeTotalDisplay').textContent = '$' + total;
-    if (race && amount > 0) {
-      document.getElementById('pledgeBreakdown').textContent = miles + ' miles × $' + amount.toFixed(2) + '/mile = $' + total;
-    } else {
-      document.getElementById('pledgeBreakdown').textContent = 'Select a race and amount to see your total';
-    }
-  }
+async function submitPledge() {
+  const name = document.getElementById('pledgeName').value.trim();
+  const email = document.getElementById('pledgeEmail').value.trim();
+  const race = document.getElementById('pledgeRace').value;
+  const charity = document.getElementById('pledgeCharity').value;
+  const perMileAmount = parseFloat(document.getElementById('pledgeAmount').value);
+  const miles = raceMiles[race] || 0;
+  const projectedTotal = (miles * perMileAmount).toFixed(2);
+  if (!name || !email || !race || !charity || !perMileAmount) { alert('Please fill in all fields!'); return; }
+  try {
+    const res = await fetch('/api/pledges', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, race, charity, perMileAmount, projectedTotal })
+    });
+    const data = await res.json();
+    if (data.success) {
+      document.getElementById('pledgeSuccess').style.display = 'block';
+      document.getElementById('pledgeError').style.display = 'none';
+      loadPledges();
+    } else { document.getElementById('pledgeError').style.display = 'block'; }
+  } catch(e) { document.getElementById('pledgeError').style.display = 'block'; }
+}
 
-  async function submitPledge() {
-    const name = document.getElementById('pledgeName').value.trim();
-    const email = document.getElementById('pledgeEmail').value.trim();
-    const race = document.getElementById('pledgeRace').value;
-    const charity = document.getElementById('pledgeCharity').value;
-    const perMileAmount = parseFloat(document.getElementById('pledgeAmount').value);
-    const miles = raceMiles[race] || 0;
-    const projectedTotal = (miles * perMileAmount).toFixed(2);
-    if (!name || !email || !race || !charity || !perMileAmount) { alert('Please fill in all fields!'); return; }
-    try {
-      const res = await fetch('/api/pledges', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, race, charity, perMileAmount, projectedTotal })
-      });
-      const data = await res.json();
-      if (data.success) {
-        document.getElementById('pledgeSuccess').style.display = 'block';
-        document.getElementById('pledgeError').style.display = 'none';
-        loadPledges();
-      } else { document.getElementById('pledgeError').style.display = 'block'; }
-    } catch(e) { document.getElementById('pledgeError').style.display = 'block'; }
-  }
+let rotatorInterval = null, rotatorIndex = 0, rotatorPledges = [];
 
-  let rotatorInterval = null, rotatorIndex = 0, rotatorPledges = [];
+function showRotatorSlide(i) {
+  const slide = document.getElementById('rotatorSlide');
+  const dots = document.getElementById('rotatorDots');
+  if (!slide || !rotatorPledges.length) return;
+  const f = rotatorPledges[i].fields;
+  slide.style.opacity = '0';
+  setTimeout(() => {
+    const msg = f.Message ? '<span class="rotator-message">"' + f.Message + '"</span>' : '';
+    slide.innerHTML = '<span class="rotator-name">' + f.Name + '</span><span class="rotator-details">$' + parseFloat(f['Per Mile Amount']).toFixed(2) + '/mile &middot; ' + f.Race + ' &middot; ' + f.Charity + '</span><span class="rotator-projected">$' + parseFloat(f['Projected Total']).toFixed(2) + ' projected</span>' + msg;
+    slide.style.opacity = '1';
+    if (dots) dots.querySelectorAll('.rotator-dot').forEach((d, j) => d.classList.toggle('active', j === i));
+  }, 200);
+}
 
-  function showRotatorSlide(i) {
-    const slide = document.getElementById('rotatorSlide');
+async function loadPledges() {
+  try {
+    const res = await fetch('/api/pledges');
+    const data = await res.json();
+    const records = (data.records || []).filter(r => r.fields && r.fields.Name);
+    rotatorPledges = records;
     const dots = document.getElementById('rotatorDots');
-    if (!slide || !rotatorPledges.length) return;
-    const f = rotatorPledges[i].fields;
-    slide.style.opacity = '0';
-    setTimeout(() => {
-      const msg = f.Message ? '<span class="rotator-message">"' + f.Message + '"</span>' : '';
-      slide.innerHTML = '<span class="rotator-name">' + f.Name + '</span><span class="rotator-details">$' + parseFloat(f['Per Mile Amount']).toFixed(2) + '/mile &middot; ' + f.Race + ' &middot; ' + f.Charity + '</span><span class="rotator-projected">$' + parseFloat(f['Projected Total']).toFixed(2) + ' projected</span>' + msg;
-      slide.style.opacity = '1';
-      if (dots) dots.querySelectorAll('.rotator-dot').forEach((d, j) => d.classList.toggle('active', j === i));
-    }, 200);
-  }
+    if (rotatorPledges.length > 0) {
+      if (dots) dots.innerHTML = rotatorPledges.map((_, i) => '<div class="rotator-dot' + (i === 0 ? ' active' : '') + '" onclick="showRotatorSlide(' + i + ')"></div>').join('');
+      showRotatorSlide(0);
+      if (rotatorInterval) clearInterval(rotatorInterval);
+      if (rotatorPledges.length > 1) rotatorInterval = setInterval(() => { rotatorIndex = (rotatorIndex + 1) % rotatorPledges.length; showRotatorSlide(rotatorIndex); }, 5000);
+    }
+    if (!rotatorPledges.length) {
+      document.getElementById('pledgeList').innerHTML = '<p style="color:var(--muted);font-size:0.85rem;">Be the first to pledge!</p>';
+      return;
+    }
+    let total = 0; let html = '';
+    rotatorPledges.forEach(r => {
+      const f = r.fields; const proj = parseFloat(f['Projected Total'] || 0); total += proj;
+      html += '<div class="pledge-board-item"><div><span class="pledge-board-name">' + f.Name + '</span><br><span class="pledge-board-details">$' + parseFloat(f['Per Mile Amount']).toFixed(2) + '/mi &middot; ' + f.Race + ' &middot; ' + f.Charity + '</span></div><span class="pledge-board-amount">$' + proj.toFixed(2) + '</span></div>';
+    });
+    document.getElementById('pledgeList').innerHTML = html;
+    if (document.getElementById('pledgeBoardTotal')) document.getElementById('pledgeBoardTotal').innerHTML = 'Total pledged: $' + total.toFixed(2) + ' across ' + rotatorPledges.length + ' pledger' + (rotatorPledges.length !== 1 ? 's' : '');
+  } catch(e) { console.log('pledge error', e); }
+}
 
-  async function loadPledges() {
-    try {
-      const res = await fetch('/api/pledges');
-      const data = await res.json();
-      const records = (data.records || []).filter(r => r.fields && r.fields.Name);
-      rotatorPledges = records;
-      const dots = document.getElementById('rotatorDots');
-      if (rotatorPledges.length > 0) {
-        if (dots) dots.innerHTML = rotatorPledges.map((_, i) => '<div class="rotator-dot' + (i === 0 ? ' active' : '') + '" onclick="showRotatorSlide(' + i + ')"></div>').join('');
-        showRotatorSlide(0);
-        if (rotatorInterval) clearInterval(rotatorInterval);
-        if (rotatorPledges.length > 1) rotatorInterval = setInterval(() => { rotatorIndex = (rotatorIndex + 1) % rotatorPledges.length; showRotatorSlide(rotatorIndex); }, 5000);
-      }
-      if (!rotatorPledges.length) {
-        document.getElementById('pledgeList').innerHTML = '<p style="color:var(--muted);font-size:0.85rem;">Be the first to pledge!</p>';
-        return;
-      }
-      let total = 0; let html = '';
-      rotatorPledges.forEach(r => {
-        const f = r.fields; const proj = parseFloat(f['Projected Total'] || 0); total += proj;
-        html += '<div class="pledge-board-item"><div><span class="pledge-board-name">' + f.Name + '</span><br><span class="pledge-board-details">$' + parseFloat(f['Per Mile Amount']).toFixed(2) + '/mi &middot; ' + f.Race + ' &middot; ' + f.Charity + '</span></div><span class="pledge-board-amount">$' + proj.toFixed(2) + '</span></div>';
-      });
-      document.getElementById('pledgeList').innerHTML = html;
-      if (document.getElementById('pledgeBoardTotal')) document.getElementById('pledgeBoardTotal').innerHTML = 'Total pledged: $' + total.toFixed(2) + ' across ' + rotatorPledges.length + ' pledger' + (rotatorPledges.length !== 1 ? 's' : '');
-    } catch(e) { console.log('pledge error', e); }
-  }
+// ─── MILES ───
+async function loadMiles() {
+  try {
+    const res = await fetch('/api/strava');
+    const weeks = await res.json();
+    let swim = 0, bike = 0, run = 0;
+    Object.keys(weeks).filter(k => k >= '2026-05-03').forEach(week => {
+      swim += (weeks[week].swim && weeks[week].swim.distance) || 0;
+      bike += (weeks[week].bike && weeks[week].bike.distance) || 0;
+      run += (weeks[week].run && weeks[week].run.distance) || 0;
+    });
+    const total = swim + bike + run;
+    function animateCount(id, target) {
+      const el = document.getElementById(id); if (!el) return;
+      const duration = 1500; const start = performance.now();
+      function update(time) { const p = Math.min((time - start) / duration, 1); const e = 1 - Math.pow(1-p,3); el.textContent = (target * e).toFixed(1); if (p < 1) requestAnimationFrame(update); else el.textContent = target.toFixed(1); }
+      requestAnimationFrame(update);
+    }
+    animateCount('swimMiles', swim);
+    animateCount('bikeMiles', bike);
+    animateCount('runMiles', run);
+    animateCount('totalMiles', total);
+  } catch(e) { console.log('miles error', e); }
+}
 
-  async function loadMiles() {
-    try {
-      const res = await fetch('/api/strava');
-      const weeks = await res.json();
-      let swim = 0, bike = 0, run = 0;
-      Object.keys(weeks).filter(k => k >= '2026-05-03').forEach(week => {
-        swim += (weeks[week].swim && weeks[week].swim.distance) || 0;
-        bike += (weeks[week].bike && weeks[week].bike.distance) || 0;
-        run += (weeks[week].run && weeks[week].run.distance) || 0;
-      });
-      const total = swim + bike + run;
-      function animateCount(id, target) {
-        const el = document.getElementById(id); if (!el) return;
-        const duration = 1500; const start = performance.now();
-        function update(time) { const p = Math.min((time - start) / duration, 1); const e = 1 - Math.pow(1-p,3); el.textContent = (target * e).toFixed(1); if (p < 1) requestAnimationFrame(update); else el.textContent = target.toFixed(1); }
-        requestAnimationFrame(update);
-      }
-      const observer = new IntersectionObserver(entries => {
-        if (entries[0].isIntersecting) { animateCount('swimMiles', swim); animateCount('bikeMiles', bike); animateCount('runMiles', run); animateCount('totalMiles', total); observer.disconnect(); }
-      }, { threshold: 0.5 });
-      const el = document.getElementById('swimMiles'); if (el) observer.observe(el);
-    } catch(e) { console.log('miles error', e); }
-  }
+// ─── TRAINING ───
+async function loadTotalHours() {
+  try {
+    const res = await fetch('/api/strava');
+    const weeks = await res.json();
+    const weekKeys = Object.keys(weeks).filter(k => k >= '2026-05-03');
+    let totalMins = 0, totalSessions = 0;
+    weekKeys.forEach(week => {
+      const w = weeks[week];
+      totalMins += (w.swim.time||0) + (w.bike.time||0) + (w.run.time||0) + (w.strength.time||0);
+      if (w.swim.time > 0) totalSessions++;
+      if (w.bike.time > 0) totalSessions++;
+      if (w.run.time > 0) totalSessions++;
+      if (w.strength.time > 0) totalSessions++;
+    });
+    document.getElementById('totalHours').textContent = (totalMins / 60).toFixed(1);
+    document.getElementById('totalSessions').textContent = totalSessions;
+    document.getElementById('totalWeeks').textContent = weekKeys.length;
+  } catch(e) { console.log('hours error', e); }
+}
 
-  async function loadTotalHours() {
-    try {
-      const res = await fetch('/api/strava');
-      const weeks = await res.json();
-      const weekKeys = Object.keys(weeks).filter(k => k >= '2026-05-03');
-      let totalMins = 0, totalSessions = 0;
-      weekKeys.forEach(week => {
-        const w = weeks[week];
-        totalMins += (w.swim.time||0) + (w.bike.time||0) + (w.run.time||0) + (w.strength.time||0);
-        if (w.swim.time > 0) totalSessions++;
-        if (w.bike.time > 0) totalSessions++;
-        if (w.run.time > 0) totalSessions++;
-        if (w.strength.time > 0) totalSessions++;
-      });
-      document.getElementById('totalHours').textContent = (totalMins / 60).toFixed(1);
-      document.getElementById('totalSessions').textContent = totalSessions;
-      document.getElementById('totalWeeks').textContent = weekKeys.length;
-    } catch(e) { console.log('hours error', e); }
-  }
+async function loadTraining() {
+  try {
+    const res = await fetch('/api/strava');
+    const weeks = await res.json();
+    const weekKeys = Object.keys(weeks).filter(k => k >= '2026-05-03').sort();
+    if (weekKeys.length === 0) { document.getElementById('trainingLog').innerHTML = '<p style="color:var(--muted)">No training data yet!</p>'; return; }
+    let html = '<div class="training-table-wrap"><table class="training-table"><thead><tr><th>Week</th><th>Swim</th><th>Bike</th><th>Run</th><th>Strength</th></tr></thead><tbody>';
+    weekKeys.forEach((week, i) => {
+      const w = weeks[week];
+      const fmt = (mins) => mins > 0 ? (Math.floor(mins/60) > 0 ? Math.floor(mins/60) + 'h ' : '') + mins%60 + 'm' : '--';
+      const sd = parseFloat(w.swim.distance.toFixed(1)), bd = parseFloat(w.bike.distance.toFixed(1)), rd = parseFloat(w.run.distance.toFixed(1));
+      const st = w.strength && w.strength.time > 0 ? fmt(w.strength.time) : '--';
+      html += '<tr><td><strong>Week '+(i+1)+'</strong><span class="week-date">'+new Date(week).toLocaleDateString('en-US',{month:'short',day:'numeric'})+'</span></td>';
+      html += '<td>'+(sd>0?sd+' mi':'--')+'<span class="week-time">'+fmt(w.swim.time)+'</span></td>';
+      html += '<td>'+(bd>0?bd+' mi':'--')+'<span class="week-time">'+fmt(w.bike.time)+'</span></td>';
+      html += '<td>'+(rd>0?rd+' mi':'--')+'<span class="week-time">'+fmt(w.run.time)+'</span></td>';
+      html += '<td>'+st+'</td></tr>';
+    });
+    html += '</tbody></table></div>';
+    document.getElementById('trainingLog').innerHTML = html;
+  } catch(e) { document.getElementById('trainingLog').innerHTML = '<p style="color:var(--muted)">Training data loading soon!</p>'; }
+}
 
-  async function loadTraining() {
-    try {
-      const res = await fetch('/api/strava');
-      const weeks = await res.json();
-      const weekKeys = Object.keys(weeks).filter(k => k >= '2026-05-03').sort();
-      if (weekKeys.length === 0) { document.getElementById('trainingLog').innerHTML = '<p style="color:var(--muted)">No training data yet!</p>'; return; }
-      let html = '<div class="training-table-wrap"><table class="training-table"><thead><tr><th>Week</th><th>Swim</th><th>Bike</th><th>Run</th><th>Strength</th></tr></thead><tbody>';
-      weekKeys.forEach((week, i) => {
-        const w = weeks[week];
-        const fmt = (mins) => mins > 0 ? (Math.floor(mins/60) > 0 ? Math.floor(mins/60) + 'h ' : '') + mins%60 + 'm' : '--';
-        const sd = parseFloat(w.swim.distance.toFixed(1)), bd = parseFloat(w.bike.distance.toFixed(1)), rd = parseFloat(w.run.distance.toFixed(1));
-        const st = w.strength && w.strength.time > 0 ? fmt(w.strength.time) : '--';
-        html += '<tr><td><strong>Week '+(i+1)+'</strong><span class="week-date">'+new Date(week).toLocaleDateString('en-US',{month:'short',day:'numeric'})+'</span></td>';
-        html += '<td>'+(sd>0?sd+' mi':'--')+'<span class="week-time">'+fmt(w.swim.time)+'</span></td>';
-        html += '<td>'+(bd>0?bd+' mi':'--')+'<span class="week-time">'+fmt(w.bike.time)+'</span></td>';
-        html += '<td>'+(rd>0?rd+' mi':'--')+'<span class="week-time">'+fmt(w.run.time)+'</span></td>';
-        html += '<td>'+st+'</td></tr>';
-      });
-      html += '</tbody></table></div>';
-      document.getElementById('trainingLog').innerHTML = html;
-    } catch(e) { document.getElementById('trainingLog').innerHTML = '<p style="color:var(--muted)">Training data loading soon!</p>'; }
-  }
+function toggleTrainingLog() {
+  const wrap = document.getElementById('trainingLogWrap');
+  const btn = document.getElementById('trainingToggleBtn');
+  const isOpen = wrap.classList.contains('open');
+  wrap.classList.toggle('open', !isOpen);
+  btn.classList.toggle('open', !isOpen);
+  btn.querySelector('.training-toggle-arrow').style.transform = isOpen ? '' : 'rotate(180deg)';
+  btn.childNodes[0].textContent = isOpen ? 'View weekly breakdown ' : 'Hide weekly breakdown ';
+}
 
-  function toggleTrainingLog() {
-    const wrap = document.getElementById('trainingLogWrap');
-    const btn = document.getElementById('trainingToggleBtn');
-    const isOpen = wrap.classList.contains('open');
-    wrap.classList.toggle('open', !isOpen);
-    btn.classList.toggle('open', !isOpen);
-    btn.querySelector('.training-toggle-arrow').style.transform = isOpen ? '' : 'rotate(180deg)';
-    btn.childNodes[0].textContent = isOpen ? 'View weekly breakdown ' : 'Hide weekly breakdown ';
-  }
-
-  loadPledges();
-  loadMiles();
-  loadTotalHours();
-  loadTraining();
+// Init on load
+loadMiles();
+window._milesLoaded = true;
+loadPledges();
+window._pledgesLoaded = true;
 </script>
 </body>
 </html>
