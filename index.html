@@ -593,6 +593,24 @@ p.charity-num { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: upper
 .total-hours-label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); display: block; margin-top: 0.25rem; }
 /* ── TRAINING LOG ── */
 .training-section { padding: 5rem 2.5rem; background: var(--sand); }
+.training-toggle-btn {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  background: none; border: 1px solid rgba(232,104,74,0.3);
+  color: var(--coral); padding: 0.6rem 1.25rem;
+  font-size: 0.78rem; font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  cursor: pointer; border-radius: 2px; transition: all 0.2s;
+  margin-bottom: 1.5rem;
+}
+.training-toggle-btn:hover { background: rgba(232,104,74,0.06); border-color: var(--coral); }
+.training-toggle-arrow { transition: transform 0.3s ease; display: inline-block; }
+.training-toggle-btn.open .training-toggle-arrow { transform: rotate(180deg); }
+.training-log-collapsible {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.45s ease;
+}
+.training-log-collapsible.open { max-height: 4000px; }
 .training-table-wrap { overflow-x: auto; }
 .training-table {
   width: 100%; border-collapse: collapse;
@@ -908,6 +926,13 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
   </div>
 </section>
 
+
+<!-- PHOTO MOMENT -->
+<div style="height:420px; overflow:hidden; position:relative;">
+  <img src="IMG_5088.JPG" alt="Race day celebration" style="width:100%; height:100%; object-fit:cover; object-position:center 25%;">
+  <div style="position:absolute; inset:0; background:linear-gradient(to right, rgba(26,74,106,0.55) 0%, transparent 60%);"></div>
+</div>
+
 <!-- PULL QUOTES -->
 <div class="section-divider"></div>
 <section class="pullquote-section">
@@ -934,6 +959,14 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
     </div>
   </div>
 </section>
+
+
+<!-- MOTIVATIONAL QUOTE STRIP -->
+<div style="background:#7a2d4a; padding:3.5rem 2.5rem; text-align:center;">
+  <p style="font-family:'Lora',serif; font-style:italic; font-size:clamp(1.4rem,3vw,2.1rem); color:#fdf8f0; line-height:1.45; max-width:780px; margin:0 auto;">
+    "You'll never feel ready. Ready isn't a feeling&mdash;it's a decision."
+  </p>
+</div>
 
 <!-- COUNTDOWN -->
 <div class="section-divider"></div>
@@ -990,10 +1023,22 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
     <span class="total-hours-label">weeks of training</span>
   </div>
 </div>
-  <div id="trainingLog">
-    <p style="color:var(--muted);font-size:0.9rem;">Loading training data...</p>
+  <button class="training-toggle-btn" id="trainingToggleBtn" onclick="toggleTrainingLog()">
+    View weekly breakdown <span class="training-toggle-arrow">▼</span>
+  </button>
+  <div class="training-log-collapsible" id="trainingLogWrap">
+    <div id="trainingLog">
+      <p style="color:var(--muted);font-size:0.9rem;">Loading training data...</p>
+    </div>
   </div>
 </section>
+
+<!-- PHOTO MOMENT 2 -->
+<div style="height:360px; overflow:hidden; position:relative;">
+  <img src="IMG_5103 2.JPG" alt="Post-race with medal" style="width:100%; height:100%; object-fit:cover; object-position:center 35%;">
+  <div style="position:absolute; inset:0; background:linear-gradient(to left, rgba(26,74,106,0.45) 0%, transparent 55%);"></div>
+</div>
+
 <!-- FUNDRAISING -->
  <div class="section-divider"></div>
 <section class="fundraising-section" id="donate">
@@ -1200,16 +1245,12 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
       <img src="sprinttri.JPEG" style="width:100%; height:100%; object-fit:cover;" alt="Sprint Triathlon finish">
     </div>
     <div class="gallery-item" style="background:none;">
-      <img src="IMG_5088.JPG" style="width:100%; height:100%; object-fit:cover; object-position:center top;" alt="Race celebration">
-    </div>
-    <div class="gallery-item" style="background:none;">
-      <img src="IMG_5103 2.JPG" style="width:100%; height:100%; object-fit:cover;" alt="Post-race with medal">
-    </div>
-    <div class="gallery-item" style="background:none;">
       <img src="FullSizeRender 2.JPEG" style="width:100%; height:100%; object-fit:cover;" alt="Cycling action">
     </div>
     <div class="gallery-item" style="background:linear-gradient(135deg,#f5c878,#f5a87a)"></div>
     <div class="gallery-item" style="background:linear-gradient(135deg,#2d6b4a,#1a4a6a)"></div>
+    <div class="gallery-item" style="background:linear-gradient(135deg,#a8d8ea,#5aaccf)"></div>
+    <div class="gallery-item" style="background:linear-gradient(135deg,#7a2d4a,#e86848)"></div>
   </div>
 </section>
 
@@ -1560,6 +1601,18 @@ function updateTimers() {
   }
   loadTotalHours();
   loadTraining();loadMiles();
+
+  function toggleTrainingLog() {
+    const wrap = document.getElementById('trainingLogWrap');
+    const btn = document.getElementById('trainingToggleBtn');
+    const isOpen = wrap.classList.contains('open');
+    wrap.classList.toggle('open', !isOpen);
+    btn.classList.toggle('open', !isOpen);
+    btn.querySelector('.training-toggle-arrow').style.transform = isOpen ? '' : 'rotate(180deg)';
+    const label = btn.childNodes[0];
+    label.textContent = isOpen ? 'View weekly breakdown ' : 'Hide weekly breakdown ';
+  }
+
 </script>
 </body>
 </html>
