@@ -9,23 +9,34 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
+  /* Base */
   --sand:     #fdf8f0;
   --cream:    #f5f0e8;
-  --seafoam:  #e8f5f0;
+  --warm-white: #fefcf8;
+
+  /* Pinks */
+  --blush:    #f5e0e8;
+  --rose:     #e8b0c4;
+  --pink:     #d47090;
+  --maroon:   #7a2d4a;
+  --deep-maroon: #5a1a32;
+
+  /* Corals */
   --peach:    #fad4b0;
   --apricot:  #f5a87a;
   --coral:    #e86848;
-  --sunset:   #f0804a;
-  --rose:     #d45a5a;
-  --seaweed:  #c9a0b4;
-  --kelp:     #7a2d4a;
-  --ocean:    #a8d8e8;
-  --wave:     #c5e8f2;
-  --sky-blue: #a8d8ea;
-  --deep:     #5a1a32;
-  --text:     #3a2030;
-  --muted:    #9a7a88;
-  --light:    #e8c8d8;
+
+  /* Ocean */
+  --mist:     #e8f4f8;
+  --sky:      #c5e8f2;
+  --aqua:     #a8d8e8;
+  --teal:     #5aaccf;
+  --deep-sea: #2a6a8a;
+
+  /* Text */
+  --text:     #2e1820;
+  --muted:    #8a6878;
+  --light:    #b89aaa;
 }
 
 html { scroll-behavior: smooth; }
@@ -37,777 +48,770 @@ body {
   overflow-x: hidden;
 }
 
-/* ── NAV ── */
+/* ─── FILM GRAIN ─── */
+.grain {
+  position: relative;
+}
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 2;
+  mix-blend-mode: overlay;
+}
+
+/* ─── NAV ─── */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
   padding: 1.1rem 2.5rem;
-  background: rgba(253,248,240,0.93);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(90,172,207,0.2);
+  background: rgba(253,248,240,0.94);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(168,216,232,0.3);
 }
 .nav-logo {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 1.3rem; letter-spacing: 0.12em;
-  color: var(--coral); text-decoration: none;
+  color: var(--maroon); text-decoration: none;
 }
 .nav-links { display: flex; gap: 2rem; list-style: none; }
 .nav-links a {
   font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--muted); text-decoration: none; transition: color 0.2s;
 }
-.nav-links a:hover { color: var(--coral); }
+.nav-links a:hover { color: var(--teal); }
 .nav-cta {
-  background: #7a2d4a !important; color: var(--sand) !important;
+  background: var(--maroon) !important; color: var(--sand) !important;
   padding: 0.5rem 1.4rem; border-radius: 2px; font-weight: 600 !important;
-  box-shadow: 0 2px 12px rgba(122,45,74,0.35);
 }
-.nav-cta:hover { background: var(--coral) !important; box-shadow: 0 4px 18px rgba(122,45,74,0.5) !important; }
+.nav-cta:hover { background: var(--coral) !important; color: var(--sand) !important; }
 
-/* ── HERO ── */
+/* ─── HERO ─── */
 .hero {
   min-height: 100vh;
   display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 0 2.5rem 5rem;
+  padding: 0 2.5rem 6rem;
   position: relative; overflow: hidden;
 }
 .hero-sky {
   position: absolute; inset: 0;
   background: url('IMG_3952.JPG') center center / cover no-repeat;
 }
+.hero-sky::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(253,248,240,0.05) 0%,
+    rgba(253,248,240,0.08) 40%,
+    rgba(253,248,240,0.35) 100%
+  );
+}
 .hero-content { position: relative; z-index: 2; max-width: 860px; }
 .hero-eyebrow {
-  font-size: 0.72rem; letter-spacing: 0.28em; text-transform: uppercase;
-  color: #7a2d4a; margin-bottom: 1rem;
-  display: flex; align-items: center; gap: 0.75rem;
-  font-weight: 400;
+  font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: rgba(253,248,240,0.85); margin-bottom: 1rem;
+  display: flex; align-items: center; gap: 0.75rem; font-weight: 400;
 }
-.hero-eyebrow::before { content:''; display:block; width:2rem; height:1px; background:#7a2d4a; }
+.hero-eyebrow::before { content:''; display:block; width:2rem; height:1px; background:rgba(253,248,240,0.6); }
 h1 {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(3.5rem, 10vw, 8rem);
-  line-height: 0.9; letter-spacing: 0.01em;
-  color: #7a2d4a;
+  line-height: 0.88; letter-spacing: 0.01em;
+  color: #ffffff;
   margin-bottom: 1.5rem;
+  text-shadow: 0 2px 40px rgba(0,0,0,0.15);
 }
 h1 em {
   font-style: italic; font-family: 'Lora', serif;
-  color: #7a2d4a; font-size: 0.85em;
+  color: var(--sky); font-size: 0.85em;
 }
 .hero-sub {
-  font-size: clamp(1rem, 1.8vw, 1.15rem);
-  color: #7a2d4a;
-  max-width: 500px; line-height: 1.75; margin-bottom: 2.5rem;
-  font-weight: 400;
+  font-size: clamp(1rem, 1.8vw, 1.1rem);
+  color: rgba(253,248,240,0.88);
+  max-width: 520px; line-height: 1.8; margin-bottom: 2.5rem; font-weight: 300;
 }
 .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
 .btn-primary {
   display: inline-flex; align-items: center; gap: 0.5rem;
-  background: #7a2d4a; color: var(--sand);
-  padding: 1.1rem 2.4rem; font-size: 1rem;
-  font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase;
+  background: var(--maroon); color: var(--sand);
+  padding: 1rem 2.2rem; font-size: 0.88rem;
+  font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
   text-decoration: none; transition: all 0.2s;
   clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
-  box-shadow: 0 4px 20px rgba(122,45,74,0.45);
+  box-shadow: 0 4px 24px rgba(122,45,74,0.4);
   animation: pledgePulse 2.5s ease-in-out infinite;
 }
-.btn-primary:hover { background: var(--coral); transform: translateY(-3px); box-shadow: 0 8px 30px rgba(122,45,74,0.55); }
+.btn-primary:hover { background: var(--coral); transform: translateY(-2px); }
 @keyframes pledgePulse {
-  0%, 100% { box-shadow: 0 4px 20px rgba(122,45,74,0.45); }
-  50% { box-shadow: 0 6px 30px rgba(122,45,74,0.7); }
+  0%, 100% { box-shadow: 0 4px 24px rgba(122,45,74,0.4); }
+  50% { box-shadow: 0 6px 32px rgba(122,45,74,0.65); }
 }
 .btn-secondary {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  background: transparent; color: #7a2d4a;
-  padding: 0.9rem 1.9rem; font-size: 0.88rem;
-  font-weight: 300; letter-spacing: 0.07em; text-transform: uppercase;
-  text-decoration: none; border: 1px solid rgba(122,45,74,0.35); transition: all 0.2s;
+  display: inline-flex; align-items: center;
+  background: rgba(253,248,240,0.15); color: var(--sand);
+  padding: 0.9rem 1.9rem; font-size: 0.85rem; font-weight: 300;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  text-decoration: none; border: 1px solid rgba(253,248,240,0.4);
+  transition: all 0.2s; backdrop-filter: blur(4px);
 }
-.btn-secondary:hover { border-color: #7a2d4a; background: rgba(122,45,74,0.08); }
-/* ── TICKER ── */
-.race-ticker { background: #7a2d4a; padding: 0.7rem 0; overflow: hidden; }
+.btn-secondary:hover { background: rgba(253,248,240,0.25); border-color: rgba(253,248,240,0.7); }
+
+/* ─── TICKER ─── */
+.race-ticker { background: var(--maroon); padding: 0.7rem 0; overflow: hidden; }
 .ticker-track {
   display: flex; gap: 4rem;
   animation: ticker 32s linear infinite; white-space: nowrap;
 }
 .ticker-item {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 0.95rem; letter-spacing: 0.2em; color: var(--sand); flex-shrink: 0;
+  font-size: 0.9rem; letter-spacing: 0.2em; color: rgba(253,248,240,0.85); flex-shrink: 0;
 }
-.ticker-dot { color: rgba(253,246,237,0.5); }
+.ticker-dot { color: rgba(253,248,240,0.35); }
 @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-/* ── SECTION SHARED ── */
-/* ── SECTION DIVIDER ── */
-.section-divider {
-  height: 3px;
-  background: linear-gradient(90deg, #7a2d4a, #e86848, #7a2d4a);
-  opacity: 0.4;
-}
+/* ─── SHARED ─── */
 .section-label {
-  font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase;
-  color: #7a2d4a; margin-bottom: 0.75rem;
+  font-size: 0.66rem; letter-spacing: 0.32em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 0.75rem;
   display: flex; align-items: center; gap: 0.65rem;
 }
-.section-label::before { content:''; display:block; width:1.5rem; height:1px; background:#7a2d4a; }
+.section-label::before { content:''; display:block; width:1.5rem; height:1px; background:var(--teal); }
+.section-label.pink { color: var(--maroon); }
+.section-label.pink::before { background: var(--maroon); }
 
-/* ── COUNTDOWN ── */
-.countdown-section {
-  padding: 5rem 3rem;
-  background: var(--sand)
-}
-.countdown-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr); padding: 0 1rem; gap: 2rem; margin-top: 2rem;
-}
-.countdown-race {
-  background: linear-gradient(135deg, #7a2d4a 0%, #b05070 100%);
-  border: 1px solid rgba(74,140,106,0.2);
-  border-radius: 4px; padding: 2.5rem;
-  position: relative; overflow: hidden;
-}
-.countdown-race::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, #7a2d4a, #c96080);
-}
-.race-name {
-  font-family: 'Bebas Neue', sans-serif;
-font-size: 1.5rem; letter-spacing: 0.05em; color: var(--sand); margin-bottom: 0.2rem;}
-
-.race-date { font-size: 0.75rem; color: rgba(253,248,240,0.5);
- letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.5rem; }
-.timer-display { display: flex; gap: 1.25rem; }
-.timer-unit { text-align: center; }
-.timer-num {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 2.6rem; line-height: 1; color: var(--apricot);
-}
-.timer-label { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(253,248,240,0.6)}
-.race-tbd {
-  font-family: 'Lora', serif; font-style: italic;
-  font-size: 0.9rem; color: rgba(253,248,240,0.5); margin-top: 0.5rem;
-}
-
-/* ── STORY ── */
-.story-section {
-  padding: 5rem 2.5rem;
-  background: #2e0e1a;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
-  position: relative; overflow: hidden;
-}
-.story-section::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse 70% 60% at 80% 50%, rgba(90,172,207,0.12) 0%, transparent 70%),
-              radial-gradient(ellipse 50% 40% at 10% 80%, rgba(74,140,106,0.1) 0%, transparent 60%);
-  pointer-events: none;
-}
-.story-left { position: relative; z-index: 1; }
-.story-left .section-label { color: var(--sky-blue); }
-.story-left .section-label::before { background: var(--sky-blue); }
-.story-left h2 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2.5rem, 5vw, 4.2rem); line-height: 0.95;
-  color: var(--sand); margin-bottom: 2rem;
-}
-.story-left h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--sky-blue); }
-.story-body { font-size: 1rem; line-height: 1.9; color: rgba(253,248,240,0.78); }
-.story-body p { margin-bottom: 1.25rem; }
-.story-body strong { color: var(--peach); font-weight: 500; }
-.story-stats {
-  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px;
-  background: rgba(200,140,172,207,0.15);
-  margin-top: 2.5rem;
-  border: 1px solid rgba(90,172,207,0.15);
-}
-.story-stat { background: rgba(200,140,170,0.1); padding: 1.5rem; }
-.stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.6rem; color: var(--apricot); line-height: 1; }
-.stat-label { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--light); margin-top: 0.25rem; }
-.story-image-wrap { position: relative; z-index: 1; }
-.story-image-placeholder {
-  aspect-ratio: 3/4;
-  background: linear-gradient(160deg, #e8b0c0 0%, #c96080 60%, #7a2d4a 100%);
-  border-radius: 4px; display: flex; align-items: center; justify-content: center;
-  position: relative; overflow: hidden;
-}
-.story-image-placeholder::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 50% 30%, rgba(245,200,120,0.15) 0%, transparent 60%);
-}
-.photo-label {
-  font-family: 'Lora', serif; font-style: italic;
-  font-size: 1rem; color: rgba(253,246,237,0.25); position: relative; z-index: 1;
-}
-.photo-upload-hint {
-  position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
-  font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
-  color: rgba(253,246,237,0.18); white-space: nowrap;
-}
-/* ── PLEDGE SECTION ── */
-.pledge-section { padding: 5rem 2.5rem; background: var(--cream); }
-.pledge-form-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 2rem; }
-.pledge-field { margin-bottom: 1.25rem; }
-.pledge-field label { display: block; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
-.pledge-field select, .pledge-field input[type="text"], .pledge-field input[type="email"], .pledge-field input[type="number"] {
-  width: 100%; padding: 0.75rem 1rem; border: 1px solid rgba(232,104,74,0.25);
-  background: var(--sand); color: var(--text); font-family: 'DM Sans', sans-serif;
-  font-size: 0.9rem; border-radius: 3px; outline: none; transition: border-color 0.2s;
-}
-.pledge-field select:focus, .pledge-field input:focus { border-color: var(--coral); }
-.pledge-quick-amounts { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
-.pledge-quick-btn {
-  background: var(--sand); border: 1px solid rgba(232,104,74,0.3); color: var(--text);
-  padding: 0.4rem 0.85rem; font-size: 0.82rem; cursor: pointer; border-radius: 2px;
-  font-family: 'DM Sans', sans-serif; transition: all 0.2s;
-}
-.pledge-quick-btn:hover, .pledge-quick-btn.active { background: var(--coral); color: var(--sand); border-color: var(--coral); }
-.pledge-submit-btn {
-  width: 100%; background: var(--coral); color: var(--sand); border: none;
-  padding: 1rem; font-size: 0.9rem; font-weight: 500; letter-spacing: 0.07em;
-  text-transform: uppercase; cursor: pointer; border-radius: 3px;
-  font-family: 'DM Sans', sans-serif; transition: all 0.2s; margin-top: 0.5rem;
-}
-.pledge-submit-btn:hover { background: var(--sunset); transform: translateY(-1px); }
-.pledge-success { background: rgba(168,216,232,0.2); border: 1px solid rgba(168,216,232,0.4); color: #4a90c4; padding: 0.85rem 1rem; border-radius: 3px; font-size: 0.9rem; margin-top: 1rem; }
-.pledge-error { background: rgba(232,104,74,0.1); border: 1px solid rgba(232,104,74,0.3); color: var(--coral); padding: 0.85rem 1rem; border-radius: 3px; font-size: 0.9rem; margin-top: 1rem; }
-.pledge-total-display { background: linear-gradient(135deg, #f5c878 0%, #f5a87a 50%, #e86848 100%); padding: 2rem; border-radius: 4px; text-align: center; margin-bottom: 1.5rem; }
-.pledge-total-label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(26,74,106,0.7); margin-bottom: 0.5rem; }
-.pledge-total-amount { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: #7a2d4a; line-height: 1; margin-bottom: 0.5rem; }
-.pledge-total-breakdown { font-size: 0.82rem; color: rgba(26,74,106,0.6); line-height: 1.5; }
-.pledge-rotator {
-background: linear-gradient(135deg, #e86848 0%, #7a2d4a 100%);
-  border-radius: 8px; padding: 2.5rem 2rem;
-  margin-bottom: 1.5rem; min-height: 160px;
-  display: flex; align-items: center; justify-content: center;
-  position: relative; overflow: hidden;
-}
-.pledge-rotator::before {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(245,168,122,0.08) 0%, transparent 70%);
-}
-.rotator-inner { text-align: center; position: relative; z-index: 1; width: 100%; }
-.rotator-slide { transition: opacity 0.4s; }
-.rotator-name { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--apricot); letter-spacing: 0.08em; display: block; margin-bottom: 0.25rem; }
-.rotator-details { font-size: 0.78rem; color: rgba(253,248,240,0.55); letter-spacing: 0.12em; text-transform: uppercase; display: block; margin-bottom: 0.75rem; }
-.rotator-projected { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--sand); display: block; margin-bottom: 0.5rem; }
-.rotator-message { font-family: 'Lora', serif; font-style: italic; font-size: 0.95rem; color: rgba(253,248,240,0.75); display: block; }
-.rotator-empty { font-family: 'Lora', serif; font-style: italic; font-size: 1rem; color: rgba(253,248,240,0.4); }
-.rotator-dots { display: flex; justify-content: center; gap: 6px; margin-top: 1.25rem; }
-.rotator-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(253,248,240,0.25); transition: all 0.3s; cursor: pointer; }
-.rotator-dot.active { background: var(--apricot); transform: scale(1.3); }
-.pledge-board { background: var(--sand); border: 1px solid rgba(232,104,74,0.15); border-radius: 4px; padding: 1.5rem; }
-.pledge-board-title { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
-.pledge-board-item { display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 0; border-bottom: 1px solid rgba(232,104,74,0.08); font-size: 0.88rem; }
-.pledge-board-item:last-child { border-bottom: none; }
-.pledge-board-name { color: var(--text); font-weight: 500; }
-.pledge-board-details { color: var(--muted); font-size: 0.78rem; }
-.pledge-board-amount { color: var(--coral); font-weight: 500; }
-.pledge-board-total { margin-top: 1rem; padding-top: 1rem; border-top: 2px solid rgba(232,104,74,0.2); font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--text); }
-/* ── FUNDRAISING ── */
-.fundraising-section {
-  padding: 6rem 2.5rem;
-  background: var(--cream);
-}
-.fundraising-header {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
-  align-items: end; margin-bottom: 2.5rem;
-}
-.fundraising-header h2 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 0.93;
-  color: var(--text);
-}
-.fundraising-header h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--coral); }
-.fundraising-meta { color: var(--muted); line-height: 1.75; font-size: 1rem; }
-
-.progress-bar-wrap { margin: 1.5rem 0 2.5rem; }
-.progress-labels { display: flex; justify-content: space-between; margin-bottom: 0.6rem; align-items: flex-end; }
-.progress-raised { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: var(--coral); }
-.progress-goal { font-size: 0.85rem; color: var(--muted); }
-.progress-track { height: 5px; background: rgba(201,78,90,0.15); border-radius: 99px; }
-.progress-fill {
-  height: 5px; border-radius: 99px;
-  background: linear-gradient(90deg, var(--ocean), var(--apricot), var(--coral));
-  width: 0%; transition: width 1.2s ease;
-  position: relative;
-}
-.progress-fill::after {
-  content: ''; position: absolute; right: -5px; top: -4px;
-  width: 13px; height: 13px; border-radius: 50%;
-  background: var(--coral); border: 2px solid var(--cream);
-}
-.progress-pct { font-size: 0.75rem; color: var(--muted); margin-top: 0.6rem; }
-
-/* CHARITY CARDS */
-.charity-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin: 2rem 0 2.5rem; }
-.charity-card {
-  background: var(--sand);
-  border: 1px solid rgba(232,104,74,0.15);
-    border-top: 3px solid #7a2d4a;
-  border-radius: 4px; padding: 2rem;
-  display: flex; flex-direction: column;
-  transition: box-shadow 0.2s, transform 0.2s;
-}
-.charity-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(232,104,74,0.12); }
-.charity-logo-wrap {
-  height: 56px; display: flex; align-items: center; margin-bottom: 1.25rem;
-}
-.charity-logo-wrap img { max-height: 52px; max-width: 160px; object-fit: contain; }
-.charity-logo-fallback {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.6rem; letter-spacing: 0.06em; color: var(--coral);
-}
-.charity-personal {
-  font-family: 'Lora', serif; font-style: italic;
-  font-size: 0.9rem; color: #7a2d4a; line-height: 1.5; margin-bottom: 0.75rem;
-}
-p.charity-num { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: #7a2d4a; margin-bottom: 0.5rem; }
-.charity-name-big { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.04em; color: var(--text); margin-bottom: 0.5rem; }
-.charity-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.65; margin-bottom: 1.5rem; flex: 1; }
-.charity-link {
-  display: inline-flex; align-items: center; gap: 0.4rem;
-  font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--coral); text-decoration: none;
-  border-bottom: 1px solid rgba(232,104,74,0.3); padding-bottom: 2px;
-  transition: border-color 0.2s; width: fit-content;
-}
-.charity-link:hover { border-color: var(--coral); }
-
-/* PLEDGE BOX */
-.pledge-box {
-  background: linear-gradient(135deg, var(--peach) 0%, var(--rose) 100%);
-  padding: 2.5rem 3rem; border-radius: 4px;
-}
-.pledge-box h3 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 2rem; letter-spacing: 0.04em; color: var(--sand); margin-bottom: 0.5rem;
-}
-.pledge-box p { color: rgba(253,246,237,0.85); line-height: 1.65; margin-bottom: 1.5rem; font-size: 0.95rem; }
-.pledge-amounts { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
-.pledge-amt {
-  background: rgba(253,246,237,0.15); color: var(--sand);
-  border: 1px solid rgba(253,246,237,0.3);
-  padding: 0.55rem 1.1rem; font-size: 0.88rem; font-weight: 400;
-  cursor: pointer; transition: all 0.2s; border-radius: 2px;
-}
-.pledge-amt:hover, .pledge-amt.active { background: var(--sand); color: var(--coral); border-color: var(--sand); }
-.pledge-cta {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  background: var(--sand); color: #7a2d4a;
-  padding: 0.9rem 1.9rem; font-size: 0.88rem; font-weight: 500;
-  letter-spacing: 0.07em; text-transform: uppercase;
-  text-decoration: none; transition: all 0.2s; border-radius: 2px;
-}
-.pledge-cta:hover { background: var(--seafoam); transform: translateY(-1px); }
-
-.blog-circles {
-  display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 2rem;
-}
-.blog-circle {
-  width: 220px; height: 220px; border-radius: 50%;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding: 2rem; text-align: center; text-decoration: none;
-  transition: transform 0.2s, box-shadow 0.2s;
-  cursor: pointer;
-}
-.blog-circle:hover { transform: scale(1.05); box-shadow: 0 12px 40px rgba(122,45,74,0.18); }
-.blog-circle.coming { cursor: default; opacity: 0.8; }
-.blog-circle.coming:hover { transform: none; box-shadow: none; }
-.circle-title {
-  font-family: 'Lora', serif; font-style: italic;
-  font-size: 0.88rem; color: #ffffff; line-height: 1.4;
-}
-.circle-soon {
-  font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
-  color: rgba(255,255,255,0.6); margin-top: 0.5rem; display: block;
-}
-/* ── FAQ ── */
-.faq-section { padding: 5rem 2.5rem; background: var(--sand); }
-.faq-list { max-width: 720px; }
-.faq-item { padding: 1.75rem 0; border-bottom: 1px solid rgba(232,104,74,0.12); }
-.faq-item:last-child { border-bottom: none; }
-.faq-q { font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 500; color: var(--text); margin-bottom: 0.6rem; }
-.faq-a { font-size: 0.92rem; color: var(--muted); line-height: 1.75; }
-/* ── BLOG ── */
-.blog-section { padding: 6rem 2.5rem; background: var(--sand); }
-.blog-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; }
-.blog-header h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 4vw, 3.5rem); color: var(--text); }
-.blog-header h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--coral); }
-.view-all-link {
-  font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--coral); text-decoration: none;
-  border-bottom: 1px solid rgba(232,104,74,0.35); padding-bottom: 2px;
-}
-.blog-grid {
-  display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 1.25rem;
-}
-.blog-card {
-  background: var(--cream); border: 1px solid rgba(232,104,74,0.12);
-  border-radius: 4px; padding: 1.75rem; display: flex; flex-direction: column;
-  cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
-}
-.blog-card:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(201,78,90,0.1); }
-.blog-tag {
-  font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--coral); margin-bottom: 0.85rem; display: block;
-}
-.blog-title {
-  font-family: 'Lora', serif; font-size: 1.3rem; line-height: 1.35;
-  color: var(--text); margin-bottom: 0.75rem; flex: 1;
-}
-.blog-card.featured .blog-title { font-size: 1.6rem; }
-.blog-excerpt { font-size: 0.85rem; color: var(--muted); line-height: 1.65; margin-bottom: 1.25rem; }
-.blog-meta { font-size: 0.72rem; color: var(--light); letter-spacing: 0.05em; }
-.blog-img-placeholder {
-  height: 160px; background: linear-gradient(135deg, #e8b0c0 0%, #c96080 100%);
-  margin: -1.75rem -1.75rem 1.5rem; border-radius: 4px 4px 0 0;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.6);
-}
-
-/* ── GALLERY ── */
-.gallery-section { padding: 5rem 2.5rem; background: var(--cream); }
-.gallery-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem,4vw,3.2rem); color: var(--text); margin-bottom: 1.5rem; }
-.gallery-section h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--coral); }
-.gallery-grid {
-  display: grid; 
-  grid-template-columns: repeat(3, 1fr); 
-  grid-auto-rows: 280px;
-  gap: 1rem; 
-  margin-top: 1.5rem;
-}.gallery-item {
-  background: linear-gradient(135deg, var(--peach) 0%, var(--apricot) 100%);
-  border-radius: 2px; display: flex; align-items: center; justify-content: center;
-  font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase;
-  color: rgba(253,246,237,0.6); cursor: pointer; transition: opacity 0.2s;
-  overflow: hidden;
-}
-.gallery-item:hover { opacity: 0.9; }
-.gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
-.gallery-item:nth-child(5) { grid-column: span 2; }
-
-.coming-soon-banner {
-  display: flex; align-items: center; gap: 1rem;
-  background: var(--seafoam); border: 1px solid rgba(74,140,106,0.2);
-  border-radius: 4px; padding: 1.25rem 1.75rem;
-  margin: 0 0 2.5rem; flex-wrap: wrap;
-}
-.coming-soon-banner span { font-size: 1.5rem; }
-.coming-soon-banner p { font-size: 0.95rem; color: var(--text); flex: 1; }
-.coming-soon-btn {
-  font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--coral); text-decoration: none;
-  border-bottom: 1px solid rgba(232,104,74,0.3); padding-bottom: 2px;
-  white-space: nowrap;
-}
-.coming-soon-btn:hover { border-color: var(--coral); }
-/* ── MILES STRIP ── */
+/* ─── MILES STRIP ─── */
 .miles-strip {
-  background: #7a2d4a;
-  padding: 2rem 2.5rem;
+  background: linear-gradient(135deg, var(--mist) 0%, var(--sky) 50%, var(--aqua) 100%);
+  padding: 2.5rem 2.5rem;
+  border-bottom: 1px solid rgba(90,172,207,0.2);
 }
 .miles-inner {
   display: flex; align-items: center; justify-content: center;
-  gap: 2rem; flex-wrap: wrap;
+  gap: 2.5rem; flex-wrap: wrap;
 }
 .miles-stat { text-align: center; }
 .miles-num {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 3rem; line-height: 1; color: #ffffff;
+  font-size: 3rem; line-height: 1; color: var(--deep-sea);
   display: block;
 }
-.miles-stat.total .miles-num { color: var(--apricot); font-size: 3.5rem; }
+.miles-stat.total .miles-num { color: var(--maroon); font-size: 3.5rem; }
 .miles-label {
-  font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
-  color: rgba(255,255,255,0.6); display: block; margin-top: 0.25rem;
+  font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(42,106,138,0.65); display: block; margin-top: 0.25rem;
 }
 .miles-divider {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 2rem; color: rgba(255,255,255,0.3);
+  font-size: 2rem; color: rgba(42,106,138,0.3);
 }
-/* ── EMAIL SIGNUP ── */
-.email-section {
-  padding: 6rem 2.5rem;
-  background: #f7edf2;
-  position: relative; overflow: hidden;
-}
-.email-section h2 { color: #7a2d4a; }
-.email-section p { color: var(--muted); }
-.email-section .section-label { color: var(--muted); }
 
-.email-section::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse 60% 50% at 20% 50%, rgba(200,140,170,0.1) 0%, transparent 65%),
-              radial-gradient(ellipse 40% 60% at 80% 50%, rgba(74,140,106,0.08) 0%, transparent 60%);
-  pointer-events: none;
+/* ─── STORY ─── */
+.story-section {
+  padding: 7rem 2.5rem;
+  background: var(--sand);
+  display: grid; grid-template-columns: 1fr 1.1fr; gap: 6rem; align-items: center;
 }
-.email-inner {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
-  align-items: center; position: relative; z-index: 1; max-width: 1100px;
-}
-.email-heading {
+.story-left .section-label { color: var(--teal); }
+.story-left .section-label::before { background: var(--teal); }
+.story-left h2 {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2rem, 4vw, 3.5rem); line-height: 0.95;
-  color: var(--sand); margin-bottom: 1.25rem;
+  font-size: clamp(2.5rem, 5vw, 4.2rem); line-height: 0.93;
+  color: var(--text); margin-bottom: 2rem;
 }
-.email-heading em { font-family: 'Lora', serif; font-style: italic; color: var(--apricot); }
-.email-sub { font-size: 0.95rem; color: rgba(253,248,240,0.65); line-height: 1.75; }
-.email-form-wrap { margin-bottom: 2rem; }
-.email-form-label {
-  font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--sky-blue); margin-bottom: 1rem; display: block;
+.story-left h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--maroon); }
+.story-body { font-size: 1rem; line-height: 1.9; color: var(--muted); }
+.story-body p { margin-bottom: 1.25rem; }
+.story-body strong { color: var(--text); font-weight: 500; }
+.story-body em { font-family: 'Lora', serif; font-style: italic; color: var(--maroon); }
+.story-stats {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0;
+  margin-top: 2.5rem;
+  border-top: 1px solid rgba(168,216,232,0.4);
 }
-.email-field-row { display: flex; flex-direction: column; gap: 0.75rem; }
-.email-input {
-  background: rgba(255,255,255,0.7);
-  border: 1px solid rgba(122,45,74,0.25);
-  color: var(--text); padding: 0.85rem 1.1rem;
-  font-size: 0.9rem; font-family: 'DM Sans', sans-serif;
-  border-radius: 3px; outline: none; transition: border-color 0.2s;
-  width: 100%;
-}
-.email-input::placeholder { color: rgba(154,122,136,0.7); }
-.email-input:focus { border-color: rgba(122,45,74,0.5); }
-.email-btn {
-  background: var(--coral); color: var(--sand);
-  border: none; padding: 0.9rem 1.75rem;
-  font-size: 0.88rem; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase;
-  cursor: pointer; border-radius: 3px; transition: all 0.2s;
-  font-family: 'DM Sans', sans-serif;
-}
-.email-btn:hover { background: var(--sunset); transform: translateY(-1px); }
-.email-fine-print { font-size: 0.7rem; color: rgba(253,248,240,0.3); margin-top: 0.75rem; line-height: 1.5; }
-.email-success {
-  display: none; margin-top: 1rem;
-  background: rgba(74,140,106,0.2); border: 1px solid rgba(74,140,106,0.35);
-  color: var(--sand); padding: 0.85rem 1.1rem;
-  border-radius: 3px; font-size: 0.9rem; line-height: 1.5;
-}
-.email-perks { display: flex; flex-direction: column; gap: 0.85rem; }
-.email-perk {
-  display: flex; align-items: center; gap: 0.85rem;
-  font-size: 0.88rem; color: rgba(253,248,240,0.6);
-}
-.perk-icon { font-size: 1.1rem; flex-shrink: 0; }
-/* ── TOTAL HOURS ── */
-.total-hours-strip { display: flex; gap: 3rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
-.total-hours-stat { text-align: left; }
-.total-hours-num { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; line-height: 1; color: var(--coral); display: block; }
-.total-hours-label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); display: block; margin-top: 0.25rem; }
-/* ── TRAINING LOG ── */
-.training-section { padding: 5rem 2.5rem; background: var(--sand); }
-.training-toggle-btn {
-  display: inline-flex; align-items: center; gap: 0.6rem;
-  background: none; border: 1px solid rgba(232,104,74,0.3);
-  color: var(--coral); padding: 0.6rem 1.25rem;
-  font-size: 0.78rem; font-family: 'DM Sans', sans-serif;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  cursor: pointer; border-radius: 2px; transition: all 0.2s;
-  margin-bottom: 1.5rem;
-}
-.training-toggle-btn:hover { background: rgba(232,104,74,0.06); border-color: var(--coral); }
-.training-toggle-arrow { transition: transform 0.3s ease; display: inline-block; }
-.training-toggle-btn.open .training-toggle-arrow { transform: rotate(180deg); }
-.training-log-collapsible {
-  overflow: hidden;
-  max-height: 0;
-  transition: max-height 0.45s ease;
-}
-.training-log-collapsible.open { max-height: 4000px; }
-.training-table-wrap { overflow-x: auto; }
-.training-table {
-  width: 100%; border-collapse: collapse;
-  font-size: 0.9rem;
-}
-.training-table th {
-  font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
-  color: var(--muted); padding: 0.75rem 1rem; text-align: left;
-  border-bottom: 2px solid rgba(232,104,74,0.2);
-}
-.training-table td {white-space: nowrap;
-  padding: 1rem; border-bottom: 1px solid rgba(232,104,74,0.08);
-  color: var(--text); vertical-align: top;
-}
-.training-table tr:hover td { background: var(--cream); }
-.training-table td strong { display: block; font-weight: 500; }
-.week-date { display: block; font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
-.week-time { display: block; font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
-/* ── FOOTER ── */
-footer {
-  background: #2e0e1a; padding: 4rem 2.5rem 2rem;
-  border-top: 1px solid rgba(90,172,207,0.2);
-}
-.footer-top {
-  display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 4rem;
-  padding-bottom: 3rem; border-bottom: 1px solid rgba(90,172,207,0.1); margin-bottom: 2rem;
-}
-.footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.1em; color: var(--sky-blue); display: block; margin-bottom: 1rem; }
-.footer-tagline { font-size: 0.88rem; color: rgba(253,246,237,0.45); line-height: 1.7; max-width: 280px; }
-.footer-col h4 { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(253,246,237,0.35); margin-bottom: 1.1rem; }
-.footer-col ul { list-style: none; }
-.footer-col li { margin-bottom: 0.55rem; }
-.footer-col a { font-size: 0.88rem; color: rgba(253,246,237,0.45); text-decoration: none; transition: color 0.2s; }
-.footer-col a:hover { color: var(--sky-blue); }
-.footer-bottom { display: flex; justify-content: space-between; align-items: center; }
-.footer-copy { font-size: 0.72rem; color: rgba(253,246,237,0.25); }
-.footer-disclaimer { font-size: 0.68rem; color: rgba(253,246,237,0.18); max-width: 380px; text-align: right; line-height: 1.5; }
+.story-stat { padding: 1.5rem 1rem 1rem 0; }
+.story-stat:not(:last-child) { border-right: 1px solid rgba(168,216,232,0.3); padding-right: 1.5rem; }
+.story-stat:not(:first-child) { padding-left: 1.5rem; }
+.stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; color: var(--teal); line-height: 1; }
+.stat-label { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 0.3rem; }
 
-
-/* ── PULL QUOTES ── */
-.pullquote-section {
-  background: #2e0e1a;
-  padding: 5rem 2.5rem;
-  overflow: hidden;
-  position: relative;
+/* Story image */
+.story-image-wrap { position: relative; }
+.story-image-wrap img {
+  width: 100%; aspect-ratio: 4/5; object-fit: cover;
+  object-position: center top;
+  display: block;
+  filter: contrast(1.03) brightness(1.01);
 }
-.pullquote-section::before {
+.story-image-wrap::before {
   content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse 60% 80% at 30% 50%, rgba(122,45,74,0.25) 0%, transparent 60%);
+  position: absolute; inset: 0; z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  mix-blend-mode: overlay;
   pointer-events: none;
+  opacity: 0.4;
+}
+.story-image-wrap::after {
+  content: '';
+  position: absolute; inset: 0; z-index: 1;
+  box-shadow: inset 0 0 0 1px rgba(122,45,74,0.08);
+  pointer-events: none;
+}
+
+/* ─── PHOTO FULL BLEED ─── */
+.photo-bleed {
+  height: 460px; overflow: hidden; position: relative;
+}
+.photo-bleed img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: contrast(1.04) brightness(0.98);
+}
+.photo-bleed::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  opacity: 0.45;
+}
+.photo-bleed .photo-overlay {
+  position: absolute; inset: 0; z-index: 2;
+}
+
+/* ─── PULL QUOTES ─── */
+.pullquote-section {
+  background: var(--sand);
+  padding: 6rem 2.5rem;
+  border-top: 1px solid rgba(168,216,232,0.25);
+  border-bottom: 1px solid rgba(168,216,232,0.25);
 }
 .pullquote-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2.5rem;
-  max-width: 1100px;
-  margin: 0 auto;
-  position: relative; z-index: 1;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0; max-width: 1100px; margin: 0 auto;
 }
 .pullquote-item {
-  padding: 3rem 2.5rem;
-  border-left: 3px solid #7a2d4a;
+  padding: 3rem 3.5rem;
+  border-left: 2px solid rgba(168,216,232,0.3);
   position: relative;
 }
-.pullquote-item:nth-child(odd) { border-left-color: var(--apricot); }
-.pullquote-item:nth-child(even) { border-left-color: var(--sky-blue); }
+.pullquote-item:nth-child(odd) { border-left-color: var(--aqua); }
+.pullquote-item:nth-child(even) { border-left-color: rgba(212,112,144,0.4); }
 .pullquote-text {
   font-family: 'Lora', serif;
-  font-size: clamp(1.3rem, 2.5vw, 1.75rem);
-  font-style: italic;
-  line-height: 1.45;
-  color: var(--sand);
-  margin-bottom: 1.25rem;
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  font-style: italic; line-height: 1.55;
+  color: var(--text); margin-bottom: 1.25rem;
 }
 .pullquote-source {
-  font-size: 0.68rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(253,248,240,0.4);
+  font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--light);
 }
 .pullquote-mark {
-  font-family: 'Lora', serif;
-  font-size: 6rem;
-  line-height: 0.5;
-  color: rgba(122,45,74,0.35);
-  display: block;
-  margin-bottom: 1rem;
-}
-@media (max-width: 768px) {
-  .pullquote-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-  .pullquote-section { padding: 3.5rem 1.25rem; }
-  .pullquote-text { font-size: 1.2rem; }
+  font-family: 'Lora', serif; font-size: 5rem; line-height: 0.5;
+  color: rgba(168,216,232,0.4); display: block; margin-bottom: 1rem;
 }
 
+/* ─── MOTIVATIONAL STRIP ─── */
+.quote-strip {
+  background: linear-gradient(135deg, var(--mist) 0%, var(--sky) 100%);
+  padding: 4rem 2.5rem; text-align: center;
+  border-top: 1px solid rgba(90,172,207,0.2);
+  border-bottom: 1px solid rgba(90,172,207,0.2);
+}
+.quote-strip p {
+  font-family: 'Lora', serif; font-style: italic;
+  font-size: clamp(1.3rem, 2.5vw, 2rem); color: var(--deep-sea);
+  line-height: 1.5; max-width: 760px; margin: 0 auto;
+}
 
-/* ── OPEN WATER SWIMS ── */
+/* ─── COUNTDOWN ─── */
+.countdown-section {
+  padding: 6rem 2.5rem;
+  background: var(--cream);
+}
+.countdown-section > p.section-label { color: var(--teal); }
+.countdown-section > p.section-label::before { background: var(--teal); }
+.countdown-section > h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.8rem); color: var(--text); margin-bottom: 0.25rem;
+}
+.countdown-section > h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--maroon); }
+.countdown-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem; margin-top: 2.5rem;
+}
+.countdown-race {
+  background: var(--sand);
+  border: 1px solid rgba(168,216,232,0.3);
+  border-top: 3px solid var(--aqua);
+  border-radius: 3px; padding: 2.25rem 2rem;
+  position: relative; overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+.countdown-race:first-child {
+  border-top-color: var(--maroon);
+  background: linear-gradient(160deg, rgba(122,45,74,0.04) 0%, var(--sand) 100%);
+}
+.countdown-race:hover { box-shadow: 0 6px 24px rgba(168,216,232,0.25); }
+.race-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem; letter-spacing: 0.04em; color: var(--text); margin-bottom: 0.3rem;
+}
+.race-date { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.06em; line-height: 1.55; margin-bottom: 1.5rem; }
+.timer-display { display: flex; gap: 1.1rem; }
+.timer-unit { text-align: center; }
+.timer-num {
+  font-family: 'Bebas Neue', sans-serif; font-size: 2.4rem; line-height: 1; color: var(--teal);
+}
+.timer-label { font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--light); }
+.race-tbd {
+  font-family: 'Lora', serif; font-style: italic;
+  font-size: 0.88rem; color: var(--muted); margin-top: 0.5rem; line-height: 1.5;
+}
+
+/* ─── OPEN WATER ─── */
 .open-water-section {
-  background: #2e0e1a;
-  padding: 5rem 2.5rem;
+  padding: 6rem 2.5rem;
+  background: var(--deep-sea);
   position: relative; overflow: hidden;
 }
 .open-water-section::before {
   content: '';
   position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse 80% 50% at 50% 100%, rgba(200,160,180,0.15) 0%, transparent 65%),
-    radial-gradient(ellipse 40% 60% at 10% 20%, rgba(255,200,210,0.08) 0%, transparent 55%);
+    radial-gradient(ellipse 80% 60% at 50% 110%, rgba(197,232,242,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 50% at 90% 10%, rgba(122,45,74,0.2) 0%, transparent 55%);
   pointer-events: none;
 }
 .open-water-header {
   display: flex; align-items: flex-end; justify-content: space-between;
-  margin-bottom: 2.5rem; position: relative; z-index: 1;
-  flex-wrap: wrap; gap: 1rem;
+  margin-bottom: 3rem; position: relative; z-index: 1; flex-wrap: wrap; gap: 1rem;
 }
 .open-water-header h2 {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2.2rem, 5vw, 4rem);
-  line-height: 0.95; color: var(--sand);
+  font-size: clamp(2.5rem, 6vw, 5rem); line-height: 0.9; color: var(--sand);
 }
 .open-water-header h2 em {
-  font-family: 'Lora', serif; font-style: italic; color: var(--sky-blue);
+  font-family: 'Lora', serif; font-style: italic; color: var(--sky);
 }
 .open-water-sub {
-  font-size: 0.82rem; color: rgba(253,248,240,0.45);
-  letter-spacing: 0.06em; max-width: 280px; line-height: 1.6; text-align: right;
+  font-size: 0.82rem; color: rgba(197,232,242,0.5);
+  letter-spacing: 0.05em; max-width: 240px; line-height: 1.65; text-align: right;
 }
 .open-water-cards {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 1.5rem; position: relative; z-index: 1;
 }
 .ow-card {
-  border: 1px solid rgba(200,160,180,0.25);
-  padding: 2.75rem 2.5rem;
-  position: relative; overflow: hidden;
-  background: rgba(255,220,230,0.05);
-  transition: border-color 0.3s;
+  border: 1px solid rgba(197,232,242,0.18);
+  padding: 3rem 2.5rem; position: relative; overflow: hidden;
+  background: rgba(197,232,242,0.04);
+  transition: border-color 0.3s, background 0.3s;
 }
-.ow-card:hover { border-color: rgba(200,160,180,0.55); }
+.ow-card:hover { border-color: rgba(197,232,242,0.4); background: rgba(197,232,242,0.07); }
 .ow-card::before {
   content: '';
   position: absolute; top: 0; left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, var(--apricot), var(--peach));
+  background: linear-gradient(90deg, var(--aqua), var(--sky));
 }
 .ow-distance {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(3.5rem, 7vw, 5.5rem);
-  line-height: 0.9; color: var(--sand);
-  display: block; margin-bottom: 0.25rem;
-  letter-spacing: 0.02em;
+  font-size: clamp(4rem, 8vw, 6rem); line-height: 0.9; color: var(--sand);
+  display: block; margin-bottom: 0.2rem; letter-spacing: 0.02em;
 }
 .ow-unit {
   font-family: 'Lora', serif; font-style: italic;
-  font-size: 1.1rem; color: var(--sky-blue); margin-left: 0.2rem;
+  font-size: 1.2rem; color: var(--sky); margin-left: 0.2rem;
 }
 .ow-label {
-  font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase;
-  color: rgba(253,248,240,0.35); display: block; margin-bottom: 2rem;
+  font-size: 0.66rem; letter-spacing: 0.28em; text-transform: uppercase;
+  color: rgba(197,232,242,0.35); display: block; margin-bottom: 2rem;
 }
 .ow-when {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.6rem; color: var(--apricot); letter-spacing: 0.04em;
+  font-size: 1.8rem; color: var(--aqua); letter-spacing: 0.04em;
   display: block; margin-bottom: 0.35rem;
 }
 .ow-location {
   display: inline-flex; align-items: center; gap: 0.45rem;
-  font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
-  color: rgba(253,248,240,0.3);
+  font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(197,232,242,0.3);
 }
 .ow-location-icon {
-  width: 14px; height: 14px; border-radius: 50%;
-  background: rgba(200,160,180,0.25); border: 1px solid rgba(200,160,180,0.3);
+  width: 12px; height: 12px; border-radius: 50%;
+  background: rgba(197,232,242,0.2); border: 1px solid rgba(197,232,242,0.3);
   display: inline-block; flex-shrink: 0;
 }
 .ow-redacted {
   display: inline-block;
-  background: rgba(200,160,180,0.15); border-radius: 2px;
+  background: rgba(197,232,242,0.1); border-radius: 2px;
   padding: 0 0.5rem; letter-spacing: 0.3em;
   color: transparent; user-select: none;
-  border: 1px solid rgba(200,160,180,0.2);
-  font-size: 0.72rem;
-}
-.ow-redacted::after { content: '██████'; color: transparent; }
-@media (max-width: 768px) {
-  .open-water-section { padding: 3.5rem 1.25rem; }
-  .open-water-cards { grid-template-columns: 1fr; gap: 1rem; }
-  .open-water-sub { text-align: left; max-width: 100%; }
-  .ow-distance { font-size: 3.5rem; }
+  border: 1px solid rgba(197,232,242,0.15);
+  font-size: 0.7rem;
 }
 
-/* ── ANIMATIONS ── */
+/* ─── TRAINING ─── */
+.training-section { padding: 6rem 2.5rem; background: var(--sand); }
+.total-hours-strip { display: flex; gap: 4rem; margin-bottom: 3rem; flex-wrap: wrap; }
+.total-hours-stat { text-align: left; }
+.total-hours-num { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; line-height: 1; color: var(--teal); display: block; }
+.total-hours-label { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); display: block; margin-top: 0.3rem; }
+.training-toggle-btn {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  background: none; border: 1px solid rgba(90,172,207,0.35);
+  color: var(--teal); padding: 0.65rem 1.35rem;
+  font-size: 0.75rem; font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  cursor: pointer; border-radius: 2px; transition: all 0.2s; margin-bottom: 1.5rem;
+}
+.training-toggle-btn:hover { background: rgba(90,172,207,0.07); border-color: var(--teal); }
+.training-toggle-arrow { transition: transform 0.3s ease; display: inline-block; }
+.training-toggle-btn.open .training-toggle-arrow { transform: rotate(180deg); }
+.training-log-collapsible { overflow: hidden; max-height: 0; transition: max-height 0.45s ease; }
+.training-log-collapsible.open { max-height: 4000px; }
+.training-table-wrap { overflow-x: auto; }
+.training-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.training-table th {
+  font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--muted); padding: 0.75rem 1rem; text-align: left;
+  border-bottom: 2px solid rgba(168,216,232,0.3);
+}
+.training-table td {
+  white-space: nowrap; padding: 1rem; border-bottom: 1px solid rgba(168,216,232,0.15);
+  color: var(--text); vertical-align: top;
+}
+.training-table tr:hover td { background: var(--mist); }
+.training-table td strong { display: block; font-weight: 500; }
+.week-date { display: block; font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
+.week-time { display: block; font-size: 0.75rem; color: var(--light); margin-top: 2px; }
+
+/* ─── FUNDRAISING ─── */
+.fundraising-section { padding: 6rem 2.5rem; background: var(--cream); }
+.fundraising-header {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+  align-items: end; margin-bottom: 3rem;
+}
+.fundraising-header h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 0.93; color: var(--text);
+}
+.fundraising-header h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--coral); }
+.fundraising-meta { color: var(--muted); line-height: 1.8; font-size: 0.97rem; }
+.coming-soon-banner {
+  display: flex; align-items: center; gap: 1rem;
+  background: var(--mist); border: 1px solid rgba(168,216,232,0.4);
+  border-radius: 3px; padding: 1.25rem 1.75rem;
+  margin: 0 0 2.5rem; flex-wrap: wrap;
+}
+.coming-soon-banner span { font-size: 1.5rem; }
+.coming-soon-banner p { font-size: 0.92rem; color: var(--text); flex: 1; line-height: 1.65; }
+.coming-soon-btn {
+  font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--teal); text-decoration: none;
+  border-bottom: 1px solid rgba(90,172,207,0.35); padding-bottom: 2px; white-space: nowrap;
+}
+.coming-soon-btn:hover { border-color: var(--teal); }
+.charity-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin: 2rem 0 2.5rem; }
+.charity-card {
+  background: var(--sand); border: 1px solid rgba(168,216,232,0.25);
+  border-top: 3px solid var(--aqua);
+  border-radius: 3px; padding: 2rem;
+  display: flex; flex-direction: column;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.charity-card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(168,216,232,0.2); }
+.charity-logo-wrap { height: 52px; display: flex; align-items: center; margin-bottom: 1.25rem; }
+.charity-logo-wrap img { max-height: 48px; max-width: 150px; object-fit: contain; }
+.charity-logo-fallback { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.06em; color: var(--teal); }
+p.charity-num { font-size: 0.63rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.4rem; }
+.charity-name-big { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.04em; color: var(--text); margin-bottom: 0.5rem; }
+.charity-personal { font-family: 'Lora', serif; font-style: italic; font-size: 0.88rem; color: var(--maroon); line-height: 1.55; margin-bottom: 0.75rem; }
+.charity-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.68; flex: 1; }
+
+/* ─── PLEDGE ─── */
+.pledge-section { padding: 6rem 2.5rem; background: var(--sand); }
+.pledge-section > h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 4vw, 3.5rem); color: var(--text); margin-bottom: 0.5rem;
+}
+.pledge-section > h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--maroon); }
+.pledge-section > p { color: var(--muted); margin-bottom: 2.5rem; font-size: 0.95rem; max-width: 600px; line-height: 1.75; }
+.pledge-form-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+.pledge-field { margin-bottom: 1.25rem; }
+.pledge-field label { display: block; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
+.pledge-field select, .pledge-field input[type="text"], .pledge-field input[type="email"], .pledge-field input[type="number"] {
+  width: 100%; padding: 0.8rem 1rem; border: 1px solid rgba(168,216,232,0.4);
+  background: var(--warm-white); color: var(--text); font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem; border-radius: 3px; outline: none; transition: border-color 0.2s;
+}
+.pledge-field select:focus, .pledge-field input:focus { border-color: var(--teal); }
+.pledge-quick-amounts { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
+.pledge-quick-btn {
+  background: var(--warm-white); border: 1px solid rgba(168,216,232,0.4); color: var(--text);
+  padding: 0.4rem 0.9rem; font-size: 0.8rem; cursor: pointer; border-radius: 2px;
+  font-family: 'DM Sans', sans-serif; transition: all 0.2s;
+}
+.pledge-quick-btn:hover, .pledge-quick-btn.active { background: var(--teal); color: white; border-color: var(--teal); }
+.pledge-submit-btn {
+  width: 100%; background: var(--maroon); color: var(--sand); border: none;
+  padding: 1rem; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.08em;
+  text-transform: uppercase; cursor: pointer; border-radius: 3px;
+  font-family: 'DM Sans', sans-serif; transition: all 0.2s; margin-top: 0.5rem;
+}
+.pledge-submit-btn:hover { background: var(--coral); transform: translateY(-1px); }
+.pledge-success { background: rgba(168,216,232,0.15); border: 1px solid rgba(168,216,232,0.4); color: var(--teal); padding: 0.85rem 1rem; border-radius: 3px; font-size: 0.9rem; margin-top: 1rem; }
+.pledge-error { background: rgba(232,104,74,0.08); border: 1px solid rgba(232,104,74,0.3); color: var(--coral); padding: 0.85rem 1rem; border-radius: 3px; font-size: 0.9rem; margin-top: 1rem; }
+.pledge-total-display {
+  background: linear-gradient(135deg, var(--mist) 0%, var(--sky) 100%);
+  padding: 2rem; border-radius: 4px; text-align: center; margin-bottom: 1.5rem;
+  border: 1px solid rgba(168,216,232,0.3);
+}
+.pledge-total-label { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--deep-sea); opacity: 0.65; margin-bottom: 0.5rem; }
+.pledge-total-amount { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: var(--maroon); line-height: 1; margin-bottom: 0.5rem; }
+.pledge-total-breakdown { font-size: 0.8rem; color: rgba(42,106,138,0.65); line-height: 1.5; }
+.pledge-rotator {
+  background: linear-gradient(135deg, var(--deep-sea) 0%, #1a4a6a 100%);
+  border-radius: 4px; padding: 2.5rem 2rem; margin-bottom: 1.5rem;
+  min-height: 150px; display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.pledge-rotator::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(197,232,242,0.06) 0%, transparent 70%);
+}
+.rotator-inner { text-align: center; position: relative; z-index: 1; width: 100%; }
+.rotator-slide { transition: opacity 0.4s; }
+.rotator-name { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--sky); letter-spacing: 0.08em; display: block; margin-bottom: 0.25rem; }
+.rotator-details { font-size: 0.75rem; color: rgba(197,232,242,0.5); letter-spacing: 0.12em; text-transform: uppercase; display: block; margin-bottom: 0.75rem; }
+.rotator-projected { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--sand); display: block; margin-bottom: 0.5rem; }
+.rotator-message { font-family: 'Lora', serif; font-style: italic; font-size: 0.92rem; color: rgba(197,232,242,0.7); display: block; }
+.rotator-empty { font-family: 'Lora', serif; font-style: italic; font-size: 1rem; color: rgba(197,232,242,0.4); }
+.rotator-dots { display: flex; justify-content: center; gap: 6px; margin-top: 1.25rem; }
+.rotator-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(197,232,242,0.25); transition: all 0.3s; cursor: pointer; }
+.rotator-dot.active { background: var(--sky); transform: scale(1.3); }
+.pledge-board { background: var(--warm-white); border: 1px solid rgba(168,216,232,0.25); border-radius: 4px; padding: 1.5rem; }
+.pledge-board-title { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+.pledge-board-item { display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 0; border-bottom: 1px solid rgba(168,216,232,0.12); font-size: 0.88rem; }
+.pledge-board-item:last-child { border-bottom: none; }
+.pledge-board-name { color: var(--text); font-weight: 500; }
+.pledge-board-details { color: var(--muted); font-size: 0.75rem; }
+.pledge-board-amount { color: var(--teal); font-weight: 500; }
+.pledge-board-total { margin-top: 1rem; padding-top: 1rem; border-top: 2px solid rgba(168,216,232,0.25); font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--text); }
+
+/* ─── FAQ ─── */
+.faq-section { padding: 6rem 2.5rem; background: var(--cream); }
+.faq-list { max-width: 720px; }
+.faq-item { padding: 1.75rem 0; border-bottom: 1px solid rgba(168,216,232,0.2); }
+.faq-item:last-child { border-bottom: none; }
+.faq-q { font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 500; color: var(--text); margin-bottom: 0.6rem; }
+.faq-a { font-size: 0.92rem; color: var(--muted); line-height: 1.78; }
+
+/* ─── BLOG — Editorial Cards ─── */
+.blog-section { padding: 7rem 2.5rem; background: var(--sand); }
+.blog-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
+.blog-header h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 4vw, 3.5rem); color: var(--text); }
+.blog-header h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--coral); }
+.view-all-link {
+  font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--teal); text-decoration: none;
+  border-bottom: 1px solid rgba(90,172,207,0.35); padding-bottom: 2px;
+  transition: border-color 0.2s;
+}
+.view-all-link:hover { border-color: var(--teal); }
+
+/* Editorial 2-col + 2 smaller */
+.blog-grid-editorial {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 1.5rem;
+}
+.blog-card-editorial {
+  display: flex; flex-direction: column;
+  background: var(--cream);
+  border-radius: 3px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.25s, box-shadow 0.25s;
+  border: 1px solid rgba(168,216,232,0.2);
+}
+.blog-card-editorial:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(90,172,207,0.12); }
+.blog-card-editorial.featured { grid-row: span 2; }
+.blog-img {
+  width: 100%; overflow: hidden; position: relative;
+}
+.blog-img img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.4s ease;
+  filter: contrast(1.03) brightness(0.99);
+}
+.blog-img::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  opacity: 0.4;
+}
+.blog-card-editorial:hover .blog-img img { transform: scale(1.02); }
+.blog-card-editorial.featured .blog-img { height: 340px; }
+.blog-card-editorial:not(.featured) .blog-img { height: 160px; }
+
+/* Color blocks when no image */
+.blog-img-block {
+  width: 100%; position: relative;
+}
+.blog-card-editorial.featured .blog-img-block { height: 340px; }
+.blog-card-editorial:not(.featured) .blog-img-block { height: 160px; }
+.blog-img-block-inner {
+  width: 100%; height: 100%;
+  display: flex; align-items: flex-end; padding: 1.5rem;
+}
+
+.blog-body { padding: 1.75rem 2rem 2rem; flex: 1; display: flex; flex-direction: column; }
+.blog-tag {
+  font-size: 0.62rem; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 0.75rem; display: block;
+}
+.blog-title {
+  font-family: 'Lora', serif; font-size: 1.25rem; line-height: 1.38;
+  color: var(--text); margin-bottom: 0.75rem; flex: 1;
+}
+.blog-card-editorial.featured .blog-title { font-size: 1.6rem; line-height: 1.28; }
+.blog-excerpt { font-size: 0.85rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.25rem; }
+.blog-read-more {
+  font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--coral); display: inline-flex; align-items: center; gap: 0.3rem;
+}
+
+/* Small blog pair on the right */
+.blog-col-right { display: flex; flex-direction: column; gap: 1.5rem; }
+
+/* ─── GALLERY ─── */
+.gallery-section { padding: 6rem 2.5rem; background: var(--cream); }
+.gallery-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem,4vw,3.2rem); color: var(--text); margin-bottom: 1.5rem; }
+.gallery-section h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--coral); }
+.gallery-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 280px; gap: 0.75rem; margin-top: 1.5rem;
+}
+.gallery-item {
+  border-radius: 2px; overflow: hidden;
+  cursor: pointer; transition: opacity 0.2s;
+}
+.gallery-item:hover { opacity: 0.92; }
+.gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+.gallery-item:nth-child(5) { grid-column: span 2; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; filter: contrast(1.02); }
+.gallery-color {
+  width: 100%; height: 100%;
+}
+
+/* ─── EMAIL ─── */
+.email-section {
+  padding: 7rem 2.5rem;
+  background: var(--deep-sea);
+  position: relative; overflow: hidden;
+}
+.email-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 20% 50%, rgba(197,232,242,0.07) 0%, transparent 60%);
+  pointer-events: none;
+}
+.email-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+  align-items: center; position: relative; z-index: 1; max-width: 1100px;
+}
+.email-section .section-label { color: var(--sky); }
+.email-section .section-label::before { background: var(--sky); }
+.email-heading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 4vw, 3.5rem); line-height: 0.95;
+  color: var(--sand); margin-bottom: 1.25rem;
+}
+.email-heading em { font-family: 'Lora', serif; font-style: italic; color: var(--sky); }
+.email-sub { font-size: 0.95rem; color: rgba(197,232,242,0.55); line-height: 1.8; }
+.email-form-wrap { margin-bottom: 2rem; }
+.email-form-label {
+  font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(197,232,242,0.5); margin-bottom: 1rem; display: block;
+}
+.email-field-row { display: flex; flex-direction: column; gap: 0.75rem; }
+.email-input {
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(197,232,242,0.2);
+  color: var(--sand); padding: 0.85rem 1.1rem;
+  font-size: 0.9rem; font-family: 'DM Sans', sans-serif;
+  border-radius: 3px; outline: none; transition: border-color 0.2s; width: 100%;
+}
+.email-input::placeholder { color: rgba(197,232,242,0.3); }
+.email-input:focus { border-color: rgba(197,232,242,0.5); }
+.email-btn {
+  background: var(--aqua); color: var(--deep-sea);
+  border: none; padding: 0.9rem 1.75rem;
+  font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+  cursor: pointer; border-radius: 3px; transition: all 0.2s;
+  font-family: 'DM Sans', sans-serif;
+}
+.email-btn:hover { background: var(--sky); transform: translateY(-1px); }
+.email-fine-print { font-size: 0.68rem; color: rgba(197,232,242,0.25); margin-top: 0.75rem; line-height: 1.5; }
+.email-success {
+  display: none; margin-top: 1rem;
+  background: rgba(197,232,242,0.1); border: 1px solid rgba(197,232,242,0.25);
+  color: var(--sky); padding: 0.85rem 1.1rem; border-radius: 3px; font-size: 0.9rem; line-height: 1.5;
+}
+.email-perks { display: flex; flex-direction: column; gap: 0.85rem; }
+.email-perk { display: flex; align-items: center; gap: 0.85rem; font-size: 0.88rem; color: rgba(197,232,242,0.55); }
+.perk-icon { font-size: 1.1rem; flex-shrink: 0; }
+
+/* ─── FOOTER ─── */
+footer {
+  background: #1a0a12; padding: 4rem 2.5rem 2rem;
+  border-top: 1px solid rgba(197,232,242,0.1);
+}
+.footer-top {
+  display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 4rem;
+  padding-bottom: 3rem; border-bottom: 1px solid rgba(197,232,242,0.08); margin-bottom: 2rem;
+}
+.footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.1em; color: var(--aqua); display: block; margin-bottom: 1rem; }
+.footer-tagline { font-size: 0.85rem; color: rgba(253,248,240,0.35); line-height: 1.72; max-width: 280px; }
+.footer-col h4 { font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(197,232,242,0.25); margin-bottom: 1.1rem; }
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 0.55rem; }
+.footer-col a { font-size: 0.85rem; color: rgba(253,248,240,0.38); text-decoration: none; transition: color 0.2s; }
+.footer-col a:hover { color: var(--aqua); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; }
+.footer-copy { font-size: 0.7rem; color: rgba(253,248,240,0.2); }
+.footer-disclaimer { font-size: 0.66rem; color: rgba(253,248,240,0.15); max-width: 380px; text-align: right; line-height: 1.5; }
+
+/* ─── MOBILE MENU ─── */
+.hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 4px;
+}
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
+.mobile-menu {
+  display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--sand); z-index: 200;
+  flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; letter-spacing: 0.1em; color: var(--text); text-decoration: none; }
+.mobile-menu a:hover { color: var(--teal); }
+.mobile-menu .close-btn { position: absolute; top: 1.5rem; right: 1.5rem; font-size: 2rem; background: none; border: none; cursor: pointer; color: var(--muted); }
+.mobile-menu .mobile-cta { background: var(--maroon); color: var(--sand) !important; padding: 0.75rem 2.5rem; border-radius: 2px; font-size: 1.8rem !important; }
+
+/* ─── ANIMATIONS ─── */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(28px); }
+  from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 .hero-eyebrow { animation: fadeUp 0.6s ease both; }
@@ -815,107 +819,71 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
 .hero-sub      { animation: fadeUp 0.7s 0.2s ease both; }
 .hero-actions  { animation: fadeUp 0.7s 0.3s ease both; }
 
-/* ── MOBILE ── */
-.hamburger {
-  display: none; flex-direction: column; gap: 5px;
-  background: none; border: none; cursor: pointer; padding: 4px;
-}
-.hamburger span {
-  display: block; width: 24px; height: 2px;
-  background: var(--text); border-radius: 2px; transition: all 0.3s;
-}
-.mobile-menu {
-  display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-  background: var(--sand); z-index: 200;
-  flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
-}
-.mobile-menu.open { display: flex; }
-.mobile-menu a {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 2.5rem; letter-spacing: 0.1em;
-  color: var(--text); text-decoration: none;
-}
-.mobile-menu a:hover { color: var(--coral); }
-.mobile-menu .close-btn {
-  position: absolute; top: 1.5rem; right: 1.5rem;
-  font-size: 2rem; background: none; border: none;
-  cursor: pointer; color: var(--muted);
-}
-.mobile-menu .mobile-cta {
-  background: var(--coral); color: var(--sand) !important;
-  padding: 0.75rem 2.5rem; border-radius: 2px;
-  font-size: 1.8rem !important;
-}
-
+/* ─── MOBILE ─── */
 @media (max-width: 768px) {
   nav { padding: 1rem 1.25rem; }
   .nav-links { display: none; }
   .hamburger { display: flex; }
 
-  .hero { padding: 0 1.25rem 3.5rem; }
-  .hero-distance { font-size: 8rem; }
-  .hero-sun { width: 80px; height: 80px; bottom: 42%; }
+  .hero { padding: 0 1.25rem 4rem; }
+  h1 { font-size: clamp(3.2rem, 14vw, 5rem); }
 
-  h1 { font-size: clamp(3.5rem, 16vw, 5rem); }
-
-  .race-ticker { padding: 0.6rem 0; }
-  .ticker-item { font-size: 0.8rem; }
-
-  .countdown-section { padding: 3.5rem 1.25rem; }
-  .countdown-grid { grid-template-columns: 1fr; gap: 1rem; }
-.countdown-race {
-    background: linear-gradient(135deg, #7a2d4a 0%, #b05070 100%);
-    border: 1px solid rgba(74,140,106,0.2);
-    border-radius: 4px; padding: 1.5rem;
-    position: relative; overflow: hidden;
-    color: var(--sand);
-  }
-  .countdown-race::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    background: linear-gradient(90deg, var(--apricot), var(--coral));
-  }
-  .race-name { color: var(--sand); }
-  .race-date { color: rgba(253,248,240,0.5); }
-  .race-tbd { color: rgba(253,248,240,0.5); }
-  .timer-num { font-size: 2rem; }  
+  .story-section { padding: 4rem 1.25rem; grid-template-columns: 1fr; gap: 2.5rem; }
   .story-image-wrap { order: -1; }
-.story-image-wrap img { aspect-ratio: 4/3 !important; width: 100% !important; }
   .story-stats { grid-template-columns: 1fr 1fr; }
 
-  .fundraising-section { padding: 3.5rem 1.25rem; }
+  .pullquote-grid { grid-template-columns: 1fr; }
+  .pullquote-section { padding: 4rem 1.25rem; }
+
+  .countdown-section { padding: 4rem 1.25rem; }
+  .countdown-grid { grid-template-columns: 1fr; gap: 1rem; }
+
+  .open-water-section { padding: 4rem 1.25rem; }
+  .open-water-cards { grid-template-columns: 1fr; }
+  .open-water-sub { text-align: left; max-width: 100%; }
+
+  .fundraising-section { padding: 4rem 1.25rem; }
   .fundraising-header { grid-template-columns: 1fr; gap: 1.25rem; }
-  .charity-cards { grid-template-columns: 1fr; gap: 1rem; }
-  .pledge-box { padding: 1.75rem; }
-  .pledge-amounts { gap: 0.5rem; }
-  .pledge-amt { padding: 0.5rem 0.9rem; font-size: 0.82rem; }
+  .charity-cards { grid-template-columns: 1fr; }
 
-  .blog-section { padding: 3.5rem 1.25rem; }
-  .blog-grid { grid-template-columns: 1fr; gap: 1rem; }
-  .blog-card.featured .blog-title { font-size: 1.3rem; }
+  .pledge-section { padding: 4rem 1.25rem; }
+  .pledge-form-wrap { grid-template-columns: 1fr; gap: 2rem; }
 
-  .gallery-section { padding: 3rem 1.25rem; }
+  .blog-section { padding: 4rem 1.25rem; }
+  .blog-grid-editorial { grid-template-columns: 1fr; }
+  .blog-card-editorial.featured { grid-row: span 1; }
+  .blog-col-right { gap: 1rem; }
+
+  .gallery-section { padding: 4rem 1.25rem; }
   .gallery-grid { grid-template-columns: repeat(2,1fr); grid-auto-rows: 140px; }
   .gallery-item:nth-child(1) { grid-column: span 2; min-height: 200px; }
   .gallery-item:nth-child(4) { grid-column: span 1; }
 
-  .email-section { padding: 3.5rem 1.25rem; }
-  .email-inner { grid-template-columns: 1fr; gap: 2rem; }
-  .email-heading { font-size: 2rem; }
+  .email-section { padding: 4rem 1.25rem; }
+  .email-inner { grid-template-columns: 1fr; gap: 2.5rem; }
 
   footer { padding: 3rem 1.25rem 1.5rem; }
   .footer-top { grid-template-columns: 1fr; gap: 2rem; }
   .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
   .footer-disclaimer { text-align: center; max-width: 100%; }
+
+  .miles-strip { padding: 2rem 1.25rem; }
+  .miles-inner { gap: 1.25rem; }
+
+  .training-section { padding: 4rem 1.25rem; }
+  .total-hours-strip { gap: 2rem; }
+
+  .faq-section { padding: 4rem 1.25rem; }
+
+  .photo-bleed { height: 280px; }
 }
 
 @media (max-width: 480px) {
-  h1 { font-size: 3.2rem; }
+  h1 { font-size: 3rem; }
   .hero-sub { font-size: 0.95rem; }
-  .btn-primary, .btn-secondary { padding: 0.8rem 1.4rem; font-size: 0.8rem; }
-  .story-stats { grid-template-columns: 1fr 1fr; }
-  .stat-num { font-size: 2rem; }
-  .timer-num { font-size: 1.8rem; }
-  .progress-raised { font-size: 1.8rem; }
+  .stat-num { font-size: 2.2rem; }
+  .timer-num { font-size: 2rem; }
+  .story-stats { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -928,8 +896,11 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
     <li><a href="#story">Story</a></li>
     <li><a href="#races">Races</a></li>
     <li><a href="#updates">Updates</a></li>
-<li><a href="#gallery">Gallery</a></li><li><a href="#training">Training</a></li><li><a href="#faq">FAQ</a></li>
-<li><a href="#pledge" class="nav-cta">PLEDGE NOW · 100% TO CHARITY</a></li>  </ul>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#training">Training</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#pledge" class="nav-cta">PLEDGE NOW · 100% TO CHARITY</a></li>
+  </ul>
   <button class="hamburger" onclick="openMenu()" aria-label="Open menu">
     <span></span><span></span><span></span>
   </button>
@@ -941,9 +912,10 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
   <a href="#story" onclick="closeMenu()">Story</a>
   <a href="#races" onclick="closeMenu()">Races</a>
   <a href="#updates" onclick="closeMenu()">Updates</a>
-<a href="#gallery" onclick="closeMenu()">Gallery</a><a href="#training" onclick="closeMenu()">Training</a><a href="#faq" onclick="closeMenu()">FAQ</a>
-  <a href="#signup" onclick="closeMenu()">Updates</a>
-<a href="#pledge" onclick="closeMenu()" class="mobile-cta">PLEDGE NOW · 100% TO CHARITY</a>
+  <a href="#gallery" onclick="closeMenu()">Gallery</a>
+  <a href="#training" onclick="closeMenu()">Training</a>
+  <a href="#faq" onclick="closeMenu()">FAQ</a>
+  <a href="#pledge" onclick="closeMenu()" class="mobile-cta">PLEDGE NOW · 100% TO CHARITY</a>
 </div>
 
 <!-- HERO -->
@@ -975,6 +947,7 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
     <span class="ticker-item">NEDA <span class="ticker-dot">·</span> RAINN <span class="ticker-dot">·</span> Friendship Circle</span>
   </div>
 </div>
+
 <!-- MILES COUNTER -->
 <div class="miles-strip">
   <div class="miles-inner">
@@ -999,12 +972,9 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
     </div>
   </div>
 </div>
+
 <!-- STORY -->
-<div class="section-divider"></div>
 <section class="story-section" id="story">
-  <div style="text-align: center;">
-    <img src="gigi-hawaii.jpg" alt="Gigi in Hawaii" style="width:100%; max-width:420px; aspect-ratio:4/5; object-fit:cover; object-position:center top; border-radius:12px; display:block; margin:0 auto; box-shadow:0 12px 40px rgba(122,45,74,0.25);">
-  </div>
   <div class="story-left">
     <p class="section-label">My Story</p>
     <h2>More than<br>just <em>miles</em></h2>
@@ -1023,17 +993,18 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
       <div class="story-stat"><div class="stat-num">3</div><div class="stat-label">Races in 18 months</div></div>
     </div>
   </div>
+  <div class="story-image-wrap">
+    <img src="gigi-hawaii.jpg" alt="Gigi in Hawaii">
+  </div>
 </section>
 
-
-<!-- PHOTO MOMENT -->
-<div style="height:420px; overflow:hidden; position:relative;">
-  <img src="IMG_5088.JPG" alt="Race day celebration" style="width:100%; height:100%; object-fit:cover; object-position:center 25%;">
-  <div style="position:absolute; inset:0; background:linear-gradient(to right, rgba(26,74,106,0.55) 0%, transparent 60%);"></div>
+<!-- PHOTO FULL BLEED -->
+<div class="photo-bleed">
+  <img src="IMG_5088.JPG" alt="Race day celebration">
+  <div class="photo-overlay" style="background:linear-gradient(to right, rgba(42,106,138,0.45) 0%, transparent 55%);"></div>
 </div>
 
 <!-- PULL QUOTES -->
-<div class="section-divider"></div>
 <section class="pullquote-section">
   <div class="pullquote-grid">
     <div class="pullquote-item">
@@ -1059,24 +1030,20 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
   </div>
 </section>
 
-
-<!-- MOTIVATIONAL QUOTE STRIP -->
-<div style="background:#7a2d4a; padding:3.5rem 2.5rem; text-align:center;">
-  <p style="font-family:'Lora',serif; font-style:italic; font-size:clamp(1.4rem,3vw,2.1rem); color:#fdf8f0; line-height:1.45; max-width:780px; margin:0 auto;">
-    "You'll never feel ready. Ready isn't a feeling&mdash;it's a decision."
-  </p>
+<!-- OCEAN QUOTE STRIP -->
+<div class="quote-strip">
+  <p>"You'll never feel ready. Ready isn't a feeling&mdash;it's a decision."</p>
 </div>
 
 <!-- COUNTDOWN -->
-<div class="section-divider"></div>
 <section class="countdown-section" id="races">
   <p class="section-label">The Journey Ahead</p>
-  <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,5vw,3.8rem);color:var(--text);margin-bottom:0.25rem;">Four races. <em style="font-family:'Lora',serif;font-style:italic;color:#7a2d4a;">One very tired girl.</em></h2>
+  <h2>Four races. <em>One very tired girl.</em></h2>
   <div class="countdown-grid">
     <div class="countdown-race">
       <p class="race-name">Sprint Triathlon 🥈</p>
       <p class="race-date">August 9, 2026 · 1/4 mile swim, 10 mile bike, 3 mile run. My warm up. Allegedly.</p>
-      <p style="font-family:'Bebas Neue',sans-serif; font-size:2rem; color:var(--apricot); margin-top:1rem;">FINISHED · 2ND IN AGE GROUP</p>
+      <p style="font-family:'Bebas Neue',sans-serif; font-size:1.9rem; color:var(--maroon); margin-top:1rem; letter-spacing:0.04em;">FINISHED · 2ND IN AGE GROUP</p>
       <p class="race-tbd">Finish time: 1:10:14 🧡</p>
     </div>
     <div class="countdown-race">
@@ -1087,15 +1054,15 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
         <div class="timer-unit"><div class="timer-num" id="h1">—</div><div class="timer-label">Hrs</div></div>
         <div class="timer-unit"><div class="timer-num" id="m1">—</div><div class="timer-label">Min</div></div>
       </div>
-      <p id="race1phrase" style="font-family:'Lora',serif;font-style:italic;font-size:0.95rem;color:var(--peach);margin-top:1rem;"></p>
+      <p id="race1phrase" style="font-family:'Lora',serif;font-style:italic;font-size:0.9rem;color:var(--muted);margin-top:1rem;"></p>
     </div>
     <div class="countdown-race">
-      <p class="race-name"> Ironman 70.3</p>
+      <p class="race-name">Ironman 70.3</p>
       <p class="race-date">June 2027 · Swim, bike, run a half marathon. After the swim and bike. Cool cool cool.</p>
       <p class="race-tbd">Officially signed up. June 2027. No turning back now.</p>
     </div>
     <div class="countdown-race">
-      <p class="race-name"> Ironman 140.6</p>
+      <p class="race-name">Ironman 140.6</p>
       <p class="race-date">October 2027 · 2.4 mile swim, 112 mile bike, 26.2 mile run. I have 17 months to figure this out.</p>
       <p class="race-tbd">The big scary one. I will sign up. I am brave. Probably.</p>
     </div>
@@ -1103,7 +1070,6 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
 </section>
 
 <!-- OPEN WATER SWIMS -->
-<div class="section-divider"></div>
 <section class="open-water-section">
   <div class="open-water-header">
     <h2>Open<br><em>water.</em></h2>
@@ -1132,25 +1098,24 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
 </section>
 
 <!-- TRAINING LOG -->
- <div class="section-divider"></div>
 <section class="training-section" id="training">
   <p class="section-label">Training Log</p>
-  <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3.5rem);color:var(--text);margin-bottom:0.5rem;">Putting in <em style="font-family:'Lora',serif;font-style:italic;color:#7a2d4a;">the work</em></h2>
-  <p style="color:var(--muted);margin-bottom:2rem;font-size:0.95rem;">Updated every time I train.</p>
+  <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3.5rem);color:var(--text);margin-bottom:0.5rem;">Putting in <em style="font-family:'Lora',serif;font-style:italic;color:var(--maroon);">the work</em></h2>
+  <p style="color:var(--muted);margin-bottom:2rem;font-size:0.92rem;">Updated every time I train.</p>
   <div class="total-hours-strip">
-  <div class="total-hours-stat">
-    <span class="total-hours-num" id="totalHours">0</span>
-    <span class="total-hours-label">total hours in training</span>
+    <div class="total-hours-stat">
+      <span class="total-hours-num" id="totalHours">0</span>
+      <span class="total-hours-label">total hours in training</span>
+    </div>
+    <div class="total-hours-stat">
+      <span class="total-hours-num" id="totalSessions">0</span>
+      <span class="total-hours-label">total sessions</span>
+    </div>
+    <div class="total-hours-stat">
+      <span class="total-hours-num" id="totalWeeks">0</span>
+      <span class="total-hours-label">weeks of training</span>
+    </div>
   </div>
-  <div class="total-hours-stat">
-    <span class="total-hours-num" id="totalSessions">0</span>
-    <span class="total-hours-label">total sessions</span>
-  </div>
-  <div class="total-hours-stat">
-    <span class="total-hours-num" id="totalWeeks">0</span>
-    <span class="total-hours-label">weeks of training</span>
-  </div>
-</div>
   <button class="training-toggle-btn" id="trainingToggleBtn" onclick="toggleTrainingLog()">
     View weekly breakdown <span class="training-toggle-arrow">▼</span>
   </button>
@@ -1161,14 +1126,13 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
   </div>
 </section>
 
-<!-- PHOTO MOMENT 2 -->
-<div style="height:360px; overflow:hidden; position:relative;">
-  <img src="IMG_5103 2.JPG" alt="Post-race with medal" style="width:100%; height:100%; object-fit:cover; object-position:center 35%;">
-  <div style="position:absolute; inset:0; background:linear-gradient(to left, rgba(26,74,106,0.45) 0%, transparent 55%);"></div>
+<!-- PHOTO FULL BLEED 2 -->
+<div class="photo-bleed">
+  <img src="IMG_5103 2.JPG" alt="Post-race with medal" style="object-position:center 35%;">
+  <div class="photo-overlay" style="background:linear-gradient(to left, rgba(42,106,138,0.4) 0%, transparent 55%);"></div>
 </div>
 
 <!-- FUNDRAISING -->
- <div class="section-divider"></div>
 <section class="fundraising-section" id="donate">
   <div class="fundraising-header">
     <div>
@@ -1180,13 +1144,11 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
 
   <div class="coming-soon-banner">
     <span>🧡</span>
-    <p>Pledge per mile below. Pick your race, pick your amount, and I'll do the rest. After I cross the finish line I'll email you with your total and a direct link to donate straight to your chosen charity. You give directly to them. I never touch the money
-.</p>
+    <p>Pledge per mile below. Pick your race, pick your amount, and I'll do the rest. After I cross the finish line I'll email you with your total and a direct link to donate straight to your chosen charity. You give directly to them. I never touch the money.</p>
     <a href="#signup" class="coming-soon-btn">Get notified →</a>
   </div>
 
   <div class="charity-cards">
-    <!-- NEDA -->
     <div class="charity-card" onclick="window.open('https://www.nationaleatingdisorders.org/donate','_blank')" style="cursor:pointer;">
       <div class="charity-logo-wrap">
         <img src="https://www.nationaleatingdisorders.org/wp-content/themes/neda/images/neda-logo.svg" alt="NEDA logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
@@ -1197,8 +1159,6 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
       <p class="charity-personal">For every athlete who has ever had a complicated relationship with their body</p>
       <p class="charity-desc">The National Eating Disorders Association supports individuals and families affected by eating disorders through education, advocacy, and access to resources and treatment.</p>
     </div>
-
-    <!-- RAINN -->
     <div class="charity-card" onclick="window.open('https://www.rainn.org/donate','_blank')" style="cursor:pointer;">
       <div class="charity-logo-wrap">
         <img src="https://www.rainn.org/sites/default/files/rainn-logo.png" alt="RAINN logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
@@ -1209,27 +1169,24 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
       <p class="charity-personal">For the women who show up for each other.</p>
       <p class="charity-desc">The nation's largest anti-sexual violence organization. RAINN operates the National Sexual Assault Hotline and works to prevent sexual violence and support survivors nationwide.</p>
     </div>
-
-    <!-- FRIENDSHIP CIRCLE -->
     <div class="charity-card" onclick="window.open('https://www.friendshipcircle.org/donate','_blank')" style="cursor:pointer;">
       <div class="charity-logo-wrap">
         <img src="https://www.friendshipcircle.org/wp-content/uploads/2019/09/FC-Logo.png" alt="Friendship Circle logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
         <span class="charity-logo-fallback" style="display:none; color:var(--coral);">Friendship Circle</span>
       </div>
-      <p class="charity-num">03 · Inclusion & Special Needs</p>
+      <p class="charity-num">03 · Inclusion &amp; Special Needs</p>
       <p class="charity-name-big">Friendship Circle</p>
       <p class="charity-personal">For the kids who lit up when someone pulled up a chair.</p>
       <p class="charity-desc">Friendship Circle creates meaningful friendships between teen volunteers and individuals with special needs, building confidence, community, and belonging for everyone involved.</p>
     </div>
   </div>
+</section>
 
 <!-- PLEDGE SECTION -->
- <div class="section-divider"></div>
 <section class="pledge-section" id="pledge">
-  <p class="section-label">Pledge Per Mile</p>
-  <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3.5rem);color:var(--text);margin-bottom:0.5rem;">Pledge <em style="font-family:'Lora',serif;font-style:italic;color:#7a2d4a;">per mile</em></h2>
-  <p style="color:var(--muted);margin-bottom:2.5rem;font-size:0.95rem;max-width:600px;">Pick a race. Pick an amount per mile. I'll do the suffering, you do the donating. After each race I'll email you your total and a direct link to give to whichever of my three charities you choose — NEDA, RAINN, or Friendship Circle. No payment now, no pressure ever. Just your word that you're in.
-</p>
+  <p class="section-label pink">Pledge Per Mile</p>
+  <h2>Pledge <em>per mile</em></h2>
+  <p>Pick a race. Pick an amount per mile. I'll do the suffering, you do the donating. After each race I'll email you your total and a direct link to give to whichever of my three charities you choose. No payment now, no pressure ever. Just your word that you're in.</p>
 
   <div class="pledge-form-wrap">
     <div class="pledge-form-left">
@@ -1244,7 +1201,6 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
           <option value="All Four Races" data-miles="258.3">All Four Races (258.3 mi total)</option>
         </select>
       </div>
-
       <div class="pledge-field">
         <label>Per mile amount</label>
         <div class="pledge-quick-amounts">
@@ -1255,32 +1211,28 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
         </div>
         <input type="number" id="pledgeAmount" placeholder="or enter your own" step="0.01" min="0.01" oninput="updatePledgeTotal()">
       </div>
-
       <div class="pledge-field">
         <label>Which charity?</label>
         <select id="pledgeCharity">
           <option value="">Select a charity...</option>
           <option value="NEDA">NEDA — National Eating Disorders Association</option>
           <option value="RAINN">RAINN — Anti-Sexual Violence</option>
-<option value="Friendship Circle">Friendship Circle — Special Needs Inclusion</option>
-          <option value="All Three Charities">Split evenly across all three charities</option>        </select>
+          <option value="Friendship Circle">Friendship Circle — Special Needs Inclusion</option>
+          <option value="All Three Charities">Split evenly across all three charities</option>
+        </select>
       </div>
-
       <div class="pledge-field">
         <label>Your name</label>
         <input type="text" id="pledgeName" placeholder="First name is fine!">
       </div>
-
       <div class="pledge-field">
-        <div class="pledge-field">
         <label>Leave a message (optional)</label>
-        <input type="text" id="pledgeMessage" placeholder=""
-
+        <input type="text" id="pledgeMessage" placeholder="Say something nice...">
       </div>
+      <div class="pledge-field">
         <label>Your email</label>
         <input type="email" id="pledgeEmail" placeholder="For your post-race receipt">
       </div>
-
       <button class="pledge-submit-btn" onclick="submitPledge()">Count me in →</button>
       <div id="pledgeSuccess" style="display:none;" class="pledge-success">🧡 You're in! I'll email you after each race with your total.</div>
       <div id="pledgeError" style="display:none;" class="pledge-error">Something went wrong — please try again!</div>
@@ -1292,14 +1244,14 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
         <p class="pledge-total-amount" id="pledgeTotalDisplay">$0.00</p>
         <p class="pledge-total-breakdown" id="pledgeBreakdown">Select a race and amount to see your total</p>
       </div>
-<div class="pledge-rotator" id="pledgeRotator">
-  <div class="rotator-inner">
-    <div class="rotator-slide" id="rotatorSlide">
-      <p class="rotator-empty">Be the first to pledge!</p>
-    </div>
-    <div class="rotator-dots" id="rotatorDots"></div>
-  </div>
-</div>
+      <div class="pledge-rotator" id="pledgeRotator">
+        <div class="rotator-inner">
+          <div class="rotator-slide" id="rotatorSlide">
+            <p class="rotator-empty">Be the first to pledge!</p>
+          </div>
+          <div class="rotator-dots" id="rotatorDots"></div>
+        </div>
+      </div>
       <div class="pledge-board">
         <p class="pledge-board-title">Who's in</p>
         <div id="pledgeList">
@@ -1314,7 +1266,7 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
 <!-- FAQ -->
 <section class="faq-section" id="faq">
   <p class="section-label">FAQ</p>
-  <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3.5rem);color:var(--text);margin-bottom:2rem;">Good <em style="font-family:'Lora',serif;font-style:italic;color:#7a2d4a;">questions.</em></h2>
+  <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3.5rem);color:var(--text);margin-bottom:2rem;">Good <em style="font-family:'Lora',serif;font-style:italic;color:var(--maroon);">questions.</em></h2>
   <div class="faq-list">
     <div class="faq-item">
       <p class="faq-q">How does this work?</p>
@@ -1338,56 +1290,104 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
     </div>
   </div>
 </section>
-<!-- BLOG -->
- <div class="section-divider"></div>
+
+<!-- BLOG — Editorial -->
 <section class="blog-section" id="updates">
   <div class="blog-header">
     <div>
       <p class="section-label">Training Updates</p>
       <h2>Dispatches from <em>training</em></h2>
     </div>
-<a href="https://gogigiruns.substack.com" target="_blank" class="view-all-link">See all posts →</a>
+    <a href="https://gogigiruns.substack.com" target="_blank" class="view-all-link">See all posts →</a>
   </div>
-  <div class="blog-circles">
-    <a href="https://gogigiruns.substack.com/p/how-i-signed-up-for-a-triathlon-on" target="_blank" class="blog-circle" style="background: linear-gradient(135deg, #e86848, #c94e5a);">
-      <span class="circle-title">How I signed up for a triathlon on a beach in Hawaii</span>
+
+  <div class="blog-grid-editorial">
+    <!-- Featured post -->
+    <a href="https://gogigiruns.substack.com/p/how-i-signed-up-for-a-triathlon-on" target="_blank" class="blog-card-editorial featured">
+      <div class="blog-img-block" style="background:linear-gradient(160deg, #e86848 0%, #c9604a 50%, #7a2d4a 100%);">
+        <div class="blog-img-block-inner">
+          <span style="font-family:'Lora',serif;font-style:italic;font-size:0.78rem;color:rgba(253,248,240,0.5);letter-spacing:0.08em;">Hawaii · Summer 2026</span>
+        </div>
+      </div>
+      <div class="blog-body">
+        <span class="blog-tag">Origin Story</span>
+        <p class="blog-title">How I signed up for a triathlon on a beach in Hawaii</p>
+        <p class="blog-excerpt">Somewhere between the first and second pina colada, the idea stopped sounding crazy. Then I got home and bought a bike.</p>
+        <span class="blog-read-more">Read on Substack →</span>
+      </div>
     </a>
-    <a href="https://gogigiruns.substack.com/p/the-red-light-incident" target="_blank" class="blog-circle" style="background: linear-gradient(135deg, #c97090, #e8a0b8);">
-      <span class="circle-title">The red light incident. Yes, that one.</span>
-    </a>
-    <a href="https://gogigiruns.substack.com/p/the-swim-is-in-the-ocean-its-great" target="_blank" class="blog-circle" style="background: linear-gradient(135deg, #f7c5d0, #e8a0b0);">
-      <span class="circle-title">The swim is in the ocean. It's great.</span>
-    </a>
-    <a href="https://gogigiruns.substack.com/p/theres-a-rhythm-and-im-finding-mine" target="_blank" class="blog-circle" style="background: linear-gradient(135deg, #4a90c4, #7ac0e0);">
-      <span class="circle-title">There's a rhythm, and I'm finding mine.</span>
-    </a>
+
+    <!-- Right column: 2 smaller cards -->
+    <div class="blog-col-right">
+      <a href="https://gogigiruns.substack.com/p/the-red-light-incident" target="_blank" class="blog-card-editorial">
+        <div class="blog-img-block" style="background:linear-gradient(135deg, #f5a87a 0%, #e8b0c4 100%);">
+          <div class="blog-img-block-inner">
+            <span style="font-family:'Lora',serif;font-style:italic;font-size:0.72rem;color:rgba(253,248,240,0.55);">Training tales</span>
+          </div>
+        </div>
+        <div class="blog-body">
+          <span class="blog-tag">Training</span>
+          <p class="blog-title">The red light incident. Yes, that one.</p>
+          <span class="blog-read-more">Read →</span>
+        </div>
+      </a>
+      <a href="https://gogigiruns.substack.com/p/the-swim-is-in-the-ocean-its-great" target="_blank" class="blog-card-editorial">
+        <div class="blog-img-block" style="background:linear-gradient(135deg, #a8d8e8 0%, #5aaccf 60%, #2a6a8a 100%);">
+          <div class="blog-img-block-inner">
+            <span style="font-family:'Lora',serif;font-style:italic;font-size:0.72rem;color:rgba(253,248,240,0.55);">Open water</span>
+          </div>
+        </div>
+        <div class="blog-body">
+          <span class="blog-tag">Open Water</span>
+          <p class="blog-title">The swim is in the ocean. It's great.</p>
+          <span class="blog-read-more">Read →</span>
+        </div>
+      </a>
+    </div>
   </div>
+
+  <!-- 4th post below, full width slim -->
+  <a href="https://gogigiruns.substack.com/p/theres-a-rhythm-and-im-finding-mine" target="_blank" style="display:flex;gap:2rem;align-items:center;text-decoration:none;color:inherit;margin-top:1.25rem;padding:2rem;background:var(--cream);border:1px solid rgba(168,216,232,0.2);border-radius:3px;transition:box-shadow 0.2s;" onmouseover="this.style.boxShadow='0 6px 24px rgba(90,172,207,0.1)'" onmouseout="this.style.boxShadow=''">
+    <div style="width:80px;height:80px;flex-shrink:0;background:linear-gradient(135deg,#c9a0b4,#7a2d4a);border-radius:2px;"></div>
+    <div>
+      <span style="font-size:0.62rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--teal);display:block;margin-bottom:0.4rem;">Finding the rhythm</span>
+      <p style="font-family:'Lora',serif;font-size:1.1rem;color:var(--text);line-height:1.4;margin-bottom:0.4rem;">There's a rhythm, and I'm finding mine.</p>
+      <span style="font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--coral);">Read on Substack →</span>
+    </div>
+  </a>
 </section>
+
 <!-- GALLERY -->
-<div class="section-divider"></div>
 <section class="gallery-section" id="gallery">
   <p class="section-label">Training Gallery</p>
   <h2>Life in <em>motion</em></h2>
   <div class="gallery-grid">
-    <div class="gallery-item" style="background:none;">
-      <img src="sprinttri.JPEG" style="width:100%; height:100%; object-fit:cover;" alt="Sprint Triathlon finish">
+    <div class="gallery-item">
+      <img src="sprinttri.JPEG" alt="Sprint Triathlon finish">
     </div>
-    <div class="gallery-item" style="background:none;">
-      <img src="FullSizeRender 2.JPEG" style="width:100%; height:100%; object-fit:cover;" alt="Cycling action">
+    <div class="gallery-item">
+      <img src="FullSizeRender 2.JPEG" alt="Cycling action">
     </div>
-    <div class="gallery-item" style="background:linear-gradient(135deg,#f5c878,#f5a87a)"></div>
-    <div class="gallery-item" style="background:linear-gradient(135deg,#c96080,#7a2d4a)"></div>
-    <div class="gallery-item" style="background:linear-gradient(135deg,#a8d8ea,#5aaccf)"></div>
-    <div class="gallery-item" style="background:linear-gradient(135deg,#7a2d4a,#e86848)"></div>
+    <div class="gallery-item">
+      <div class="gallery-color" style="background:linear-gradient(135deg,#fad4b0,#f5a87a);"></div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-color" style="background:linear-gradient(135deg,#a8d8e8,#5aaccf);"></div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-color" style="background:linear-gradient(135deg,#e8b0c4,#7a2d4a);"></div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-color" style="background:linear-gradient(135deg,#c5e8f2,#a8d8e8);"></div>
+    </div>
   </div>
 </section>
 
 <!-- EMAIL SIGNUP -->
- <div class="section-divider"></div>
 <section class="email-section" id="signup">
   <div class="email-inner">
     <div class="email-left">
-      <p class="section-label" style="color:var(--sky-blue);">Stay in the loop</p>
+      <p class="section-label">Stay in the loop</p>
       <h2 class="email-heading">Want updates<br>when things get <em>interesting?</em></h2>
       <p class="email-sub">Race recaps. Training meltdowns. The occasional bike fall. Drop your email and I'll send you updates that are actually worth reading. No spam, just the good stuff.</p>
     </div>
@@ -1405,22 +1405,10 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
         </div>
       </div>
       <div class="email-perks">
-        <div class="email-perk">
-          <span class="perk-icon">🏊</span>
-          <span>Race day recaps</span>
-        </div>
-        <div class="email-perk">
-          <span class="perk-icon">🚴</span>
-          <span>Training updates (the real ones)</span>
-        </div>
-        <div class="email-perk">
-          <span class="perk-icon">🧡</span>
-          <span>Fundraising milestones</span>
-        </div>
-        <div class="email-perk">
-          <span class="perk-icon">😅</span>
-          <span>Stories like the red light incident</span>
-        </div>
+        <div class="email-perk"><span class="perk-icon">🏊</span><span>Race day recaps</span></div>
+        <div class="email-perk"><span class="perk-icon">🚴</span><span>Training updates (the real ones)</span></div>
+        <div class="email-perk"><span class="perk-icon">🧡</span><span>Fundraising milestones</span></div>
+        <div class="email-perk"><span class="perk-icon">😅</span><span>Stories like the red light incident</span></div>
       </div>
     </div>
   </div>
@@ -1459,39 +1447,15 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
 </footer>
 
 <script>
-  // Mobile menu
-  function openMenu() {
-    document.getElementById('mobileMenu').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeMenu() {
-    document.getElementById('mobileMenu').classList.remove('open');
-    document.body.style.overflow = '';
-  }
+  function openMenu() { document.getElementById('mobileMenu').classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); document.body.style.overflow = ''; }
 
-
-  // Olympic countdown (Sep 19 2026)
-function updateTimers() {
+  function updateTimers() {
     const now = new Date();
-    const race0 = new Date('2026-08-09T07:00:00');
     const race1 = new Date('2026-09-19T07:00:00');
-    const diff0 = race0 - now;
     const diff1 = race1 - now;
-    const days0 = Math.floor(diff0 / 86400000);
-    const days1 = Math.floor(diff1 / 86400000);
-    if (document.getElementById('d0')) {
-      if (diff0 > 0) {
-        document.getElementById('d0').textContent = days0;
-        document.getElementById('h0').textContent = Math.floor((diff0 % 86400000) / 3600000);
-        document.getElementById('m0').textContent = Math.floor((diff0 % 3600000) / 60000);
-      } else {
-        document.getElementById('d0').textContent = 'Done!';
-        document.getElementById('h0').textContent = '';
-        document.getElementById('m0').textContent = '';
-      }
-    }
     if (diff1 > 0) {
-      document.getElementById('d1').textContent = days1;
+      document.getElementById('d1').textContent = Math.floor(diff1 / 86400000);
       document.getElementById('h1').textContent = Math.floor((diff1 % 86400000) / 3600000);
       document.getElementById('m1').textContent = Math.floor((diff1 % 3600000) / 60000);
     } else {
@@ -1499,21 +1463,106 @@ function updateTimers() {
       document.getElementById('h1').textContent = '';
       document.getElementById('m1').textContent = '';
     }
-    const getPh = (days, done) => { if (done) return "IT'S RACE DAY! GO ME!!"; if (days <= 13) return "Okay this is getting real"; if (days <= 29) return "Lance please answer your phone"; if (days <= 59) return "Carb loading is a sport right?"; if (days <= 99) return "TikTok triathlon deep dives are getting more specific"; return "Still time to pretend I didn't sign up for this"; };
-    const p0 = document.getElementById('race0phrase'); if (p0) p0.textContent = getPh(days0, diff0 <= 0);
+    const days1 = Math.floor(diff1 / 86400000);
+    const getPh = (days, done) => {
+      if (done) return "IT'S RACE DAY! GO ME!!";
+      if (days <= 13) return "Okay this is getting real";
+      if (days <= 29) return "Lance please answer your phone";
+      if (days <= 59) return "Carb loading is a sport right?";
+      if (days <= 99) return "TikTok triathlon deep dives are getting more specific";
+      return "Still time to pretend I didn't sign up for this";
+    };
     const p1 = document.getElementById('race1phrase'); if (p1) p1.textContent = getPh(days1, diff1 <= 0);
   }
   updateTimers();
   setInterval(updateTimers, 30000);
 
-  function selectPledge(el) { document.querySelectorAll('.pledge-amt').forEach(b => b.classList.remove('active')); el.classList.add('active'); }
-  function handleSignup() {
-    const email = document.getElementById('signupEmail').value.trim();
-    if (!email || !email.includes('@')) { document.getElementById('signupEmail').style.borderColor = 'rgba(232,104,74,0.6)'; return; }
-    document.getElementById('emailSuccess').style.display = 'block';
-    document.getElementById('signupName').style.display = 'none';
-    document.getElementById('signupEmail').style.display = 'none';
-    document.querySelector('.email-btn').style.display = 'none';
+  const raceMiles = { 'Sprint': 16, 'Olympic': 31.4, 'Half Ironman': 70.3, 'Full Ironman': 140.6, 'All Four Races': 258.3 };
+
+  function setPledgeAmount(amount) {
+    document.getElementById('pledgeAmount').value = amount;
+    document.querySelectorAll('.pledge-quick-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+    updatePledgeTotal();
+  }
+
+  function updatePledgeTotal() {
+    const race = document.getElementById('pledgeRace').value;
+    const amount = parseFloat(document.getElementById('pledgeAmount').value) || 0;
+    const miles = raceMiles[race] || 0;
+    const total = (miles * amount).toFixed(2);
+    document.getElementById('pledgeTotalDisplay').textContent = '$' + total;
+    if (race && amount > 0) {
+      document.getElementById('pledgeBreakdown').textContent = miles + ' miles × $' + amount.toFixed(2) + '/mile = $' + total;
+    } else {
+      document.getElementById('pledgeBreakdown').textContent = 'Select a race and amount to see your total';
+    }
+  }
+
+  async function submitPledge() {
+    const name = document.getElementById('pledgeName').value.trim();
+    const email = document.getElementById('pledgeEmail').value.trim();
+    const race = document.getElementById('pledgeRace').value;
+    const charity = document.getElementById('pledgeCharity').value;
+    const perMileAmount = parseFloat(document.getElementById('pledgeAmount').value);
+    const miles = raceMiles[race] || 0;
+    const projectedTotal = (miles * perMileAmount).toFixed(2);
+    if (!name || !email || !race || !charity || !perMileAmount) { alert('Please fill in all fields!'); return; }
+    try {
+      const res = await fetch('/api/pledges', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, race, charity, perMileAmount, projectedTotal })
+      });
+      const data = await res.json();
+      if (data.success) {
+        document.getElementById('pledgeSuccess').style.display = 'block';
+        document.getElementById('pledgeError').style.display = 'none';
+        loadPledges();
+      } else { document.getElementById('pledgeError').style.display = 'block'; }
+    } catch(e) { document.getElementById('pledgeError').style.display = 'block'; }
+  }
+
+  let rotatorInterval = null, rotatorIndex = 0, rotatorPledges = [];
+
+  function showRotatorSlide(i) {
+    const slide = document.getElementById('rotatorSlide');
+    const dots = document.getElementById('rotatorDots');
+    if (!slide || !rotatorPledges.length) return;
+    const f = rotatorPledges[i].fields;
+    slide.style.opacity = '0';
+    setTimeout(() => {
+      const msg = f.Message ? '<span class="rotator-message">"' + f.Message + '"</span>' : '';
+      slide.innerHTML = '<span class="rotator-name">' + f.Name + '</span><span class="rotator-details">$' + parseFloat(f['Per Mile Amount']).toFixed(2) + '/mile &middot; ' + f.Race + ' &middot; ' + f.Charity + '</span><span class="rotator-projected">$' + parseFloat(f['Projected Total']).toFixed(2) + ' projected</span>' + msg;
+      slide.style.opacity = '1';
+      if (dots) dots.querySelectorAll('.rotator-dot').forEach((d, j) => d.classList.toggle('active', j === i));
+    }, 200);
+  }
+
+  async function loadPledges() {
+    try {
+      const res = await fetch('/api/pledges');
+      const data = await res.json();
+      const records = (data.records || []).filter(r => r.fields && r.fields.Name);
+      rotatorPledges = records;
+      const dots = document.getElementById('rotatorDots');
+      if (rotatorPledges.length > 0) {
+        if (dots) dots.innerHTML = rotatorPledges.map((_, i) => '<div class="rotator-dot' + (i === 0 ? ' active' : '') + '" onclick="showRotatorSlide(' + i + ')"></div>').join('');
+        showRotatorSlide(0);
+        if (rotatorInterval) clearInterval(rotatorInterval);
+        if (rotatorPledges.length > 1) rotatorInterval = setInterval(() => { rotatorIndex = (rotatorIndex + 1) % rotatorPledges.length; showRotatorSlide(rotatorIndex); }, 5000);
+      }
+      if (!rotatorPledges.length) {
+        document.getElementById('pledgeList').innerHTML = '<p style="color:var(--muted);font-size:0.85rem;">Be the first to pledge!</p>';
+        return;
+      }
+      let total = 0; let html = '';
+      rotatorPledges.forEach(r => {
+        const f = r.fields; const proj = parseFloat(f['Projected Total'] || 0); total += proj;
+        html += '<div class="pledge-board-item"><div><span class="pledge-board-name">' + f.Name + '</span><br><span class="pledge-board-details">$' + parseFloat(f['Per Mile Amount']).toFixed(2) + '/mi &middot; ' + f.Race + ' &middot; ' + f.Charity + '</span></div><span class="pledge-board-amount">$' + proj.toFixed(2) + '</span></div>';
+      });
+      document.getElementById('pledgeList').innerHTML = html;
+      if (document.getElementById('pledgeBoardTotal')) document.getElementById('pledgeBoardTotal').innerHTML = 'Total pledged: $' + total.toFixed(2) + ' across ' + rotatorPledges.length + ' pledger' + (rotatorPledges.length !== 1 ? 's' : '');
+    } catch(e) { console.log('pledge error', e); }
   }
 
   async function loadMiles() {
@@ -1530,12 +1579,34 @@ function updateTimers() {
       function animateCount(id, target) {
         const el = document.getElementById(id); if (!el) return;
         const duration = 1500; const start = performance.now();
-        function update(time) { const progress = Math.min((time - start) / duration, 1); const ease = 1 - Math.pow(1 - progress, 3); el.textContent = (target * ease).toFixed(1); if (progress < 1) requestAnimationFrame(update); else el.textContent = target.toFixed(1); }
+        function update(time) { const p = Math.min((time - start) / duration, 1); const e = 1 - Math.pow(1-p,3); el.textContent = (target * e).toFixed(1); if (p < 1) requestAnimationFrame(update); else el.textContent = target.toFixed(1); }
         requestAnimationFrame(update);
       }
-      const observer = new IntersectionObserver(entries => { if (entries[0].isIntersecting) { animateCount('swimMiles', swim); animateCount('bikeMiles', bike); animateCount('runMiles', run); animateCount('totalMiles', total); observer.disconnect(); } }, { threshold: 0.5 });
+      const observer = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) { animateCount('swimMiles', swim); animateCount('bikeMiles', bike); animateCount('runMiles', run); animateCount('totalMiles', total); observer.disconnect(); }
+      }, { threshold: 0.5 });
       const el = document.getElementById('swimMiles'); if (el) observer.observe(el);
     } catch(e) { console.log('miles error', e); }
+  }
+
+  async function loadTotalHours() {
+    try {
+      const res = await fetch('/api/strava');
+      const weeks = await res.json();
+      const weekKeys = Object.keys(weeks).filter(k => k >= '2026-05-03');
+      let totalMins = 0, totalSessions = 0;
+      weekKeys.forEach(week => {
+        const w = weeks[week];
+        totalMins += (w.swim.time||0) + (w.bike.time||0) + (w.run.time||0) + (w.strength.time||0);
+        if (w.swim.time > 0) totalSessions++;
+        if (w.bike.time > 0) totalSessions++;
+        if (w.run.time > 0) totalSessions++;
+        if (w.strength.time > 0) totalSessions++;
+      });
+      document.getElementById('totalHours').textContent = (totalMins / 60).toFixed(1);
+      document.getElementById('totalSessions').textContent = totalSessions;
+      document.getElementById('totalWeeks').textContent = weekKeys.length;
+    } catch(e) { console.log('hours error', e); }
   }
 
   async function loadTraining() {
@@ -1560,175 +1631,6 @@ function updateTimers() {
       document.getElementById('trainingLog').innerHTML = html;
     } catch(e) { document.getElementById('trainingLog').innerHTML = '<p style="color:var(--muted)">Training data loading soon!</p>'; }
   }
-// Pledge form
-  const raceMiles = { 'Sprint': 16, 'Olympic': 31.4, 'Half Ironman': 70.3, 'Full Ironman': 140.6, 'All Four Races': 258.3 };
-
-  function setPledgeAmount(amount) {
-    document.getElementById('pledgeAmount').value = amount;
-    document.querySelectorAll('.pledge-quick-btn').forEach(b => b.classList.remove('active'));
-    event.target.classList.add('active');
-    updatePledgeTotal();
-  }
-
-  function updatePledgeTotal() {
-    const raceEl = document.getElementById('pledgeRace');
-    const amountEl = document.getElementById('pledgeAmount');
-    const race = raceEl.value;
-    const amount = parseFloat(amountEl.value) || 0;
-    const miles = raceMiles[race] || 0;
-    const total = (miles * amount).toFixed(2);
-    document.getElementById('pledgeTotalDisplay').textContent = '$' + total;
-    if (race && amount > 0) {
-      document.getElementById('pledgeBreakdown').textContent = miles + ' miles x $' + amount.toFixed(2) + '/mile = $' + total;
-    } else {
-      document.getElementById('pledgeBreakdown').textContent = 'Select a race and amount to see your total';
-    }
-  }
-
-  async function submitPledge() {
-    const name = document.getElementById('pledgeName').value.trim();
-    const email = document.getElementById('pledgeEmail').value.trim();
-    const race = document.getElementById('pledgeRace').value;
-    const charity = document.getElementById('pledgeCharity').value;
-    const perMileAmount = parseFloat(document.getElementById('pledgeAmount').value);
-    const miles = raceMiles[race] || 0;
-    const projectedTotal = (miles * perMileAmount).toFixed(2);
-
-    if (!name || !email || !race || !charity || !perMileAmount) {
-      alert('Please fill in all fields!');
-      return;
-    }
-
-    try {
-      const res = await fetch('/api/pledges', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, race, charity, perMileAmount, projectedTotal })
-      });
-      const data = await res.json();
-      if (data.success) {
-        document.getElementById('pledgeSuccess').style.display = 'block';
-        document.getElementById('pledgeError').style.display = 'none';
-        loadPledges();
-      } else {
-        document.getElementById('pledgeError').style.display = 'block';
-      }
-    } catch(e) {
-      document.getElementById('pledgeError').style.display = 'block';
-    }
-  }
-
-  async function loadPledges() {
-    try {
-      const res = await fetch('/api/pledges');
-      const data = await res.json();
-      const records = data.records || [];
-      const validRecords = records.filter(r => r.fields && r.fields.Name);
-      
-      if (validRecords.length === 0) {
-        document.getElementById('pledgeList').innerHTML = '<p style="color:var(--muted);font-size:0.85rem;">Be the first to pledge!</p>';
-        return;
-      }
-
-      let totalPledged = 0;
-      let html = '';
-      validRecords.forEach(r => {
-        const f = r.fields;
-        const projected = parseFloat(f['Projected Total'] || 0);
-        totalPledged += projected;
-        html += '<div class="pledge-board-item">';
-        html += '<div><span class="pledge-board-name">' + f.Name + '</span><br><span class="pledge-board-details">$' + parseFloat(f['Per Mile Amount']).toFixed(2) + '/mi · ' + f.Race + ' · ' + f.Charity + '</span></div>';
-        html += '<span class="pledge-board-amount">$' + projected.toFixed(2) + '</span>';
-        html += '</div>';
-      });
-
-      document.getElementById('pledgeList').innerHTML = html;
-      document.getElementById('pledgeBoardTotal').innerHTML = 'Total pledged: $' + totalPledged.toFixed(2) + ' across ' + validRecords.length + ' pledger' + (validRecords.length !== 1 ? 's' : '');
-    } catch(e) {
-      console.log('pledge load error', e);
-    }
-  }
-  loadPledges();
-  let rotatorInterval = null;
-  let rotatorIndex = 0;
-  let rotatorPledges = [];
-
-  function showRotatorSlide(i) {
-    const slide = document.getElementById('rotatorSlide');
-    const dots = document.getElementById('rotatorDots');
-    if (!slide || !rotatorPledges.length) return;
-    const f = rotatorPledges[i].fields;
-    slide.style.opacity = '0';
-    setTimeout(() => {
-      const msg = f.Message ? '<span class="rotator-message">"' + f.Message + '"</span>' : '';
-      slide.innerHTML =
-        '<span class="rotator-name">' + f.Name + '</span>' +
-        '<span class="rotator-details">$' + parseFloat(f['Per Mile Amount']).toFixed(2) + '/mile &middot; ' + f.Race + ' &middot; ' + f.Charity + '</span>' +
-        '<span class="rotator-projected">$' + parseFloat(f['Projected Total']).toFixed(2) + ' projected</span>' +
-        msg;
-      slide.style.opacity = '1';
-      if (dots) dots.querySelectorAll('.rotator-dot').forEach((d, j) => d.classList.toggle('active', j === i));
-    }, 200);
-  }
-
-  async function loadPledges() {
-    try {
-      const res = await fetch('/api/pledges');
-      const data = await res.json();
-      const records = (data.records || []).filter(r => r.fields && r.fields.Name);
-      rotatorPledges = records;
-      const dots = document.getElementById('rotatorDots');
-      if (rotatorPledges.length > 0) {
-        if (dots) dots.innerHTML = rotatorPledges.map((_, i) => '<div class="rotator-dot' + (i === 0 ? ' active' : '') + '" onclick="showRotatorSlide(' + i + ')"></div>').join('');
-        showRotatorSlide(0);
-        if (rotatorInterval) clearInterval(rotatorInterval);
-        if (rotatorPledges.length > 1) {
-          rotatorInterval = setInterval(() => {
-            rotatorIndex = (rotatorIndex + 1) % rotatorPledges.length;
-            showRotatorSlide(rotatorIndex);
-          }, 5000);
-        }
-      }
-      if (!rotatorPledges.length) {
-        document.getElementById('pledgeList').innerHTML = '<p style="color:var(--muted);font-size:0.85rem;">Be the first to pledge!</p>';
-        return;
-      }
-      let total = 0; let html = '';
-      rotatorPledges.forEach(r => {
-        const f = r.fields;
-        const proj = parseFloat(f['Projected Total'] || 0);
-        total += proj;
-        html += '<div class="pledge-board-item"><div><span class="pledge-board-name">' + f.Name + '</span><br><span class="pledge-board-details">$' + parseFloat(f['Per Mile Amount']).toFixed(2) + '/mi &middot; ' + f.Race + ' &middot; ' + f.Charity + '</span></div><span class="pledge-board-amount">$' + proj.toFixed(2) + '</span></div>';
-      });
-      document.getElementById('pledgeList').innerHTML = html;
-      if (document.getElementById('pledgeBoardTotal')) document.getElementById('pledgeBoardTotal').innerHTML = 'Total pledged: $' + total.toFixed(2) + ' across ' + rotatorPledges.length + ' pledger' + (rotatorPledges.length !== 1 ? 's' : '');
-    } catch(e) { console.log('pledge error', e); }
-  }
-  loadPledges();
-  loadMiles();
-  async function loadTotalHours() {
-    try {
-      const res = await fetch('/api/strava');
-      const weeks = await res.json();
-      const weekKeys = Object.keys(weeks).filter(k => k >= '2026-05-03');
-      let totalMins = 0;
-      let totalSessions = 0;
-      weekKeys.forEach(week => {
-        const w = weeks[week];
-        totalMins += (w.swim.time || 0) + (w.bike.time || 0) + (w.run.time || 0) + (w.strength.time || 0);
-        if (w.swim.time > 0) totalSessions++;
-        if (w.bike.time > 0) totalSessions++;
-        if (w.run.time > 0) totalSessions++;
-        if (w.strength.time > 0) totalSessions++;
-      });
-      const totalHours = (totalMins / 60).toFixed(1);
-      document.getElementById('totalHours').textContent = totalHours;
-      document.getElementById('totalSessions').textContent = totalSessions;
-      document.getElementById('totalWeeks').textContent = weekKeys.length;
-    } catch(e) { console.log('hours error', e); }
-  }
-  loadTotalHours();
-  loadTraining();loadMiles();
 
   function toggleTrainingLog() {
     const wrap = document.getElementById('trainingLogWrap');
@@ -1737,10 +1639,13 @@ function updateTimers() {
     wrap.classList.toggle('open', !isOpen);
     btn.classList.toggle('open', !isOpen);
     btn.querySelector('.training-toggle-arrow').style.transform = isOpen ? '' : 'rotate(180deg)';
-    const label = btn.childNodes[0];
-    label.textContent = isOpen ? 'View weekly breakdown ' : 'Hide weekly breakdown ';
+    btn.childNodes[0].textContent = isOpen ? 'View weekly breakdown ' : 'Hide weekly breakdown ';
   }
 
+  loadPledges();
+  loadMiles();
+  loadTotalHours();
+  loadTraining();
 </script>
 </body>
 </html>
