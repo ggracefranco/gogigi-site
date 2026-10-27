@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>What? Like it's hard?</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>gogigi.run · Going the Distance</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%231a2744'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-weight='700' font-size='20' fill='%23c94080'%3EG%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -102,12 +103,12 @@ nav {
   letter-spacing: 0.12em; text-transform: uppercase;
   color: var(--muted);
   padding: 0.7rem 1.6rem;
-  border-bottom: 2px solid transparent;
+  border-bottom: 3px solid transparent;
   transition: color 0.2s, border-color 0.2s;
   white-space: nowrap;
 }
-.tab-btn:hover { color: var(--teal); }
-.tab-btn.active { color: var(--navy); border-bottom-color: var(--raspberry); font-weight: 500; }
+.tab-btn:hover { color: var(--navy); border-bottom-color: rgba(201,64,128,0.25); }
+.tab-btn.active { color: var(--navy); border-bottom-color: var(--raspberry); font-weight: 600; }
 .tab-btn.give-tab { color: var(--coral); }
 .tab-btn.give-tab.active { color: var(--coral); border-bottom-color: var(--coral); }
 .tab-btn.give-tab:hover { color: var(--maroon); }
@@ -163,26 +164,29 @@ nav {
 }
 .hero-sky {
   position: absolute; inset: 0;
-  background: url('IMG_3952.JPG') center center / cover no-repeat;
+  background: url('IMG_5588.jpg') center 30% / cover no-repeat;
 }
 .hero-sky::after {
   content: '';
   position: absolute; inset: 0;
-  background: linear-gradient(to bottom, rgba(253,248,240,0.03) 0%, rgba(253,248,240,0.08) 40%, rgba(253,248,240,0.38) 100%);
+  background: linear-gradient(to bottom, rgba(10,18,40,0.15) 0%, rgba(10,18,40,0.25) 40%, rgba(10,18,40,0.72) 100%);
 }
 .hero-content { position: relative; z-index: 2; max-width: 860px; }
 .hero-eyebrow-top {
-  font-size: 0.9rem; letter-spacing: 0.22em; text-transform: uppercase;
-  color: rgba(201,64,128,0.85); font-weight: 500;
-  margin-bottom: 1.75rem; display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem; font-style: italic; font-weight: 400;
+  letter-spacing: 0.04em; text-transform: none;
+  color: rgba(245,210,180,0.9);
+  margin-bottom: 1.5rem; display: block;
 }
 h1 {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(5rem, 13vw, 10rem);
   line-height: 0.88; letter-spacing: 0.01em;
-  color: var(--raspberry); margin-bottom: 1.5rem;
-  text-shadow: 0 2px 40px rgba(0,0,0,0.25);
+  color: var(--sand); margin-bottom: 1.5rem;
+  text-shadow: 0 2px 40px rgba(0,0,0,0.4);
 }
+h1 em { color: var(--raspberry); font-style: italic; }
 h1 em { font-style: italic; font-family: 'Lora', serif; color: var(--navy); font-size: 0.85em; }
 .hero-sub {
   font-size: clamp(1rem, 1.8vw, 1.1rem);
@@ -854,6 +858,26 @@ h1 em { font-style: italic; font-family: 'Lora', serif; color: var(--navy); font
 .give-hero-cta { display: inline-block; margin-top: 1.5rem; background: var(--raspberry); color: #fff; padding: 1rem 2.5rem; font-size: 0.88rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border-radius: 3px; transition: all 0.2s; }
 .give-hero-cta:hover { background: var(--raspberry-deep); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(201,64,128,0.35); }
 
+/* ─── GIVE PERSONAL NOTE ─── */
+.give-personal-note {
+  max-width: 680px; margin: 0 0 3.5rem;
+  padding: 0 0 3rem;
+  border-bottom: 1px solid rgba(26,42,74,0.1);
+}
+.give-personal-note p {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+  font-style: italic; font-weight: 400;
+  color: var(--navy); line-height: 1.85;
+}
+.give-personal-note p + p { margin-top: 1rem; }
+.give-personal-note .why-line {
+  font-family: 'DM Sans', sans-serif;
+  font-style: normal; font-size: 0.8rem;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 1.25rem; display: block;
+}
+
 /* ─── GIVE / FUNDRAISING ─── */
 .fundraising-section { padding: 5rem 2.5rem; background: var(--cream); }
 .fundraising-header { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; margin-bottom: 3rem; }
@@ -975,7 +999,7 @@ p.charity-num { font-size: 0.63rem; letter-spacing: 0.22em; text-transform: uppe
 .perk-icon { font-size: 1.1rem; flex-shrink: 0; }
 
 /* ─── FOOTER ─── */
-footer { background: var(--navy); padding: 4rem 2.5rem 2rem; border-top: 1px solid rgba(201,64,128,0.15); }
+footer { background: var(--navy); padding: 1.75rem 2.5rem; border-top: 1px solid rgba(201,64,128,0.15); }
 .footer-top { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 4rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(197,232,242,0.08); margin-bottom: 2rem; }
 .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.1em; color: var(--raspberry); display: block; margin-bottom: 1rem; }
 .footer-tagline { font-size: 0.85rem; color: rgba(253,248,240,0.75); line-height: 1.72; max-width: 280px; }
@@ -1534,7 +1558,7 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
     <div class="give-hero-inner">
       <p class="section-label">Make it count</p>
       <h2 class="give-hero-headline">Every mile<br>is for <em>someone.</em></h2>
-      <p class="give-hero-sub">I'm racing for three organizations that matter to me. Pledge a dollar amount per mile, and after each race I'll send you a direct link to give. You pay them. I just do the sweating.</p>
+      <p class="give-hero-sub">An eating disorder took collegiate swimming from me. Recovery gave it back. Now I race because I can — and because not everyone gets that second chance. Health is a privilege. These three organizations understand that. Pledge a dollar per mile and I'll do the rest.</p>
       <div class="give-hero-how">
         <p><strong>How it works:</strong> Pick a race and an amount per mile. Leave me your email. After I cross the finish line I'll send your total and a direct donation link to your chosen charity. <strong>No payment now. No pressure. Just your word that you're in.</strong></p>
       </div>
@@ -1544,12 +1568,17 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
 
   <!-- Charities -->
   <section class="fundraising-section">
+    <div class="give-personal-note">
+      <span class="why-line">Why I race</span>
+      <p>"An eating disorder took collegiate swimming from me. Recovery gave it back. Now I race because I can &mdash; and because not everyone gets that second chance. Health is a privilege."</p>
+      <p>These three organizations get a piece of every mile.</p>
+    </div>
     <div class="fundraising-header">
       <div>
         <p class="section-label">The Causes</p>
         <h2>Racing for<br><em>what matters</em></h2>
       </div>
-      <p class="fundraising-meta">Three organizations that are close to my heart. Each one does real work for real people. Click to learn more or donate directly.</p>
+      <p class="fundraising-meta">Each organization is personal. Click any card to learn more or donate directly.</p>
     </div>
 
     <div class="charity-cards">
@@ -1558,9 +1587,9 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
           <img src="https://www.nationaleatingdisorders.org/wp-content/themes/neda/images/neda-logo.svg" alt="NEDA logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
           <span class="charity-logo-fallback" style="display:none;">NEDA</span>
         </div>
-        <p class="charity-num">01 &middot; Mental Health</p>
+        <p class="charity-num">01 &middot; Eating Disorders</p>
         <p class="charity-name-big">NEDA</p>
-        <p class="charity-personal">For every athlete who has ever had a complicated relationship with their body</p>
+        <p class="charity-personal">This one is personal. An eating disorder ended my college swimming career. NEDA was part of the road back.</p>
         <p class="charity-desc">The National Eating Disorders Association supports individuals and families affected by eating disorders through education, advocacy, and access to resources and treatment.</p>
       </div>
       <div class="charity-card" onclick="window.open('https://www.rainn.org/donate','_blank')" style="cursor:pointer;">
@@ -1570,7 +1599,7 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
         </div>
         <p class="charity-num">02 &middot; Survivor Support</p>
         <p class="charity-name-big">RAINN</p>
-        <p class="charity-personal">For the women who show up for each other.</p>
+        <p class="charity-personal">Women should feel safe. Women should be heard. Simple as that.</p>
         <p class="charity-desc">The nation's largest anti-sexual violence organization. RAINN operates the National Sexual Assault Hotline and works to prevent sexual violence and support survivors nationwide.</p>
       </div>
       <div class="charity-card" onclick="window.open('https://www.friendshipcircle.org/donate','_blank')" style="cursor:pointer;">
@@ -1578,9 +1607,9 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
           <img src="https://www.friendshipcircle.org/wp-content/uploads/2019/09/FC-Logo.png" alt="Friendship Circle logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
           <span class="charity-logo-fallback" style="display:none; color:var(--coral);">Friendship Circle</span>
         </div>
-        <p class="charity-num">03 &middot; Inclusion &amp; Special Needs</p>
+        <p class="charity-num">03 &middot; Inclusion &amp; Belonging</p>
         <p class="charity-name-big">Friendship Circle</p>
-        <p class="charity-personal">For the kids who lit up when someone pulled up a chair.</p>
+        <p class="charity-personal">I spent weekly lunches being a friend to someone who needed one. Sometimes that's everything.</p>
         <p class="charity-desc">Friendship Circle creates meaningful friendships between teen volunteers and individuals with special needs, building confidence, community, and belonging for everyone involved.</p>
       </div>
     </div>
@@ -1823,7 +1852,7 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
 
 <!-- FOOTER (always visible) -->
 <footer>
-  <div class="footer-top">
+  <div class="footer-top" style="display:none">
     <div>
       <span class="footer-logo">What, like it's hard?</span>
       <p class="footer-tagline">Training for five races. Racing for three causes. Come be part of it.</p>
