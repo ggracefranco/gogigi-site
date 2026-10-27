@@ -925,6 +925,52 @@ p.charity-num { font-size: 0.63rem; letter-spacing: 0.22em; text-transform: uppe
 .pledge-submit-btn:hover { background: var(--raspberry-deep); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,64,128,0.3); }
 .pledge-success { background: rgba(168,216,232,0.15); border: 1px solid rgba(168,216,232,0.4); color: var(--teal); padding: 0.85rem 1rem; border-radius: 3px; font-size: 0.9rem; margin-top: 1rem; }
 .pledge-error { background: rgba(232,104,74,0.08); border: 1px solid rgba(232,104,74,0.3); color: var(--coral); padding: 0.85rem 1rem; border-radius: 3px; font-size: 0.9rem; margin-top: 1rem; }
+
+/* Pledge success overlay */
+#pledgeSuccessOverlay {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(26,42,74,0.65); backdrop-filter: blur(6px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 1.5rem;
+  animation: overlayFadeIn 0.35s ease;
+}
+@keyframes overlayFadeIn { from { opacity: 0; } to { opacity: 1; } }
+.pledge-overlay-box {
+  background: var(--cream); border-radius: 6px;
+  padding: 3.5rem 3rem 3rem;
+  max-width: 460px; width: 100%;
+  text-align: center; position: relative;
+  animation: overlaySlideUp 0.35s ease;
+}
+@keyframes overlaySlideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.pledge-overlay-close {
+  position: absolute; top: 1.25rem; right: 1.25rem;
+  background: none; border: none; font-size: 1.4rem; color: var(--muted);
+  cursor: pointer; line-height: 1; padding: 0.25rem 0.5rem;
+}
+.pledge-overlay-close:hover { color: var(--text); }
+.pledge-overlay-heart {
+  font-size: 2.2rem; color: var(--raspberry); margin-bottom: 1.25rem;
+  animation: heartBeat 1.2s ease-in-out 0.3s 2;
+}
+@keyframes heartBeat { 0%,100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+.pledge-overlay-heading {
+  font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem;
+  color: var(--text); letter-spacing: 0.05em; line-height: 1;
+  margin-bottom: 1.25rem;
+}
+.pledge-overlay-body {
+  font-family: 'Lora', serif; font-size: 1rem; line-height: 1.75;
+  color: var(--muted); margin-bottom: 2rem;
+}
+.pledge-overlay-btn {
+  background: var(--raspberry); color: white; border: none;
+  padding: 0.9rem 2.5rem; font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; border-radius: 3px; cursor: pointer;
+  transition: all 0.2s;
+}
+.pledge-overlay-btn:hover { background: var(--raspberry-deep); transform: translateY(-1px); }
 .pledge-total-display { background: var(--navy); padding: 2.25rem 2rem; border-radius: 4px; text-align: center; margin-bottom: 1.5rem; border: 1px solid rgba(201,64,128,0.15); }
 .pledge-total-label { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(232,176,196,0.5); margin-bottom: 0.5rem; }
 .pledge-total-amount { font-family: 'Bebas Neue', sans-serif; font-size: 4.5rem; color: var(--raspberry); line-height: 1; margin-bottom: 0.5rem; }
@@ -1796,7 +1842,6 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
           <input type="email" id="pledgeEmail" placeholder="For your post-race receipt">
         </div>
         <button class="pledge-submit-btn" onclick="submitPledge()">Count me in &rarr;</button>
-        <div id="pledgeSuccess" style="display:none;" class="pledge-success">You're in! I'll email you after each race with your total.</div>
         <div id="pledgeError" style="display:none;" class="pledge-error">Something went wrong &mdash; please try again!</div>
       </div>
       <div class="pledge-form-right">
@@ -2076,7 +2121,7 @@ async function submitPledge() {
     });
     const data = await res.json();
     if (data.success) {
-      document.getElementById('pledgeSuccess').style.display = 'block';
+      document.getElementById('pledgeSuccessOverlay').style.display = 'flex';
       document.getElementById('pledgeError').style.display = 'none';
       loadPledges();
     } else { document.getElementById('pledgeError').style.display = 'block'; }
@@ -2194,6 +2239,11 @@ async function loadTraining() {
     html += '</tbody></table></div>';
     document.getElementById('trainingLog').innerHTML = html;
   } catch(e) { document.getElementById('trainingLog').innerHTML = '<p style="color:var(--muted)">Training data loading soon!</p>'; }
+}
+
+function closePledgeOverlay(e) {
+  if (e && e.target !== document.getElementById('pledgeSuccessOverlay')) return;
+  document.getElementById('pledgeSuccessOverlay').style.display = 'none';
 }
 
 function togglePledgeBoard(titleEl) {
@@ -2424,5 +2474,16 @@ async function loadVolChart() {
   setInterval(tick, 1000);
 })();
 </script>
+<!-- Pledge success overlay -->
+<div id="pledgeSuccessOverlay" style="display:none;" onclick="closePledgeOverlay(event)">
+  <div class="pledge-overlay-box">
+    <button class="pledge-overlay-close" onclick="closePledgeOverlay(null)">&times;</button>
+    <div class="pledge-overlay-heart">&#9825;</div>
+    <p class="pledge-overlay-heading">Truly, thank you.</p>
+    <p class="pledge-overlay-body">This means a lot and I'm looking forward to having you be part of the journey. More to come with training and race updates!</p>
+    <button class="pledge-overlay-btn" onclick="closePledgeOverlay(null)">I'll be watching!</button>
+  </div>
+</div>
+
 </body>
 </html>
