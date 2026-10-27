@@ -187,7 +187,7 @@ nav {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(1.8rem, 4vw, 3rem);
   letter-spacing: 0.04em;
-  color: var(--navy);
+  color: var(--teal);
   line-height: 1;
 }
 h1 {
@@ -657,6 +657,19 @@ h1 em { font-style: italic; font-family: 'Lora', serif; color: var(--navy); font
 .total-hours-stat { text-align: left; }
 .total-hours-num { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; line-height: 1; color: var(--teal); display: block; }
 .total-hours-label { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); display: block; margin-top: 0.3rem; }
+/* ─── TRAINING VOLUME CHART ─── */
+.vol-chart-wrap { margin-bottom: 2.5rem; }
+.vol-chart-label { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+.vol-chart { display: flex; align-items: flex-end; gap: 3px; height: 120px; }
+.vol-bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 0; }
+.vol-bar {
+  width: 100%; border-radius: 2px 2px 0 0; min-height: 3px;
+  background: var(--raspberry); opacity: 0.75;
+  transition: height 0.6s ease, opacity 0.2s;
+}
+.vol-bar:hover { opacity: 1; }
+.vol-bar-date { font-size: 0.42rem; color: var(--light); letter-spacing: 0.04em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; text-align: center; }
+
 .training-toggle-btn {
   display: inline-flex; align-items: center; gap: 0.6rem;
   background: none; border: 1px solid rgba(90,172,207,0.35); color: var(--teal);
@@ -1473,6 +1486,13 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
       </div>
     </div>
 
+    <div class="vol-chart-wrap">
+      <p class="vol-chart-label">Weekly training volume &mdash; total miles</p>
+      <div class="vol-chart" id="volChart">
+        <p style="color:var(--light);font-size:0.8rem;font-style:italic;">Loading&hellip;</p>
+      </div>
+    </div>
+
     <button class="training-toggle-btn" id="trainingToggleBtn" onclick="toggleTrainingLog()">
       View weekly breakdown <span class="training-toggle-arrow">&#x25BC;</span>
     </button>
@@ -1925,7 +1945,7 @@ function showTab(name) {
   window.scrollTo(0, 0);
   // Load miles when home tab shown
   if (name === 'home' && !window._milesLoaded) { loadMiles(); loadRaisedTotal(); window._milesLoaded = true; }
-  if (name === 'training' && !window._trainingLoaded) { loadTotalHours(); loadTraining(); window._trainingLoaded = true; }
+  if (name === 'training' && !window._trainingLoaded) { loadTotalHours(); loadTraining(); loadVolChart(); window._trainingLoaded = true; }
   if (name === 'give' && !window._pledgesLoaded) { loadPledges(); window._pledgesLoaded = true; }
 }
 
@@ -2257,6 +2277,31 @@ async function loadRaisedTotal() {
   }
 }
 
+
+// ─── VOLUME CHART ───
+async function loadVolChart() {
+  try {
+    const res = await fetch('/api/strava');
+    const weeks = await res.json();
+    const weekKeys = Object.keys(weeks).filter(k => k >= '2026-05-03').sort();
+    const el = document.getElementById('volChart');
+    if (!weekKeys.length || !el) return;
+    let maxVal = 0;
+    weekKeys.forEach(k => {
+      const w = weeks[k];
+      const t = (w.swim.distance||0) + (w.bike.distance||0) + (w.run.distance||0);
+      if (t > maxVal) maxVal = t;
+    });
+    if (maxVal === 0) { el.innerHTML = '<p style="color:var(--light);font-size:0.8rem;font-style:italic;">No data yet.</p>'; return; }
+    el.innerHTML = weekKeys.map(k => {
+      const w = weeks[k];
+      const total = (w.swim.distance||0) + (w.bike.distance||0) + (w.run.distance||0);
+      const h = Math.max(3, Math.round((total / maxVal) * 104));
+      const label = new Date(k + 'T12:00:00').toLocaleDateString('en-US', {month:'short', day:'numeric'});
+      return `<div class="vol-bar-wrap"><div class="vol-bar" style="height:${h}px" title="${total.toFixed(1)} mi"></div><span class="vol-bar-date">${label}</span></div>`;
+    }).join('');
+  } catch(e) { /* silent */ }
+}
 
 // COUNTDOWN CLOCK
 (function() {
