@@ -294,7 +294,7 @@ h1 em { font-style: italic; font-family: 'Lora', serif; color: var(--navy); font
 }
 
 /* ─── PHOTO FULL BLEED ─── */
-.photo-bleed { height: 460px; overflow: hidden; position: relative; }
+.photo-bleed { height: 580px; overflow: hidden; position: relative; }
 .photo-bleed img { width: 100%; height: 100%; object-fit: cover; filter: contrast(1.04) brightness(0.98); }
 .photo-bleed::before {
   content: '';
@@ -541,20 +541,22 @@ h1 em { font-style: italic; font-family: 'Lora', serif; color: var(--navy); font
 .blog-header h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--coral); }
 .view-all-link { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); text-decoration: none; border-bottom: 1px solid rgba(90,172,207,0.35); padding-bottom: 2px; transition: border-color 0.2s; }
 .view-all-link:hover { border-color: var(--teal); }
-.blog-grid-editorial { display: grid; grid-template-columns: 1.4fr 1fr; grid-template-rows: auto auto; gap: 1.5rem; }
-.blog-card-editorial { display: flex; flex-direction: column; background: var(--cream); border-radius: 3px; overflow: hidden; text-decoration: none; color: inherit; transition: transform 0.25s, box-shadow 0.25s; border: 1px solid rgba(168,216,232,0.2); }
-.blog-card-editorial:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(90,172,207,0.12); }
+.blog-grid-editorial { display: grid; grid-template-columns: 1.4fr 1fr; grid-template-rows: auto; gap: 1.5rem; }
+.blog-card-editorial { border-radius: 4px; overflow: hidden; text-decoration: none; color: inherit; transition: transform 0.28s, box-shadow 0.28s; position: relative; display: block; }
+.blog-card-editorial:hover { transform: translateY(-4px); box-shadow: 0 20px 56px rgba(26,42,74,0.22); }
 .blog-card-editorial.featured { grid-row: span 2; }
-.blog-img-block { width: 100%; position: relative; }
-.blog-card-editorial.featured .blog-img-block { height: 340px; }
-.blog-card-editorial:not(.featured) .blog-img-block { height: 160px; }
-.blog-img-block-inner { width: 100%; height: 100%; display: flex; align-items: flex-end; padding: 1.5rem; }
-.blog-body { padding: 1.75rem 2rem 2rem; flex: 1; display: flex; flex-direction: column; }
-.blog-tag { font-size: 0.62rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.75rem; display: block; }
-.blog-title { font-family: 'Lora', serif; font-size: 1.25rem; line-height: 1.38; color: var(--text); margin-bottom: 0.75rem; flex: 1; }
-.blog-card-editorial.featured .blog-title { font-size: 1.6rem; line-height: 1.28; }
-.blog-excerpt { font-size: 0.85rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.25rem; }
-.blog-read-more { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--coral); display: inline-flex; align-items: center; gap: 0.3rem; }
+/* Image block is a full-bleed color/gradient fill */
+.blog-img-block { width: 100%; position: relative; overflow: hidden; }
+.blog-card-editorial.featured .blog-img-block { height: 100%; min-height: 460px; }
+.blog-card-editorial:not(.featured) .blog-img-block { height: 230px; }
+/* Overlay text lives inside the image block */
+.blog-img-block-inner { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem; background: linear-gradient(to top, rgba(10,16,36,0.88) 0%, rgba(10,16,36,0.3) 45%, transparent 80%); }
+.blog-tag { font-size: 0.6rem; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 0.6rem; display: block; }
+.blog-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.55rem; letter-spacing: 0.02em; line-height: 1.12; color: #fff; margin-bottom: 0.65rem; }
+.blog-card-editorial.featured .blog-title { font-size: 2.4rem; line-height: 1.06; }
+.blog-excerpt { font-family: 'Lora', serif; font-style: italic; font-size: 0.85rem; color: rgba(255,255,255,0.65); line-height: 1.6; margin-bottom: 1rem; }
+.blog-read-more { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--coral); display: inline-flex; align-items: center; gap: 0.3rem; }
+.blog-body { display: none; } /* content now lives in img-block-inner */
 .blog-col-right { display: flex; flex-direction: column; gap: 1.5rem; }
 
 /* ─── GALLERY ─── */
@@ -569,33 +571,47 @@ h1 em { font-style: italic; font-family: 'Lora', serif; color: var(--navy); font
 .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; filter: contrast(1.02); }
 .gallery-color { width: 100%; height: 100%; }
 
+/* ─── GIVE HERO ─── */
+.give-hero { background: var(--navy); padding: 6rem 2.5rem 5rem; position: relative; overflow: hidden; }
+.give-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 80% at 80% 50%, rgba(201,64,128,0.12) 0%, transparent 65%); pointer-events: none; }
+.give-hero-inner { max-width: 860px; position: relative; z-index: 1; }
+.give-hero .section-label { color: var(--rose); }
+.give-hero .section-label::before { background: var(--rose); }
+.give-hero-headline { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 7vw, 6.5rem); line-height: 0.92; color: var(--sand); margin-bottom: 1.5rem; letter-spacing: 0.01em; }
+.give-hero-headline em { font-family: 'Lora', serif; font-style: italic; color: var(--raspberry); }
+.give-hero-sub { font-size: 1.05rem; color: rgba(253,248,240,0.6); line-height: 1.75; max-width: 620px; margin-bottom: 2.5rem; }
+.give-hero-how { background: rgba(255,255,255,0.05); border: 1px solid rgba(201,64,128,0.2); border-radius: 4px; padding: 1.75rem 2rem; max-width: 680px; }
+.give-hero-how p { font-size: 0.95rem; color: rgba(253,248,240,0.75); line-height: 1.8; }
+.give-hero-how strong { color: var(--rose); font-weight: 500; }
+.give-hero-cta { display: inline-block; margin-top: 1.5rem; background: var(--raspberry); color: #fff; padding: 1rem 2.5rem; font-size: 0.88rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border-radius: 3px; transition: all 0.2s; }
+.give-hero-cta:hover { background: var(--raspberry-deep); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(201,64,128,0.35); }
+
 /* ─── GIVE / FUNDRAISING ─── */
-.fundraising-section { padding: 6rem 2.5rem; background: var(--cream); }
+.fundraising-section { padding: 5rem 2.5rem; background: var(--cream); }
 .fundraising-header { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; margin-bottom: 3rem; }
 .fundraising-header h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 0.93; color: var(--text); }
 .fundraising-header h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--coral); }
 .fundraising-meta { color: var(--muted); line-height: 1.8; font-size: 0.97rem; }
-.coming-soon-banner { display: flex; align-items: center; gap: 1rem; background: var(--mist); border: 1px solid rgba(168,216,232,0.4); border-radius: 3px; padding: 1.25rem 1.75rem; margin: 0 0 2.5rem; flex-wrap: wrap; }
-.coming-soon-banner span { font-size: 1.5rem; }
-.coming-soon-banner p { font-size: 0.92rem; color: var(--text); flex: 1; line-height: 1.65; }
-.coming-soon-btn { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); text-decoration: none; border-bottom: 1px solid rgba(90,172,207,0.35); padding-bottom: 2px; white-space: nowrap; }
-.coming-soon-btn:hover { border-color: var(--teal); }
-.charity-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin: 2rem 0 2.5rem; }
-.charity-card { background: var(--sand); border: 1px solid rgba(168,216,232,0.25); border-top: 3px solid var(--aqua); border-radius: 3px; padding: 2rem; display: flex; flex-direction: column; transition: box-shadow 0.2s, transform 0.2s; }
-.charity-card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(168,216,232,0.2); }
+.coming-soon-banner { display: none; }
+.charity-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin: 0 0 2.5rem; }
+.charity-card { background: var(--navy); border-radius: 4px; padding: 2rem; display: flex; flex-direction: column; transition: box-shadow 0.25s, transform 0.25s; cursor: pointer; }
+.charity-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(26,42,74,0.22); }
+.charity-card:nth-child(1) { border-top: 3px solid var(--raspberry); }
+.charity-card:nth-child(2) { border-top: 3px solid var(--coral); }
+.charity-card:nth-child(3) { border-top: 3px solid var(--teal); }
 .charity-logo-wrap { height: 52px; display: flex; align-items: center; margin-bottom: 1.25rem; }
-.charity-logo-wrap img { max-height: 48px; max-width: 150px; object-fit: contain; }
-.charity-logo-fallback { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.06em; color: var(--teal); }
-p.charity-num { font-size: 0.63rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.4rem; }
-.charity-name-big { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.04em; color: var(--text); margin-bottom: 0.5rem; }
-.charity-personal { font-family: 'Lora', serif; font-style: italic; font-size: 0.88rem; color: var(--maroon); line-height: 1.55; margin-bottom: 0.75rem; }
-.charity-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.68; flex: 1; }
+.charity-logo-wrap img { max-height: 48px; max-width: 150px; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.8; }
+.charity-logo-fallback { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.06em; color: var(--rose); }
+p.charity-num { font-size: 0.63rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(197,232,242,0.4); margin-bottom: 0.4rem; }
+.charity-name-big { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.04em; color: var(--sand); margin-bottom: 0.5rem; }
+.charity-personal { font-family: 'Lora', serif; font-style: italic; font-size: 0.88rem; color: var(--rose); line-height: 1.55; margin-bottom: 0.75rem; }
+.charity-desc { font-size: 0.83rem; color: rgba(253,248,240,0.45); line-height: 1.68; flex: 1; }
 
 /* ─── PLEDGE ─── */
-.pledge-section { padding: 6rem 2.5rem; background: var(--sand); }
-.pledge-section > h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 4vw, 3.5rem); color: var(--text); margin-bottom: 0.5rem; }
-.pledge-section > h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--maroon); }
-.pledge-section > p { color: var(--muted); margin-bottom: 2.5rem; font-size: 0.95rem; max-width: 600px; line-height: 1.75; }
+.pledge-section { padding: 6rem 2.5rem; background: var(--cream); }
+.pledge-section > h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 5vw, 4.5rem); color: var(--text); margin-bottom: 0.5rem; line-height: 0.95; }
+.pledge-section > h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--raspberry); }
+.pledge-section > p { color: var(--muted); margin-bottom: 2.5rem; font-size: 0.97rem; max-width: 600px; line-height: 1.75; }
 .pledge-form-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
 .pledge-field { margin-bottom: 1.25rem; }
 .pledge-field label { display: block; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
@@ -604,14 +620,14 @@ p.charity-num { font-size: 0.63rem; letter-spacing: 0.22em; text-transform: uppe
 .pledge-quick-amounts { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
 .pledge-quick-btn { background: var(--warm-white); border: 1px solid rgba(168,216,232,0.4); color: var(--text); padding: 0.4rem 0.9rem; font-size: 0.8rem; cursor: pointer; border-radius: 2px; font-family: 'DM Sans', sans-serif; transition: all 0.2s; }
 .pledge-quick-btn:hover, .pledge-quick-btn.active { background: var(--teal); color: white; border-color: var(--teal); }
-.pledge-submit-btn { width: 100%; background: var(--maroon); color: var(--sand); border: none; padding: 1rem; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; border-radius: 3px; font-family: 'DM Sans', sans-serif; transition: all 0.2s; margin-top: 0.5rem; }
-.pledge-submit-btn:hover { background: var(--coral); transform: translateY(-1px); }
+.pledge-submit-btn { width: 100%; background: var(--raspberry); color: #fff; border: none; padding: 1.1rem; font-size: 0.88rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; border-radius: 3px; font-family: 'DM Sans', sans-serif; transition: all 0.2s; margin-top: 0.5rem; }
+.pledge-submit-btn:hover { background: var(--raspberry-deep); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,64,128,0.3); }
 .pledge-success { background: rgba(168,216,232,0.15); border: 1px solid rgba(168,216,232,0.4); color: var(--teal); padding: 0.85rem 1rem; border-radius: 3px; font-size: 0.9rem; margin-top: 1rem; }
 .pledge-error { background: rgba(232,104,74,0.08); border: 1px solid rgba(232,104,74,0.3); color: var(--coral); padding: 0.85rem 1rem; border-radius: 3px; font-size: 0.9rem; margin-top: 1rem; }
-.pledge-total-display { background: linear-gradient(135deg, var(--mist) 0%, var(--sky) 100%); padding: 2rem; border-radius: 4px; text-align: center; margin-bottom: 1.5rem; border: 1px solid rgba(168,216,232,0.3); }
-.pledge-total-label { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--deep-sea); opacity: 0.65; margin-bottom: 0.5rem; }
-.pledge-total-amount { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: var(--maroon); line-height: 1; margin-bottom: 0.5rem; }
-.pledge-total-breakdown { font-size: 0.8rem; color: rgba(42,106,138,0.65); line-height: 1.5; }
+.pledge-total-display { background: var(--navy); padding: 2.25rem 2rem; border-radius: 4px; text-align: center; margin-bottom: 1.5rem; border: 1px solid rgba(201,64,128,0.15); }
+.pledge-total-label { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(232,176,196,0.5); margin-bottom: 0.5rem; }
+.pledge-total-amount { font-family: 'Bebas Neue', sans-serif; font-size: 4.5rem; color: var(--raspberry); line-height: 1; margin-bottom: 0.5rem; }
+.pledge-total-breakdown { font-size: 0.8rem; color: rgba(253,248,240,0.4); line-height: 1.5; }
 .pledge-rotator { background: linear-gradient(135deg, var(--deep-sea) 0%, #1a4a6a 100%); border-radius: 4px; padding: 2.5rem 2rem; margin-bottom: 1.5rem; min-height: 150px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
 .pledge-rotator::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(197,232,242,0.06) 0%, transparent 70%); }
 .rotator-inner { text-align: center; position: relative; z-index: 1; width: 100%; }
@@ -649,26 +665,26 @@ p.charity-num { font-size: 0.63rem; letter-spacing: 0.22em; text-transform: uppe
 .faq-cta-strip a:hover { background: var(--sand); }
 
 /* ─── EMAIL ─── */
-.email-section { padding: 7rem 2.5rem; background: var(--deep-sea); position: relative; overflow: hidden; }
-.email-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 20% 50%, rgba(197,232,242,0.07) 0%, transparent 60%); pointer-events: none; }
+.email-section { padding: 7rem 2.5rem; background: #2e1830; position: relative; overflow: hidden; }
+.email-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 20% 50%, rgba(201,64,128,0.08) 0%, transparent 60%); pointer-events: none; }
 .email-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; position: relative; z-index: 1; max-width: 1100px; }
-.email-section .section-label { color: var(--sky); }
-.email-section .section-label::before { background: var(--sky); }
+.email-section .section-label { color: var(--rose); }
+.email-section .section-label::before { background: var(--rose); }
 .email-heading { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 4vw, 3.5rem); line-height: 0.95; color: var(--sand); margin-bottom: 1.25rem; }
-.email-heading em { font-family: 'Lora', serif; font-style: italic; color: var(--sky); }
-.email-sub { font-size: 0.95rem; color: rgba(197,232,242,0.55); line-height: 1.8; }
+.email-heading em { font-family: 'Lora', serif; font-style: italic; color: var(--rose); }
+.email-sub { font-size: 0.95rem; color: rgba(232,176,196,0.6); line-height: 1.8; }
 .email-form-wrap { margin-bottom: 2rem; }
-.email-form-label { font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(197,232,242,0.5); margin-bottom: 1rem; display: block; }
+.email-form-label { font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(232,176,196,0.5); margin-bottom: 1rem; display: block; }
 .email-field-row { display: flex; flex-direction: column; gap: 0.75rem; }
-.email-input { background: rgba(255,255,255,0.08); border: 1px solid rgba(197,232,242,0.2); color: var(--sand); padding: 0.85rem 1.1rem; font-size: 0.9rem; font-family: 'DM Sans', sans-serif; border-radius: 3px; outline: none; transition: border-color 0.2s; width: 100%; }
-.email-input::placeholder { color: rgba(197,232,242,0.3); }
-.email-input:focus { border-color: rgba(197,232,242,0.5); }
-.email-btn { background: var(--aqua); color: var(--deep-sea); border: none; padding: 0.9rem 1.75rem; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; border-radius: 3px; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
-.email-btn:hover { background: var(--sky); transform: translateY(-1px); }
-.email-fine-print { font-size: 0.68rem; color: rgba(197,232,242,0.25); margin-top: 0.75rem; line-height: 1.5; }
-.email-success { display: none; margin-top: 1rem; background: rgba(197,232,242,0.1); border: 1px solid rgba(197,232,242,0.25); color: var(--sky); padding: 0.85rem 1.1rem; border-radius: 3px; font-size: 0.9rem; line-height: 1.5; }
+.email-input { background: rgba(255,255,255,0.07); border: 1px solid rgba(232,176,196,0.2); color: var(--sand); padding: 0.85rem 1.1rem; font-size: 0.9rem; font-family: 'DM Sans', sans-serif; border-radius: 3px; outline: none; transition: border-color 0.2s; width: 100%; }
+.email-input::placeholder { color: rgba(232,176,196,0.3); }
+.email-input:focus { border-color: rgba(232,176,196,0.5); }
+.email-btn { background: var(--raspberry); color: #fff; border: none; padding: 0.9rem 1.75rem; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; border-radius: 3px; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+.email-btn:hover { background: var(--raspberry-deep); transform: translateY(-1px); }
+.email-fine-print { font-size: 0.68rem; color: rgba(232,176,196,0.25); margin-top: 0.75rem; line-height: 1.5; }
+.email-success { display: none; margin-top: 1rem; background: rgba(232,176,196,0.1); border: 1px solid rgba(232,176,196,0.25); color: var(--rose); padding: 0.85rem 1.1rem; border-radius: 3px; font-size: 0.9rem; line-height: 1.5; }
 .email-perks { display: flex; flex-direction: column; gap: 0.85rem; }
-.email-perk { display: flex; align-items: center; gap: 0.85rem; font-size: 0.88rem; color: rgba(197,232,242,0.55); }
+.email-perk { display: flex; align-items: center; gap: 0.85rem; font-size: 0.88rem; color: rgba(232,176,196,0.6); }
 .perk-icon { font-size: 1.1rem; flex-shrink: 0; }
 
 /* ─── FOOTER ─── */
@@ -716,6 +732,7 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
   .open-water-cards { grid-template-columns: 1fr; }
   .open-water-sub { text-align: left; max-width: 100%; }
 
+  .give-hero { padding: 4rem 1.25rem 3.5rem; }
   .fundraising-section { padding: 4rem 1.25rem; }
   .fundraising-header { grid-template-columns: 1fr; gap: 1.25rem; }
   .charity-cards { grid-template-columns: 1fr; }
@@ -881,7 +898,7 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
 
   <!-- QUOTE STRIP -->
   <div class="quote-strip">
-    <p>IT'S A PRIVILEGE &nbsp;&nbsp;&nbsp; TO BE HEALTHY.</p>
+    <p>IT'S A PRIVILEGE &nbsp; / &nbsp; TO BE HEALTHY.</p>
   </div>
 
 </div><!-- /tab-home -->
@@ -1078,7 +1095,7 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
 
   <!-- PHOTO FULL BLEED -->
   <div class="photo-bleed">
-    <img src="IMG_5103 2.JPG" alt="Post-race with medal" style="object-position:center 35%;">
+    <img src="IMG_5103 2.JPG" alt="Post-race with medal" style="object-position:center top; object-fit:cover;">
     <div class="photo-overlay" style="background:linear-gradient(to left, rgba(42,106,138,0.4) 0%, transparent 55%);"></div>
   </div>
 
@@ -1102,55 +1119,49 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
     <div class="blog-grid-editorial">
       <!-- Featured -->
       <a href="https://gogigiruns.substack.com/p/how-i-signed-up-for-a-triathlon-on" target="_blank" class="blog-card-editorial featured">
-        <div class="blog-img-block" style="background:linear-gradient(160deg, #e86848 0%, #c9604a 50%, #7a2d4a 100%);">
+        <div class="blog-img-block" style="background:linear-gradient(160deg, #e86848 0%, #c9604a 45%, #7a2d4a 100%); min-height:460px;">
           <div class="blog-img-block-inner">
-            <span style="font-family:'Lora',serif;font-style:italic;font-size:0.78rem;color:rgba(253,248,240,0.5);letter-spacing:0.08em;">Hawaii &middot; Summer 2026</span>
+            <span class="blog-tag">Origin Story</span>
+            <p class="blog-title">How I signed up for a triathlon on a beach in Hawaii</p>
+            <p class="blog-excerpt">Somewhere between the first and second pina colada, the idea stopped sounding crazy. Then I got home and bought a bike.</p>
+            <span class="blog-read-more">Read on Substack &rarr;</span>
           </div>
-        </div>
-        <div class="blog-body">
-          <span class="blog-tag">Origin Story</span>
-          <p class="blog-title">How I signed up for a triathlon on a beach in Hawaii</p>
-          <p class="blog-excerpt">Somewhere between the first and second pina colada, the idea stopped sounding crazy. Then I got home and bought a bike.</p>
-          <span class="blog-read-more">Read on Substack &rarr;</span>
         </div>
       </a>
 
       <!-- Right column -->
       <div class="blog-col-right">
         <a href="https://gogigiruns.substack.com/p/the-red-light-incident" target="_blank" class="blog-card-editorial">
-          <div class="blog-img-block" style="background:linear-gradient(135deg, #f5a87a 0%, #e8b0c4 100%);">
+          <div class="blog-img-block" style="background:linear-gradient(135deg, #c94080 0%, #7a2d4a 100%); height:220px;">
             <div class="blog-img-block-inner">
-              <span style="font-family:'Lora',serif;font-style:italic;font-size:0.72rem;color:rgba(253,248,240,0.55);">Training tales</span>
+              <span class="blog-tag">Training</span>
+              <p class="blog-title">The red light incident. Yes, that one.</p>
+              <span class="blog-read-more">Read &rarr;</span>
             </div>
-          </div>
-          <div class="blog-body">
-            <span class="blog-tag">Training</span>
-            <p class="blog-title">The red light incident. Yes, that one.</p>
-            <span class="blog-read-more">Read &rarr;</span>
           </div>
         </a>
         <a href="https://gogigiruns.substack.com/p/the-swim-is-in-the-ocean-its-great" target="_blank" class="blog-card-editorial">
-          <div class="blog-img-block" style="background:linear-gradient(135deg, #a8d8e8 0%, #5aaccf 60%, #2a6a8a 100%);">
+          <div class="blog-img-block" style="background:linear-gradient(135deg, #2a6a8a 0%, #1a2a4a 100%); height:220px;">
             <div class="blog-img-block-inner">
-              <span style="font-family:'Lora',serif;font-style:italic;font-size:0.72rem;color:rgba(253,248,240,0.55);">Open water</span>
+              <span class="blog-tag">Open Water</span>
+              <p class="blog-title">The swim is in the ocean. It's great.</p>
+              <span class="blog-read-more">Read &rarr;</span>
             </div>
-          </div>
-          <div class="blog-body">
-            <span class="blog-tag">Open Water</span>
-            <p class="blog-title">The swim is in the ocean. It's great.</p>
-            <span class="blog-read-more">Read &rarr;</span>
           </div>
         </a>
       </div>
     </div>
 
-    <!-- 4th post -->
-    <a href="https://gogigiruns.substack.com/p/theres-a-rhythm-and-im-finding-mine" target="_blank" style="display:flex;gap:2rem;align-items:center;text-decoration:none;color:inherit;margin-top:1.25rem;padding:2rem;background:var(--cream);border:1px solid rgba(168,216,232,0.2);border-radius:3px;transition:box-shadow 0.2s;" onmouseover="this.style.boxShadow='0 6px 24px rgba(90,172,207,0.1)'" onmouseout="this.style.boxShadow=''">
-      <div style="width:80px;height:80px;flex-shrink:0;background:linear-gradient(135deg,#c9a0b4,#7a2d4a);border-radius:2px;"></div>
-      <div>
-        <span style="font-size:0.62rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--teal);display:block;margin-bottom:0.4rem;">Finding the rhythm</span>
-        <p style="font-family:'Lora',serif;font-size:1.1rem;color:var(--text);line-height:1.4;margin-bottom:0.4rem;">There's a rhythm, and I'm finding mine.</p>
-        <span style="font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--coral);">Read on Substack &rarr;</span>
+    <!-- 4th post — horizontal banner card -->
+    <a href="https://gogigiruns.substack.com/p/theres-a-rhythm-and-im-finding-mine" target="_blank" class="blog-card-editorial" style="display:block;margin-top:1.5rem;">
+      <div class="blog-img-block" style="background:linear-gradient(135deg, #5a1a32 0%, #7a2d4a 40%, #c9a0b4 100%); height:130px;">
+        <div class="blog-img-block-inner" style="flex-direction:row;align-items:flex-end;justify-content:space-between;">
+          <div>
+            <span class="blog-tag">Finding the Rhythm</span>
+            <p class="blog-title" style="font-size:1.4rem;">There's a rhythm, and I'm finding mine.</p>
+          </div>
+          <span class="blog-read-more" style="white-space:nowrap;align-self:flex-end;">Read on Substack &rarr;</span>
+        </div>
       </div>
     </a>
   </section>
@@ -1184,19 +1195,27 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
 ═══════════════════════════════════════════ -->
 <div class="tab-panel" id="tab-give">
 
+  <!-- GIVE HERO -->
+  <section class="give-hero">
+    <div class="give-hero-inner">
+      <p class="section-label">Make it count</p>
+      <h2 class="give-hero-headline">Every mile<br>is for <em>someone.</em></h2>
+      <p class="give-hero-sub">I'm racing for three organizations that matter to me. Pledge a dollar amount per mile, and after each race I'll send you a direct link to give. You pay them. I just do the sweating.</p>
+      <div class="give-hero-how">
+        <p><strong>How it works:</strong> Pick a race and an amount per mile. Leave me your email. After I cross the finish line I'll send your total and a direct donation link to your chosen charity. <strong>No payment now. No pressure. Just your word that you're in.</strong></p>
+      </div>
+      <a href="#pledge" class="give-hero-cta">Pledge per mile &darr;</a>
+    </div>
+  </section>
+
   <!-- Charities -->
   <section class="fundraising-section">
     <div class="fundraising-header">
       <div>
-        <p class="section-label">Fundraising</p>
-        <h2>Race for<br><em>what matters</em></h2>
+        <p class="section-label">The Causes</p>
+        <h2>Racing for<br><em>what matters</em></h2>
       </div>
-      <p class="fundraising-meta">I'm racing for three causes that are close to my heart. Take a dive and get to know the organizations below.</p>
-    </div>
-
-    <div class="coming-soon-banner">
-      <p>Pledge per mile below. Pick your race, pick your amount, and I'll do the rest. After I cross the finish line I'll email you with your total and a direct link to donate straight to your chosen charity. You give directly to them. I never touch the money.</p>
-      <a href="#" class="coming-soon-btn">Pledge now &darr;</a>
+      <p class="fundraising-meta">Three organizations that are close to my heart. Each one does real work for real people. Click to learn more or donate directly.</p>
     </div>
 
     <div class="charity-cards">
