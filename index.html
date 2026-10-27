@@ -9,42 +9,22 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  /* Warm neutrals */
   --sand:       #fdf8f0;
   --cream:      #f5f0e8;
   --warm-white: #fefcf8;
-
-  /* Navy — the anchor */
-  --navy:       #1a2a4a;
-  --navy-mid:   #243660;
-  --navy-light: #2e4480;
-
-  /* Raspberry — the hero punch */
-  --raspberry:  #c94080;
-  --raspberry-deep: #a0305e;
-
-  /* Coral — the accent strip */
-  --coral:      #e86848;
-
-  /* Maroon — buttons, pills, warm accents */
+  --blush:      #f5e0e8;
+  --rose:       #e8b0c4;
+  --pink:       #d47090;
   --maroon:     #7a2d4a;
   --deep-maroon:#5a1a32;
-  --rose:       #e8b0c4;
-
-  /* Water / swim tones — kept for races timeline, email, stats */
+  --peach:      #fad4b0;
+  --apricot:    #f5a87a;
+  --coral:      #e86848;
   --mist:       #e8f4f8;
   --sky:        #c5e8f2;
   --aqua:       #a8d8e8;
   --teal:       #5aaccf;
   --deep-sea:   #2a6a8a;
-
-  /* Soft pinks — kept for subtle details */
-  --blush:      #f5e0e8;
-  --pink:       #d47090;
-  --peach:      #fad4b0;
-  --apricot:    #f5a87a;
-
-  /* Text */
   --text:       #2e1820;
   --muted:      #8a6878;
   --light:      #b89aaa;
@@ -107,7 +87,7 @@ nav {
   white-space: nowrap;
 }
 .tab-btn:hover { color: var(--teal); }
-.tab-btn.active { color: var(--navy); border-bottom-color: var(--raspberry); font-weight: 500; }
+.tab-btn.active { color: var(--maroon); border-bottom-color: var(--maroon); font-weight: 500; }
 .tab-btn.give-tab { color: var(--coral); }
 .tab-btn.give-tab.active { color: var(--coral); border-bottom-color: var(--coral); }
 .tab-btn.give-tab:hover { color: var(--maroon); }
@@ -173,22 +153,22 @@ nav {
 .hero-content { position: relative; z-index: 2; max-width: 860px; }
 .hero-eyebrow {
   font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
-  color: #1a2a4a; margin-bottom: 1rem;
+  color: rgba(232,200,204,0.85); margin-bottom: 1rem;
   display: flex; align-items: center; gap: 0.75rem; font-weight: 400;
 }
-.hero-eyebrow::before { content:''; display:block; width:2rem; height:1px; background:#1a2a4a; }
+.hero-eyebrow::before { content:''; display:block; width:2rem; height:1px; background:rgba(232,200,204,0.6); }
 h1 {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(3.5rem, 10vw, 8rem);
   line-height: 0.88; letter-spacing: 0.01em;
-  color: var(--raspberry); margin-bottom: 1.5rem;
-  text-shadow: 0 2px 40px rgba(0,0,0,0.25);
+  color: #e8c8cc; margin-bottom: 1.5rem;
+  text-shadow: 0 2px 40px rgba(0,0,0,0.18);
 }
-h1 em { font-style: italic; font-family: 'Lora', serif; color: var(--navy); font-size: 0.85em; }
+h1 em { font-style: italic; font-family: 'Lora', serif; color: #f0d8dc; font-size: 0.85em; }
 .hero-sub {
   font-size: clamp(1rem, 1.8vw, 1.1rem);
-  color: #1a2a4a;
-  max-width: 520px; line-height: 1.8; margin-bottom: 2.5rem; font-weight: 400;
+  color: rgba(232,200,204,0.9);
+  max-width: 520px; line-height: 1.8; margin-bottom: 2.5rem; font-weight: 300;
 }
 .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
 .btn-primary {
@@ -208,20 +188,19 @@ h1 em { font-style: italic; font-family: 'Lora', serif; color: var(--navy); font
 }
 .btn-secondary {
   display: inline-flex; align-items: center;
-  background: rgba(26,42,74,0.25); color: #fff;
-  padding: 0.9rem 1.9rem; font-size: 0.85rem; font-weight: 400;
+  background: rgba(232,200,204,0.12); color: #e8c8cc;
+  padding: 0.9rem 1.9rem; font-size: 0.85rem; font-weight: 300;
   letter-spacing: 0.08em; text-transform: uppercase;
-  text-decoration: none; border: 1.5px solid rgba(255,255,255,0.75);
-  transition: all 0.2s; backdrop-filter: blur(6px);
+  text-decoration: none; border: 1px solid rgba(232,200,204,0.4);
+  transition: all 0.2s; backdrop-filter: blur(4px);
 }
-.btn-secondary:hover { background: rgba(26,42,74,0.45); border-color: #fff; }
+.btn-secondary:hover { background: rgba(232,200,204,0.22); border-color: rgba(232,200,204,0.7); }
 
 /* ─── TICKER ─── */
-.race-ticker { background: var(--navy); padding: 0.65rem 0; overflow: hidden; }
+.race-ticker { background: var(--maroon); padding: 0.65rem 0; overflow: hidden; }
 .ticker-track { display: flex; gap: 4rem; animation: ticker 32s linear infinite; white-space: nowrap; }
 .ticker-item { font-family: 'Bebas Neue', sans-serif; font-size: 0.9rem; letter-spacing: 0.2em; color: rgba(253,248,240,0.85); flex-shrink: 0; }
 .ticker-dot { color: rgba(253,248,240,0.35); }
-.ticker-done { color: var(--raspberry); }
 @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
 /* ─── MILES STRIP ─── */
@@ -239,7 +218,7 @@ h1 em { font-style: italic; font-family: 'Lora', serif; color: var(--navy); font
 
 /* ─── QUOTE STRIP ─── */
 .quote-strip {
-  background: var(--cream);
+  background: var(--coral);
   padding: 5rem 2.5rem;
   text-align: center;
 }
@@ -247,7 +226,7 @@ h1 em { font-style: italic; font-family: 'Lora', serif; color: var(--navy); font
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(2.2rem, 5vw, 4.5rem);
   letter-spacing: 0.04em;
-  color: var(--navy);
+  color: #fff;
   line-height: 1.1;
   max-width: 900px; margin: 0 auto;
 }
@@ -295,7 +274,7 @@ h1 em { font-style: italic; font-family: 'Lora', serif; color: var(--navy); font
 }
 
 /* ─── PHOTO FULL BLEED ─── */
-.photo-bleed { height: 580px; overflow: hidden; position: relative; }
+.photo-bleed { height: 460px; overflow: hidden; position: relative; }
 .photo-bleed img { width: 100%; height: 100%; object-fit: cover; filter: contrast(1.04) brightness(0.98); }
 .photo-bleed::before {
   content: '';
@@ -305,219 +284,54 @@ h1 em { font-style: italic; font-family: 'Lora', serif; color: var(--navy); font
 }
 .photo-bleed .photo-overlay { position: absolute; inset: 0; z-index: 2; }
 
-/* ─── RACE TIMELINE ─── */
-.race-timeline-section {
-  background: var(--navy);
-  padding: 7rem 0 0;
-  position: relative; overflow: hidden;
+/* ─── COUNTDOWN ─── */
+.countdown-section { padding: 6rem 2.5rem; background: var(--cream); }
+.countdown-section > h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 5vw, 3.8rem); color: var(--text); margin-bottom: 0.25rem; }
+.countdown-section > h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--maroon); }
+.countdown-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 2.5rem; }
+.countdown-race {
+  background: var(--sand); border: 1px solid rgba(168,216,232,0.3);
+  border-top: 3px solid var(--aqua); border-radius: 3px; padding: 2.25rem 2rem;
+  position: relative; overflow: hidden; transition: box-shadow 0.2s;
 }
-.race-timeline-section::before {
+.countdown-race:first-child { border-top-color: var(--maroon); background: linear-gradient(160deg, rgba(122,45,74,0.04) 0%, var(--sand) 100%); }
+.countdown-race:hover { box-shadow: 0 6px 24px rgba(168,216,232,0.25); }
+.race-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.04em; color: var(--text); margin-bottom: 0.3rem; }
+.race-date { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.06em; line-height: 1.55; margin-bottom: 1.5rem; }
+.timer-display { display: flex; gap: 1.1rem; }
+.timer-unit { text-align: center; }
+.timer-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.4rem; line-height: 1; color: var(--teal); }
+.timer-label { font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--light); }
+.race-tbd { font-family: 'Lora', serif; font-style: italic; font-size: 0.88rem; color: var(--muted); margin-top: 0.5rem; line-height: 1.5; }
+
+/* ─── OPEN WATER ─── */
+.open-water-section { padding: 6rem 2.5rem; background: var(--deep-sea); position: relative; overflow: hidden; }
+.open-water-section::before {
   content: '';
   position: absolute; inset: 0;
-  background:
-    radial-gradient(ellipse 70% 40% at 15% 20%, rgba(201,64,128,0.08) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 50% at 85% 70%, rgba(232,104,72,0.06) 0%, transparent 55%);
+  background: radial-gradient(ellipse 80% 60% at 50% 110%, rgba(197,232,242,0.12) 0%, transparent 60%),
+              radial-gradient(ellipse 40% 50% at 90% 10%, rgba(122,45,74,0.2) 0%, transparent 55%);
   pointer-events: none;
 }
-.rt-header {
-  padding: 0 2.5rem 5rem;
-  position: relative; z-index: 1;
-  display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 2rem;
+.open-water-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3rem; position: relative; z-index: 1; flex-wrap: wrap; gap: 1rem; }
+.open-water-header h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 6vw, 5rem); line-height: 0.9; color: var(--sand); }
+.open-water-header h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--sky); }
+.open-water-sub { font-size: 0.82rem; color: rgba(197,232,242,0.5); letter-spacing: 0.05em; max-width: 240px; line-height: 1.65; text-align: right; }
+.open-water-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; position: relative; z-index: 1; }
+.ow-card {
+  border: 1px solid rgba(197,232,242,0.18); padding: 3rem 2.5rem;
+  position: relative; overflow: hidden; background: rgba(197,232,242,0.04);
+  transition: border-color 0.3s, background 0.3s;
 }
-.rt-header-left {}
-.rt-eyebrow {
-  font-size: 0.66rem; letter-spacing: 0.32em; text-transform: uppercase;
-  color: var(--teal); margin-bottom: 1rem;
-  display: flex; align-items: center; gap: 0.65rem;
-}
-.rt-eyebrow::before { content:''; display:block; width:1.5rem; height:1px; background:var(--teal); }
-.rt-heading {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(3rem, 8vw, 7rem);
-  line-height: 0.88; color: var(--sand); letter-spacing: 0.01em;
-}
-.rt-heading em { font-family: 'Lora', serif; font-style: italic; color: var(--sky); }
-.rt-subhead {
-  font-size: 0.88rem; color: rgba(197,232,242,0.65);
-  max-width: 320px; line-height: 1.7; text-align: right;
-}
-
-/* the spine */
-.rt-spine {
-  position: relative; z-index: 1;
-  border-top: 1px solid rgba(197,232,242,0.08);
-}
-
-/* year dividers */
-.rt-year {
-  display: flex; align-items: center; gap: 0;
-  padding: 0 2.5rem;
-  border-bottom: 1px solid rgba(197,232,242,0.06);
-}
-.rt-year-label {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 0.75rem; letter-spacing: 0.35em;
-  color: rgba(197,232,242,0.18); text-transform: uppercase;
-  padding: 1.1rem 0; min-width: 80px;
-  border-right: 1px solid rgba(197,232,242,0.08); margin-right: 0;
-}
-
-/* each race row */
-.rt-row {
-  display: grid;
-  grid-template-columns: 80px 1fr;
-  border-bottom: 1px solid rgba(197,232,242,0.07);
-  transition: background 0.25s;
-  cursor: default;
-}
-.rt-row:hover { background: rgba(197,232,242,0.03); }
-.rt-row.done { opacity: 0.7; }
-.rt-row.done:hover { opacity: 0.85; }
-
-/* left date column */
-.rt-date-col {
-  padding: 2.5rem 1.75rem 2.5rem 2.5rem;
-  border-right: 1px solid rgba(197,232,242,0.08);
-  display: flex; flex-direction: column; justify-content: center;
-  position: relative;
-}
-.rt-month {
-  font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
-  color: rgba(197,232,242,0.55); display: block; margin-bottom: 0.2rem;
-}
-.rt-day {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 2.8rem; line-height: 1; color: rgba(197,232,242,0.3);
-  display: block; letter-spacing: 0.02em;
-}
-/* done marker */
-.rt-row.done .rt-date-col::after {
-  content: '✓';
-  position: absolute; top: 50%; right: -10px; transform: translateY(-50%);
-  width: 20px; height: 20px; border-radius: 50%;
-  background: var(--maroon); color: #fff;
-  font-size: 0.6rem; display: flex; align-items: center; justify-content: center;
-  z-index: 2; font-family: sans-serif;
-}
-
-/* right content column */
-.rt-content-col {
-  padding: 2.5rem 2.5rem 2.5rem 3rem;
-  display: flex; flex-direction: column; justify-content: center;
-  gap: 0.6rem;
-}
-.rt-type-badge {
-  display: inline-flex; align-items: center; gap: 0.45rem;
-  font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase;
-  margin-bottom: 0.25rem; width: fit-content;
-}
-.rt-type-badge .badge-dot {
-  width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
-}
-/* badge colors by type */
-.rt-type-badge.triathlon { color: var(--teal); }
-.rt-type-badge.triathlon .badge-dot { background: var(--teal); }
-.rt-type-badge.ocean { color: var(--sky); }
-.rt-type-badge.ocean .badge-dot { background: var(--sky); }
-.rt-type-badge.ironman { color: var(--coral); }
-.rt-type-badge.ironman .badge-dot { background: var(--coral); }
-
-.rt-race-name {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(1.8rem, 3.5vw, 3rem);
-  line-height: 0.92; color: var(--sand); letter-spacing: 0.02em;
-}
-.rt-row.done .rt-race-name { color: rgba(253,248,240,0.55); }
-
-.rt-distance-row {
-  display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap;
-  margin-top: 0.15rem;
-}
-.rt-dist-seg {
-  display: flex; align-items: baseline; gap: 0.35rem;
-}
-.rt-dist-num {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.4rem; line-height: 1;
-  color: rgba(197,232,242,0.8);
-}
-.rt-dist-label {
-  font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase;
-  color: rgba(197,232,242,0.5);
-}
-.rt-dist-divider { color: rgba(197,232,242,0.25); font-size: 0.9rem; }
-
-.rt-note {
-  font-family: 'Lora', serif; font-style: italic;
-  font-size: 0.85rem; color: rgba(197,232,242,0.6);
-  line-height: 1.55; margin-top: 0.35rem;
-  max-width: 520px;
-}
-.rt-result {
-  display: inline-flex; align-items: center; gap: 0.55rem;
-  background: rgba(122,45,74,0.25); border: 1px solid rgba(122,45,74,0.4);
-  color: var(--rose); padding: 0.35rem 0.85rem;
-  font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
-  border-radius: 2px; margin-top: 0.35rem; width: fit-content;
-}
-.rt-result-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--maroon); flex-shrink: 0; }
-
-/* redacted location */
-.rt-location {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
-  color: rgba(197,232,242,0.2); margin-top: 0.2rem;
-}
-.rt-location-icon {
-  width: 10px; height: 10px; border-radius: 50%;
-  background: rgba(197,232,242,0.1); border: 1px solid rgba(197,232,242,0.2);
-  flex-shrink: 0;
-}
-.ow-redacted {
-  display: inline-block; background: rgba(197,232,242,0.08); border-radius: 2px;
-  padding: 0 0.5rem; letter-spacing: 0.3em; color: transparent;
-  user-select: none; border: 1px solid rgba(197,232,242,0.1); font-size: 0.65rem;
-}
-
-/* the big number watermark per year */
-.rt-year-group { position: relative; }
-.rt-year-watermark {
-  position: absolute; right: 2rem; top: 50%; transform: translateY(-50%);
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(8rem, 18vw, 16rem);
-  color: rgba(197,232,242,0.022);
-  line-height: 1; letter-spacing: 0.04em;
-  pointer-events: none; user-select: none; z-index: 0;
-}
-
-/* future races get a subtle glow on the left border */
-.rt-row.upcoming { border-left: 2px solid rgba(90,172,207,0.15); }
-.rt-row.big-race { border-left: 2px solid rgba(232,104,72,0.25); }
-/* ocean swim rows — clear water energy */
-.rt-row.ocean-row {
-  border-left: 3px solid var(--aqua);
-  background: linear-gradient(to right, rgba(168,216,232,0.06) 0%, transparent 40%);
-}
-.rt-row.ocean-row:hover { background: linear-gradient(to right, rgba(168,216,232,0.1) 0%, transparent 50%); }
-.rt-row.ocean-row .rt-race-name { color: var(--aqua); }
-.rt-row.ocean-row .rt-dist-num { color: var(--sky); }
-.rt-row.ocean-row .rt-note { color: rgba(197,232,242,0.75); }
-.rt-row.ocean-row .rt-month { color: var(--aqua); opacity: 0.7; }
-.rt-row.ocean-row .rt-day { color: rgba(168,216,232,0.45); }
-
-@media (max-width: 768px) {
-  .rt-header { padding: 0 1.25rem 3rem; }
-  .rt-subhead { text-align: left; max-width: 100%; }
-  .rt-row { grid-template-columns: 60px 1fr; }
-  .rt-date-col { padding: 1.75rem 1rem 1.75rem 1.25rem; }
-  .rt-month { font-size: 0.55rem; }
-  .rt-day { font-size: 2rem; }
-  .rt-content-col { padding: 1.75rem 1.25rem; }
-  .rt-race-name { font-size: clamp(1.4rem, 5vw, 2rem); }
-  .rt-year-label { min-width: 60px; font-size: 0.65rem; }
-  .rt-distance-row { gap: 1rem; }
-  .rt-dist-num { font-size: 1.1rem; }
-}
+.ow-card:hover { border-color: rgba(197,232,242,0.4); background: rgba(197,232,242,0.07); }
+.ow-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--aqua), var(--sky)); }
+.ow-distance { font-family: 'Bebas Neue', sans-serif; font-size: clamp(4rem, 8vw, 6rem); line-height: 0.9; color: var(--sand); display: block; margin-bottom: 0.2rem; letter-spacing: 0.02em; }
+.ow-unit { font-family: 'Lora', serif; font-style: italic; font-size: 1.2rem; color: var(--sky); margin-left: 0.2rem; }
+.ow-label { font-size: 0.66rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(197,232,242,0.35); display: block; margin-bottom: 2rem; }
+.ow-when { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: var(--aqua); letter-spacing: 0.04em; display: block; margin-bottom: 0.35rem; }
+.ow-location { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(197,232,242,0.3); }
+.ow-location-icon { width: 12px; height: 12px; border-radius: 50%; background: rgba(197,232,242,0.2); border: 1px solid rgba(197,232,242,0.3); display: inline-block; flex-shrink: 0; }
+.ow-redacted { display: inline-block; background: rgba(197,232,242,0.1); border-radius: 2px; padding: 0 0.5rem; letter-spacing: 0.3em; color: transparent; user-select: none; border: 1px solid rgba(197,232,242,0.15); font-size: 0.7rem; }
 
 /* ─── TRAINING ─── */
 .training-section { padding: 6rem 2.5rem; background: var(--sand); }
@@ -553,22 +367,20 @@ h1 em { font-style: italic; font-family: 'Lora', serif; color: var(--navy); font
 .blog-header h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--coral); }
 .view-all-link { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); text-decoration: none; border-bottom: 1px solid rgba(90,172,207,0.35); padding-bottom: 2px; transition: border-color 0.2s; }
 .view-all-link:hover { border-color: var(--teal); }
-.blog-grid-editorial { display: grid; grid-template-columns: 1.4fr 1fr; grid-template-rows: auto; gap: 1.5rem; }
-.blog-card-editorial { border-radius: 4px; overflow: hidden; text-decoration: none; color: inherit; transition: transform 0.28s, box-shadow 0.28s; position: relative; display: block; }
-.blog-card-editorial:hover { transform: translateY(-4px); box-shadow: 0 20px 56px rgba(26,42,74,0.22); }
+.blog-grid-editorial { display: grid; grid-template-columns: 1.4fr 1fr; grid-template-rows: auto auto; gap: 1.5rem; }
+.blog-card-editorial { display: flex; flex-direction: column; background: var(--cream); border-radius: 3px; overflow: hidden; text-decoration: none; color: inherit; transition: transform 0.25s, box-shadow 0.25s; border: 1px solid rgba(168,216,232,0.2); }
+.blog-card-editorial:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(90,172,207,0.12); }
 .blog-card-editorial.featured { grid-row: span 2; }
-/* Image block is a full-bleed color/gradient fill */
-.blog-img-block { width: 100%; position: relative; overflow: hidden; }
-.blog-card-editorial.featured .blog-img-block { height: 100%; min-height: 460px; }
-.blog-card-editorial:not(.featured) .blog-img-block { height: 230px; }
-/* Overlay text lives inside the image block */
-.blog-img-block-inner { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem; background: linear-gradient(to top, rgba(10,16,36,0.88) 0%, rgba(10,16,36,0.3) 45%, transparent 80%); }
-.blog-tag { font-size: 0.6rem; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 0.6rem; display: block; }
-.blog-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.55rem; letter-spacing: 0.02em; line-height: 1.12; color: #fff; margin-bottom: 0.65rem; }
-.blog-card-editorial.featured .blog-title { font-size: 2.4rem; line-height: 1.06; }
-.blog-excerpt { font-family: 'Lora', serif; font-style: italic; font-size: 0.85rem; color: rgba(255,255,255,0.65); line-height: 1.6; margin-bottom: 1rem; }
-.blog-read-more { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--coral); display: inline-flex; align-items: center; gap: 0.3rem; }
-.blog-body { display: none; } /* content now lives in img-block-inner */
+.blog-img-block { width: 100%; position: relative; }
+.blog-card-editorial.featured .blog-img-block { height: 340px; }
+.blog-card-editorial:not(.featured) .blog-img-block { height: 160px; }
+.blog-img-block-inner { width: 100%; height: 100%; display: flex; align-items: flex-end; padding: 1.5rem; }
+.blog-body { padding: 1.75rem 2rem 2rem; flex: 1; display: flex; flex-direction: column; }
+.blog-tag { font-size: 0.62rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.75rem; display: block; }
+.blog-title { font-family: 'Lora', serif; font-size: 1.25rem; line-height: 1.38; color: var(--text); margin-bottom: 0.75rem; flex: 1; }
+.blog-card-editorial.featured .blog-title { font-size: 1.6rem; line-height: 1.28; }
+.blog-excerpt { font-size: 0.85rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.25rem; }
+.blog-read-more { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--coral); display: inline-flex; align-items: center; gap: 0.3rem; }
 .blog-col-right { display: flex; flex-direction: column; gap: 1.5rem; }
 
 /* ─── GALLERY ─── */
@@ -583,47 +395,33 @@ h1 em { font-style: italic; font-family: 'Lora', serif; color: var(--navy); font
 .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; filter: contrast(1.02); }
 .gallery-color { width: 100%; height: 100%; }
 
-/* ─── GIVE HERO ─── */
-.give-hero { background: var(--navy); padding: 6rem 2.5rem 5rem; position: relative; overflow: hidden; }
-.give-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 80% at 80% 50%, rgba(201,64,128,0.12) 0%, transparent 65%); pointer-events: none; }
-.give-hero-inner { max-width: 860px; position: relative; z-index: 1; }
-.give-hero .section-label { color: var(--rose); }
-.give-hero .section-label::before { background: var(--rose); }
-.give-hero-headline { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 7vw, 6.5rem); line-height: 0.92; color: var(--sand); margin-bottom: 1.5rem; letter-spacing: 0.01em; }
-.give-hero-headline em { font-family: 'Lora', serif; font-style: italic; color: var(--raspberry); }
-.give-hero-sub { font-size: 1.05rem; color: rgba(253,248,240,0.6); line-height: 1.75; max-width: 620px; margin-bottom: 2.5rem; }
-.give-hero-how { background: rgba(255,255,255,0.05); border: 1px solid rgba(201,64,128,0.2); border-radius: 4px; padding: 1.75rem 2rem; max-width: 680px; }
-.give-hero-how p { font-size: 0.95rem; color: rgba(253,248,240,0.75); line-height: 1.8; }
-.give-hero-how strong { color: var(--rose); font-weight: 500; }
-.give-hero-cta { display: inline-block; margin-top: 1.5rem; background: var(--raspberry); color: #fff; padding: 1rem 2.5rem; font-size: 0.88rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border-radius: 3px; transition: all 0.2s; }
-.give-hero-cta:hover { background: var(--raspberry-deep); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(201,64,128,0.35); }
-
 /* ─── GIVE / FUNDRAISING ─── */
-.fundraising-section { padding: 5rem 2.5rem; background: var(--cream); }
+.fundraising-section { padding: 6rem 2.5rem; background: var(--cream); }
 .fundraising-header { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; margin-bottom: 3rem; }
 .fundraising-header h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 0.93; color: var(--text); }
 .fundraising-header h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--coral); }
 .fundraising-meta { color: var(--muted); line-height: 1.8; font-size: 0.97rem; }
-.coming-soon-banner { display: none; }
-.charity-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin: 0 0 2.5rem; }
-.charity-card { background: var(--navy); border-radius: 4px; padding: 2rem; display: flex; flex-direction: column; transition: box-shadow 0.25s, transform 0.25s; cursor: pointer; }
-.charity-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(26,42,74,0.22); }
-.charity-card:nth-child(1) { border-top: 3px solid var(--raspberry); }
-.charity-card:nth-child(2) { border-top: 3px solid var(--coral); }
-.charity-card:nth-child(3) { border-top: 3px solid var(--teal); }
+.coming-soon-banner { display: flex; align-items: center; gap: 1rem; background: var(--mist); border: 1px solid rgba(168,216,232,0.4); border-radius: 3px; padding: 1.25rem 1.75rem; margin: 0 0 2.5rem; flex-wrap: wrap; }
+.coming-soon-banner span { font-size: 1.5rem; }
+.coming-soon-banner p { font-size: 0.92rem; color: var(--text); flex: 1; line-height: 1.65; }
+.coming-soon-btn { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); text-decoration: none; border-bottom: 1px solid rgba(90,172,207,0.35); padding-bottom: 2px; white-space: nowrap; }
+.coming-soon-btn:hover { border-color: var(--teal); }
+.charity-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin: 2rem 0 2.5rem; }
+.charity-card { background: var(--sand); border: 1px solid rgba(168,216,232,0.25); border-top: 3px solid var(--aqua); border-radius: 3px; padding: 2rem; display: flex; flex-direction: column; transition: box-shadow 0.2s, transform 0.2s; }
+.charity-card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(168,216,232,0.2); }
 .charity-logo-wrap { height: 52px; display: flex; align-items: center; margin-bottom: 1.25rem; }
-.charity-logo-wrap img { max-height: 48px; max-width: 150px; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.8; }
-.charity-logo-fallback { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.06em; color: var(--rose); }
-p.charity-num { font-size: 0.63rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(197,232,242,0.4); margin-bottom: 0.4rem; }
-.charity-name-big { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.04em; color: var(--sand); margin-bottom: 0.5rem; }
-.charity-personal { font-family: 'Lora', serif; font-style: italic; font-size: 0.88rem; color: var(--rose); line-height: 1.55; margin-bottom: 0.75rem; }
-.charity-desc { font-size: 0.83rem; color: rgba(253,248,240,0.45); line-height: 1.68; flex: 1; }
+.charity-logo-wrap img { max-height: 48px; max-width: 150px; object-fit: contain; }
+.charity-logo-fallback { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.06em; color: var(--teal); }
+p.charity-num { font-size: 0.63rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.4rem; }
+.charity-name-big { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.04em; color: var(--text); margin-bottom: 0.5rem; }
+.charity-personal { font-family: 'Lora', serif; font-style: italic; font-size: 0.88rem; color: var(--maroon); line-height: 1.55; margin-bottom: 0.75rem; }
+.charity-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.68; flex: 1; }
 
 /* ─── PLEDGE ─── */
-.pledge-section { padding: 6rem 2.5rem; background: var(--cream); }
-.pledge-section > h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 5vw, 4.5rem); color: var(--text); margin-bottom: 0.5rem; line-height: 0.95; }
-.pledge-section > h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--raspberry); }
-.pledge-section > p { color: var(--muted); margin-bottom: 2.5rem; font-size: 0.97rem; max-width: 600px; line-height: 1.75; }
+.pledge-section { padding: 6rem 2.5rem; background: var(--sand); }
+.pledge-section > h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 4vw, 3.5rem); color: var(--text); margin-bottom: 0.5rem; }
+.pledge-section > h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--maroon); }
+.pledge-section > p { color: var(--muted); margin-bottom: 2.5rem; font-size: 0.95rem; max-width: 600px; line-height: 1.75; }
 .pledge-form-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
 .pledge-field { margin-bottom: 1.25rem; }
 .pledge-field label { display: block; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
@@ -632,14 +430,14 @@ p.charity-num { font-size: 0.63rem; letter-spacing: 0.22em; text-transform: uppe
 .pledge-quick-amounts { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
 .pledge-quick-btn { background: var(--warm-white); border: 1px solid rgba(168,216,232,0.4); color: var(--text); padding: 0.4rem 0.9rem; font-size: 0.8rem; cursor: pointer; border-radius: 2px; font-family: 'DM Sans', sans-serif; transition: all 0.2s; }
 .pledge-quick-btn:hover, .pledge-quick-btn.active { background: var(--teal); color: white; border-color: var(--teal); }
-.pledge-submit-btn { width: 100%; background: var(--raspberry); color: #fff; border: none; padding: 1.1rem; font-size: 0.88rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; border-radius: 3px; font-family: 'DM Sans', sans-serif; transition: all 0.2s; margin-top: 0.5rem; }
-.pledge-submit-btn:hover { background: var(--raspberry-deep); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,64,128,0.3); }
+.pledge-submit-btn { width: 100%; background: var(--maroon); color: var(--sand); border: none; padding: 1rem; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; border-radius: 3px; font-family: 'DM Sans', sans-serif; transition: all 0.2s; margin-top: 0.5rem; }
+.pledge-submit-btn:hover { background: var(--coral); transform: translateY(-1px); }
 .pledge-success { background: rgba(168,216,232,0.15); border: 1px solid rgba(168,216,232,0.4); color: var(--teal); padding: 0.85rem 1rem; border-radius: 3px; font-size: 0.9rem; margin-top: 1rem; }
 .pledge-error { background: rgba(232,104,74,0.08); border: 1px solid rgba(232,104,74,0.3); color: var(--coral); padding: 0.85rem 1rem; border-radius: 3px; font-size: 0.9rem; margin-top: 1rem; }
-.pledge-total-display { background: var(--navy); padding: 2.25rem 2rem; border-radius: 4px; text-align: center; margin-bottom: 1.5rem; border: 1px solid rgba(201,64,128,0.15); }
-.pledge-total-label { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(232,176,196,0.5); margin-bottom: 0.5rem; }
-.pledge-total-amount { font-family: 'Bebas Neue', sans-serif; font-size: 4.5rem; color: var(--raspberry); line-height: 1; margin-bottom: 0.5rem; }
-.pledge-total-breakdown { font-size: 0.8rem; color: rgba(253,248,240,0.4); line-height: 1.5; }
+.pledge-total-display { background: linear-gradient(135deg, var(--mist) 0%, var(--sky) 100%); padding: 2rem; border-radius: 4px; text-align: center; margin-bottom: 1.5rem; border: 1px solid rgba(168,216,232,0.3); }
+.pledge-total-label { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--deep-sea); opacity: 0.65; margin-bottom: 0.5rem; }
+.pledge-total-amount { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: var(--maroon); line-height: 1; margin-bottom: 0.5rem; }
+.pledge-total-breakdown { font-size: 0.8rem; color: rgba(42,106,138,0.65); line-height: 1.5; }
 .pledge-rotator { background: linear-gradient(135deg, var(--deep-sea) 0%, #1a4a6a 100%); border-radius: 4px; padding: 2.5rem 2rem; margin-bottom: 1.5rem; min-height: 150px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
 .pledge-rotator::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(197,232,242,0.06) 0%, transparent 70%); }
 .rotator-inner { text-align: center; position: relative; z-index: 1; width: 100%; }
@@ -662,66 +460,47 @@ p.charity-num { font-size: 0.63rem; letter-spacing: 0.22em; text-transform: uppe
 .pledge-board-total { margin-top: 1rem; padding-top: 1rem; border-top: 2px solid rgba(168,216,232,0.25); font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--text); }
 
 /* ─── FAQ ─── */
-.faq-hero { background: var(--navy); padding: 5rem 2.5rem 4rem; position: relative; overflow: hidden; }
-.faq-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 70% at 90% 50%, rgba(232,104,72,0.07) 0%, transparent 60%); pointer-events: none; }
-.faq-hero-inner { max-width: 700px; position: relative; z-index: 1; }
-.faq-hero .section-label { color: var(--rose); }
-.faq-hero .section-label::before { background: var(--rose); }
-.faq-hero h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 6vw, 5.5rem); line-height: 0.92; color: var(--sand); margin-bottom: 1.25rem; }
-.faq-hero h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--coral); }
-.faq-hero p { font-size: 1rem; color: rgba(253,248,240,0.55); line-height: 1.75; max-width: 520px; }
-
-.faq-section { padding: 5rem 2.5rem; background: var(--cream); }
-.faq-list { max-width: 860px; }
-.faq-category { font-size: 0.6rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--teal); margin: 3rem 0 0.5rem; display: block; }
-.faq-category:first-child { margin-top: 0; }
-.faq-item { border-bottom: 1px solid rgba(26,42,74,0.1); }
+.faq-section { padding: 6rem 2.5rem; background: var(--sand); }
+.faq-section > h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem,4vw,3.5rem); color: var(--text); margin-bottom: 2rem; }
+.faq-section > h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--maroon); }
+.faq-intro { color: var(--muted); font-size: 0.97rem; line-height: 1.8; max-width: 640px; margin-bottom: 3rem; }
+.faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 4rem; max-width: 1100px; }
+.faq-item { padding: 1.75rem 0; border-bottom: 1px solid rgba(168,216,232,0.2); }
 .faq-item:last-child { border-bottom: none; }
-.faq-q-wrap { display: flex; align-items: start; gap: 1.5rem; padding: 1.75rem 0; cursor: pointer; }
-.faq-num { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: rgba(201,64,128,0.35); line-height: 1.4; flex-shrink: 0; width: 2rem; }
-.faq-q { font-family: 'Lora', serif; font-size: 1.08rem; font-weight: 500; color: var(--text); line-height: 1.45; flex: 1; }
-.faq-toggle { font-size: 1.1rem; color: var(--raspberry); flex-shrink: 0; line-height: 1.4; transition: transform 0.25s; user-select: none; }
-.faq-item.open .faq-toggle { transform: rotate(45deg); }
-.faq-a-wrap { padding: 0 0 1.75rem 3.5rem; display: none; }
-.faq-item.open .faq-a-wrap { display: block; }
-.faq-a { font-size: 0.93rem; color: var(--muted); line-height: 1.82; }
-.faq-a a { color: var(--teal); text-decoration: none; border-bottom: 1px solid rgba(90,172,207,0.35); }
-
-.faq-cta-strip { background: #2e1830; padding: 5rem 2.5rem; text-align: center; position: relative; overflow: hidden; }
-.faq-cta-strip::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 60% at 50% 50%, rgba(201,64,128,0.1) 0%, transparent 70%); pointer-events: none; }
-.faq-cta-strip p { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 5vw, 4rem); color: var(--sand); margin-bottom: 0.5rem; letter-spacing: 0.03em; position: relative; z-index: 1; line-height: 1; }
-.faq-cta-strip p em { font-family: 'Lora', serif; font-style: italic; color: var(--raspberry); }
-.faq-cta-strip .faq-cta-sub { font-family: 'DM Sans', sans-serif; font-size: 0.95rem; color: rgba(232,176,196,0.55); margin-bottom: 2.5rem; font-weight: 400; letter-spacing: 0; }
-.faq-cta-strip a { background: var(--raspberry); color: #fff; padding: 1rem 2.5rem; font-size: 0.88rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border-radius: 3px; transition: all 0.2s; display: inline-block; position: relative; z-index: 1; }
-.faq-cta-strip a:hover { background: var(--raspberry-deep); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(201,64,128,0.35); }
+.faq-q { font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 500; color: var(--text); margin-bottom: 0.6rem; }
+.faq-a { font-size: 0.92rem; color: var(--muted); line-height: 1.78; }
+.faq-cta-strip { background: var(--coral); padding: 4rem 2.5rem; text-align: center; margin-top: 0; }
+.faq-cta-strip p { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.8rem, 4vw, 3.2rem); color: #fff; margin-bottom: 1.5rem; letter-spacing: 0.04em; }
+.faq-cta-strip a { background: #fff; color: var(--coral); padding: 0.9rem 2.2rem; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border-radius: 2px; transition: all 0.2s; display: inline-block; }
+.faq-cta-strip a:hover { background: var(--sand); }
 
 /* ─── EMAIL ─── */
-.email-section { padding: 7rem 2.5rem; background: #2e1830; position: relative; overflow: hidden; }
-.email-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 20% 50%, rgba(201,64,128,0.08) 0%, transparent 60%); pointer-events: none; }
+.email-section { padding: 7rem 2.5rem; background: var(--deep-sea); position: relative; overflow: hidden; }
+.email-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 20% 50%, rgba(197,232,242,0.07) 0%, transparent 60%); pointer-events: none; }
 .email-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; position: relative; z-index: 1; max-width: 1100px; }
-.email-section .section-label { color: var(--rose); }
-.email-section .section-label::before { background: var(--rose); }
+.email-section .section-label { color: var(--sky); }
+.email-section .section-label::before { background: var(--sky); }
 .email-heading { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 4vw, 3.5rem); line-height: 0.95; color: var(--sand); margin-bottom: 1.25rem; }
-.email-heading em { font-family: 'Lora', serif; font-style: italic; color: var(--rose); }
-.email-sub { font-size: 0.95rem; color: rgba(232,176,196,0.6); line-height: 1.8; }
+.email-heading em { font-family: 'Lora', serif; font-style: italic; color: var(--sky); }
+.email-sub { font-size: 0.95rem; color: rgba(197,232,242,0.55); line-height: 1.8; }
 .email-form-wrap { margin-bottom: 2rem; }
-.email-form-label { font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(232,176,196,0.5); margin-bottom: 1rem; display: block; }
+.email-form-label { font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(197,232,242,0.5); margin-bottom: 1rem; display: block; }
 .email-field-row { display: flex; flex-direction: column; gap: 0.75rem; }
-.email-input { background: rgba(255,255,255,0.07); border: 1px solid rgba(232,176,196,0.2); color: var(--sand); padding: 0.85rem 1.1rem; font-size: 0.9rem; font-family: 'DM Sans', sans-serif; border-radius: 3px; outline: none; transition: border-color 0.2s; width: 100%; }
-.email-input::placeholder { color: rgba(232,176,196,0.3); }
-.email-input:focus { border-color: rgba(232,176,196,0.5); }
-.email-btn { background: var(--raspberry); color: #fff; border: none; padding: 0.9rem 1.75rem; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; border-radius: 3px; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
-.email-btn:hover { background: var(--raspberry-deep); transform: translateY(-1px); }
-.email-fine-print { font-size: 0.68rem; color: rgba(232,176,196,0.25); margin-top: 0.75rem; line-height: 1.5; }
-.email-success { display: none; margin-top: 1rem; background: rgba(232,176,196,0.1); border: 1px solid rgba(232,176,196,0.25); color: var(--rose); padding: 0.85rem 1.1rem; border-radius: 3px; font-size: 0.9rem; line-height: 1.5; }
+.email-input { background: rgba(255,255,255,0.08); border: 1px solid rgba(197,232,242,0.2); color: var(--sand); padding: 0.85rem 1.1rem; font-size: 0.9rem; font-family: 'DM Sans', sans-serif; border-radius: 3px; outline: none; transition: border-color 0.2s; width: 100%; }
+.email-input::placeholder { color: rgba(197,232,242,0.3); }
+.email-input:focus { border-color: rgba(197,232,242,0.5); }
+.email-btn { background: var(--aqua); color: var(--deep-sea); border: none; padding: 0.9rem 1.75rem; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; border-radius: 3px; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+.email-btn:hover { background: var(--sky); transform: translateY(-1px); }
+.email-fine-print { font-size: 0.68rem; color: rgba(197,232,242,0.25); margin-top: 0.75rem; line-height: 1.5; }
+.email-success { display: none; margin-top: 1rem; background: rgba(197,232,242,0.1); border: 1px solid rgba(197,232,242,0.25); color: var(--sky); padding: 0.85rem 1.1rem; border-radius: 3px; font-size: 0.9rem; line-height: 1.5; }
 .email-perks { display: flex; flex-direction: column; gap: 0.85rem; }
-.email-perk { display: flex; align-items: center; gap: 0.85rem; font-size: 0.88rem; color: rgba(232,176,196,0.6); }
+.email-perk { display: flex; align-items: center; gap: 0.85rem; font-size: 0.88rem; color: rgba(197,232,242,0.55); }
 .perk-icon { font-size: 1.1rem; flex-shrink: 0; }
 
 /* ─── FOOTER ─── */
-footer { background: var(--navy); padding: 4rem 2.5rem 2rem; border-top: 1px solid rgba(201,64,128,0.15); }
+footer { background: #1a0a12; padding: 4rem 2.5rem 2rem; border-top: 1px solid rgba(197,232,242,0.1); }
 .footer-top { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 4rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(197,232,242,0.08); margin-bottom: 2rem; }
-.footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.1em; color: var(--raspberry); display: block; margin-bottom: 1rem; }
+.footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.1em; color: var(--aqua); display: block; margin-bottom: 1rem; }
 .footer-tagline { font-size: 0.85rem; color: rgba(253,248,240,0.35); line-height: 1.72; max-width: 280px; }
 .footer-col h4 { font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(197,232,242,0.25); margin-bottom: 1.1rem; }
 .footer-col ul { list-style: none; }
@@ -763,7 +542,6 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
   .open-water-cards { grid-template-columns: 1fr; }
   .open-water-sub { text-align: left; max-width: 100%; }
 
-  .give-hero { padding: 4rem 1.25rem 3.5rem; }
   .fundraising-section { padding: 4rem 1.25rem; }
   .fundraising-header { grid-template-columns: 1fr; gap: 1.25rem; }
   .charity-cards { grid-template-columns: 1fr; }
@@ -781,8 +559,7 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
   .gallery-item:nth-child(1) { grid-column: span 2; min-height: 200px; }
 
   .faq-section { padding: 4rem 1.25rem; }
-  .faq-hero { padding: 3.5rem 1.25rem 3rem; }
-  .faq-a-wrap { padding: 0 0 1.5rem 2.5rem; }
+  .faq-grid { grid-template-columns: 1fr; }
 
   .email-section { padding: 4rem 1.25rem; }
   .email-inner { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -865,18 +642,14 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
   <!-- TICKER -->
   <div class="race-ticker">
     <div class="ticker-track">
-      <span class="ticker-item">Sprint Triathlon <span class="ticker-dot">&middot;</span> <span class="ticker-done">Done!</span></span>
-      <span class="ticker-item">Olympic Triathlon <span class="ticker-dot">&middot;</span> <span class="ticker-done">Done!</span></span>
-      <span class="ticker-item">Ocean Swim 2.4 Mi <span class="ticker-dot">&middot;</span> Apr 2027</span>
-      <span class="ticker-item">Half Ironman 70.3 <span class="ticker-dot">&middot;</span> Jun 2027</span>
-      <span class="ticker-item">Ocean Swim 2.0 Mi <span class="ticker-dot">&middot;</span> Aug 2027</span>
+      <span class="ticker-item">Sprint Triathlon &#x1F948; <span class="ticker-dot">&middot;</span> Done!</span>
+      <span class="ticker-item">Olympic Triathlon <span class="ticker-dot">&middot;</span> Sep 2026</span>
+      <span class="ticker-item">Half Ironman 70.3 <span class="ticker-dot">&middot;</span> Coming 2027</span>
       <span class="ticker-item">Full Ironman 140.6 <span class="ticker-dot">&middot;</span> Nov 2027</span>
       <span class="ticker-item">NEDA <span class="ticker-dot">&middot;</span> RAINN <span class="ticker-dot">&middot;</span> Friendship Circle</span>
-      <span class="ticker-item">Sprint Triathlon <span class="ticker-dot">&middot;</span> <span class="ticker-done">Done!</span></span>
-      <span class="ticker-item">Olympic Triathlon <span class="ticker-dot">&middot;</span> <span class="ticker-done">Done!</span></span>
-      <span class="ticker-item">Ocean Swim 2.4 Mi <span class="ticker-dot">&middot;</span> Apr 2027</span>
-      <span class="ticker-item">Half Ironman 70.3 <span class="ticker-dot">&middot;</span> Jun 2027</span>
-      <span class="ticker-item">Ocean Swim 2.0 Mi <span class="ticker-dot">&middot;</span> Aug 2027</span>
+      <span class="ticker-item">Sprint Triathlon &#x1F948; <span class="ticker-dot">&middot;</span> Done!</span>
+      <span class="ticker-item">Olympic Triathlon <span class="ticker-dot">&middot;</span> Sep 2026</span>
+      <span class="ticker-item">Half Ironman 70.3 <span class="ticker-dot">&middot;</span> Coming 2027</span>
       <span class="ticker-item">Full Ironman 140.6 <span class="ticker-dot">&middot;</span> Nov 2027</span>
       <span class="ticker-item">NEDA <span class="ticker-dot">&middot;</span> RAINN <span class="ticker-dot">&middot;</span> Friendship Circle</span>
     </div>
@@ -887,22 +660,22 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
     <div class="miles-inner">
       <div class="miles-stat">
         <span class="miles-num" id="swimMiles">0</span>
-        <span class="miles-label">swim miles</span>
+        <span class="miles-label">&#x1F3CA; swim miles</span>
       </div>
       <div class="miles-divider">+</div>
       <div class="miles-stat">
         <span class="miles-num" id="bikeMiles">0</span>
-        <span class="miles-label">bike miles</span>
+        <span class="miles-label">&#x1F6B4; bike miles</span>
       </div>
       <div class="miles-divider">+</div>
       <div class="miles-stat">
         <span class="miles-num" id="runMiles">0</span>
-        <span class="miles-label">run miles</span>
+        <span class="miles-label">&#x1F3C3; run miles</span>
       </div>
       <div class="miles-divider">=</div>
       <div class="miles-stat total">
         <span class="miles-num" id="totalMiles">0</span>
-        <span class="miles-label">total miles</span>
+        <span class="miles-label">total miles &#x1F9E1;</span>
       </div>
     </div>
   </div>
@@ -932,9 +705,15 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
     </div>
   </section>
 
+  <!-- PHOTO FULL BLEED -->
+  <div class="photo-bleed">
+    <img src="IMG_5088.JPG" alt="Race day celebration">
+    <div class="photo-overlay" style="background:linear-gradient(to right, rgba(42,106,138,0.45) 0%, transparent 55%);"></div>
+  </div>
+
   <!-- QUOTE STRIP -->
   <div class="quote-strip">
-    <p>IT'S A PRIVILEGE TO BE HEALTHY</p>
+    <p>IT IS A PRIVILEGE<br>TO BE HEALTHY.</p>
   </div>
 
 </div><!-- /tab-home -->
@@ -944,147 +723,75 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
      TAB: RACES
 ═══════════════════════════════════════════ -->
 <div class="tab-panel" id="tab-races">
-<section class="race-timeline-section">
 
-  <!-- HEADER -->
-  <div class="rt-header">
-    <div class="rt-header-left">
-      <p class="rt-eyebrow">The race calendar</p>
-      <h2 class="rt-heading">Six races.<br><em>One very tired girl.</em></h2>
+  <!-- COUNTDOWN -->
+  <section class="countdown-section">
+    <p class="section-label">The Journey Ahead</p>
+    <h2>Five races. <em>One very tired girl.</em></h2>
+    <div class="countdown-grid" style="grid-template-columns: repeat(3,1fr);">
+      <!-- Race 1: Done -->
+      <div class="countdown-race">
+        <p class="race-name">Sprint Triathlon &#x1F948;</p>
+        <p class="race-date">August 9, 2026 &middot; 1/4 mile swim, 10 mile bike, 3 mile run.</p>
+        <p style="font-family:'Bebas Neue',sans-serif; font-size:1.9rem; color:var(--maroon); margin-top:1rem; letter-spacing:0.04em;">FINISHED &middot; 2ND IN AGE GROUP</p>
+        <p class="race-tbd">Finish time: 1:10:14 &#x1F9E1;</p>
+      </div>
+      <!-- Race 2: Done -->
+      <div class="countdown-race">
+        <p class="race-name">Olympic Triathlon &#x1F948;</p>
+        <p class="race-date">September 2026 &middot; 0.9 mile swim, 24.8 mile bike, 6.2 mile run. In a row. On purpose.</p>
+        <p style="font-family:'Bebas Neue',sans-serif; font-size:1.9rem; color:var(--maroon); margin-top:1rem; letter-spacing:0.04em;">DONE &middot; DID IT</p>
+        <p class="race-tbd">We'll add the finish time here soon &#x1F9E1;</p>
+      </div>
+      <!-- Race 3 -->
+      <div class="countdown-race">
+        <p class="race-name">Ironman 70.3</p>
+        <p class="race-date">June 2027 &middot; Swim, bike, run a half marathon. After the swim and bike. Cool cool cool.</p>
+        <p class="race-tbd">Officially signed up. June 2027. No turning back now.</p>
+      </div>
+      <!-- Race 4 -->
+      <div class="countdown-race">
+        <p class="race-name">Ironman 140.6</p>
+        <p class="race-date">November 2027 &middot; 2.4 mile swim, 112 mile bike, 26.2 mile run. I have time. Sort of.</p>
+        <p class="race-tbd">The big scary one. I will sign up. I am brave. Probably.</p>
+      </div>
+      <!-- Race 5 -->
+      <div class="countdown-race">
+        <p class="race-name">More TBD</p>
+        <p class="race-date">2026&ndash;2027 &middot; Because apparently five races wasn't enough of an idea.</p>
+        <p class="race-tbd" style="font-family:'Lora',serif;font-style:italic;color:var(--muted);">Watch this space. I can't stop signing up for things.</p>
+      </div>
     </div>
-    <p class="rt-subhead">2026 to 2027. Sprint to Ironman. Triathlon to open ocean. In order of increasing insanity.</p>
-  </div>
+  </section>
 
-  <!-- SPINE -->
-  <div class="rt-spine">
-
-    <!-- 2026 -->
-    <div class="rt-year-group">
-      <div class="rt-year-watermark">2026</div>
-      <div class="rt-year"><span class="rt-year-label">2026</span></div>
-
-      <!-- 1: Sprint -->
-      <div class="rt-row done">
-        <div class="rt-date-col">
-          <span class="rt-month">Aug</span>
-          <span class="rt-day">09</span>
-        </div>
-        <div class="rt-content-col">
-          <span class="rt-type-badge triathlon"><span class="badge-dot"></span>Triathlon</span>
-          <p class="rt-race-name">Sprint Triathlon</p>
-          <div class="rt-distance-row">
-            <div class="rt-dist-seg"><span class="rt-dist-num">0.25</span><span class="rt-dist-label">mi swim</span></div>
-            <span class="rt-dist-divider">+</span>
-            <div class="rt-dist-seg"><span class="rt-dist-num">10</span><span class="rt-dist-label">mi bike</span></div>
-            <span class="rt-dist-divider">+</span>
-            <div class="rt-dist-seg"><span class="rt-dist-num">3.1</span><span class="rt-dist-label">mi run</span></div>
-          </div>
-          <div class="rt-result"><span class="rt-result-dot"></span>Finished &middot; 2nd in age group &middot; 1:10:14</div>
-        </div>
+  <!-- OPEN WATER -->
+  <section class="open-water-section">
+    <div class="open-water-header">
+      <h2>Open<br><em>water.</em></h2>
+      <p class="open-water-sub">Two solo ocean swims happening quietly on the side. Location undisclosed.</p>
+    </div>
+    <div class="open-water-cards">
+      <div class="ow-card">
+        <span class="ow-distance">2.0<span class="ow-unit">mi</span></span>
+        <span class="ow-label">Ocean swim</span>
+        <span class="ow-when">August 2026</span>
+        <span class="ow-location">
+          <span class="ow-location-icon"></span>
+          <span class="ow-redacted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        </span>
       </div>
-
-      <!-- 2: Olympic -->
-      <div class="rt-row done">
-        <div class="rt-date-col">
-          <span class="rt-month">Sep</span>
-          <span class="rt-day">26</span>
-        </div>
-        <div class="rt-content-col">
-          <span class="rt-type-badge triathlon"><span class="badge-dot"></span>Triathlon</span>
-          <p class="rt-race-name">Olympic Triathlon</p>
-          <div class="rt-distance-row">
-            <div class="rt-dist-seg"><span class="rt-dist-num">0.9</span><span class="rt-dist-label">mi swim</span></div>
-            <span class="rt-dist-divider">+</span>
-            <div class="rt-dist-seg"><span class="rt-dist-num">24.8</span><span class="rt-dist-label">mi bike</span></div>
-            <span class="rt-dist-divider">+</span>
-            <div class="rt-dist-seg"><span class="rt-dist-num">6.2</span><span class="rt-dist-label">mi run</span></div>
-          </div>
-          <div class="rt-result"><span class="rt-result-dot"></span>Done. Did it.</div>
-        </div>
+      <div class="ow-card">
+        <span class="ow-distance">2.4<span class="ow-unit">mi</span></span>
+        <span class="ow-label">Ocean swim</span>
+        <span class="ow-when">April 2027</span>
+        <span class="ow-location">
+          <span class="ow-location-icon"></span>
+          <span class="ow-redacted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        </span>
       </div>
-    </div><!-- /2026 group -->
+    </div>
+  </section>
 
-    <!-- 2027 -->
-    <div class="rt-year-group">
-      <div class="rt-year-watermark">2027</div>
-      <div class="rt-year"><span class="rt-year-label">2027</span></div>
-
-      <!-- 3: April OW -->
-      <div class="rt-row upcoming ocean-row">
-        <div class="rt-date-col">
-          <span class="rt-month">Apr</span>
-          <span class="rt-day">--</span>
-        </div>
-        <div class="rt-content-col">
-          <span class="rt-type-badge ocean"><span class="badge-dot"></span>Open Water</span>
-          <p class="rt-race-name">Ocean Swim &middot; 2.4 mi</p>
-          <div class="rt-distance-row">
-            <div class="rt-dist-seg"><span class="rt-dist-num">2.4</span><span class="rt-dist-label">mi ocean</span></div>
-          </div>
-          <p class="rt-note">Warm water, good vibes, and I will absolutely be thinking about fishies and burritos the entire time.</p>
-        </div>
-      </div>
-
-      <!-- 4: June 70.3 -->
-      <div class="rt-row upcoming">
-        <div class="rt-date-col">
-          <span class="rt-month">Jun</span>
-          <span class="rt-day">--</span>
-        </div>
-        <div class="rt-content-col">
-          <span class="rt-type-badge triathlon"><span class="badge-dot"></span>Triathlon</span>
-          <p class="rt-race-name">Ironman 70.3</p>
-          <div class="rt-distance-row">
-            <div class="rt-dist-seg"><span class="rt-dist-num">1.2</span><span class="rt-dist-label">mi swim</span></div>
-            <span class="rt-dist-divider">+</span>
-            <div class="rt-dist-seg"><span class="rt-dist-num">56</span><span class="rt-dist-label">mi bike</span></div>
-            <span class="rt-dist-divider">+</span>
-            <div class="rt-dist-seg"><span class="rt-dist-num">13.1</span><span class="rt-dist-label">mi run</span></div>
-          </div>
-          <p class="rt-note">Swim, bike, then run a half marathon. After the swim and the bike. Cool cool cool.</p>
-        </div>
-      </div>
-
-      <!-- 5: August OW -->
-      <div class="rt-row upcoming ocean-row">
-        <div class="rt-date-col">
-          <span class="rt-month">Aug</span>
-          <span class="rt-day">--</span>
-        </div>
-        <div class="rt-content-col">
-          <span class="rt-type-badge ocean"><span class="badge-dot"></span>Open Water</span>
-          <p class="rt-race-name">Ocean Swim &middot; 2.0 mi</p>
-          <div class="rt-distance-row">
-            <div class="rt-dist-seg"><span class="rt-dist-num">2.0</span><span class="rt-dist-label">mi ocean</span></div>
-          </div>
-          <p class="rt-note">Back in open water. Still thinking about pancakes. Still not thinking about what's under us.</p>
-        </div>
-      </div>
-
-      <!-- 6: Nov 140.6 -->
-      <div class="rt-row upcoming big-race">
-        <div class="rt-date-col">
-          <span class="rt-month">Nov</span>
-          <span class="rt-day">--</span>
-        </div>
-        <div class="rt-content-col">
-          <span class="rt-type-badge ironman"><span class="badge-dot"></span>Ironman</span>
-          <p class="rt-race-name">Ironman 140.6</p>
-          <div class="rt-distance-row">
-            <div class="rt-dist-seg"><span class="rt-dist-num">2.4</span><span class="rt-dist-label">mi swim</span></div>
-            <span class="rt-dist-divider">+</span>
-            <div class="rt-dist-seg"><span class="rt-dist-num">112</span><span class="rt-dist-label">mi bike</span></div>
-            <span class="rt-dist-divider">+</span>
-            <div class="rt-dist-seg"><span class="rt-dist-num">26.2</span><span class="rt-dist-label">mi run</span></div>
-          </div>
-          <p class="rt-note">The big scary one. 140.6 miles in a single day. I will sign up. I am brave. Probably.</p>
-        </div>
-      </div>
-
-    </div><!-- /2027 group -->
-
-  </div><!-- /rt-spine -->
-</section>
 </div><!-- /tab-races -->
 
 
@@ -1121,6 +828,11 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
     </div>
   </section>
 
+  <!-- PHOTO FULL BLEED -->
+  <div class="photo-bleed">
+    <img src="IMG_5103 2.JPG" alt="Post-race with medal" style="object-position:center 35%;">
+    <div class="photo-overlay" style="background:linear-gradient(to left, rgba(42,106,138,0.4) 0%, transparent 55%);"></div>
+  </div>
 
 </div><!-- /tab-training -->
 
@@ -1142,49 +854,55 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
     <div class="blog-grid-editorial">
       <!-- Featured -->
       <a href="https://gogigiruns.substack.com/p/how-i-signed-up-for-a-triathlon-on" target="_blank" class="blog-card-editorial featured">
-        <div class="blog-img-block" style="background:linear-gradient(160deg, #e86848 0%, #c9604a 45%, #7a2d4a 100%); min-height:460px;">
+        <div class="blog-img-block" style="background:linear-gradient(160deg, #e86848 0%, #c9604a 50%, #7a2d4a 100%);">
           <div class="blog-img-block-inner">
-            <span class="blog-tag">Origin Story</span>
-            <p class="blog-title">How I signed up for a triathlon on a beach in Hawaii</p>
-            <p class="blog-excerpt">Somewhere between the first and second pina colada, the idea stopped sounding crazy. Then I got home and bought a bike.</p>
-            <span class="blog-read-more">Read on Substack &rarr;</span>
+            <span style="font-family:'Lora',serif;font-style:italic;font-size:0.78rem;color:rgba(253,248,240,0.5);letter-spacing:0.08em;">Hawaii &middot; Summer 2026</span>
           </div>
+        </div>
+        <div class="blog-body">
+          <span class="blog-tag">Origin Story</span>
+          <p class="blog-title">How I signed up for a triathlon on a beach in Hawaii</p>
+          <p class="blog-excerpt">Somewhere between the first and second pina colada, the idea stopped sounding crazy. Then I got home and bought a bike.</p>
+          <span class="blog-read-more">Read on Substack &rarr;</span>
         </div>
       </a>
 
       <!-- Right column -->
       <div class="blog-col-right">
         <a href="https://gogigiruns.substack.com/p/the-red-light-incident" target="_blank" class="blog-card-editorial">
-          <div class="blog-img-block" style="background:linear-gradient(135deg, #c94080 0%, #7a2d4a 100%); height:220px;">
+          <div class="blog-img-block" style="background:linear-gradient(135deg, #f5a87a 0%, #e8b0c4 100%);">
             <div class="blog-img-block-inner">
-              <span class="blog-tag">Training</span>
-              <p class="blog-title">The red light incident. Yes, that one.</p>
-              <span class="blog-read-more">Read &rarr;</span>
+              <span style="font-family:'Lora',serif;font-style:italic;font-size:0.72rem;color:rgba(253,248,240,0.55);">Training tales</span>
             </div>
+          </div>
+          <div class="blog-body">
+            <span class="blog-tag">Training</span>
+            <p class="blog-title">The red light incident. Yes, that one.</p>
+            <span class="blog-read-more">Read &rarr;</span>
           </div>
         </a>
         <a href="https://gogigiruns.substack.com/p/the-swim-is-in-the-ocean-its-great" target="_blank" class="blog-card-editorial">
-          <div class="blog-img-block" style="background:linear-gradient(135deg, #2a6a8a 0%, #1a2a4a 100%); height:220px;">
+          <div class="blog-img-block" style="background:linear-gradient(135deg, #a8d8e8 0%, #5aaccf 60%, #2a6a8a 100%);">
             <div class="blog-img-block-inner">
-              <span class="blog-tag">Open Water</span>
-              <p class="blog-title">The swim is in the ocean. It's great.</p>
-              <span class="blog-read-more">Read &rarr;</span>
+              <span style="font-family:'Lora',serif;font-style:italic;font-size:0.72rem;color:rgba(253,248,240,0.55);">Open water</span>
             </div>
+          </div>
+          <div class="blog-body">
+            <span class="blog-tag">Open Water</span>
+            <p class="blog-title">The swim is in the ocean. It's great.</p>
+            <span class="blog-read-more">Read &rarr;</span>
           </div>
         </a>
       </div>
     </div>
 
-    <!-- 4th post — horizontal banner card -->
-    <a href="https://gogigiruns.substack.com/p/theres-a-rhythm-and-im-finding-mine" target="_blank" class="blog-card-editorial" style="display:block;margin-top:1.5rem;">
-      <div class="blog-img-block" style="background:linear-gradient(135deg, #5a1a32 0%, #7a2d4a 40%, #c9a0b4 100%); height:130px;">
-        <div class="blog-img-block-inner" style="flex-direction:row;align-items:flex-end;justify-content:space-between;">
-          <div>
-            <span class="blog-tag">Finding the Rhythm</span>
-            <p class="blog-title" style="font-size:1.4rem;">There's a rhythm, and I'm finding mine.</p>
-          </div>
-          <span class="blog-read-more" style="white-space:nowrap;align-self:flex-end;">Read on Substack &rarr;</span>
-        </div>
+    <!-- 4th post -->
+    <a href="https://gogigiruns.substack.com/p/theres-a-rhythm-and-im-finding-mine" target="_blank" style="display:flex;gap:2rem;align-items:center;text-decoration:none;color:inherit;margin-top:1.25rem;padding:2rem;background:var(--cream);border:1px solid rgba(168,216,232,0.2);border-radius:3px;transition:box-shadow 0.2s;" onmouseover="this.style.boxShadow='0 6px 24px rgba(90,172,207,0.1)'" onmouseout="this.style.boxShadow=''">
+      <div style="width:80px;height:80px;flex-shrink:0;background:linear-gradient(135deg,#c9a0b4,#7a2d4a);border-radius:2px;"></div>
+      <div>
+        <span style="font-size:0.62rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--teal);display:block;margin-bottom:0.4rem;">Finding the rhythm</span>
+        <p style="font-family:'Lora',serif;font-size:1.1rem;color:var(--text);line-height:1.4;margin-bottom:0.4rem;">There's a rhythm, and I'm finding mine.</p>
+        <span style="font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--coral);">Read on Substack &rarr;</span>
       </div>
     </a>
   </section>
@@ -1203,8 +921,8 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
     <div class="gallery-grid">
       <div class="gallery-item" style="grid-column:span 2; grid-row:span 2;"><img src="IMG_5088.JPG" alt="Gigi with finisher medal and bike" style="object-position: center 15%;"></div>
       <div class="gallery-item"><img src="sprinttri.JPEG" alt="Sprint Triathlon finish"></div>
-      <div class="gallery-item"><img src="FullSizeRender 2.JPEG" alt="Cycling action" style="object-position: center center; object-fit: contain; background: #e8c8cc;"></div>
-      <div class="gallery-item"><img src="IMG_5103 2.JPG" alt="Post-race" style="object-position:center top;"></div>
+      <div class="gallery-item"><img src="FullSizeRender 2.JPEG" alt="Cycling action"></div>
+      <div class="gallery-item"><div class="gallery-color" style="background:linear-gradient(135deg,#a8d8e8,#5aaccf);"></div></div>
       <div class="gallery-item"><div class="gallery-color" style="background:linear-gradient(135deg,#e8c8cc,#d47090);"></div></div>
       <div class="gallery-item" style="grid-column:span 2;"><div class="gallery-color" style="background:linear-gradient(135deg,#1a2a4a,#2a6a8a);"></div></div>
     </div>
@@ -1218,27 +936,20 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
 ═══════════════════════════════════════════ -->
 <div class="tab-panel" id="tab-give">
 
-  <!-- GIVE HERO -->
-  <section class="give-hero">
-    <div class="give-hero-inner">
-      <p class="section-label">Make it count</p>
-      <h2 class="give-hero-headline">Every mile<br>is for <em>someone.</em></h2>
-      <p class="give-hero-sub">I'm racing for three organizations that matter to me. Pledge a dollar amount per mile, and after each race I'll send you a direct link to give. You pay them. I just do the sweating.</p>
-      <div class="give-hero-how">
-        <p><strong>How it works:</strong> Pick a race and an amount per mile. Leave me your email. After I cross the finish line I'll send your total and a direct donation link to your chosen charity. <strong>No payment now. No pressure. Just your word that you're in.</strong></p>
-      </div>
-      <a href="#pledge" class="give-hero-cta">Pledge per mile &darr;</a>
-    </div>
-  </section>
-
   <!-- Charities -->
   <section class="fundraising-section">
     <div class="fundraising-header">
       <div>
-        <p class="section-label">The Causes</p>
-        <h2>Racing for<br><em>what matters</em></h2>
+        <p class="section-label">Fundraising</p>
+        <h2>Race for<br><em>what matters</em></h2>
       </div>
-      <p class="fundraising-meta">Three organizations that are close to my heart. Each one does real work for real people. Click to learn more or donate directly.</p>
+      <p class="fundraising-meta">I'm racing for three causes that are close to my heart. Take a dive and get to know the organizations below.</p>
+    </div>
+
+    <div class="coming-soon-banner">
+      <span>&#x1F9E1;</span>
+      <p>Pledge per mile below. Pick your race, pick your amount, and I'll do the rest. After I cross the finish line I'll email you with your total and a direct link to donate straight to your chosen charity. You give directly to them. I never touch the money.</p>
+      <a href="#" class="coming-soon-btn">Pledge now &darr;</a>
     </div>
 
     <div class="charity-cards">
@@ -1326,7 +1037,7 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
           <input type="email" id="pledgeEmail" placeholder="For your post-race receipt">
         </div>
         <button class="pledge-submit-btn" onclick="submitPledge()">Count me in &rarr;</button>
-        <div id="pledgeSuccess" style="display:none;" class="pledge-success">You're in! I'll email you after each race with your total.</div>
+        <div id="pledgeSuccess" style="display:none;" class="pledge-success">&#x1F9E1; You're in! I'll email you after each race with your total.</div>
         <div id="pledgeError" style="display:none;" class="pledge-error">Something went wrong &mdash; please try again!</div>
       </div>
       <div class="pledge-form-right">
@@ -1373,10 +1084,10 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
           <p class="email-fine-print">Takes you to Substack to subscribe. No spam ever. Unsubscribe anytime.</p>
         </div>
         <div class="email-perks">
-          <div class="email-perk"><span class="perk-icon">—</span><span>Race day recaps</span></div>
-          <div class="email-perk"><span class="perk-icon">—</span><span>Training updates (the real ones)</span></div>
-          <div class="email-perk"><span class="perk-icon">—</span><span>Fundraising milestones</span></div>
-          <div class="email-perk"><span class="perk-icon">—</span><span>Stories like the red light incident</span></div>
+          <div class="email-perk"><span class="perk-icon">&#x1F3CA;</span><span>Race day recaps</span></div>
+          <div class="email-perk"><span class="perk-icon">&#x1F6B4;</span><span>Training updates (the real ones)</span></div>
+          <div class="email-perk"><span class="perk-icon">&#x1F9E1;</span><span>Fundraising milestones</span></div>
+          <div class="email-perk"><span class="perk-icon">&#x1F605;</span><span>Stories like the red light incident</span></div>
         </div>
       </div>
     </div>
@@ -1390,120 +1101,53 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
 ═══════════════════════════════════════════ -->
 <div class="tab-panel" id="tab-faq">
 
-  <!-- HERO -->
-  <div class="faq-hero">
-    <div class="faq-hero-inner">
-      <p class="section-label">FAQ</p>
-      <h2>Good <em>questions.</em></h2>
-      <p>Everything you'd want to know before pledging, donating, or just being nosy. Which is allowed.</p>
-    </div>
-  </div>
-
-  <!-- ACCORDION -->
   <section class="faq-section">
-    <div class="faq-list">
-
-      <span class="faq-category">The Pledge</span>
-
-      <div class="faq-item" onclick="this.classList.toggle('open')">
-        <div class="faq-q-wrap">
-          <span class="faq-num">01</span>
+    <p class="section-label">FAQ</p>
+    <h2>Good <em>questions.</em></h2>
+    <p class="faq-intro">Everything you'd want to know before pledging, donating, or just being nosy. Which is allowed.</p>
+    <div class="faq-grid">
+      <div>
+        <div class="faq-item">
           <p class="faq-q">How does the pledge thing work?</p>
-          <span class="faq-toggle">+</span>
-        </div>
-        <div class="faq-a-wrap">
           <p class="faq-a">Pick a race, pick an amount per mile. I do the suffering. After I cross the finish line, I'll email you your total and a direct link to donate to your chosen charity. No payment now, just your word that you're in.</p>
         </div>
-      </div>
-
-      <div class="faq-item" onclick="this.classList.toggle('open')">
-        <div class="faq-q-wrap">
-          <span class="faq-num">02</span>
-          <p class="faq-q">Can I pledge for all of your races?</p>
-          <span class="faq-toggle">+</span>
+        <div class="faq-item">
+          <p class="faq-q">Where does the money actually go?</p>
+          <p class="faq-a">Straight to whichever charity you choose: NEDA, RAINN, or Friendship Circle. I never see a cent of it. You donate directly to their official pages.</p>
         </div>
-        <div class="faq-a-wrap">
-          <p class="faq-a">Yes! Select "All Races" in the pledge form and I'll reach out after each one with your running total.</p>
+        <div class="faq-item">
+          <p class="faq-q">Can I just donate without pledging per mile?</p>
+          <p class="faq-a">Absolutely. Click any charity card on the Give page and it takes you straight to their donation page. No pledging required.</p>
         </div>
-      </div>
-
-      <div class="faq-item" onclick="this.classList.toggle('open')">
-        <div class="faq-q-wrap">
-          <span class="faq-num">03</span>
+        <div class="faq-item">
           <p class="faq-q">What if you don't finish a race?</p>
-          <span class="faq-toggle">+</span>
-        </div>
-        <div class="faq-a-wrap">
           <p class="faq-a">Then you don't owe anything. Simple as that. (I plan on finishing.)</p>
         </div>
       </div>
-
-      <div class="faq-item" onclick="this.classList.toggle('open')">
-        <div class="faq-q-wrap">
-          <span class="faq-num">04</span>
-          <p class="faq-q">Do I have to make an account or sign up somewhere?</p>
-          <span class="faq-toggle">+</span>
+      <div>
+        <div class="faq-item">
+          <p class="faq-q">Can I pledge for all of your races?</p>
+          <p class="faq-a">Yes! Select "All Four Races" in the pledge form and I'll reach out after each one with your running total.</p>
         </div>
-        <div class="faq-a-wrap">
+        <div class="faq-item">
+          <p class="faq-q">Do I have to make an account or sign up somewhere?</p>
           <p class="faq-a">Nope. Just your name, email, and your pledge. That's it. No account, no app, no login. I keep it simple.</p>
         </div>
-      </div>
-
-      <span class="faq-category">The Money</span>
-
-      <div class="faq-item" onclick="this.classList.toggle('open')">
-        <div class="faq-q-wrap">
-          <span class="faq-num">05</span>
-          <p class="faq-q">Where does the money actually go?</p>
-          <span class="faq-toggle">+</span>
-        </div>
-        <div class="faq-a-wrap">
-          <p class="faq-a">Straight to whichever charity you choose: NEDA, RAINN, or Friendship Circle. I never see a cent of it. You donate directly to their official pages.</p>
-        </div>
-      </div>
-
-      <div class="faq-item" onclick="this.classList.toggle('open')">
-        <div class="faq-q-wrap">
-          <span class="faq-num">06</span>
-          <p class="faq-q">Can I just donate without pledging per mile?</p>
-          <span class="faq-toggle">+</span>
-        </div>
-        <div class="faq-a-wrap">
-          <p class="faq-a">Absolutely. Click any charity card on the Give page and it takes you straight to their donation page. No pledging required.</p>
-        </div>
-      </div>
-
-      <div class="faq-item" onclick="this.classList.toggle('open')">
-        <div class="faq-q-wrap">
-          <span class="faq-num">07</span>
+        <div class="faq-item">
           <p class="faq-q">Why these three charities?</p>
-          <span class="faq-toggle">+</span>
-        </div>
-        <div class="faq-a-wrap">
           <p class="faq-a">They're close to my heart and I'll leave it at that. NEDA, RAINN, and Friendship Circle each do work I believe in. You can read more about each on the Give page.</p>
         </div>
-      </div>
-
-      <span class="faq-category">Following Along</span>
-
-      <div class="faq-item" onclick="this.classList.toggle('open')">
-        <div class="faq-q-wrap">
-          <span class="faq-num">08</span>
+        <div class="faq-item">
           <p class="faq-q">How do I follow along?</p>
-          <span class="faq-toggle">+</span>
-        </div>
-        <div class="faq-a-wrap">
-          <p class="faq-a">Best way is Substack. I post race recaps, training updates, and the occasional story that's too long for Instagram. Link is in the Blog tab. You can also follow me <a href="https://www.instagram.com/gogigiruns" target="_blank">@gogigiruns</a>.</p>
+          <p class="faq-a">Best way is Substack. I post race recaps, training updates, and the occasional story that's too long for Instagram. Link is in the Blog tab. You can also follow me <a href="https://www.instagram.com/gogigiruns" target="_blank" style="color:var(--teal);text-decoration:none;border-bottom:1px solid rgba(90,172,207,0.4);">@gogigiruns</a>.</p>
         </div>
       </div>
-
     </div>
   </section>
 
   <!-- CTA -->
   <div class="faq-cta-strip">
-    <p>Ready to be <em>part of it?</em></p>
-    <p class="faq-cta-sub">No account. No pressure. Just your name and a number.</p>
+    <p>Ready to be part of it?</p>
     <a href="#" onclick="showTab('give'); return false;">Make a pledge &rarr;</a>
   </div>
 
@@ -1538,7 +1182,7 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
     </div>
   </div>
   <div class="footer-bottom">
-    <p class="footer-copy">&copy; 2026 Gigi &middot; Made with heart and sore legs</p>
+    <p class="footer-copy">&copy; 2026 Gigi &middot; Made with heart and sore legs &#x1F9E1;</p>
     <p class="footer-disclaimer">All donations go directly to the charities listed. This page doesn't collect any money itself. Each donate link takes you straight to the official charity website.</p>
   </div>
 </footer>
@@ -1715,7 +1359,7 @@ async function loadTraining() {
       html += '<tr><td><strong>Week '+(i+1)+'</strong><span class="week-date">'+new Date(week).toLocaleDateString('en-US',{month:'short',day:'numeric'})+'</span></td>';
       html += '<td>'+(sd>0?sd+' mi':'--')+'<span class="week-time">'+fmt(w.swim.time)+'</span></td>';
       html += '<td>'+(bd>0?bd+' mi':'--')+'<span class="week-time">'+fmt(w.bike.time)+'</span></td>';
-      html += '<td>'+(rd>0?rd+' mi':'<span style="font-style:italic;color:var(--light);font-size:0.8rem;letter-spacing:0.04em;">run pause</span>')+'<span class="week-time">'+(rd>0?fmt(w.run.time):'')+'</span></td>';
+      html += '<td>'+(rd>0?rd+' mi':'--')+'<span class="week-time">'+fmt(w.run.time)+'</span></td>';
       html += '<td>'+st+'</td></tr>';
     });
     html += '</tbody></table></div>';
