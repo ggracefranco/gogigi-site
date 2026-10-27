@@ -1203,7 +1203,7 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
     <div class="gallery-grid">
       <div class="gallery-item" style="grid-column:span 2; grid-row:span 2;"><img src="IMG_5088.JPG" alt="Gigi with finisher medal and bike" style="object-position: center 15%;"></div>
       <div class="gallery-item"><img src="sprinttri.JPEG" alt="Sprint Triathlon finish"></div>
-      <div class="gallery-item"><img src="FullSizeRender 2.JPEG" alt="Cycling action"></div>
+      <div class="gallery-item"><img src="FullSizeRender 2.JPEG" alt="Cycling action" style="object-position: center center; object-fit: contain; background: #e8c8cc;"></div>
       <div class="gallery-item"><img src="IMG_5103 2.JPG" alt="Post-race" style="object-position:center top;"></div>
       <div class="gallery-item"><div class="gallery-color" style="background:linear-gradient(135deg,#e8c8cc,#d47090);"></div></div>
       <div class="gallery-item" style="grid-column:span 2;"><div class="gallery-color" style="background:linear-gradient(135deg,#1a2a4a,#2a6a8a);"></div></div>
@@ -1715,7 +1715,7 @@ async function loadTraining() {
       html += '<tr><td><strong>Week '+(i+1)+'</strong><span class="week-date">'+new Date(week).toLocaleDateString('en-US',{month:'short',day:'numeric'})+'</span></td>';
       html += '<td>'+(sd>0?sd+' mi':'--')+'<span class="week-time">'+fmt(w.swim.time)+'</span></td>';
       html += '<td>'+(bd>0?bd+' mi':'--')+'<span class="week-time">'+fmt(w.bike.time)+'</span></td>';
-      html += '<td>'+(rd>0?rd+' mi':'--')+'<span class="week-time">'+fmt(w.run.time)+'</span></td>';
+      html += '<td>'+(rd>0?rd+' mi':'<span style="font-style:italic;color:var(--light);font-size:0.8rem;letter-spacing:0.04em;">run pause</span>')+'<span class="week-time">'+(rd>0?fmt(w.run.time):'')+'</span></td>';
       html += '<td>'+st+'</td></tr>';
     });
     html += '</tbody></table></div>';
