@@ -492,6 +492,17 @@ h1 em { font-style: italic; font-family: 'Lora', serif; color: var(--navy); font
 /* future races get a subtle glow on the left border */
 .rt-row.upcoming { border-left: 2px solid rgba(90,172,207,0.15); }
 .rt-row.big-race { border-left: 2px solid rgba(232,104,72,0.25); }
+/* ocean swim rows — clear water energy */
+.rt-row.ocean-row {
+  border-left: 3px solid var(--aqua);
+  background: linear-gradient(to right, rgba(168,216,232,0.06) 0%, transparent 40%);
+}
+.rt-row.ocean-row:hover { background: linear-gradient(to right, rgba(168,216,232,0.1) 0%, transparent 50%); }
+.rt-row.ocean-row .rt-race-name { color: var(--aqua); }
+.rt-row.ocean-row .rt-dist-num { color: var(--sky); }
+.rt-row.ocean-row .rt-note { color: rgba(197,232,242,0.75); }
+.rt-row.ocean-row .rt-month { color: var(--aqua); opacity: 0.7; }
+.rt-row.ocean-row .rt-day { color: rgba(168,216,232,0.45); }
 
 @media (max-width: 768px) {
   .rt-header { padding: 0 1.25rem 3rem; }
