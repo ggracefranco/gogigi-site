@@ -443,6 +443,20 @@ h1 em { font-style: italic; font-family: 'Lora', serif; color: var(--navy); font
   max-width: 200px; text-align: right;
 }
 
+/* pull quote */
+.rt-pull-quote {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-size: clamp(1.15rem, 2.2vw, 1.55rem);
+  color: rgba(197,232,242,0.45);
+  line-height: 1.65;
+  margin: 0 2.5rem 4rem;
+  padding-left: 1.5rem;
+  border-left: 2px solid rgba(197,232,242,0.15);
+  max-width: 560px;
+  position: relative; z-index: 1;
+}
+
 /* race list */
 .rt-list {
   position: relative; z-index: 1;
@@ -1227,6 +1241,9 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
     <span class="rt-total-label">total miles across all six</span>
     <span class="rt-total-note">If I finish them all. Which I will. Probably.</span>
   </div>
+
+  <!-- PULL QUOTE -->
+  <p class="rt-pull-quote">"To show yourself that you can do really cool things&hellip; is really special."</p>
 
   <!-- EDITORIAL RACE LIST -->
   <div class="rt-list">
