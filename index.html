@@ -158,7 +158,7 @@ nav {
 .hero {
   min-height: calc(100vh - 100px);
   display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 0 2.5rem 6rem;
+  padding: 0 2.5rem 8rem;
   position: relative; overflow: hidden;
 }
 .hero-sky {
@@ -171,24 +171,11 @@ nav {
   background: linear-gradient(to bottom, rgba(253,248,240,0.03) 0%, rgba(253,248,240,0.08) 40%, rgba(253,248,240,0.38) 100%);
 }
 .hero-content { position: relative; z-index: 2; max-width: 860px; }
-.hero-eyebrow {
-  margin-bottom: 1.25rem;
-  display: flex; flex-direction: column; gap: 0.2rem;
-}
 .hero-eyebrow-top {
-  font-size: 0.72rem; letter-spacing: 0.26em; text-transform: uppercase;
-  color: var(--raspberry-deep); font-weight: 600;
-  display: flex; align-items: center; gap: 0.6rem;
-  background: rgba(201,64,128,0.08); padding: 0.3rem 0.7rem 0.3rem 0.5rem;
-  border-left: 2px solid var(--raspberry); width: fit-content;
+  font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase;
+  color: rgba(201,64,128,0.7); font-weight: 500;
+  margin-bottom: 1.5rem; display: block;
 }
-.hero-eyebrow-top::before { display: none; }
-.hero-eyebrow-bottom {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(1.8rem, 4vw, 3rem);
-  letter-spacing: 0.04em;
-  color: var(--teal);
-  line-height: 1;
 }
 h1 {
   font-family: 'Bebas Neue', sans-serif;
@@ -1161,12 +1148,8 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
   <section class="hero">
     <div class="hero-sky"></div>
     <div class="hero-content">
-      <div class="hero-eyebrow">
-        <span class="hero-eyebrow-top">Former collegiate swimmer</span>
-        <span class="hero-eyebrow-bottom">Turned Amateur Triathlete</span>
-      </div>
+      <p class="hero-eyebrow-top">Former collegiate swimmer</p>
       <h1>What? Like it's<br><em>hard?</em> Boys do it.</h1>
-      <p class="hero-sub">I fell off my bike while it was completely still, waved at the traffic that watched it happen, and then thought, why not sign up for four triathlons? Come along for the ride.</p>
       <div class="hero-actions">
         <a href="#" onclick="showTab('give'); return false;" class="btn-primary">PLEDGE NOW &middot; 100% TO CHARITY &rarr;</a>
         <a href="#" onclick="showTab('faq'); return false;" class="btn-secondary">Wait, how does this work?</a>
