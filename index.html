@@ -176,14 +176,16 @@ nav {
   display: flex; flex-direction: column; gap: 0.2rem;
 }
 .hero-eyebrow-top {
-  font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase;
-  color: var(--raspberry); font-weight: 500;
+  font-size: 0.72rem; letter-spacing: 0.26em; text-transform: uppercase;
+  color: var(--raspberry-deep); font-weight: 600;
   display: flex; align-items: center; gap: 0.6rem;
+  background: rgba(201,64,128,0.08); padding: 0.3rem 0.7rem 0.3rem 0.5rem;
+  border-left: 2px solid var(--raspberry); width: fit-content;
 }
-.hero-eyebrow-top::before { content:''; display:block; width:1.5rem; height:1px; background: var(--raspberry); }
+.hero-eyebrow-top::before { display: none; }
 .hero-eyebrow-bottom {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+  font-size: clamp(1.8rem, 4vw, 3rem);
   letter-spacing: 0.04em;
   color: var(--navy);
   line-height: 1;
