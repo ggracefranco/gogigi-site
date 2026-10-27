@@ -644,13 +644,24 @@ h1 em { font-style: italic; font-family: 'Lora', serif; color: var(--navy); font
 .vol-chart-wrap { margin-bottom: 2.5rem; }
 .vol-chart-label { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
 .vol-chart { display: flex; align-items: flex-end; gap: 3px; height: 120px; }
-.vol-bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 0; }
+.vol-bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 0; position: relative; }
 .vol-bar {
   width: 100%; border-radius: 2px 2px 0 0; min-height: 3px;
   background: var(--raspberry); opacity: 0.75;
   transition: height 0.6s ease, opacity 0.2s;
+  cursor: pointer;
 }
-.vol-bar:hover { opacity: 1; }
+.vol-bar-wrap:hover .vol-bar { opacity: 1; }
+.vol-bar-tip {
+  position: absolute; bottom: calc(100% - 18px); left: 50%; transform: translateX(-50%);
+  background: var(--navy); color: var(--sand);
+  font-size: 0.62rem; font-weight: 500; letter-spacing: 0.05em;
+  padding: 3px 7px; border-radius: 3px; white-space: nowrap;
+  pointer-events: none; opacity: 0; transition: opacity 0.15s;
+  border: 1px solid rgba(197,232,242,0.15);
+  z-index: 10;
+}
+.vol-bar-wrap:hover .vol-bar-tip { opacity: 1; }
 .vol-bar-date { font-size: 0.42rem; color: var(--light); letter-spacing: 0.04em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; text-align: center; }
 
 .training-toggle-btn {
@@ -2214,7 +2225,7 @@ async function loadVolChart() {
       const total = (w.swim.distance||0) + (w.bike.distance||0) + (w.run.distance||0);
       const h = Math.max(3, Math.round((total / maxVal) * 104));
       const label = new Date(k + 'T12:00:00').toLocaleDateString('en-US', {month:'short', day:'numeric'});
-      return `<div class="vol-bar-wrap"><div class="vol-bar" style="height:${h}px" title="${total.toFixed(1)} mi"></div><span class="vol-bar-date">${label}</span></div>`;
+      return `<div class="vol-bar-wrap"><div class="vol-bar" style="height:${h}px"></div><span class="vol-bar-tip">${total.toFixed(1)} mi</span><span class="vol-bar-date">${label}</span></div>`;
     }).join('');
   } catch(e) { /* silent */ }
 }
