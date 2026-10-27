@@ -221,6 +221,7 @@ h1 em { font-style: italic; font-family: 'Lora', serif; color: var(--navy); font
 .ticker-track { display: flex; gap: 4rem; animation: ticker 32s linear infinite; white-space: nowrap; }
 .ticker-item { font-family: 'Bebas Neue', sans-serif; font-size: 0.9rem; letter-spacing: 0.2em; color: rgba(253,248,240,0.85); flex-shrink: 0; }
 .ticker-dot { color: rgba(253,248,240,0.35); }
+.ticker-done { color: var(--raspberry); }
 @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
 /* ─── MILES STRIP ─── */
@@ -661,19 +662,38 @@ p.charity-num { font-size: 0.63rem; letter-spacing: 0.22em; text-transform: uppe
 .pledge-board-total { margin-top: 1rem; padding-top: 1rem; border-top: 2px solid rgba(168,216,232,0.25); font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--text); }
 
 /* ─── FAQ ─── */
-.faq-section { padding: 6rem 2.5rem; background: var(--sand); }
-.faq-section > h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem,4vw,3.5rem); color: var(--text); margin-bottom: 2rem; }
-.faq-section > h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--maroon); }
-.faq-intro { color: var(--muted); font-size: 0.97rem; line-height: 1.8; max-width: 640px; margin-bottom: 3rem; }
-.faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 4rem; max-width: 1100px; }
-.faq-item { padding: 1.75rem 0; border-bottom: 1px solid rgba(168,216,232,0.2); }
+.faq-hero { background: var(--navy); padding: 5rem 2.5rem 4rem; position: relative; overflow: hidden; }
+.faq-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 70% at 90% 50%, rgba(232,104,72,0.07) 0%, transparent 60%); pointer-events: none; }
+.faq-hero-inner { max-width: 700px; position: relative; z-index: 1; }
+.faq-hero .section-label { color: var(--rose); }
+.faq-hero .section-label::before { background: var(--rose); }
+.faq-hero h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 6vw, 5.5rem); line-height: 0.92; color: var(--sand); margin-bottom: 1.25rem; }
+.faq-hero h2 em { font-family: 'Lora', serif; font-style: italic; color: var(--coral); }
+.faq-hero p { font-size: 1rem; color: rgba(253,248,240,0.55); line-height: 1.75; max-width: 520px; }
+
+.faq-section { padding: 5rem 2.5rem; background: var(--cream); }
+.faq-list { max-width: 860px; }
+.faq-category { font-size: 0.6rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--teal); margin: 3rem 0 0.5rem; display: block; }
+.faq-category:first-child { margin-top: 0; }
+.faq-item { border-bottom: 1px solid rgba(26,42,74,0.1); }
 .faq-item:last-child { border-bottom: none; }
-.faq-q { font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 500; color: var(--text); margin-bottom: 0.6rem; }
-.faq-a { font-size: 0.92rem; color: var(--muted); line-height: 1.78; }
-.faq-cta-strip { background: var(--coral); padding: 4rem 2.5rem; text-align: center; margin-top: 0; }
-.faq-cta-strip p { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.8rem, 4vw, 3.2rem); color: #fff; margin-bottom: 1.5rem; letter-spacing: 0.04em; }
-.faq-cta-strip a { background: #fff; color: var(--coral); padding: 0.9rem 2.2rem; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border-radius: 2px; transition: all 0.2s; display: inline-block; }
-.faq-cta-strip a:hover { background: var(--sand); }
+.faq-q-wrap { display: flex; align-items: start; gap: 1.5rem; padding: 1.75rem 0; cursor: pointer; }
+.faq-num { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: rgba(201,64,128,0.35); line-height: 1.4; flex-shrink: 0; width: 2rem; }
+.faq-q { font-family: 'Lora', serif; font-size: 1.08rem; font-weight: 500; color: var(--text); line-height: 1.45; flex: 1; }
+.faq-toggle { font-size: 1.1rem; color: var(--raspberry); flex-shrink: 0; line-height: 1.4; transition: transform 0.25s; user-select: none; }
+.faq-item.open .faq-toggle { transform: rotate(45deg); }
+.faq-a-wrap { padding: 0 0 1.75rem 3.5rem; display: none; }
+.faq-item.open .faq-a-wrap { display: block; }
+.faq-a { font-size: 0.93rem; color: var(--muted); line-height: 1.82; }
+.faq-a a { color: var(--teal); text-decoration: none; border-bottom: 1px solid rgba(90,172,207,0.35); }
+
+.faq-cta-strip { background: #2e1830; padding: 5rem 2.5rem; text-align: center; position: relative; overflow: hidden; }
+.faq-cta-strip::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 60% at 50% 50%, rgba(201,64,128,0.1) 0%, transparent 70%); pointer-events: none; }
+.faq-cta-strip p { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 5vw, 4rem); color: var(--sand); margin-bottom: 0.5rem; letter-spacing: 0.03em; position: relative; z-index: 1; line-height: 1; }
+.faq-cta-strip p em { font-family: 'Lora', serif; font-style: italic; color: var(--raspberry); }
+.faq-cta-strip .faq-cta-sub { font-family: 'DM Sans', sans-serif; font-size: 0.95rem; color: rgba(232,176,196,0.55); margin-bottom: 2.5rem; font-weight: 400; letter-spacing: 0; }
+.faq-cta-strip a { background: var(--raspberry); color: #fff; padding: 1rem 2.5rem; font-size: 0.88rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border-radius: 3px; transition: all 0.2s; display: inline-block; position: relative; z-index: 1; }
+.faq-cta-strip a:hover { background: var(--raspberry-deep); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(201,64,128,0.35); }
 
 /* ─── EMAIL ─── */
 .email-section { padding: 7rem 2.5rem; background: #2e1830; position: relative; overflow: hidden; }
@@ -761,7 +781,8 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
   .gallery-item:nth-child(1) { grid-column: span 2; min-height: 200px; }
 
   .faq-section { padding: 4rem 1.25rem; }
-  .faq-grid { grid-template-columns: 1fr; }
+  .faq-hero { padding: 3.5rem 1.25rem 3rem; }
+  .faq-a-wrap { padding: 0 0 1.5rem 2.5rem; }
 
   .email-section { padding: 4rem 1.25rem; }
   .email-inner { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -844,14 +865,18 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
   <!-- TICKER -->
   <div class="race-ticker">
     <div class="ticker-track">
-      <span class="ticker-item">Sprint Triathlon <span class="ticker-dot">&middot;</span> Done!</span>
-      <span class="ticker-item">Olympic Triathlon <span class="ticker-dot">&middot;</span> Sep 2026</span>
-      <span class="ticker-item">Half Ironman 70.3 <span class="ticker-dot">&middot;</span> Coming 2027</span>
+      <span class="ticker-item">Sprint Triathlon <span class="ticker-dot">&middot;</span> <span class="ticker-done">Done!</span></span>
+      <span class="ticker-item">Olympic Triathlon <span class="ticker-dot">&middot;</span> <span class="ticker-done">Done!</span></span>
+      <span class="ticker-item">Ocean Swim 2.4 Mi <span class="ticker-dot">&middot;</span> Apr 2027</span>
+      <span class="ticker-item">Half Ironman 70.3 <span class="ticker-dot">&middot;</span> Jun 2027</span>
+      <span class="ticker-item">Ocean Swim 2.0 Mi <span class="ticker-dot">&middot;</span> Aug 2027</span>
       <span class="ticker-item">Full Ironman 140.6 <span class="ticker-dot">&middot;</span> Nov 2027</span>
       <span class="ticker-item">NEDA <span class="ticker-dot">&middot;</span> RAINN <span class="ticker-dot">&middot;</span> Friendship Circle</span>
-      <span class="ticker-item">Sprint Triathlon <span class="ticker-dot">&middot;</span> Done!</span>
-      <span class="ticker-item">Olympic Triathlon <span class="ticker-dot">&middot;</span> Sep 2026</span>
-      <span class="ticker-item">Half Ironman 70.3 <span class="ticker-dot">&middot;</span> Coming 2027</span>
+      <span class="ticker-item">Sprint Triathlon <span class="ticker-dot">&middot;</span> <span class="ticker-done">Done!</span></span>
+      <span class="ticker-item">Olympic Triathlon <span class="ticker-dot">&middot;</span> <span class="ticker-done">Done!</span></span>
+      <span class="ticker-item">Ocean Swim 2.4 Mi <span class="ticker-dot">&middot;</span> Apr 2027</span>
+      <span class="ticker-item">Half Ironman 70.3 <span class="ticker-dot">&middot;</span> Jun 2027</span>
+      <span class="ticker-item">Ocean Swim 2.0 Mi <span class="ticker-dot">&middot;</span> Aug 2027</span>
       <span class="ticker-item">Full Ironman 140.6 <span class="ticker-dot">&middot;</span> Nov 2027</span>
       <span class="ticker-item">NEDA <span class="ticker-dot">&middot;</span> RAINN <span class="ticker-dot">&middot;</span> Friendship Circle</span>
     </div>
@@ -909,7 +934,7 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
 
   <!-- QUOTE STRIP -->
   <div class="quote-strip">
-    <p>IT'S A PRIVILEGE / TO BE HEALTHY</p>
+    <p>IT'S A PRIVILEGE TO BE HEALTHY</p>
   </div>
 
 </div><!-- /tab-home -->
@@ -996,11 +1021,7 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
           <div class="rt-distance-row">
             <div class="rt-dist-seg"><span class="rt-dist-num">2.4</span><span class="rt-dist-label">mi ocean</span></div>
           </div>
-          <p class="rt-note">Crowds, cold water, and I will absolutely be thinking about pancakes the entire time.</p>
-          <span class="rt-location">
-            <span class="rt-location-icon"></span>
-            <span class="ow-redacted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          </span>
+          <p class="rt-note">Warm water, good vibes, and I will absolutely be thinking about fishies and burritos the entire time.</p>
         </div>
       </div>
 
@@ -1037,10 +1058,6 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
             <div class="rt-dist-seg"><span class="rt-dist-num">2.0</span><span class="rt-dist-label">mi ocean</span></div>
           </div>
           <p class="rt-note">Back in open water. Still thinking about pancakes. Still not thinking about what's under us.</p>
-          <span class="rt-location">
-            <span class="rt-location-icon"></span>
-            <span class="ow-redacted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          </span>
         </div>
       </div>
 
@@ -1373,53 +1390,120 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
 ═══════════════════════════════════════════ -->
 <div class="tab-panel" id="tab-faq">
 
+  <!-- HERO -->
+  <div class="faq-hero">
+    <div class="faq-hero-inner">
+      <p class="section-label">FAQ</p>
+      <h2>Good <em>questions.</em></h2>
+      <p>Everything you'd want to know before pledging, donating, or just being nosy. Which is allowed.</p>
+    </div>
+  </div>
+
+  <!-- ACCORDION -->
   <section class="faq-section">
-    <p class="section-label">FAQ</p>
-    <h2>Good <em>questions.</em></h2>
-    <p class="faq-intro">Everything you'd want to know before pledging, donating, or just being nosy. Which is allowed.</p>
-    <div class="faq-grid">
-      <div>
-        <div class="faq-item">
+    <div class="faq-list">
+
+      <span class="faq-category">The Pledge</span>
+
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q-wrap">
+          <span class="faq-num">01</span>
           <p class="faq-q">How does the pledge thing work?</p>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a-wrap">
           <p class="faq-a">Pick a race, pick an amount per mile. I do the suffering. After I cross the finish line, I'll email you your total and a direct link to donate to your chosen charity. No payment now, just your word that you're in.</p>
         </div>
-        <div class="faq-item">
-          <p class="faq-q">Where does the money actually go?</p>
-          <p class="faq-a">Straight to whichever charity you choose: NEDA, RAINN, or Friendship Circle. I never see a cent of it. You donate directly to their official pages.</p>
+      </div>
+
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q-wrap">
+          <span class="faq-num">02</span>
+          <p class="faq-q">Can I pledge for all of your races?</p>
+          <span class="faq-toggle">+</span>
         </div>
-        <div class="faq-item">
-          <p class="faq-q">Can I just donate without pledging per mile?</p>
-          <p class="faq-a">Absolutely. Click any charity card on the Give page and it takes you straight to their donation page. No pledging required.</p>
+        <div class="faq-a-wrap">
+          <p class="faq-a">Yes! Select "All Races" in the pledge form and I'll reach out after each one with your running total.</p>
         </div>
-        <div class="faq-item">
+      </div>
+
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q-wrap">
+          <span class="faq-num">03</span>
           <p class="faq-q">What if you don't finish a race?</p>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a-wrap">
           <p class="faq-a">Then you don't owe anything. Simple as that. (I plan on finishing.)</p>
         </div>
       </div>
-      <div>
-        <div class="faq-item">
-          <p class="faq-q">Can I pledge for all of your races?</p>
-          <p class="faq-a">Yes! Select "All Four Races" in the pledge form and I'll reach out after each one with your running total.</p>
-        </div>
-        <div class="faq-item">
+
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q-wrap">
+          <span class="faq-num">04</span>
           <p class="faq-q">Do I have to make an account or sign up somewhere?</p>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a-wrap">
           <p class="faq-a">Nope. Just your name, email, and your pledge. That's it. No account, no app, no login. I keep it simple.</p>
         </div>
-        <div class="faq-item">
-          <p class="faq-q">Why these three charities?</p>
-          <p class="faq-a">They're close to my heart and I'll leave it at that. NEDA, RAINN, and Friendship Circle each do work I believe in. You can read more about each on the Give page.</p>
+      </div>
+
+      <span class="faq-category">The Money</span>
+
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q-wrap">
+          <span class="faq-num">05</span>
+          <p class="faq-q">Where does the money actually go?</p>
+          <span class="faq-toggle">+</span>
         </div>
-        <div class="faq-item">
-          <p class="faq-q">How do I follow along?</p>
-          <p class="faq-a">Best way is Substack. I post race recaps, training updates, and the occasional story that's too long for Instagram. Link is in the Blog tab. You can also follow me <a href="https://www.instagram.com/gogigiruns" target="_blank" style="color:var(--teal);text-decoration:none;border-bottom:1px solid rgba(90,172,207,0.4);">@gogigiruns</a>.</p>
+        <div class="faq-a-wrap">
+          <p class="faq-a">Straight to whichever charity you choose: NEDA, RAINN, or Friendship Circle. I never see a cent of it. You donate directly to their official pages.</p>
         </div>
       </div>
+
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q-wrap">
+          <span class="faq-num">06</span>
+          <p class="faq-q">Can I just donate without pledging per mile?</p>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a-wrap">
+          <p class="faq-a">Absolutely. Click any charity card on the Give page and it takes you straight to their donation page. No pledging required.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q-wrap">
+          <span class="faq-num">07</span>
+          <p class="faq-q">Why these three charities?</p>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a-wrap">
+          <p class="faq-a">They're close to my heart and I'll leave it at that. NEDA, RAINN, and Friendship Circle each do work I believe in. You can read more about each on the Give page.</p>
+        </div>
+      </div>
+
+      <span class="faq-category">Following Along</span>
+
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q-wrap">
+          <span class="faq-num">08</span>
+          <p class="faq-q">How do I follow along?</p>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a-wrap">
+          <p class="faq-a">Best way is Substack. I post race recaps, training updates, and the occasional story that's too long for Instagram. Link is in the Blog tab. You can also follow me <a href="https://www.instagram.com/gogigiruns" target="_blank">@gogigiruns</a>.</p>
+        </div>
+      </div>
+
     </div>
   </section>
 
   <!-- CTA -->
   <div class="faq-cta-strip">
-    <p>Ready to be part of it?</p>
+    <p>Ready to be <em>part of it?</em></p>
+    <p class="faq-cta-sub">No account. No pressure. Just your name and a number.</p>
     <a href="#" onclick="showTab('give'); return false;">Make a pledge &rarr;</a>
   </div>
 
