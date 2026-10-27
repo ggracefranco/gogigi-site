@@ -979,20 +979,6 @@ footer { background: var(--navy); padding: 4rem 2.5rem 2rem; border-top: 1px sol
 .footer-copy { font-size: 0.7rem; color: rgba(253,248,240,0.2); }
 .footer-disclaimer { font-size: 0.66rem; color: rgba(253,248,240,0.15); max-width: 380px; text-align: right; line-height: 1.5; }
 
-/* ─── TRAINING CHART ─── */
-.training-chart-wrap { margin-bottom: 2rem; }
-.training-chart-label { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; }
-.training-chart { display: flex; align-items: flex-end; gap: 4px; height: 80px; }
-.chart-week { display: flex; flex-direction: column; align-items: center; gap: 2px; flex: 1; min-width: 0; }
-.chart-bars { display: flex; gap: 2px; align-items: flex-end; height: 64px; width: 100%; }
-.chart-bar { flex: 1; border-radius: 2px 2px 0 0; min-height: 2px; transition: height 0.6s ease; }
-.chart-bar.swim { background: var(--teal); }
-.chart-bar.bike { background: var(--raspberry); opacity: 0.7; }
-.chart-bar.run  { background: var(--coral); opacity: 0.6; }
-.chart-week-label { font-size: 0.48rem; color: var(--light); letter-spacing: 0.06em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
-.chart-legend { display: flex; gap: 1.25rem; margin-top: 0.75rem; }
-.chart-legend-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.62rem; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; }
-.chart-legend-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
 
 /* ─── FUNDRAISING TOTAL STRIP ─── */
 .raised-strip {
@@ -1484,18 +1470,6 @@ h1             { animation: fadeUp 0.7s 0.1s ease both; }
         <span class="total-hours-label">weeks of training</span>
       </div>
     </div>
-    <!-- Mini bar chart -->
-    <div class="training-chart-wrap">
-      <p class="training-chart-label">Weekly training volume</p>
-      <div class="training-chart" id="trainingChart">
-        <p style="color:var(--light);font-size:0.8rem;font-style:italic;">Loading chart&hellip;</p>
-      </div>
-      <div class="chart-legend">
-        <span class="chart-legend-item"><span class="chart-legend-dot" style="background:var(--teal)"></span>Swim</span>
-        <span class="chart-legend-item"><span class="chart-legend-dot" style="background:var(--raspberry);opacity:0.7"></span>Bike</span>
-        <span class="chart-legend-item"><span class="chart-legend-dot" style="background:var(--coral);opacity:0.6"></span>Run</span>
-      </div>
-    </div>
 
     <button class="training-toggle-btn" id="trainingToggleBtn" onclick="toggleTrainingLog()">
       View weekly breakdown <span class="training-toggle-arrow">&#x25BC;</span>
@@ -1949,7 +1923,7 @@ function showTab(name) {
   window.scrollTo(0, 0);
   // Load miles when home tab shown
   if (name === 'home' && !window._milesLoaded) { loadMiles(); loadRaisedTotal(); window._milesLoaded = true; }
-  if (name === 'training' && !window._trainingLoaded) { loadTotalHours(); loadTraining(); loadTrainingChart(); window._trainingLoaded = true; }
+  if (name === 'training' && !window._trainingLoaded) { loadTotalHours(); loadTraining(); window._trainingLoaded = true; }
   if (name === 'give' && !window._pledgesLoaded) { loadPledges(); window._pledgesLoaded = true; }
 }
 
@@ -2281,42 +2255,6 @@ async function loadRaisedTotal() {
   }
 }
 
-// ─── TRAINING CHART ───
-async function loadTrainingChart() {
-  try {
-    const res = await fetch('/api/strava');
-    const weeks = await res.json();
-    const weekKeys = Object.keys(weeks).filter(k => k >= '2026-05-03').sort();
-    if (!weekKeys.length) return;
-    const chartEl = document.getElementById('trainingChart');
-    if (!chartEl) return;
-
-    // Find max total for scaling
-    let maxVal = 0;
-    weekKeys.forEach(k => {
-      const w = weeks[k];
-      const t = (w.swim.distance||0) + (w.bike.distance||0) + (w.run.distance||0);
-      if (t > maxVal) maxVal = t;
-    });
-    if (maxVal === 0) { chartEl.innerHTML = '<p style="color:var(--light);font-size:0.8rem;font-style:italic;">No data yet.</p>'; return; }
-
-    const html = weekKeys.map(k => {
-      const w = weeks[k];
-      const s = w.swim.distance||0, b = w.bike.distance||0, r = w.run.distance||0;
-      const sh = Math.round((s/maxVal)*60), bh = Math.round((b/maxVal)*60), rh = Math.round((r/maxVal)*60);
-      const label = new Date(k).toLocaleDateString('en-US',{month:'short',day:'numeric'});
-      return `<div class="chart-week">
-        <div class="chart-bars">
-          <div class="chart-bar swim" style="height:${sh}px" title="Swim ${s.toFixed(1)} mi"></div>
-          <div class="chart-bar bike" style="height:${bh}px" title="Bike ${b.toFixed(1)} mi"></div>
-          <div class="chart-bar run"  style="height:${rh}px" title="Run ${r.toFixed(1)} mi"></div>
-        </div>
-        <span class="chart-week-label">${label}</span>
-      </div>`;
-    }).join('');
-    chartEl.innerHTML = html;
-  } catch(e) { /* silent fail */ }
-}
 
 // COUNTDOWN CLOCK
 (function() {
